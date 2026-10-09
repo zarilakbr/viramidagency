@@ -234,7 +234,7 @@ export const NILAI_KERJA: NilaiKerja[] = [
 
 export const DAFTAR_TIM: AnggotaTim[] = [
   {
-    nama: 'Zaril Akbat',
+    nama: 'Zaril Akbar',
     peran: 'Founder & Creative Director',
   },
   {
