@@ -7,10 +7,10 @@ import { PROFIL_AGENCY } from '../data/content';
 /**
  * Hero Section ViramidAgency
  * Standar:
- * - Video latar belakang penuh (full width) terlihat jelas & kontras
- * - Video berada di layer z-0 (di atas kanvas, di bawah teks z-10)
+ * - Tipografi di tengah (centered) megah & seimbang di atas video latar belakang penuh
+ * - Video berada di layer z-0 dengan overlay gradien vignette seimbang
  * - Autoplay terjamin dengan muted & play promise handler
- * - Editorial & tegas: Space Grotesk 700, teks rata kiri
+ * - Space Grotesk 700, kontras tinggi, bebas kekosongan samping
  */
 export const Hero: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -34,7 +34,7 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative w-full min-h-[85vh] flex items-center overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24">
+    <section className="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden pt-28 pb-20 md:pt-40 md:pb-28">
       {/* Background Video Penuh di Layer z-0 */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         <video
@@ -48,22 +48,23 @@ export const Hero: React.FC = () => {
           className="w-full h-full object-cover opacity-75 md:opacity-85"
         />
 
-        {/* Lapisan gradien tipis: pekat di sisi kiri agar teks terbaca tajam, transparan di sisi kanan agar animasi logo tampak jelas */}
-        <div className="absolute inset-0 z-[1] bg-gradient-to-r from-background/95 via-background/70 to-background/25" />
-        <div className="absolute inset-0 z-[1] bg-gradient-to-t from-background via-transparent to-background/50" />
+        {/* Lapisan vignette terpusat: menjaga teks di tengah tetap tajam & video di belakang tetap hidup */}
+        <div className="absolute inset-0 z-[1] bg-background/55" />
+        <div className="absolute inset-0 z-[1] bg-gradient-to-t from-background via-transparent to-background/60" />
+        <div className="absolute inset-0 z-[1] bg-gradient-to-r from-background/60 via-transparent to-background/60" />
       </div>
 
-      {/* Konten Teks di Layer z-10 */}
-      <div className="section-container relative z-10 w-full">
-        <div className="flex flex-col items-start text-left max-w-[880px]">
+      {/* Konten Teks Terpusat (Centered) di Layer z-10 */}
+      <div className="section-container relative z-10 w-full flex flex-col items-center text-center">
+        <div className="flex flex-col items-center text-center max-w-[960px] mx-auto">
           {/* Label Kicker */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="mb-4 inline-flex items-center gap-2"
+            className="mb-5 inline-flex items-center gap-2"
           >
-            <span className="text-xs font-mono font-medium tracking-wider uppercase text-cyan px-2.5 py-1 rounded border border-border bg-surface/90">
+            <span className="text-xs font-mono font-medium tracking-wider uppercase text-cyan px-3 py-1 rounded border border-border bg-surface/90">
               {PROFIL_AGENCY.label}
             </span>
           </motion.div>
@@ -73,17 +74,17 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="font-heading font-bold text-4xl sm:text-6xl lg:text-7xl leading-[1.05] tracking-tight text-foreground mb-6 text-balance"
+            className="font-heading font-bold text-4xl sm:text-6xl lg:text-7xl leading-[1.08] tracking-tight text-foreground mb-6 text-balance text-center"
           >
             {PROFIL_AGENCY.tagline}
           </motion.h1>
 
-          {/* Subteks deskriptif maks 68 karakter */}
+          {/* Subteks deskriptif terpusat maks 68 karakter */}
           <motion.p
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="text-base sm:text-xl text-muted font-normal leading-relaxed mb-8 max-w-[65ch]"
+            className="text-base sm:text-xl text-muted font-normal leading-relaxed mb-9 max-w-[65ch] text-center mx-auto"
           >
             {PROFIL_AGENCY.deskripsi}
           </motion.p>
@@ -93,7 +94,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-wrap items-center gap-4"
+            className="flex flex-wrap items-center justify-center gap-4"
           >
             <Button
               as="button"
@@ -129,7 +130,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.35, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-12 pt-6 border-t border-border/80 flex flex-wrap items-center gap-x-8 gap-y-3 text-xs font-mono text-muted w-full"
+            className="mt-14 pt-6 border-t border-border/80 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs font-mono text-muted w-full"
           >
             <span className="flex items-center gap-2">
               <Icon name="check" size="sm" className="text-orange" />
