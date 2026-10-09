@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Button } from './Button';
 import { Icon } from './ui/Icon';
 import { PROFIL_AGENCY } from '../data/content';
+import heroVideo from '../assets/videos/Logo_exit_animation.mp4';
 
 /**
  * Hero Section ViramidAgency
@@ -39,7 +40,7 @@ export const Hero: React.FC = () => {
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         <video
           ref={videoRef}
-          src="/videos/Logo_exit_animation.mp4"
+          src={heroVideo}
           autoPlay
           loop
           muted

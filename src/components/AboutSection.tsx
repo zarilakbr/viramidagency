@@ -2,6 +2,7 @@ import React from 'react';
 import { SectionHeading } from './SectionHeading';
 import { Reveal } from './ui/Reveal';
 import { PROFIL_AGENCY, NILAI_KERJA, DAFTAR_TIM, KONTAK_AGENCY } from '../data/content';
+import zarilPhoto from '../assets/images/zaril-akbar.jpg';
 
 /**
  * AboutSection

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import introVideo from '../assets/videos/Logo_animation_for_Viramid_Agency.mp4';
 
 interface IntroScreenProps {
   onFinish?: () => void;
@@ -106,7 +107,7 @@ export const IntroScreen: React.FC<IntroScreenProps> = ({ onFinish }) => {
           <div className="absolute inset-0 w-full h-full overflow-hidden">
             <video
               ref={videoRef}
-              src="/videos/Logo_animation_for_Viramid_Agency.mp4"
+              src={introVideo}
               autoPlay
               muted
               playsInline
