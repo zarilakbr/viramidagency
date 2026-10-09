@@ -134,19 +134,26 @@ select:focus-visible,
   background: #F97316;
 }
 
-/* Infinite Running Marquee Animation */
-@keyframes marquee {
+/* Infinite Running Marquee Animation (Dual-Track Hardware-Accelerated) */
+@keyframes marquee-track {
   0% {
-    transform: translateX(0%);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translate3d(-100%, 0, 0);
   }
 }
 
-.animate-marquee {
+.animate-marquee-smooth {
   display: flex;
-  width: max-content;
-  animation: marquee 35s linear infinite;
+  flex-shrink: 0;
+  animation: marquee-track 32s linear infinite;
   will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
+
+.marquee-container:hover .animate-marquee-smooth {
+  animation-play-state: paused;
+}
+

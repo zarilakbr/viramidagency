@@ -114,36 +114,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
     window.location.href = url;
   };
 
-  const videoRef = React.useRef<HTMLVideoElement>(null);
-
-  React.useEffect(() => {
-    const video = videoRef.current;
-    if (video) {
-      video.defaultMuted = true;
-      video.muted = true;
-      video.play().catch(() => {});
-    }
-  }, []);
-
   return (
-    <section id="kontak" className="relative w-full py-20 md:py-28 overflow-hidden scroll-mt-20">
-      {/* Background Video 2: Logo Exit Animation di Layer z-0 */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
-        <video
-          ref={videoRef}
-          src="/videos/Logo_exit_animation.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="w-full h-full object-cover opacity-50 md:opacity-60"
-        />
-        {/* Lapisan gradien tipis agar formulir & informasi kontak tetap kontras & tajam */}
-        <div className="absolute inset-0 z-[1] bg-gradient-to-t from-background via-background/80 to-background/60" />
-      </div>
-
-      <div className="section-container relative z-10">
+    <section id="kontak" className="section-container section-spacing scroll-mt-20">
         <SectionHeading
           number="05"
           title="Ceritakan proyekmu."
@@ -387,7 +359,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
           </form>
         </Reveal>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { SectionHeading } from './SectionHeading';
 import { Reveal } from './ui/Reveal';
 import { PROFIL_AGENCY, NILAI_KERJA, DAFTAR_TIM } from '../data/content';
@@ -7,11 +7,25 @@ import { PROFIL_AGENCY, NILAI_KERJA, DAFTAR_TIM } from '../data/content';
  * AboutSection
  * Standar:
  * - Dua kolom: Filosofi dan Prinsip Kerja
+ * - Latar Belakang Video 2 (Logo Exit Animation) dengan layer z-0 dan overlay gradien
  * - Space Grotesk 700, teks rata kiri, max-w-[65ch]
  * - 1px border, tanpa shadow tebal
- * - Container 1200px, section-spacing 120px (mobile 72px)
+ * - Container 1200px di layer z-10
  */
 export const AboutSection: React.FC = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.defaultMuted = true;
+      video.muted = true;
+      video.play().catch((err) => {
+        console.warn('[About Video] Autoplay dicegah:', err);
+      });
+    }
+  }, []);
+
   const getInitials = (nama: string) => {
     const parts = nama.trim().split(' ').filter(Boolean);
     if (parts.length >= 2) {
@@ -21,12 +35,32 @@ export const AboutSection: React.FC = () => {
   };
 
   return (
-    <section id="tentang" className="section-container section-spacing scroll-mt-20">
-      <SectionHeading
-        number="04"
-        title="Tentang Agency"
-        subtitle="Pendekatan dedikatif yang menggabungkan presisi desain dan keandalan teknologi digital."
-      />
+    <section id="tentang" className="relative w-full py-20 md:py-32 overflow-hidden scroll-mt-20 border-y border-border/70">
+      {/* Background Video 2: Logo Exit Animation di Layer z-0 */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+        <video
+          ref={videoRef}
+          src="/videos/Logo_exit_animation.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="w-full h-full object-cover opacity-40 md:opacity-50"
+        />
+
+        {/* Lapisan gradien pelindung kontras teks */}
+        <div className="absolute inset-0 z-[1] bg-background/65" />
+        <div className="absolute inset-0 z-[1] bg-gradient-to-t from-background via-transparent to-background" />
+        <div className="absolute inset-0 z-[1] bg-gradient-to-r from-background/70 via-transparent to-background/70" />
+      </div>
+
+      <div className="section-container relative z-10">
+        <SectionHeading
+          number="04"
+          title="Tentang Agency"
+          subtitle="Pendekatan dedikatif yang menggabungkan presisi desain dan keandalan teknologi digital."
+        />
 
       {/* Dua Kolom: Cerita & Nilai Kerja */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-16">
@@ -124,6 +158,7 @@ export const AboutSection: React.FC = () => {
           </div>
         </div>
       )}
+      </div>
     </section>
   );
 };

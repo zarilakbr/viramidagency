@@ -101,10 +101,11 @@ export const TECH_LIST: TechItem[] = [
 
 /**
  * TechnologyStack
- * Marquee perangkat teknologi modern dengan border 1px dan tanpa shadow.
+ * Marquee perangkat teknologi modern dengan border 1px, dual-track seamless loop 60fps tanpa jeda/kaku.
  */
 export const TechnologyStack: React.FC = () => {
-  const marqueeItems = [...TECH_LIST, ...TECH_LIST];
+  // Setiap trek berisi 2 putaran TECH_LIST agar lebar trek mencukupi layar 4K
+  const trackItems = [...TECH_LIST, ...TECH_LIST];
 
   return (
     <section className="relative py-8 border-y border-border bg-surface/30 overflow-hidden">
@@ -120,10 +121,10 @@ export const TechnologyStack: React.FC = () => {
       </div>
 
       {/* Marquee Track Container */}
-      <div className="relative w-full overflow-hidden">
+      <div className="relative w-full overflow-hidden marquee-container select-none">
         {/* Left Fade Scrim */}
         <div
-          className="absolute left-0 top-0 bottom-0 w-20 sm:w-32 z-10 pointer-events-none"
+          className="absolute left-0 top-0 bottom-0 w-16 sm:w-28 z-10 pointer-events-none"
           style={{
             background: 'linear-gradient(to right, #0A0A2E 0%, transparent 100%)',
           }}
@@ -132,34 +133,60 @@ export const TechnologyStack: React.FC = () => {
 
         {/* Right Fade Scrim */}
         <div
-          className="absolute right-0 top-0 bottom-0 w-20 sm:w-32 z-10 pointer-events-none"
+          className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 z-10 pointer-events-none"
           style={{
             background: 'linear-gradient(to left, #0A0A2E 0%, transparent 100%)',
           }}
           aria-hidden="true"
         />
 
-        {/* Running Row */}
-        <div className="flex w-max animate-marquee hover:[animation-play-state:paused] items-center gap-4 py-1">
-          {marqueeItems.map((tech, index) => (
-            <div
-              key={`${tech.name}-${index}`}
-              className="flex items-center gap-3 px-4 py-2 rounded border border-border bg-surface hover:border-orange transition-colors duration-200 select-none group"
-              title={`${tech.name} - ${tech.category}`}
-            >
-              <div className="shrink-0">
-                {tech.icon}
+        {/* Dual-Track Flex Wrapper */}
+        <div className="flex w-max">
+          {/* Trek 1 */}
+          <div className="flex shrink-0 items-center gap-4 pr-4 animate-marquee-smooth py-1">
+            {trackItems.map((tech, index) => (
+              <div
+                key={`t1-${tech.name}-${index}`}
+                className="flex items-center gap-3 px-4 py-2.5 rounded border border-border bg-surface hover:border-orange transition-colors duration-200 select-none group cursor-default"
+                title={`${tech.name} - ${tech.category}`}
+              >
+                <div className="shrink-0">
+                  {tech.icon}
+                </div>
+                <div className="flex flex-col text-left whitespace-nowrap">
+                  <span className="font-heading font-bold text-sm text-foreground group-hover:text-orange transition-colors">
+                    {tech.name}
+                  </span>
+                  <span className="text-[10px] font-mono text-muted">
+                    {tech.category}
+                  </span>
+                </div>
               </div>
-              <div className="flex flex-col text-left whitespace-nowrap">
-                <span className="font-heading font-bold text-sm text-foreground group-hover:text-orange transition-colors">
-                  {tech.name}
-                </span>
-                <span className="text-[10px] font-mono text-muted">
-                  {tech.category}
-                </span>
+            ))}
+          </div>
+
+          {/* Trek 2 (Salinan Identik untuk Seamless Loop tanpa lompatan pixel) */}
+          <div className="flex shrink-0 items-center gap-4 pr-4 animate-marquee-smooth py-1" aria-hidden="true">
+            {trackItems.map((tech, index) => (
+              <div
+                key={`t2-${tech.name}-${index}`}
+                className="flex items-center gap-3 px-4 py-2.5 rounded border border-border bg-surface hover:border-orange transition-colors duration-200 select-none group cursor-default"
+                title={`${tech.name} - ${tech.category}`}
+              >
+                <div className="shrink-0">
+                  {tech.icon}
+                </div>
+                <div className="flex flex-col text-left whitespace-nowrap">
+                  <span className="font-heading font-bold text-sm text-foreground group-hover:text-orange transition-colors">
+                    {tech.name}
+                  </span>
+                  <span className="text-[10px] font-mono text-muted">
+                    {tech.category}
+                  </span>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
