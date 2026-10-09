@@ -39,7 +39,7 @@ export const Hero: React.FC = () => {
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         <video
           ref={videoRef}
-          src="/videos/Logo_animation_for_Viramid_Agency.mp4"
+          src="/videos/Logo_exit_animation.mp4"
           autoPlay
           loop
           muted
