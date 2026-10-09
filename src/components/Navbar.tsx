@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
 import { Logo } from './Logo';
 import { Button } from './Button';
+import { Icon } from './ui/Icon';
 
 interface NavItem {
   label: string;
@@ -18,6 +18,14 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'Kontak', href: '#kontak', id: 'kontak' },
 ];
 
+/**
+ * Navbar ViramidAgency
+ * Standar:
+ * - Tinggi 64px (h-16)
+ * - Menempel di atas (fixed z-50)
+ * - Border bawah & latar muncul setelah scroll (transisi 200ms)
+ * - Ikon melalui Icon.tsx
+ */
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('');
@@ -25,14 +33,9 @@ export const Navbar: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Handle scroll detection for frosted glass header
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -40,7 +43,6 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // IntersectionObserver to detect active section when on home page
   useEffect(() => {
     if (location.pathname !== '/') {
       setActiveSection('');
@@ -68,7 +70,6 @@ export const Navbar: React.FC = () => {
     return () => observer.disconnect();
   }, [location.pathname]);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -113,26 +114,26 @@ export const Navbar: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 h-16 transition-colors duration-200 ${
         isScrolled
-          ? 'bg-[#1e1136]/75 backdrop-blur-md'
-          : 'bg-transparent'
+          ? 'bg-background/95 border-b border-border'
+          : 'bg-transparent border-b border-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
-        {/* Brand Zone - Logo on left */}
+      <div className="section-container h-full flex items-center justify-between">
+        {/* Brand Zone */}
         <a
           href="/"
           onClick={handleLogoClick}
-          className="flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-[#F97316] focus-visible:outline-offset-4 rounded-xl group"
+          className="flex items-center gap-2 rounded-sm cursor-pointer"
           aria-label="ViramidAgency Beranda"
         >
-          <Logo size={36} showText={true} />
+          <Logo size={32} showText={true} />
         </a>
 
-        {/* Nav Links (Desktop) - Clean & Floating without boxy container */}
+        {/* Nav Links (Desktop) */}
         <nav
-          className="hidden md:flex items-center gap-8 text-sm font-medium text-[#B8A9D4]"
+          className="hidden md:flex items-center gap-8 text-sm font-medium text-muted"
           aria-label="Navigasi Utama"
         >
           {NAV_ITEMS.map((item) => {
@@ -142,14 +143,14 @@ export const Navbar: React.FC = () => {
                 key={item.id}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
-                className={`relative py-1 transition-colors duration-200 hover:text-[#F4F3FF] focus-visible:outline-2 focus-visible:outline-[#F97316] focus-visible:outline-offset-4 rounded-sm ${
-                  isActive ? 'text-[#F4F3FF] font-semibold' : ''
+                className={`relative py-1 transition-colors duration-200 hover:text-foreground rounded-sm ${
+                  isActive ? 'text-foreground font-semibold' : ''
                 }`}
               >
                 {item.label}
                 {isActive && (
                   <span
-                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#F97316]"
+                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-orange"
                     aria-hidden="true"
                   />
                 )}
@@ -158,14 +159,14 @@ export const Navbar: React.FC = () => {
           })}
         </nav>
 
-        {/* Action Zone (Desktop) - Hubungi Kami */}
-        <div className="hidden md:flex items-center gap-4">
+        {/* Action Zone (Desktop) */}
+        <div className="hidden md:flex items-center">
           <Button
             as="a"
             href="#kontak"
             onClick={(e) => handleNavClick(e, '#kontak')}
             variant="primary"
-            className="!h-10 !px-5 text-xs font-semibold tracking-wide shadow-md shadow-[#F97316]/15 hover:shadow-[#F97316]/30 transition-all"
+            className="!h-9 !px-4 text-xs font-semibold"
           >
             Hubungi Kami
           </Button>
@@ -176,7 +177,7 @@ export const Navbar: React.FC = () => {
           <a
             href="#kontak"
             onClick={(e) => handleNavClick(e, '#kontak')}
-            className="text-xs font-semibold px-3.5 py-1.5 rounded-full bg-[#F97316] text-[#24133f] active:scale-95 transition-transform"
+            className="text-xs font-semibold px-3 py-1.5 rounded-md bg-orange text-background hover:bg-orange-hover transition-colors"
           >
             Hubungi
           </a>
@@ -184,27 +185,27 @@ export const Navbar: React.FC = () => {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-[#F4F3FF] hover:text-[#F97316] transition-colors focus-visible:outline-2 focus-visible:outline-[#F97316] rounded-lg"
-            aria-label={mobileMenuOpen ? 'Tutup menu' : 'Buka menu'}
+            className="p-1.5 text-foreground hover:text-orange transition-colors rounded-md"
+            aria-label={mobileMenuOpen ? 'Tutup navigasi' : 'Buka navigasi'}
             aria-expanded={mobileMenuOpen}
           >
-            {mobileMenuOpen ? <X size={24} strokeWidth={2} /> : <Menu size={24} strokeWidth={2} />}
+            {mobileMenuOpen ? <Icon name="close" size="md" /> : <Icon name="menu" size="md" />}
           </button>
         </div>
       </div>
 
-      {/* Responsive Fullscreen Mobile Drawer */}
+      {/* Mobile Menu Panel */}
       {mobileMenuOpen && (
         <div
-          className="md:hidden fixed inset-0 top-20 bg-[#1a0f30]/95 backdrop-blur-2xl z-40 flex flex-col justify-between px-6 py-8 overflow-y-auto animate-in fade-in duration-200"
+          className="md:hidden fixed inset-0 top-16 bg-background/98 z-40 flex flex-col justify-between px-6 py-8 border-t border-border overflow-y-auto"
           role="dialog"
           aria-modal="true"
         >
-          <div className="flex flex-col gap-6">
-            <span className="text-xs font-mono tracking-widest uppercase text-[#B8A9D4]/70 px-2">
+          <div className="flex flex-col gap-4">
+            <span className="text-xs font-mono tracking-wider uppercase text-muted">
               Menu Navigasi
             </span>
-            <nav className="flex flex-col gap-2" aria-label="Navigasi Mobile">
+            <nav className="flex flex-col gap-1" aria-label="Navigasi Mobile">
               {NAV_ITEMS.map((item, index) => {
                 const isActive = activeSection === item.id;
                 return (
@@ -212,14 +213,14 @@ export const Navbar: React.FC = () => {
                     key={item.id}
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className={`text-2xl font-heading font-bold flex items-center justify-between py-3.5 px-3 rounded-xl transition-all ${
+                    className={`text-xl font-heading font-bold flex items-center justify-between py-3 px-3 rounded-md transition-colors ${
                       isActive
-                        ? 'text-[#F97316] bg-[#342056]/60'
-                        : 'text-[#F4F3FF] hover:text-[#F97316] active:bg-[#342056]/40'
+                        ? 'text-orange bg-surface border border-border'
+                        : 'text-foreground hover:text-orange hover:bg-surface/50'
                     }`}
                   >
                     <span>{item.label}</span>
-                    <span className="text-xs text-[#B8A9D4] font-mono font-normal">
+                    <span className="text-xs text-muted font-mono font-normal">
                       0{index + 1}
                     </span>
                   </a>
@@ -228,18 +229,18 @@ export const Navbar: React.FC = () => {
             </nav>
           </div>
 
-          <div className="pt-8 mt-auto flex flex-col gap-4">
+          <div className="pt-6 border-t border-border mt-auto flex flex-col gap-4">
             <Button
               as="a"
               href="#kontak"
               onClick={(e) => handleNavClick(e, '#kontak')}
               variant="primary"
-              className="w-full text-center py-3.5 font-semibold text-sm shadow-lg shadow-[#F97316]/20"
+              className="w-full text-center py-3"
             >
               Mulai Diskusi Proyek
             </Button>
-            <div className="flex items-center justify-between text-[11px] font-mono text-[#B8A9D4]/70 px-2">
-              <span>Jakarta Selatan, ID</span>
+            <div className="flex items-center justify-between text-xs font-mono text-muted">
+              <span>Jakarta Selatan, Indonesia</span>
               <span>© {new Date().getFullYear()} ViramidAgency</span>
             </div>
           </div>

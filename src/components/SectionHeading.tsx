@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { Reveal } from './ui/Reveal';
 
 interface SectionHeadingProps {
   number: string;
@@ -8,6 +8,13 @@ interface SectionHeadingProps {
   className?: string;
 }
 
+/**
+ * SectionHeading
+ * Standar:
+ * - Editorial & tegas: Space Grotesk 700
+ * - Panjang baris subtitle maksimum 65 karakter
+ * - Scroll reveal 600ms
+ */
 export const SectionHeading: React.FC<SectionHeadingProps> = ({
   number,
   title,
@@ -15,29 +22,23 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
   className = '',
 }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
-      className={`mb-12 md:mb-16 text-left ${className}`}
-    >
-      <div className="flex items-baseline gap-4 md:gap-6">
+    <Reveal className={`mb-10 md:mb-12 text-left ${className}`}>
+      <div className="flex items-baseline gap-4 md:gap-5">
         <span
-          className="font-heading font-light text-3xl md:text-5xl text-[#7a59ab] select-none tracking-tight"
+          className="font-mono text-xs sm:text-sm font-semibold text-orange select-none"
           aria-hidden="true"
         >
-          {number}
+          {number} /
         </span>
-        <h2 className="font-heading font-bold text-3xl md:text-5xl text-[#F4F3FF] tracking-tight">
+        <h2 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl text-foreground tracking-tight">
           {title}
         </h2>
       </div>
       {subtitle && (
-        <p className="mt-3 text-sm md:text-base text-[#B8A9D4] max-w-2xl font-normal leading-relaxed">
+        <p className="mt-3 text-sm sm:text-base text-muted max-w-[65ch] font-normal leading-relaxed">
           {subtitle}
         </p>
       )}
-    </motion.div>
+    </Reveal>
   );
 };

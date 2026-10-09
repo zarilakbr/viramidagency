@@ -20,6 +20,13 @@ type ButtonAsAnchor = ButtonBaseProps &
 
 export type ButtonProps = ButtonAsButton | ButtonAsAnchor;
 
+/**
+ * Komponen Tombol Baku ViramidAgency.
+ * - Tinggi baku 44px (h-11)
+ * - Transisi warna 200ms tanpa efek membal
+ * - Border 1px, tanpa shadow
+ * - Outline cyan 2px saat focus-visible
+ */
 export const Button: React.FC<ButtonProps> = (props) => {
   const {
     variant = 'primary',
@@ -28,15 +35,15 @@ export const Button: React.FC<ButtonProps> = (props) => {
   } = props;
 
   const baseClasses =
-    'h-12 px-7 rounded-full font-medium text-sm inline-flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer select-none whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-[#22D3C5] focus-visible:outline-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed';
+    'h-11 px-6 rounded-md font-medium text-sm inline-flex items-center justify-center gap-2 transition-colors duration-200 cursor-pointer select-none whitespace-nowrap shrink-0 disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed';
 
   const variantClasses = {
     primary:
-      'bg-[#F97316] text-[#24133f] font-semibold hover:bg-[#FDBA4D] shadow-md shadow-[#F97316]/20 hover:shadow-[#F97316]/30',
+      'bg-orange text-background font-semibold hover:bg-orange-hover border border-orange active:bg-orange-hover',
     ghost:
-      'bg-transparent text-[#F4F3FF] border border-[#5a3c8e] hover:border-[#F97316] hover:bg-[#412a6a]/40 hover:text-[#F4F3FF]',
+      'bg-transparent text-foreground border border-border hover:border-orange hover:text-foreground active:bg-surface',
     outline:
-      'bg-[#412a6a] text-[#F4F3FF] border border-[#5a3c8e] hover:border-[#F97316] hover:bg-[#412a6a]/80 shadow-sm',
+      'bg-surface text-foreground border border-border hover:border-orange hover:bg-surface-hover active:bg-surface',
   };
 
   const combinedClasses = `${baseClasses} ${variantClasses[variant]} ${className}`;

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
-import { Mail, MessageSquare, MapPin, Instagram, ArrowUpRight } from 'lucide-react';
 import { SectionHeading } from './SectionHeading';
 import { Button } from './Button';
+import { Icon } from './ui/Icon';
+import { Reveal } from './ui/Reveal';
 import { KONTAK_AGENCY } from '../data/content';
 
 interface FormState {
@@ -24,6 +24,14 @@ interface ContactSectionProps {
   initialService?: string;
 }
 
+/**
+ * ContactSection
+ * Standar:
+ * - 1px border, tanpa shadow tebal, tanpa efek kaca blur
+ * - Ikon polos tanpa kotak/lingkaran warna-warni acak, jarak 8px
+ * - Container 1200px, section-spacing 120px (mobile 72px)
+ * - Outline cyan 2px saat focus-visible
+ */
 export const ContactSection: React.FC<ContactSectionProps> = ({ initialService = '' }) => {
   const [formData, setFormData] = useState<FormState>({
     nama: '',
@@ -36,7 +44,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // Update kebutuhan if initialService changes
   React.useEffect(() => {
     if (initialService) {
       setFormData((prev) => ({ ...prev, kebutuhan: initialService }));
@@ -74,10 +81,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
     const lines = [
       `Halo ViramidAgency, saya ingin berdiskusi mengenai proyek:`,
       ``,
-      `• Nama: ${formData.nama.trim()}`,
-      `• Kontak (Email/WA): ${formData.kontak.trim()}`,
-      `• Kebutuhan: ${formData.kebutuhan}`,
-      `• Anggaran: ${formData.anggaran ? formData.anggaran : 'Belum ditentukan'}`,
+      `Nama: ${formData.nama.trim()}`,
+      `Kontak (Email/WA): ${formData.kontak.trim()}`,
+      `Kebutuhan: ${formData.kebutuhan}`,
+      `Anggaran: ${formData.anggaran ? formData.anggaran : 'Belum ditentukan'}`,
       ``,
       `Detail Kebutuhan:`,
       `${formData.pesan.trim()}`,
@@ -108,7 +115,21 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
   };
 
   return (
-    <section id="kontak" className="py-24 md:py-32 px-4 sm:px-8 max-w-7xl mx-auto scroll-mt-20">
+    <section id="kontak" className="relative section-container section-spacing scroll-mt-20 overflow-hidden">
+      {/* Background Video: Logo Exit Animation */}
+      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none select-none">
+        <video
+          src="/videos/Logo_exit_animation.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-15"
+        />
+        {/* Lapisan gradien agar formulir & informasi kontak tetap kontras & tajam */}
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background" />
+      </div>
+
       <SectionHeading
         number="05"
         title="Ceritakan proyekmu."
@@ -117,37 +138,29 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
         {/* Kolom Kiri: Detail Kontak */}
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="lg:col-span-5 flex flex-col gap-8"
-        >
+        <Reveal className="lg:col-span-5 flex flex-col gap-6">
           <div>
-            <h3 className="font-heading font-bold text-2xl text-[#F4F3FF] mb-3">
+            <h3 className="font-heading font-bold text-2xl text-foreground mb-3">
               Mari Berkolaborasi
             </h3>
-            <p className="text-sm text-[#B8A9D4] leading-relaxed">
+            <p className="text-sm text-muted leading-relaxed max-w-[65ch]">
               Kami menyambut diskusi santai maupun konsultasi mendalam untuk kebutuhan brand &amp; website Anda.
             </p>
           </div>
 
-          <div className="flex flex-col gap-5 border-t border-[#5a3c8e] pt-6">
+          <div className="flex flex-col gap-4 border-t border-border pt-6">
             {/* WhatsApp */}
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-[#412a6a] border border-[#5a3c8e] flex items-center justify-center text-[#F97316] shrink-0">
-                <MessageSquare size={18} strokeWidth={1.5} />
-              </div>
+            <div className="flex items-start gap-3">
+              <Icon name="message-square" size="md" className="text-orange mt-0.5" />
               <div>
-                <span className="block text-xs uppercase tracking-wider text-[#B8A9D4] mb-1">
+                <span className="block text-xs uppercase font-mono tracking-wider text-muted mb-0.5">
                   WhatsApp
                 </span>
                 <a
                   href={`https://wa.me/${KONTAK_AGENCY.whatsappNomor}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="font-medium text-sm sm:text-base text-[#F4F3FF] hover:text-[#F97316] transition-colors focus-visible:outline-2 focus-visible:outline-[#22D3C5] rounded"
+                  className="font-mono text-sm sm:text-base text-foreground hover:text-orange transition-colors"
                 >
                   {KONTAK_AGENCY.whatsappDisplay}
                 </a>
@@ -155,17 +168,15 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
             </div>
 
             {/* Email */}
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-[#412a6a] border border-[#5a3c8e] flex items-center justify-center text-[#22D3C5] shrink-0">
-                <Mail size={18} strokeWidth={1.5} />
-              </div>
+            <div className="flex items-start gap-3">
+              <Icon name="mail" size="md" className="text-cyan mt-0.5" />
               <div>
-                <span className="block text-xs uppercase tracking-wider text-[#B8A9D4] mb-1">
+                <span className="block text-xs uppercase font-mono tracking-wider text-muted mb-0.5">
                   Email
                 </span>
                 <a
                   href={`mailto:${KONTAK_AGENCY.email}`}
-                  className="font-medium text-sm sm:text-base text-[#F4F3FF] hover:text-[#22D3C5] transition-colors focus-visible:outline-2 focus-visible:outline-[#22D3C5] rounded"
+                  className="font-mono text-sm sm:text-base text-foreground hover:text-cyan transition-colors"
                 >
                   {KONTAK_AGENCY.email}
                 </a>
@@ -173,19 +184,17 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
             </div>
 
             {/* Instagram */}
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-[#412a6a] border border-[#5a3c8e] flex items-center justify-center text-[#C26FE0] shrink-0">
-                <Instagram size={18} strokeWidth={1.5} />
-              </div>
+            <div className="flex items-start gap-3">
+              <Icon name="instagram" size="md" className="text-purple mt-0.5" />
               <div>
-                <span className="block text-xs uppercase tracking-wider text-[#B8A9D4] mb-1">
+                <span className="block text-xs uppercase font-mono tracking-wider text-muted mb-0.5">
                   Instagram
                 </span>
                 <a
                   href={KONTAK_AGENCY.instagramUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="font-medium text-sm sm:text-base text-[#F4F3FF] hover:text-[#C26FE0] transition-colors focus-visible:outline-2 focus-visible:outline-[#22D3C5] rounded"
+                  className="font-mono text-sm sm:text-base text-foreground hover:text-purple transition-colors"
                 >
                   {KONTAK_AGENCY.instagram}
                 </a>
@@ -193,55 +202,45 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
             </div>
 
             {/* Lokasi */}
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-[#412a6a] border border-[#5a3c8e] flex items-center justify-center text-[#B8A9D4] shrink-0">
-                <MapPin size={18} strokeWidth={1.5} />
-              </div>
+            <div className="flex items-start gap-3">
+              <Icon name="map-pin" size="md" className="text-muted mt-0.5" />
               <div>
-                <span className="block text-xs uppercase tracking-wider text-[#B8A9D4] mb-1">
+                <span className="block text-xs uppercase font-mono tracking-wider text-muted mb-0.5">
                   Lokasi
                 </span>
-                <span className="font-mono text-sm text-[#F4F3FF]">
+                <span className="font-mono text-sm text-foreground">
                   {KONTAK_AGENCY.lokasi}
                 </span>
               </div>
             </div>
           </div>
-        </motion.div>
+        </Reveal>
 
         {/* Kolom Kanan: Formulir */}
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="lg:col-span-7 bg-[#412a6a]/90 border border-[#5a3c8e] rounded-2xl p-7 sm:p-10 shadow-xl backdrop-blur-sm"
-        >
-          <form onSubmit={handleWhatsAppSubmit} className="flex flex-col gap-6" noValidate>
+        <Reveal className="lg:col-span-7 bg-surface border border-border rounded-lg p-6 sm:p-8">
+          <form onSubmit={handleWhatsAppSubmit} className="flex flex-col gap-5" noValidate>
             {/* Field: Nama */}
             <div>
-              <label htmlFor="nama" className="block text-xs font-semibold uppercase tracking-wider text-[#F4F3FF] mb-2">
-                Nama Lengkap <span className="text-[#F97316]">*</span>
+              <label htmlFor="nama" className="block text-xs font-semibold uppercase tracking-wider text-foreground mb-1.5 font-mono">
+                Nama Lengkap <span className="text-orange">*</span>
               </label>
               <input
                 id="nama"
                 type="text"
-                placeholder="cth. Budi Setiawan"
+                placeholder="Nama Anda"
                 value={formData.nama}
                 onChange={(e) => {
                   setFormData({ ...formData, nama: e.target.value });
                   if (errors.nama) setErrors({ ...errors, nama: undefined });
                 }}
-                className={`w-full px-4 py-3 bg-[#271742] border rounded-xl text-[#F4F3FF] text-sm placeholder:text-[#B8A9D4]/50 focus:outline-none transition-colors ${
-                  errors.nama
-                    ? 'border-rose-500 focus:border-rose-500'
-                    : 'border-[#5a3c8e] focus:border-[#22D3C5]'
+                className={`w-full px-3.5 py-2.5 bg-background border rounded text-foreground text-sm placeholder:text-muted/40 transition-colors ${
+                  errors.nama ? 'border-red-500' : 'border-border'
                 }`}
                 aria-invalid={!!errors.nama}
                 aria-describedby={errors.nama ? 'nama-error' : undefined}
               />
               {errors.nama && (
-                <p id="nama-error" className="text-xs text-rose-400 mt-1.5">
+                <p id="nama-error" className="text-xs text-red-400 mt-1">
                   {errors.nama}
                 </p>
               )}
@@ -249,39 +248,36 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
 
             {/* Field: Email atau WhatsApp */}
             <div>
-              <label htmlFor="kontak-input" className="block text-xs font-semibold uppercase tracking-wider text-[#F4F3FF] mb-2">
-                Email atau Nomor WhatsApp <span className="text-[#F97316]">*</span>
+              <label htmlFor="kontak-input" className="block text-xs font-semibold uppercase tracking-wider text-foreground mb-1.5 font-mono">
+                Email atau WhatsApp <span className="text-orange">*</span>
               </label>
               <input
                 id="kontak-input"
                 type="text"
-                placeholder="cth. budi@perusahaan.com atau 08123456789"
+                placeholder="cth. nama@perusahaan.com atau 08123456789"
                 value={formData.kontak}
                 onChange={(e) => {
                   setFormData({ ...formData, kontak: e.target.value });
                   if (errors.kontak) setErrors({ ...errors, kontak: undefined });
                 }}
-                className={`w-full px-4 py-3 bg-[#271742] border rounded-xl text-[#F4F3FF] text-sm placeholder:text-[#B8A9D4]/50 focus:outline-none transition-colors ${
-                  errors.kontak
-                    ? 'border-rose-500 focus:border-rose-500'
-                    : 'border-[#5a3c8e] focus:border-[#22D3C5]'
+                className={`w-full px-3.5 py-2.5 bg-background border rounded text-foreground text-sm placeholder:text-muted/40 transition-colors ${
+                  errors.kontak ? 'border-red-500' : 'border-border'
                 }`}
                 aria-invalid={!!errors.kontak}
                 aria-describedby={errors.kontak ? 'kontak-error' : undefined}
               />
               {errors.kontak && (
-                <p id="kontak-error" className="text-xs text-rose-400 mt-1.5">
+                <p id="kontak-error" className="text-xs text-red-400 mt-1">
                   {errors.kontak}
                 </p>
               )}
             </div>
 
-            {/* Field: Jenis Kebutuhan & Anggaran */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {/* Jenis Kebutuhan */}
+            {/* Field: Kebutuhan & Anggaran */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="kebutuhan" className="block text-xs font-semibold uppercase tracking-wider text-[#F4F3FF] mb-2">
-                  Jenis Kebutuhan <span className="text-[#F97316]">*</span>
+                <label htmlFor="kebutuhan" className="block text-xs font-semibold uppercase tracking-wider text-foreground mb-1.5 font-mono">
+                  Jenis Kebutuhan <span className="text-orange">*</span>
                 </label>
                 <select
                   id="kebutuhan"
@@ -290,11 +286,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
                     setFormData({ ...formData, kebutuhan: e.target.value });
                     if (errors.kebutuhan) setErrors({ ...errors, kebutuhan: undefined });
                   }}
-                  className={`w-full px-4 py-3 bg-[#271742] border rounded-xl text-[#F4F3FF] text-sm focus:outline-none transition-colors cursor-pointer ${
-                    errors.kebutuhan
-                      ? 'border-rose-500 focus:border-rose-500'
-                      : 'border-[#5a3c8e] focus:border-[#22D3C5]'
-                  }`}
+                  className="w-full px-3.5 py-2.5 bg-background border border-border rounded text-foreground text-sm cursor-pointer"
                 >
                   <option value="Website">Pengembangan Website</option>
                   <option value="UI/UX">Desain UI/UX</option>
@@ -302,90 +294,84 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
                   <option value="Konten">Konten &amp; Media Sosial</option>
                   <option value="Lainnya">Lainnya / Konsultasi</option>
                 </select>
-                {errors.kebutuhan && (
-                  <p className="text-xs text-rose-400 mt-1.5">{errors.kebutuhan}</p>
-                )}
               </div>
 
-              {/* Anggaran (Opsional) */}
               <div>
-                <label htmlFor="anggaran" className="block text-xs font-semibold uppercase tracking-wider text-[#F4F3FF] mb-2">
-                  Perkiraan Anggaran <span className="text-[#B8A9D4] text-[10px] lowercase font-normal">(opsional)</span>
+                <label htmlFor="anggaran" className="block text-xs font-semibold uppercase tracking-wider text-foreground mb-1.5 font-mono">
+                  Perkiraan Anggaran <span className="text-muted text-[10px] font-normal">(opsional)</span>
                 </label>
                 <select
                   id="anggaran"
                   value={formData.anggaran}
                   onChange={(e) => setFormData({ ...formData, anggaran: e.target.value })}
-                  className="w-full px-4 py-3 bg-[#271742] border border-[#5a3c8e] rounded-xl text-[#F4F3FF] text-sm focus:outline-none focus:border-[#22D3C5] transition-colors cursor-pointer"
+                  className="w-full px-3.5 py-2.5 bg-background border border-border rounded text-foreground text-sm cursor-pointer"
                 >
-                  <option value="">Pilih rentang anggaran</option>
-                  <option value="Di bawah Rp 10 Juta">&lt; Rp 10 Juta</option>
-                  <option value="Rp 10 - 25 Juta">Rp 10 - 25 Juta</option>
-                  <option value="Rp 25 - 50 Juta">Rp 25 - 50 Juta</option>
-                  <option value="Di atas Rp 50 Juta">&gt; Rp 50 Juta</option>
-                  <option value="Belum Ditentukan">Belum Ditentukan</option>
+                  <option value="">Pilih Rentang Anggaran</option>
+                  <option value="< 15 Juta">&lt; 15 Juta IDR</option>
+                  <option value="15 - 35 Juta">15 - 35 Juta IDR</option>
+                  <option value="35 - 75 Juta">35 - 75 Juta IDR</option>
+                  <option value="> 75 Juta">&gt; 75 Juta IDR</option>
                 </select>
               </div>
             </div>
 
             {/* Field: Pesan */}
             <div>
-              <div className="flex items-center justify-between mb-2">
-                <label htmlFor="pesan" className="block text-xs font-semibold uppercase tracking-wider text-[#F4F3FF]">
-                  Pesan / Gambaran Proyek <span className="text-[#F97316]">*</span>
-                </label>
-                <span className="font-mono text-xs text-[#B8A9D4]">
-                  {formData.pesan.trim().length}/20 min.
-                </span>
-              </div>
+              <label htmlFor="pesan" className="block text-xs font-semibold uppercase tracking-wider text-foreground mb-1.5 font-mono">
+                Pesan Proyek <span className="text-orange">*</span>
+              </label>
               <textarea
                 id="pesan"
                 rows={4}
-                placeholder="Ceritakan tentang tujuan, ruang lingkup, dan waktu pelaksanaan yang diinginkan..."
+                placeholder="Ceritakan latar belakang bisnis, target audiens, atau linimasa peluncuran yang diinginkan (minimal 20 karakter)..."
                 value={formData.pesan}
                 onChange={(e) => {
                   setFormData({ ...formData, pesan: e.target.value });
                   if (errors.pesan) setErrors({ ...errors, pesan: undefined });
                 }}
-                className={`w-full px-4 py-3 bg-[#271742] border rounded-xl text-[#F4F3FF] text-sm placeholder:text-[#B8A9D4]/50 focus:outline-none transition-colors resize-y ${
-                  errors.pesan
-                    ? 'border-rose-500 focus:border-rose-500'
-                    : 'border-[#5a3c8e] focus:border-[#22D3C5]'
+                className={`w-full px-3.5 py-2.5 bg-background border rounded text-foreground text-sm placeholder:text-muted/40 transition-colors resize-y ${
+                  errors.pesan ? 'border-red-500' : 'border-border'
                 }`}
                 aria-invalid={!!errors.pesan}
                 aria-describedby={errors.pesan ? 'pesan-error' : undefined}
               />
-              {errors.pesan && (
-                <p id="pesan-error" className="text-xs text-rose-400 mt-1.5">
-                  {errors.pesan}
-                </p>
-              )}
+              <div className="flex items-center justify-between mt-1 text-[11px] font-mono text-muted">
+                <span>{errors.pesan ? <span className="text-red-400">{errors.pesan}</span> : 'Minimal 20 karakter'}</span>
+                <span>{formData.pesan.length} karakter</span>
+              </div>
             </div>
 
-            {/* Actions: Kirim via WhatsApp + Tautan Kirim via Email */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
-              <Button type="submit" variant="primary" className="w-full sm:w-auto">
-                <MessageSquare size={16} strokeWidth={2} />
+            {/* Tombol Aksi */}
+            <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
+              <Button
+                as="button"
+                type="submit"
+                variant="primary"
+                className="w-full sm:w-auto font-semibold"
+              >
                 <span>Kirim via WhatsApp</span>
-                <ArrowUpRight size={16} strokeWidth={2} />
+                <Icon name="arrow-right" size="sm" />
               </Button>
 
-              <button
+              <Button
+                as="button"
                 type="button"
+                variant="ghost"
                 onClick={handleEmailClick}
-                className="text-xs sm:text-sm text-[#B8A9D4] hover:text-[#22D3C5] transition-colors underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-[#22D3C5] rounded py-1 px-2 cursor-pointer"
+                className="w-full sm:w-auto"
               >
-                atau kirim lewat email
-              </button>
+                <span>Kirim via Email</span>
+                <Icon name="mail" size="sm" />
+              </Button>
             </div>
 
             {isSubmitted && (
-              <p className="text-xs text-[#22D3C5] font-mono mt-1">
-                Aplikasi obrolan WhatsApp telah dibuka dengan pesan tersusun.
+              <p className="text-xs text-cyan font-mono mt-1">
+                Formulir terkirim! Pesan telah disiapkan untuk WhatsApp Anda.
               </p>
             )}
           </form>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

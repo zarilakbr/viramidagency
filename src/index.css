@@ -1,30 +1,107 @@
 @import "tailwindcss";
 
 @theme {
-  --font-heading: "Domine", Georgia, serif;
+  --font-heading: "Space Grotesk", sans-serif;
   --font-body: "Inter", sans-serif;
-  --color-navy: #342056;
-  --color-surface: #412a6a;
-  --color-border-line: #5a3c8e;
+
+  /* Palet Identitas Logo ViramidAgency */
+  --color-background: #0A0A2E;
+  --color-surface: #12123F;
+  --color-surface-hover: #181850;
+  --color-border: #262660;
+  --color-border-hover: #F97316;
+  --color-orange: #F97316;
+  --color-orange-hover: #EA580C;
+  --color-cyan: #22D3C5;
+  --color-purple: #C26FE0;
+  --color-foreground: #F4F3FF;
+  --color-muted: #9A9BC7;
+
+  /* Aliases untuk kompatibilitas */
+  --color-navy: #0A0A2E;
+  --color-border-line: #262660;
   --color-text-main: #F4F3FF;
-  --color-text-muted: #B8A9D4;
+  --color-text-muted: #9A9BC7;
   --color-brand-orange: #F97316;
-  --color-brand-orange-hover: #FDBA4D;
+  --color-brand-orange-hover: #EA580C;
   --color-brand-cyan: #22D3C5;
   --color-brand-purple: #C26FE0;
+
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 :root {
   color-scheme: dark;
   font-family: 'Inter', sans-serif;
-  background-color: #342056;
+  background-color: #0A0A2E;
   color: #F4F3FF;
   scroll-behavior: smooth;
 }
 
+body {
+  background-color: #0A0A2E;
+  color: #F4F3FF;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
 h1, h2, h3, h4, .font-heading {
-  font-family: 'Domine', Georgia, serif;
-  letter-spacing: -0.02em;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+
+/* Standar Container & Section Spacing */
+.section-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+@media (max-width: 640px) {
+  .section-container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+.section-spacing {
+  margin-top: 120px;
+  margin-bottom: 120px;
+}
+
+@media (max-width: 640px) {
+  .section-spacing {
+    margin-top: 72px;
+    margin-bottom: 72px;
+  }
+}
+
+/* Standar Garis 1px & Tanpa Shadow Tebal */
+.border-subtle {
+  border: 1px solid #262660;
+}
+
+/* Standar Fokus Aksesibilitas Cyan 2px */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[role="button"]:focus-visible,
+[tabindex="0"]:focus-visible {
+  outline: 2px solid #22D3C5 !important;
+  outline-offset: 2px !important;
+}
+
+/* Panjang baris bacaan maksimum 65-72 karakter */
+.prose-max {
+  max-width: 68ch;
 }
 
 /* Reduced motion preference */
@@ -34,22 +111,23 @@ h1, h2, h3, h4, .font-heading {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+    transform: none !important;
   }
 }
 
 /* Custom subtle scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #342056;
+  background: #0A0A2E;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #5a3c8e;
-  border-radius: 4px;
+  background: #262660;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {

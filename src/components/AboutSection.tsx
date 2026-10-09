@@ -1,8 +1,16 @@
 import React from 'react';
-import { motion } from 'motion/react';
 import { SectionHeading } from './SectionHeading';
+import { Reveal } from './ui/Reveal';
 import { PROFIL_AGENCY, NILAI_KERJA, DAFTAR_TIM } from '../data/content';
 
+/**
+ * AboutSection
+ * Standar:
+ * - Dua kolom: Filosofi dan Prinsip Kerja
+ * - Space Grotesk 700, teks rata kiri, max-w-[65ch]
+ * - 1px border, tanpa shadow tebal
+ * - Container 1200px, section-spacing 120px (mobile 72px)
+ */
 export const AboutSection: React.FC = () => {
   const getInitials = (nama: string) => {
     const parts = nama.trim().split(' ').filter(Boolean);
@@ -13,7 +21,7 @@ export const AboutSection: React.FC = () => {
   };
 
   return (
-    <section id="tentang" className="py-24 md:py-32 px-4 sm:px-8 max-w-7xl mx-auto scroll-mt-20">
+    <section id="tentang" className="section-container section-spacing scroll-mt-20">
       <SectionHeading
         number="04"
         title="Tentang Agency"
@@ -21,114 +29,97 @@ export const AboutSection: React.FC = () => {
       />
 
       {/* Dua Kolom: Cerita & Nilai Kerja */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-20">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-16">
         {/* Kolom Kiri: Cerita Singkat Agency */}
-        <motion.div
-          initial={{ opacity: 0, x: -25 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="lg:col-span-6 flex flex-col gap-6"
-        >
-          <span className="text-xs uppercase font-semibold tracking-wider text-[#F97316]">
+        <Reveal className="lg:col-span-6 flex flex-col gap-5">
+          <span className="text-xs uppercase font-mono tracking-wider text-orange font-semibold">
             Filosofi &amp; Komitmen
           </span>
-          <h3 className="font-heading font-bold text-2xl sm:text-3xl text-[#F4F3FF] tracking-tight leading-snug">
+          <h3 className="font-heading font-bold text-2xl sm:text-3xl text-foreground tracking-tight leading-snug">
             Menciptakan karya yang tidak hanya memikat visual, namun terukur dampaknya.
           </h3>
-          <p className="text-base text-[#B8A9D4] leading-relaxed">
+          <p className="text-base text-muted leading-relaxed max-w-[65ch]">
             {PROFIL_AGENCY.cerita}
           </p>
-        </motion.div>
+        </Reveal>
 
         {/* Kolom Kanan: Daftar Nilai Kerja */}
-        <motion.div
-          initial={{ opacity: 0, x: 25 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="lg:col-span-6 flex flex-col gap-6"
-        >
-          <span className="text-xs uppercase font-semibold tracking-wider text-[#22D3C5]">
+        <div className="lg:col-span-6 flex flex-col gap-4">
+          <span className="text-xs uppercase font-mono tracking-wider text-cyan font-semibold mb-1">
             Prinsip Kerja
           </span>
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-4">
             {NILAI_KERJA.map((nilai, index) => (
-              <motion.div
+              <Reveal
                 key={nilai.nomor}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                whileHover={{ y: -3 }}
-                className="p-6 bg-[#412a6a]/90 border border-[#5a3c8e] rounded-2xl hover:border-[#F97316] transition-colors duration-200 shadow-md"
+                delayIndex={index}
               >
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="font-mono text-xs text-[#F97316] font-bold">
-                    {nilai.nomor}
-                  </span>
-                  <h4 className="font-heading font-bold text-lg text-[#F4F3FF]">
-                    {nilai.judul}
-                  </h4>
+                <div className="p-5 bg-surface border border-border rounded-lg hover:border-orange transition-colors duration-200">
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="font-mono text-xs text-orange font-bold">
+                      {nilai.nomor}
+                    </span>
+                    <h4 className="font-heading font-bold text-base sm:text-lg text-foreground">
+                      {nilai.judul}
+                    </h4>
+                  </div>
+                  <p className="text-sm text-muted leading-relaxed pl-6 max-w-[65ch]">
+                    {nilai.deskripsi}
+                  </p>
                 </div>
-                <p className="text-sm text-[#B8A9D4] leading-relaxed pl-7">
-                  {nilai.deskripsi}
-                </p>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Daftar Anggota Tim */}
       {DAFTAR_TIM && DAFTAR_TIM.length > 0 && (
-        <div className="pt-12 border-t border-[#5a3c8e]">
-          <div className="mb-8">
-            <span className="text-xs uppercase font-semibold tracking-wider text-[#C26FE0] block mb-2 font-mono">
+        <div className="pt-10 border-t border-border">
+          <div className="mb-6">
+            <span className="text-xs uppercase font-mono tracking-wider text-purple block mb-1">
               Kolektif
             </span>
-            <h3 className="font-heading font-bold text-2xl text-[#F4F3FF]">
+            <h3 className="font-heading font-bold text-2xl text-foreground">
               Orang di Balik Karya
             </h3>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {DAFTAR_TIM.map((anggota, idx) => (
-              <motion.div
+              <Reveal
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                whileHover={{ y: -4 }}
-                className="bg-[#412a6a]/90 border border-[#5a3c8e] rounded-2xl p-6 flex items-center gap-5 hover:border-[#F97316]/70 transition-colors shadow-lg"
+                delayIndex={idx}
               >
-                {/* Avatar */}
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#3b2361] to-[#271742] border border-[#5a3c8e] flex items-center justify-center shrink-0 overflow-hidden shadow-inner">
-                  {anggota.foto ? (
-                    <img
-                      src={anggota.foto}
-                      alt={anggota.nama}
-                      className="w-full h-full object-cover"
-                      referrerPolicy="no-referrer"
-                    />
-                  ) : (
-                    <span className="font-mono text-base font-bold text-[#F4F3FF]">
-                      {getInitials(anggota.nama)}
-                    </span>
-                  )}
-                </div>
+                <div className="bg-surface border border-border rounded-lg p-5 flex items-center gap-4 hover:border-orange transition-colors duration-200">
+                  {/* Avatar dengan Aspect Ratio Tetap */}
+                  <div className="w-14 h-14 rounded-md bg-background border border-border flex items-center justify-center shrink-0 overflow-hidden">
+                    {anggota.foto ? (
+                      <img
+                        src={anggota.foto}
+                        alt={anggota.nama}
+                        className="w-full h-full object-cover"
+                        referrerPolicy="no-referrer"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <span className="font-mono text-sm font-bold text-foreground">
+                        {getInitials(anggota.nama)}
+                      </span>
+                    )}
+                  </div>
 
-                {/* Info */}
-                <div>
-                  <h4 className="font-heading font-bold text-base sm:text-lg text-[#F4F3FF]">
-                    {anggota.nama}
-                  </h4>
-                  <p className="text-xs text-[#B8A9D4] mt-1 font-mono">
-                    {anggota.peran}
-                  </p>
+                  {/* Info */}
+                  <div>
+                    <h4 className="font-heading font-bold text-base text-foreground">
+                      {anggota.nama}
+                    </h4>
+                    <p className="text-xs text-muted mt-0.5 font-mono">
+                      {anggota.peran}
+                    </p>
+                  </div>
                 </div>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
         </div>

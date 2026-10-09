@@ -38,11 +38,11 @@ export default function App() {
   return (
     <HashRouter>
       <ScrollManager />
-      <div className="min-h-screen bg-transparent text-[#F4F3FF] flex flex-col font-sans selection:bg-[#F97316]/30 selection:text-[#F4F3FF] relative">
-        {/* Dynamic Colorful Gradient Background matching logo */}
+      <div className="min-h-screen bg-background text-foreground flex flex-col font-body selection:bg-orange/30 selection:text-foreground relative">
+        {/* Latar Belakang Solid Arsitektural */}
         <BackgroundGradients />
 
-        {/* Navigation Bar (Transparent) */}
+        {/* Navigation Bar (Tinggi 64px) */}
         <Navbar />
 
         {/* Main Routed Content */}

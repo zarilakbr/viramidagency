@@ -1,16 +1,23 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { motion } from 'motion/react';
-import { ArrowLeft, ArrowRight, Check, Sparkles, Layers, Palette } from 'lucide-react';
 import { CategoryBadge } from '../components/CategoryBadge';
 import { Button } from '../components/Button';
+import { Icon } from '../components/ui/Icon';
+import { Reveal } from '../components/ui/Reveal';
 import { DAFTAR_PROYEK } from '../data/content';
 
+/**
+ * ProjectDetailPage
+ * Standar:
+ * - Menggunakan Icon.tsx tunggal tanpa simbol unicode atau panah teks
+ * - Space Grotesk 700, teks rata kiri, max-w-[65ch]
+ * - 1px border, tanpa shadow tebal
+ * - Container 1200px
+ */
 export const ProjectDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
 
-  // Scroll to top on mount or slug change
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [slug]);
@@ -26,98 +33,92 @@ export const ProjectDetailPage: React.FC = () => {
     }, 150);
   };
 
-  // If slug not found, show 404
+  // 404 jika proyek tidak ditemukan
   if (!proyek) {
     return (
-      <main className="min-h-screen pt-36 pb-24 px-4 sm:px-8 max-w-4xl mx-auto flex flex-col items-center justify-center text-center">
-        <span className="font-mono text-sm text-[#F97316] uppercase tracking-wider mb-2">
+      <main className="section-container min-h-[70vh] flex flex-col items-center justify-center text-center py-32">
+        <span className="font-mono text-xs text-orange uppercase tracking-wider mb-2">
           404 · Halaman Tidak Ditemukan
         </span>
-        <h1 className="font-heading font-bold text-4xl sm:text-5xl text-[#F4F3FF] mb-4">
+        <h1 className="font-heading font-bold text-4xl sm:text-5xl text-foreground mb-4">
           Proyek Tidak Ditemukan
         </h1>
-        <p className="text-base text-[#B8A9D4] max-w-md mb-8">
+        <p className="text-sm sm:text-base text-muted max-w-[65ch] mb-8">
           Proyek yang Anda cari tidak tersedia atau alamat tautan telah diperbarui.
         </p>
         <Button as="button" variant="primary" onClick={handleBackToPortfolio}>
-          <ArrowLeft size={16} strokeWidth={2} />
+          <Icon name="arrow-left" size="sm" />
           <span>Kembali ke Portofolio</span>
         </Button>
       </main>
     );
   }
 
-  // Next project logic (wrap around)
   const nextIndex = (currentIndex + 1) % DAFTAR_PROYEK.length;
   const nextProyek = DAFTAR_PROYEK[nextIndex];
 
   return (
-    <motion.main
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
-      className="min-h-screen pt-32 pb-32 px-4 sm:px-8 max-w-5xl mx-auto"
-    >
-      {/* Tombol Kembali */}
+    <main className="section-container pt-28 pb-28 md:pt-36 md:pb-36">
+      {/* Tombol Kembali ke Portofolio */}
       <div className="mb-8">
         <button
           type="button"
           onClick={handleBackToPortfolio}
-          className="inline-flex items-center gap-2 text-sm text-[#B8A9D4] hover:text-[#F97316] transition-colors focus-visible:outline-2 focus-visible:outline-[#22D3C5] focus-visible:outline-offset-2 rounded cursor-pointer"
+          className="inline-flex items-center gap-2 text-xs sm:text-sm text-muted hover:text-orange transition-colors cursor-pointer"
         >
-          <ArrowLeft size={16} strokeWidth={2} />
+          <Icon name="arrow-left" size="sm" />
           <span>Kembali ke Semua Karya</span>
         </button>
       </div>
 
       {/* Header Proyek */}
-      <header className="mb-14 border-b border-[#5a3c8e] pb-10">
+      <header className="mb-12 border-b border-border pb-8">
         <div className="flex flex-wrap items-center gap-3 mb-4">
           <CategoryBadge category={proyek.kategori} />
-          <span className="text-[#5a3c8e]" aria-hidden="true">
+          <span className="text-border" aria-hidden="true">
             /
           </span>
-          <span className="font-mono text-xs text-[#B8A9D4]">{proyek.tahun}</span>
+          <span className="font-mono text-xs text-muted">{proyek.tahun}</span>
         </div>
 
-        <h1 className="font-heading font-bold text-4xl sm:text-6xl text-[#F4F3FF] tracking-tight mb-8">
+        <h1 className="font-heading font-bold text-3xl sm:text-5xl lg:text-6xl text-foreground tracking-tight mb-8">
           {proyek.judul}
         </h1>
 
         {/* Metadata Strip */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 p-6 bg-[#412a6a]/90 border border-[#5a3c8e] rounded-2xl shadow-xl">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 bg-surface border border-border rounded-lg">
           <div>
-            <span className="block text-xs uppercase tracking-wider text-[#B8A9D4] mb-1">
+            <span className="block text-[11px] font-mono uppercase tracking-wider text-muted mb-1">
               Klien
             </span>
-            <span className="font-semibold text-sm sm:text-base text-[#F4F3FF]">
+            <span className="font-semibold text-sm sm:text-base text-foreground">
               {proyek.klien}
             </span>
           </div>
 
           <div>
-            <span className="block text-xs uppercase tracking-wider text-[#B8A9D4] mb-1">
+            <span className="block text-[11px] font-mono uppercase tracking-wider text-muted mb-1">
               Kategori
             </span>
-            <span className="font-semibold text-sm sm:text-base text-[#F4F3FF]">
+            <span className="font-semibold text-sm sm:text-base text-foreground">
               {proyek.kategori}
             </span>
           </div>
 
           <div>
-            <span className="block text-xs uppercase tracking-wider text-[#B8A9D4] mb-1">
+            <span className="block text-[11px] font-mono uppercase tracking-wider text-muted mb-1">
               Tahun
             </span>
-            <span className="font-mono text-sm sm:text-base text-[#F4F3FF]">
+            <span className="font-mono text-sm sm:text-base text-foreground">
               {proyek.tahun}
             </span>
           </div>
 
           <div>
-            <span className="block text-xs uppercase tracking-wider text-[#B8A9D4] mb-1">
+            <span className="block text-[11px] font-mono uppercase tracking-wider text-muted mb-1">
               Layanan Utama
             </span>
-            <span className="font-semibold text-sm sm:text-base text-[#F4F3FF]">
+            <span className="font-semibold text-sm sm:text-base text-foreground">
               {proyek.layanan[0] || '-'}
             </span>
           </div>
@@ -125,76 +126,82 @@ export const ProjectDetailPage: React.FC = () => {
       </header>
 
       {/* Ringkasan Proyek */}
-      <section className="mb-16">
-        <h2 className="text-xs uppercase font-semibold tracking-wider text-[#F97316] mb-3">
+      <section className="mb-14">
+        <h2 className="text-xs uppercase font-mono tracking-wider text-orange mb-2">
           Ringkasan Proyek
         </h2>
-        <p className="text-lg sm:text-xl text-[#F4F3FF] leading-relaxed max-w-3xl">
+        <p className="text-base sm:text-lg text-foreground leading-relaxed max-w-[65ch]">
           {proyek.ringkasan}
         </p>
       </section>
 
-      {/* Tiga Blok Teks Bernomor: Tantangan, Solusi, Hasil */}
-      <section className="mb-20">
+      {/* Tiga Blok: Tantangan, Solusi, Hasil */}
+      <section className="mb-16">
         <h2 className="sr-only">Tantangan, Solusi, dan Hasil</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Blok 01: Tantangan */}
-          <div className="bg-[#412a6a]/90 border border-[#5a3c8e] rounded-2xl p-7 flex flex-col justify-between shadow-lg hover:border-[#F97316]/50 transition-colors">
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="font-mono text-xs font-bold text-[#F97316]">01</span>
-                <span className="text-xs uppercase tracking-wider text-[#B8A9D4]">Tantangan</span>
+          <Reveal delayIndex={0}>
+            <div className="bg-surface border border-border rounded-lg p-6 flex flex-col justify-between h-full hover:border-orange transition-colors">
+              <div>
+                <div className="flex items-center justify-between mb-3 border-b border-border pb-2">
+                  <span className="font-mono text-xs font-bold text-orange">01</span>
+                  <span className="text-xs font-mono uppercase text-muted">Tantangan</span>
+                </div>
+                <h3 className="font-heading font-bold text-lg text-foreground mb-2">
+                  Kondisi Awal
+                </h3>
+                <p className="text-sm text-muted leading-relaxed max-w-[65ch]">
+                  {proyek.tantangan}
+                </p>
               </div>
-              <h3 className="font-heading font-bold text-xl text-[#F4F3FF] mb-3">
-                Kondisi Awal
-              </h3>
-              <p className="text-sm text-[#B8A9D4] leading-relaxed">
-                {proyek.tantangan}
-              </p>
             </div>
-          </div>
+          </Reveal>
 
           {/* Blok 02: Solusi */}
-          <div className="bg-[#412a6a]/90 border border-[#5a3c8e] rounded-2xl p-7 flex flex-col justify-between shadow-lg hover:border-[#22D3C5]/50 transition-colors">
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="font-mono text-xs font-bold text-[#22D3C5]">02</span>
-                <span className="text-xs uppercase tracking-wider text-[#B8A9D4]">Solusi</span>
+          <Reveal delayIndex={1}>
+            <div className="bg-surface border border-border rounded-lg p-6 flex flex-col justify-between h-full hover:border-cyan transition-colors">
+              <div>
+                <div className="flex items-center justify-between mb-3 border-b border-border pb-2">
+                  <span className="font-mono text-xs font-bold text-cyan">02</span>
+                  <span className="text-xs font-mono uppercase text-muted">Solusi</span>
+                </div>
+                <h3 className="font-heading font-bold text-lg text-foreground mb-2">
+                  Pendekatan Viramid
+                </h3>
+                <p className="text-sm text-muted leading-relaxed max-w-[65ch]">
+                  {proyek.solusi}
+                </p>
               </div>
-              <h3 className="font-heading font-bold text-xl text-[#F4F3FF] mb-3">
-                Pendekatan Viramid
-              </h3>
-              <p className="text-sm text-[#B8A9D4] leading-relaxed">
-                {proyek.solusi}
-              </p>
             </div>
-          </div>
+          </Reveal>
 
           {/* Blok 03: Hasil */}
-          <div className="bg-[#412a6a]/90 border border-[#5a3c8e] rounded-2xl p-7 flex flex-col justify-between shadow-lg hover:border-[#C26FE0]/50 transition-colors">
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="font-mono text-xs font-bold text-[#C26FE0]">03</span>
-                <span className="text-xs uppercase tracking-wider text-[#B8A9D4]">Hasil</span>
+          <Reveal delayIndex={2}>
+            <div className="bg-surface border border-border rounded-lg p-6 flex flex-col justify-between h-full hover:border-purple transition-colors">
+              <div>
+                <div className="flex items-center justify-between mb-3 border-b border-border pb-2">
+                  <span className="font-mono text-xs font-bold text-purple">03</span>
+                  <span className="text-xs font-mono uppercase text-muted">Hasil</span>
+                </div>
+                <h3 className="font-heading font-bold text-lg text-foreground mb-2">
+                  Dampak Nyata
+                </h3>
+                <p className="text-sm text-muted leading-relaxed max-w-[65ch]">
+                  {proyek.hasil}
+                </p>
               </div>
-              <h3 className="font-heading font-bold text-xl text-[#F4F3FF] mb-3">
-                Dampak Nyata
-              </h3>
-              <p className="text-sm text-[#B8A9D4] leading-relaxed">
-                {proyek.hasil}
-              </p>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* Galeri Gambar / Visual Showcase */}
-      <section className="mb-20">
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="font-heading font-bold text-2xl text-[#F4F3FF]">
+      {/* Dokumentasi & Rancangan Visual */}
+      <section className="mb-16">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="font-heading font-bold text-xl sm:text-2xl text-foreground">
             Dokumentasi &amp; Rancangan Visual
           </h2>
-          <span className="text-xs font-mono text-[#B8A9D4]">
+          <span className="text-xs font-mono text-muted">
             {proyek.gambar && proyek.gambar.length > 0
               ? `${proyek.gambar.length} Tangkapan Layar`
               : 'Showcase Preview'}
@@ -202,59 +209,52 @@ export const ProjectDetailPage: React.FC = () => {
         </div>
 
         {proyek.gambar && proyek.gambar.length > 0 ? (
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-6">
             {proyek.gambar.map((imgUrl, i) => (
               <div
                 key={i}
-                className="w-full bg-[#412a6a]/90 border border-[#5a3c8e] rounded-2xl overflow-hidden shadow-xl"
+                className="w-full bg-surface border border-border rounded-lg overflow-hidden aspect-[16/10]"
               >
                 <img
                   src={imgUrl}
                   alt={`${proyek.judul} - Dokumentasi ${i + 1}`}
-                  className="w-full h-auto object-cover"
-                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
                 />
               </div>
             ))}
           </div>
         ) : (
-          /* Visual Showcase Elegan jika file screenshot belum dipasang */
           <div className="flex flex-col gap-6">
-            <div className="w-full h-80 sm:h-96 bg-gradient-to-br from-[#3b2361] via-[#271742] to-[#1a0f30] border border-[#5a3c8e] rounded-3xl flex flex-col items-center justify-center p-8 text-center relative overflow-hidden shadow-xl">
-              <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#F4F3FF_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
-              
-              <div className="w-16 h-16 rounded-2xl border border-[#5a3c8e] bg-[#342056]/80 flex items-center justify-center mb-4 text-[#F97316] shadow-lg">
-                <Sparkles size={28} />
-              </div>
-              <p className="font-heading font-bold text-2xl text-[#F4F3FF] tracking-tight mb-2">
+            <div className="w-full aspect-[16/9] max-h-96 bg-surface border border-border rounded-lg flex flex-col items-center justify-center p-8 text-center">
+              <span className="text-xs font-mono uppercase tracking-wider text-orange mb-2">
+                Studi Kasus Desain
+              </span>
+              <p className="font-heading font-bold text-2xl text-foreground mb-2">
                 {proyek.judul}
               </p>
-              <p className="text-sm text-[#B8A9D4] max-w-lg leading-relaxed">
+              <p className="text-xs sm:text-sm text-muted max-w-[65ch] leading-relaxed">
                 Rancangan visual arsitektur antarmuka dan sistem branding terintegrasi yang telah dioptimasi untuk platform {proyek.kategori.toLowerCase()}.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="h-56 bg-[#412a6a]/80 border border-[#5a3c8e] rounded-2xl flex flex-col items-center justify-center p-6 text-center shadow-md">
-                <div className="w-10 h-10 rounded-xl bg-[#22D3C5]/10 border border-[#22D3C5]/30 flex items-center justify-center text-[#22D3C5] mb-3">
-                  <Layers size={20} />
-                </div>
-                <span className="font-mono text-xs text-[#22D3C5] mb-1 uppercase tracking-wider font-semibold">
+              <div className="p-6 bg-surface border border-border rounded-lg flex flex-col items-start gap-2">
+                <Icon name="layers" size="md" className="text-cyan" />
+                <span className="font-mono text-xs text-cyan uppercase tracking-wider font-semibold">
                   Komposisi Desain
                 </span>
-                <p className="font-heading font-medium text-base text-[#F4F3FF]">
+                <p className="font-heading font-bold text-base text-foreground">
                   Tata Letak Responsif &amp; Arsitektur Antarmuka
                 </p>
               </div>
 
-              <div className="h-56 bg-[#412a6a]/80 border border-[#5a3c8e] rounded-2xl flex flex-col items-center justify-center p-6 text-center shadow-md">
-                <div className="w-10 h-10 rounded-xl bg-[#C26FE0]/10 border border-[#C26FE0]/30 flex items-center justify-center text-[#C26FE0] mb-3">
-                  <Palette size={20} />
-                </div>
-                <span className="font-mono text-xs text-[#C26FE0] mb-1 uppercase tracking-wider font-semibold">
+              <div className="p-6 bg-surface border border-border rounded-lg flex flex-col items-start gap-2">
+                <Icon name="palette" size="md" className="text-purple" />
+                <span className="font-mono text-xs text-purple uppercase tracking-wider font-semibold">
                   Sistem Desain
                 </span>
-                <p className="font-heading font-medium text-base text-[#F4F3FF]">
+                <p className="font-heading font-bold text-base text-foreground">
                   Tipografi Berkarakter &amp; Aset Identitas Merek
                 </p>
               </div>
@@ -264,17 +264,15 @@ export const ProjectDetailPage: React.FC = () => {
       </section>
 
       {/* Ruang Lingkup Pekerjaan */}
-      <section className="mb-20 p-8 bg-[#412a6a]/90 border border-[#5a3c8e] rounded-2xl shadow-xl">
-        <h2 className="font-heading font-bold text-xl text-[#F4F3FF] mb-6">
+      <section className="mb-16 p-6 sm:p-8 bg-surface border border-border rounded-lg">
+        <h2 className="font-heading font-bold text-xl text-foreground mb-4">
           Ruang Lingkup Pekerjaan
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {proyek.layanan.map((layanan, idx) => (
-            <div key={idx} className="flex items-center gap-3">
-              <div className="w-6 h-6 rounded-full bg-[#F97316]/20 border border-[#F97316]/50 flex items-center justify-center text-[#F97316] shrink-0">
-                <Check size={14} strokeWidth={2.5} />
-              </div>
-              <span className="text-sm sm:text-base text-[#F4F3FF] font-medium">
+            <div key={idx} className="flex items-center gap-2.5">
+              <Icon name="check" size="sm" className="text-orange" />
+              <span className="text-sm sm:text-base text-foreground font-medium">
                 {layanan}
               </span>
             </div>
@@ -283,13 +281,14 @@ export const ProjectDetailPage: React.FC = () => {
       </section>
 
       {/* Footer Navigasi: Proyek Berikutnya */}
-      <footer className="pt-10 border-t border-[#5a3c8e] flex flex-col sm:flex-row items-center justify-between gap-6">
+      <footer className="pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
         <button
           type="button"
           onClick={handleBackToPortfolio}
-          className="text-sm text-[#B8A9D4] hover:text-[#F4F3FF] transition-colors focus-visible:outline-2 focus-visible:outline-[#22D3C5] rounded cursor-pointer"
+          className="inline-flex items-center gap-2 text-xs sm:text-sm text-muted hover:text-foreground transition-colors cursor-pointer"
         >
-          ← Kembali ke Semua Karya
+          <Icon name="arrow-left" size="sm" />
+          <span>Kembali ke Semua Karya</span>
         </button>
 
         {nextProyek && (
@@ -299,16 +298,16 @@ export const ProjectDetailPage: React.FC = () => {
             onClick={() => navigate(`/karya/${nextProyek.slug}`)}
             className="group"
           >
-            <span className="text-xs text-[#B8A9D4] mr-1">Berikutnya:</span>
+            <span className="text-xs text-muted mr-1">Berikutnya:</span>
             <span>{nextProyek.judul}</span>
-            <ArrowRight
-              size={16}
-              strokeWidth={2}
-              className="transition-transform group-hover:translate-x-1"
+            <Icon
+              name="arrow-right"
+              size="sm"
+              className="transition-transform duration-200 group-hover:translate-x-1"
             />
           </Button>
         )}
       </footer>
-    </motion.main>
+    </main>
   );
 };
