@@ -236,6 +236,7 @@ export const DAFTAR_TIM: AnggotaTim[] = [
   {
     nama: 'Zaril Akbar',
     peran: 'Founder & Creative Director',
+    foto: '/images/zaril-akbar.jpg',
   },
   {
     nama: 'Sarah Wijaya',
