@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  --font-heading: "Domine", Georgia, serif;
+  --font-body: "Inter", sans-serif;
+  --color-navy: #342056;
+  --color-surface: #412a6a;
+  --color-border-line: #5a3c8e;
+  --color-text-main: #F4F3FF;
+  --color-text-muted: #B8A9D4;
+  --color-brand-orange: #F97316;
+  --color-brand-orange-hover: #FDBA4D;
+  --color-brand-cyan: #22D3C5;
+  --color-brand-purple: #C26FE0;
+}
+
+:root {
+  color-scheme: dark;
+  font-family: 'Inter', sans-serif;
+  background-color: #342056;
+  color: #F4F3FF;
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: 'Domine', Georgia, serif;
+  letter-spacing: -0.02em;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #342056;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #5a3c8e;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #F97316;
+}
+
+/* Infinite Running Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+  will-change: transform;
+}

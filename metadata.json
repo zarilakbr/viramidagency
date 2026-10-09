@@ -1,0 +1,6 @@
+{
+  "name": "ViramidAgency",
+  "description": "Portofolio resmi ViramidAgency, agency digital dan kreatif untuk brand dan website berperforma tinggi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
