@@ -53,7 +53,6 @@ h1, h2, h3, h4, .font-heading {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   letter-spacing: -0.025em;
-  text-align: left;
   text-wrap: balance;
 }
 
@@ -119,7 +118,14 @@ select:focus-visible,
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-    transform: none !important;
+  }
+
+  /* Tetap jalankan marquee dekoratif teknologi secara halus dan teratur */
+  .animate-marquee-smooth {
+    animation: marquee-track 60s linear infinite !important;
+    -webkit-animation: marquee-track 60s linear infinite !important;
+    animation-duration: 60s !important;
+    animation-iteration-count: infinite !important;
   }
 }
 
@@ -142,26 +148,50 @@ select:focus-visible,
   background: #F97316;
 }
 
-/* Infinite Running Marquee Animation (Dual-Track Hardware-Accelerated) */
-@keyframes marquee-track {
+/* Infinite Running Marquee Animation (Dual-Track Hardware-Accelerated 60fps) */
+@-webkit-keyframes marquee-track {
   0% {
+    -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
   100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes marquee-track {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
     transform: translate3d(-100%, 0, 0);
   }
 }
 
 .animate-marquee-smooth {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex-shrink: 0;
   flex-shrink: 0;
+  -webkit-animation: marquee-track 32s linear infinite;
   animation: marquee-track 32s linear infinite;
   will-change: transform;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  transform: translateZ(0);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  touch-action: pan-y;
 }
 
-.marquee-container:hover .animate-marquee-smooth {
-  animation-play-state: paused;
+/* Hanya pause saat mouse asli (desktop/laptop) mengarah ke kartu, JANGAN pause di HP/layar sentuh */
+@media (hover: hover) and (pointer: fine) {
+  .marquee-container:hover .animate-marquee-smooth {
+    animation-play-state: paused;
+  }
 }
 

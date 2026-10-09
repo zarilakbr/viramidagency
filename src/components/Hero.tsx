@@ -57,7 +57,7 @@ export const Hero: React.FC = () => {
 
       {/* Konten Teks Terpusat (Centered) di Layer z-10 */}
       <div className="section-container relative z-10 w-full flex flex-col items-center text-center">
-        <div className="flex flex-col items-center text-center max-w-[960px] mx-auto">
+        <div className="flex flex-col items-center text-center max-w-[960px] mx-auto w-full">
           {/* Label Kicker */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -70,12 +70,13 @@ export const Hero: React.FC = () => {
             </span>
           </motion.div>
 
-          {/* Judul Utama Headline */}
+          {/* Judul Utama Headline: Ditengahkan & Responsif Penuh di Segala Layar */}
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="font-heading font-bold text-3xl sm:text-5xl md:text-6xl lg:text-[64px] leading-[1.14] tracking-[-0.025em] text-foreground mb-6 text-balance text-center max-w-4xl mx-auto"
+            className="font-heading font-bold text-2xl sm:text-4xl md:text-5xl lg:text-[60px] xl:text-[64px] leading-[1.2] sm:leading-[1.14] tracking-[-0.025em] text-foreground mb-6 text-center !text-center max-w-4xl mx-auto w-full px-2 sm:px-4"
+            style={{ textAlign: 'center' }}
           >
             {PROFIL_AGENCY.tagline}
           </motion.h1>
@@ -85,7 +86,8 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="text-base sm:text-lg md:text-xl text-muted font-normal leading-[1.7] mb-9 max-w-[56ch] text-balance text-center mx-auto"
+            className="text-sm sm:text-base md:text-lg lg:text-xl text-muted font-normal leading-[1.7] mb-9 max-w-[58ch] text-center !text-center mx-auto w-full px-2 sm:px-4"
+            style={{ textAlign: 'center' }}
           >
             {PROFIL_AGENCY.deskripsi}
           </motion.p>

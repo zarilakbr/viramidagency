@@ -120,11 +120,11 @@ export const TechnologyStack: React.FC = () => {
         </span>
       </div>
 
-      {/* Marquee Track Container */}
-      <div className="relative w-full overflow-hidden marquee-container select-none">
+      {/* Marquee Track Container: Responsif, hardware-accelerated, bergerak terus di HP */}
+      <div className="relative w-full overflow-hidden marquee-container select-none touch-pan-y">
         {/* Left Fade Scrim */}
         <div
-          className="absolute left-0 top-0 bottom-0 w-16 sm:w-28 z-10 pointer-events-none"
+          className="absolute left-0 top-0 bottom-0 w-12 sm:w-28 z-10 pointer-events-none"
           style={{
             background: 'linear-gradient(to right, #0F0F0F 0%, transparent 100%)',
           }}
@@ -133,7 +133,7 @@ export const TechnologyStack: React.FC = () => {
 
         {/* Right Fade Scrim */}
         <div
-          className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 z-10 pointer-events-none"
+          className="absolute right-0 top-0 bottom-0 w-12 sm:w-28 z-10 pointer-events-none"
           style={{
             background: 'linear-gradient(to left, #0F0F0F 0%, transparent 100%)',
           }}
@@ -141,20 +141,20 @@ export const TechnologyStack: React.FC = () => {
         />
 
         {/* Dual-Track Flex Wrapper */}
-        <div className="flex w-max">
+        <div className="flex w-max items-center">
           {/* Trek 1 */}
-          <div className="flex shrink-0 items-center gap-4 pr-4 animate-marquee-smooth py-1">
+          <div className="flex shrink-0 items-center gap-3 sm:gap-4 pr-3 sm:pr-4 animate-marquee-smooth py-1">
             {trackItems.map((tech, index) => (
               <div
                 key={`t1-${tech.name}-${index}`}
-                className="flex items-center gap-3 px-4 py-2.5 rounded border border-border bg-surface hover:border-orange transition-colors duration-200 select-none group cursor-default"
+                className="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded border border-border bg-surface hover:border-orange transition-colors duration-200 select-none group cursor-default"
                 title={`${tech.name} - ${tech.category}`}
               >
-                <div className="shrink-0">
+                <div className="shrink-0 scale-90 sm:scale-100">
                   {tech.icon}
                 </div>
                 <div className="flex flex-col text-left whitespace-nowrap">
-                  <span className="font-heading font-bold text-sm text-foreground group-hover:text-orange transition-colors">
+                  <span className="font-heading font-bold text-xs sm:text-sm text-foreground group-hover:text-orange transition-colors">
                     {tech.name}
                   </span>
                   <span className="text-[10px] font-mono text-muted">
@@ -166,18 +166,18 @@ export const TechnologyStack: React.FC = () => {
           </div>
 
           {/* Trek 2 (Salinan Identik untuk Seamless Loop tanpa lompatan pixel) */}
-          <div className="flex shrink-0 items-center gap-4 pr-4 animate-marquee-smooth py-1" aria-hidden="true">
+          <div className="flex shrink-0 items-center gap-3 sm:gap-4 pr-3 sm:pr-4 animate-marquee-smooth py-1" aria-hidden="true">
             {trackItems.map((tech, index) => (
               <div
                 key={`t2-${tech.name}-${index}`}
-                className="flex items-center gap-3 px-4 py-2.5 rounded border border-border bg-surface hover:border-orange transition-colors duration-200 select-none group cursor-default"
+                className="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded border border-border bg-surface hover:border-orange transition-colors duration-200 select-none group cursor-default"
                 title={`${tech.name} - ${tech.category}`}
               >
-                <div className="shrink-0">
+                <div className="shrink-0 scale-90 sm:scale-100">
                   {tech.icon}
                 </div>
                 <div className="flex flex-col text-left whitespace-nowrap">
-                  <span className="font-heading font-bold text-sm text-foreground group-hover:text-orange transition-colors">
+                  <span className="font-heading font-bold text-xs sm:text-sm text-foreground group-hover:text-orange transition-colors">
                     {tech.name}
                   </span>
                   <span className="text-[10px] font-mono text-muted">
