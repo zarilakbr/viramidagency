@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Logo } from './Logo';
 import { Button } from './Button';
 import { Icon } from './ui/Icon';
+import { KONTAK_AGENCY } from '../data/content';
 
 interface NavItem {
   label: string;
@@ -240,7 +241,7 @@ export const Navbar: React.FC = () => {
               Mulai Diskusi Proyek
             </Button>
             <div className="flex items-center justify-between text-xs font-mono text-muted">
-              <span>Jakarta Selatan, Indonesia</span>
+              <span>{KONTAK_AGENCY.lokasi}</span>
               <span>© {new Date().getFullYear()} ViramidAgency</span>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import { KONTAK_AGENCY } from '../data/content';
 
 /**
  * TriLoopMotif (ThreeArcsMotif)
@@ -29,7 +30,7 @@ export const TriLoopMotif: React.FC<{ className?: string }> = ({ className = '' 
             </span>
           </div>
           <span className="text-xs font-mono text-muted">
-            Jakarta, ID
+            {KONTAK_AGENCY.lokasi}
           </span>
         </div>
 

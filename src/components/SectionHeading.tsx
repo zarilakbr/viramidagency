@@ -30,12 +30,12 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
         >
           {number} /
         </span>
-        <h2 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl text-foreground tracking-tight">
+        <h2 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl text-foreground tracking-[-0.025em] leading-[1.15] text-balance">
           {title}
         </h2>
       </div>
       {subtitle && (
-        <p className="mt-3 text-sm sm:text-base text-muted max-w-[65ch] font-normal leading-relaxed">
+        <p className="mt-3 text-sm sm:text-base text-muted/90 max-w-[62ch] font-normal leading-[1.7] text-balance">
           {subtitle}
         </p>
       )}

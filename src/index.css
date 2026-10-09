@@ -4,24 +4,24 @@
   --font-heading: "Space Grotesk", sans-serif;
   --font-body: "Inter", sans-serif;
 
-  /* Palet Identitas Logo ViramidAgency */
-  --color-background: #0A0A2E;
-  --color-surface: #12123F;
-  --color-surface-hover: #181850;
-  --color-border: #262660;
+  /* Palet Identitas Logo ViramidAgency (Dark Theme #0F0F0F) */
+  --color-background: #0F0F0F;
+  --color-surface: #171717;
+  --color-surface-hover: #222222;
+  --color-border: #282828;
   --color-border-hover: #F97316;
   --color-orange: #F97316;
   --color-orange-hover: #EA580C;
   --color-cyan: #22D3C5;
   --color-purple: #C26FE0;
   --color-foreground: #F4F3FF;
-  --color-muted: #9A9BC7;
+  --color-muted: #A1A1AA;
 
   /* Aliases untuk kompatibilitas */
-  --color-navy: #0A0A2E;
-  --color-border-line: #262660;
+  --color-navy: #0F0F0F;
+  --color-border-line: #282828;
   --color-text-main: #F4F3FF;
-  --color-text-muted: #9A9BC7;
+  --color-text-muted: #A1A1AA;
   --color-brand-orange: #F97316;
   --color-brand-orange-hover: #EA580C;
   --color-brand-cyan: #22D3C5;
@@ -33,24 +33,32 @@
 :root {
   color-scheme: dark;
   font-family: 'Inter', sans-serif;
-  background-color: #0A0A2E;
+  background-color: #0F0F0F;
   color: #F4F3FF;
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: #0A0A2E;
+  background-color: #0F0F0F;
   color: #F4F3FF;
   overflow-x: hidden;
   margin: 0;
   padding: 0;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, .font-heading {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.025em;
   text-align: left;
+  text-wrap: balance;
+}
+
+p {
+  line-height: 1.7;
 }
 
 /* Standar Container & Section Spacing */
@@ -84,7 +92,7 @@ h1, h2, h3, h4, .font-heading {
 
 /* Standar Garis 1px & Tanpa Shadow Tebal */
 .border-subtle {
-  border: 1px solid #262660;
+  border: 1px solid #282828;
 }
 
 /* Standar Fokus Aksesibilitas Cyan 2px */
@@ -122,11 +130,11 @@ select:focus-visible,
 }
 
 ::-webkit-scrollbar-track {
-  background: #0A0A2E;
+  background: #0F0F0F;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #262660;
+  background: #282828;
   border-radius: 3px;
 }
 

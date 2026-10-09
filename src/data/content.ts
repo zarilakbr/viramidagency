@@ -75,12 +75,12 @@ export const PROFIL_AGENCY: AgencyProfile = {
 };
 
 export const KONTAK_AGENCY: KontakInfo = {
-  whatsappNomor: '6281234567890',
-  whatsappDisplay: '+62 812-3456-7890',
-  email: 'halo@viramidagency.com',
-  instagram: '@viramidagency',
-  instagramUrl: 'https://instagram.com/viramidagency',
-  lokasi: 'Jakarta Selatan, Indonesia',
+  whatsappNomor: '6287864033058',
+  whatsappDisplay: '+62 878-6403-3058',
+  email: 'kerjadigitallll@gmail.com',
+  instagram: '@viramisagency',
+  instagramUrl: 'https://instagram.com/viramisagency',
+  lokasi: 'Nusa Tenggara Barat - Indonesia',
 };
 
 export const DAFTAR_LAYANAN: LayananItem[] = [

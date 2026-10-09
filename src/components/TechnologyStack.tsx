@@ -48,7 +48,7 @@ export const TECH_LIST: TechItem[] = [
     category: 'Fullstack Framework',
     icon: (
       <svg className="w-6 h-6" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="90" cy="90" r="85" fill="#0A0A2E" stroke="#262660" strokeWidth="6" />
+        <circle cx="90" cy="90" r="85" fill="#0F0F0F" stroke="#282828" strokeWidth="6" />
         <path d="M149.5 147.5L78.5 56H61V124H74.5V74L137.5 154C141.8 152 145.8 149.8 149.5 147.5Z" fill="#F4F3FF" />
         <rect x="119" y="56" width="13.5" height="68" fill="#F4F3FF" />
       </svg>
@@ -126,7 +126,7 @@ export const TechnologyStack: React.FC = () => {
         <div
           className="absolute left-0 top-0 bottom-0 w-16 sm:w-28 z-10 pointer-events-none"
           style={{
-            background: 'linear-gradient(to right, #0A0A2E 0%, transparent 100%)',
+            background: 'linear-gradient(to right, #0F0F0F 0%, transparent 100%)',
           }}
           aria-hidden="true"
         />
@@ -135,7 +135,7 @@ export const TechnologyStack: React.FC = () => {
         <div
           className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 z-10 pointer-events-none"
           style={{
-            background: 'linear-gradient(to left, #0A0A2E 0%, transparent 100%)',
+            background: 'linear-gradient(to left, #0F0F0F 0%, transparent 100%)',
           }}
           aria-hidden="true"
         />

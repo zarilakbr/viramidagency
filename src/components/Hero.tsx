@@ -74,17 +74,17 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="font-heading font-bold text-4xl sm:text-6xl lg:text-7xl leading-[1.08] tracking-tight text-foreground mb-6 text-balance text-center"
+            className="font-heading font-bold text-3xl sm:text-5xl md:text-6xl lg:text-[64px] leading-[1.14] tracking-[-0.025em] text-foreground mb-6 text-balance text-center max-w-4xl mx-auto"
           >
             {PROFIL_AGENCY.tagline}
           </motion.h1>
 
-          {/* Subteks deskriptif terpusat maks 68 karakter */}
+          {/* Subteks deskriptif terpusat proporsional */}
           <motion.p
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="text-base sm:text-xl text-muted font-normal leading-relaxed mb-9 max-w-[65ch] text-center mx-auto"
+            className="text-base sm:text-lg md:text-xl text-muted font-normal leading-[1.7] mb-9 max-w-[56ch] text-balance text-center mx-auto"
           >
             {PROFIL_AGENCY.deskripsi}
           </motion.p>

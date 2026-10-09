@@ -98,7 +98,7 @@ export const IntroScreen: React.FC<IntroScreenProps> = ({ onFinish }) => {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed inset-0 z-[9999] bg-[#0A0A2E] w-screen h-screen overflow-hidden select-none"
+          className="fixed inset-0 z-[9999] bg-[#0F0F0F] w-screen h-screen overflow-hidden select-none"
           role="dialog"
           aria-label="Animasi Intro ViramidAgency"
         >
@@ -116,7 +116,7 @@ export const IntroScreen: React.FC<IntroScreenProps> = ({ onFinish }) => {
             />
 
             {/* Lapisan halus untuk kontras tipografi ketikan */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A2E] via-transparent to-[#0A0A2E]/50 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F] via-transparent to-[#0F0F0F]/50 pointer-events-none" />
           </div>
 
           {/* Efek Ketikan Bersih di Bagian Bawah Layar (Murni Teks, Bersih Tanpa Tombol) */}

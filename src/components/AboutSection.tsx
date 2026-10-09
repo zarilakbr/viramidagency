@@ -35,10 +35,10 @@ export const AboutSection: React.FC = () => {
           <span className="text-xs uppercase font-mono tracking-wider text-orange font-semibold">
             Filosofi &amp; Komitmen
           </span>
-          <h3 className="font-heading font-bold text-2xl sm:text-3xl text-foreground tracking-tight leading-snug">
+          <h3 className="font-heading font-bold text-2xl sm:text-3xl text-foreground tracking-[-0.02em] leading-[1.3] text-balance">
             Menciptakan karya yang tidak hanya memikat visual, namun terukur dampaknya.
           </h3>
-          <p className="text-base text-muted leading-relaxed max-w-[65ch]">
+          <p className="text-base text-muted/90 leading-[1.75] max-w-[62ch]">
             {PROFIL_AGENCY.cerita}
           </p>
         </Reveal>
