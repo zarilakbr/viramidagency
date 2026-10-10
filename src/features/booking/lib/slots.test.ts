@@ -4,7 +4,8 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { generateSlots, isDateAvailable } from './slots';
+import { generateSlots, isDateAvailable, parseDateInput } from './slots';
+import { generateBookingCode } from './bookingCode';
 import type { BookingConfig, JenisPertemuanConfig } from '../../../data/booking.config';
 import type { BookingRecord } from '../types';
 
@@ -162,5 +163,18 @@ describe('slots calculation and availability logic', () => {
     const slotsTomorrow = generateSlots('2026-10-15', mockJenis30, [], mockConfig, nowTime);
     const tomorrowMorningSlot = slotsTomorrow.find((s) => s.jamMulai === '09:00');
     expect(tomorrowMorningSlot?.available).toBe(true);
+  });
+
+  it('memastikan parseDateInput memproses string YYYY-MM-DD secara lokal tanpa offset UTC', () => {
+    const parsed = parseDateInput('2026-11-20');
+    expect(parsed.getFullYear()).toBe(2026);
+    expect(parsed.getMonth()).toBe(10); // 0-indexed November
+    expect(parsed.getDate()).toBe(20);
+    expect(parsed.getHours()).toBe(0);
+  });
+
+  it('memastikan format kode booking sesuai standar VRM-YYYYMMDD-XXXX', () => {
+    const code = generateBookingCode(new Date('2026-10-15T00:00:00'));
+    expect(code).toMatch(/^VRM-20261015-[A-Z0-9]{4}$/);
   });
 });

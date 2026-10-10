@@ -30,7 +30,7 @@ export class LocalBookingService implements BookingService {
     } catch (err) {
       console.warn('[LocalBookingService] Gagal membaca localStorage, fallback ke memory:', err);
     }
-    return [];
+    return this.memoryStore && this.memoryStore.length > 0 ? this.memoryStore : [];
   }
 
   private saveToStorage(records: BookingRecord[]): void {

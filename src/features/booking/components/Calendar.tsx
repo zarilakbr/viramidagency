@@ -17,10 +17,11 @@ import {
   isSameDay,
   isToday,
   addDays,
-  parseISO,
+  isBefore,
+  isAfter,
 } from 'date-fns';
 import { BOOKING_CONFIG } from '../../../data/booking.config';
-import { isDateAvailable, formatDateString } from '../lib/slots';
+import { isDateAvailable, formatDateString, parseDateInput } from '../lib/slots';
 import { Icon } from '../../../components/ui/Icon';
 
 interface CalendarProps {
@@ -36,7 +37,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   onSelectDate,
   minDate = new Date(),
 }) => {
-  const initialDate = selectedDate ? parseISO(selectedDate) : minDate;
+  const initialDate = selectedDate ? parseDateInput(selectedDate) : minDate;
   const [currentMonth, setCurrentMonth] = useState<Date>(startOfMonth(initialDate));
 
   const monthStart = startOfMonth(currentMonth);
@@ -46,15 +47,23 @@ export const Calendar: React.FC<CalendarProps> = ({
 
   const allCalendarDays = eachDayOfInterval({ start: startDate, end: endDate });
 
+  const maxForwardDate = addDays(minDate, BOOKING_CONFIG.maksimalHariKedepan);
+  const isPrevDisabled = isSameMonth(currentMonth, minDate) || isBefore(currentMonth, minDate);
+  const isNextDisabled = isSameMonth(currentMonth, maxForwardDate) || isAfter(currentMonth, maxForwardDate);
+
   const handlePrevMonth = () => {
-    setCurrentMonth((prev) => subMonths(prev, 1));
+    if (!isPrevDisabled) {
+      setCurrentMonth((prev) => subMonths(prev, 1));
+    }
   };
 
   const handleNextMonth = () => {
-    setCurrentMonth((prev) => addMonths(prev, 1));
+    if (!isNextDisabled) {
+      setCurrentMonth((prev) => addMonths(prev, 1));
+    }
   };
 
-  const selectedDateObj = selectedDate ? parseISO(selectedDate) : null;
+  const selectedDateObj = selectedDate ? parseDateInput(selectedDate) : null;
 
   // Tanggal pertama yang tersedia di bulan aktif untuk fokus awal keyboard jika belum ada tanggal terpilih
   const firstAvailableDay = allCalendarDays.find(
@@ -115,17 +124,19 @@ export const Calendar: React.FC<CalendarProps> = ({
         <div className="flex items-center gap-1">
           <button
             type="button"
+            disabled={isPrevDisabled}
             onClick={handlePrevMonth}
             aria-label="Bulan Sebelumnya"
-            className="p-1.5 rounded-lg border border-border bg-surface hover:bg-surface-hover hover:border-orange text-foreground transition-colors"
+            className="p-1.5 rounded-lg border border-border bg-surface hover:bg-surface-hover hover:border-orange text-foreground transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-border disabled:hover:bg-surface"
           >
             <Icon name="chevron-left" size={16} />
           </button>
           <button
             type="button"
+            disabled={isNextDisabled}
             onClick={handleNextMonth}
             aria-label="Bulan Berikutnya"
-            className="p-1.5 rounded-lg border border-border bg-surface hover:bg-surface-hover hover:border-orange text-foreground transition-colors"
+            className="p-1.5 rounded-lg border border-border bg-surface hover:bg-surface-hover hover:border-orange text-foreground transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-border disabled:hover:bg-surface"
           >
             <Icon name="chevron-right" size={16} />
           </button>

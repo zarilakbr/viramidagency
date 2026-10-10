@@ -42,6 +42,21 @@ export function formatDateString(date: Date): string {
 }
 
 /**
+ * Konversi string tanggal "YYYY-MM-DD" menjadi Date objek lokal murni (jam 00:00:00.000)
+ * Menghindari bug pergeseran hari akibat UTC offset pada mesin klien.
+ */
+export function parseDateInput(dateInput: Date | string): Date {
+  if (typeof dateInput === 'string') {
+    const cleanDate = dateInput.split('T')[0];
+    const parts = cleanDate.split('-').map(Number);
+    if (parts.length === 3 && !isNaN(parts[0]) && !isNaN(parts[1]) && !isNaN(parts[2])) {
+      return new Date(parts[0], parts[1] - 1, parts[2], 0, 0, 0, 0);
+    }
+  }
+  return startOfDay(dateInput);
+}
+
+/**
  * Memeriksa apakah suatu tanggal memenuhi kriteria hari kerja dan bukan hari libur.
  */
 export function isDateAvailable(
@@ -49,7 +64,7 @@ export function isDateAvailable(
   config: BookingConfig = BOOKING_CONFIG,
   nowInput: Date = new Date()
 ): boolean {
-  const targetDate = typeof dateInput === 'string' ? parseISO(dateInput) : dateInput;
+  const targetDate = parseDateInput(dateInput);
   const now = startOfDay(nowInput);
   const targetDayStart = startOfDay(targetDate);
 
@@ -99,7 +114,7 @@ export function generateSlots(
   config: BookingConfig = BOOKING_CONFIG,
   nowInput: Date = new Date()
 ): TimeSlot[] {
-  const targetDate = typeof dateInput === 'string' ? parseISO(dateInput) : dateInput;
+  const targetDate = parseDateInput(dateInput);
   const dateString = formatDateString(targetDate);
 
   // Jika tanggal secara umum tidak tersedia (akhir pekan / libur / masa lalu), kembalikan array kosong
