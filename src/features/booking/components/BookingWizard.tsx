@@ -26,6 +26,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [maxAccessibleStep, setMaxAccessibleStep] = useState<number>(1);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   // Form State
   const [formData, setFormData] = useState<BookingFormData>({
@@ -42,6 +43,16 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
   });
 
   const [detailsErrors, setDetailsErrors] = useState<DetailsFormErrors>({});
+
+  // Sinkronkan jenisPertemuanId saat initialJenisId berubah dari URL query parameter
+  useEffect(() => {
+    if (initialJenisId) {
+      setFormData((prev) => ({
+        ...prev,
+        jenisPertemuanId: initialJenisId,
+      }));
+    }
+  }, [initialJenisId]);
 
   // Fokus ke judul tahapan saat berpindah langkah (Aksesibilitas WCAG)
   useEffect(() => {
@@ -125,6 +136,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
   // Handler Submit Akhir
   const handleSubmitBooking = async () => {
     setIsSubmitting(true);
+    setSubmitError(null);
     try {
       const created = await bookingService.createBooking(formData);
       // Navigasi ke halaman sukses dengan kode booking
@@ -133,7 +145,9 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
       });
     } catch (err) {
       console.error('[BookingWizard] Gagal membuat booking:', err);
-      alert('Terjadi kesalahan saat memproses permintaan jadwal. Silakan coba kembali.');
+      setSubmitError(
+        'Terjadi kendala saat memproses permintaan jadwal. Silakan periksa kembali data Anda atau hubungi kami langsung via WhatsApp.'
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -208,6 +222,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
             onEditSection={(step) => setCurrentStep(step)}
             isSubmitting={isSubmitting}
             onSubmit={handleSubmitBooking}
+            errorMessage={submitError}
           />
         )}
       </div>

@@ -8,6 +8,7 @@
       name="description"
       content="ViramidAgency membangun brand dan website yang bekerja untuk bisnismu. Pengembangan website modern, UI/UX, dan identitas visual."
     />
+    <link rel="canonical" href="https://viramidagency.com/" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -21,7 +22,9 @@
       property="og:description"
       content="ViramidAgency membangun brand dan website yang bekerja untuk bisnismu. Pengembangan website modern, UI/UX, dan identitas visual."
     />
+    <meta property="og:url" content="https://viramidagency.com" />
     <meta property="og:site_name" content="ViramidAgency" />
+    <meta property="og:image" content="https://viramidagency.com/logo.jpg" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -30,6 +33,7 @@
       name="twitter:description"
       content="ViramidAgency membangun brand dan website yang bekerja untuk bisnismu. Pengembangan website modern, UI/UX, dan identitas visual."
     />
+    <meta name="twitter:image" content="https://viramidagency.com/logo.jpg" />
 
     <!-- Google Fonts: Space Grotesk & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -45,19 +49,69 @@
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
         "name": "ViramidAgency",
+        "alternateName": "Viramid Agency",
         "description": "Agency digital dan kreatif untuk brand dan website berperforma tinggi.",
         "url": "https://viramidagency.com",
-        "serviceArea": "Indonesia",
-        "services": [
-          "Pengembangan Website",
-          "Desain UI/UX",
-          "Branding & Identitas Visual",
-          "Konten & Media Sosial"
+        "logo": "https://viramidagency.com/logo.jpg",
+        "image": "https://viramidagency.com/logo.jpg",
+        "founder": {
+          "@type": "Person",
+          "name": "Zaril Akbar"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "Nusa Tenggara Barat",
+          "addressCountry": "ID"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+6287864033058",
+          "contactType": "customer service",
+          "email": "kerjadigitallll@gmail.com",
+          "areaServed": "ID",
+          "availableLanguage": ["Indonesian", "English"]
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Paket Layanan Digital ViramidAgency",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Website Starter & Landing Page"
+              },
+              "price": "7500000",
+              "priceCurrency": "IDR"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Bisnis & Brand Identity"
+              },
+              "price": "16500000",
+              "priceCurrency": "IDR"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Custom Platform & Enterprise"
+              },
+              "price": "35000000",
+              "priceCurrency": "IDR"
+            }
+          ]
+        },
+        "sameAs": [
+          "https://instagram.com/viramisagency",
+          "https://github.com/zarilakbr/viramidagency"
         ]
       }
     </script>
   </head>
-  <body class="bg-[#0F0F0F] text-[#F4F3FF] antialiased selection:bg-[#F97316]/30 selection:text-[#F4F3FF]">
+  <body class="bg-[#0A0A2E] text-[#F4F3FF] antialiased selection:bg-[#F97316]/30 selection:text-[#F4F3FF]">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

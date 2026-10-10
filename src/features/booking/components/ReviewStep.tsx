@@ -13,6 +13,7 @@ interface ReviewStepProps {
   onEditSection: (step: number) => void;
   isSubmitting: boolean;
   onSubmit: () => void;
+  errorMessage?: string | null;
 }
 
 export const ReviewStep: React.FC<ReviewStepProps> = ({
@@ -20,6 +21,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
   onEditSection,
   isSubmitting,
   onSubmit,
+  errorMessage,
 }) => {
   const jenisConfig =
     BOOKING_CONFIG.jenisPertemuan.find((j) => j.id === formData.jenisPertemuanId) ||
@@ -169,6 +171,20 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
             Permintaan jadwalmu akan diterima oleh tim ViramidAgency. Konfirmasi ketersediaan dan tautan video call akan dikirimkan melalui WhatsApp atau email resmi kami.
           </p>
         </div>
+
+        {/* Pesan Error Jika Terjadi Kendala */}
+        {errorMessage && (
+          <div
+            role="alert"
+            className="p-4 rounded-xl border border-orange/40 bg-orange/10 text-foreground flex items-start gap-3 text-xs sm:text-sm"
+          >
+            <Icon name="alert-circle" size={18} className="text-orange shrink-0 mt-0.5" />
+            <div className="flex flex-col gap-1">
+              <span className="font-semibold text-orange">Kendala Pengiriman:</span>
+              <span className="text-muted leading-relaxed">{errorMessage}</span>
+            </div>
+          </div>
+        )}
 
         {/* Tombol Eksekusi Submit */}
         <div className="pt-2">
