@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SectionHeading } from './SectionHeading';
 import { Button } from './Button';
+import { Container } from './ui/Container';
 import { Icon } from './ui/Icon';
 import { Reveal } from './ui/Reveal';
 import { KONTAK_AGENCY } from '../data/content';
@@ -115,9 +116,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
   };
 
   return (
-    <section id="kontak" className="section-container section-spacing scroll-mt-20">
+    <section id="kontak" className="my-[72px] sm:my-[120px] scroll-mt-20">
+      <Container>
         <SectionHeading
-          number="05"
+          number="07"
           title="Ceritakan proyekmu."
           subtitle="Sampaikan ide, tantangan, atau rencana peluncuran produk digital Anda. Kami siap berdiskusi."
         />
@@ -359,6 +361,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
           </form>
         </Reveal>
       </div>
+      </Container>
     </section>
   );
 };

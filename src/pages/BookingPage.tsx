@@ -6,6 +6,7 @@
 import React from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { BookingWizard } from '../features/booking/components/BookingWizard';
+import { Container } from '../components/ui/Container';
 import { Icon } from '../components/ui/Icon';
 
 export const BookingPage: React.FC = () => {
@@ -14,7 +15,7 @@ export const BookingPage: React.FC = () => {
 
   return (
     <main className="w-full min-h-screen pt-28 pb-20 md:pt-36 md:pb-28">
-      <div className="section-container">
+      <Container>
         {/* Header Halaman */}
         <div className="max-w-3xl mx-auto text-center mb-10 md:mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-surface text-xs font-mono font-medium text-cyan mb-4">
@@ -43,7 +44,7 @@ export const BookingPage: React.FC = () => {
 
         {/* Wizard Form Component */}
         <BookingWizard initialJenisId={initialJenis} />
-      </div>
+      </Container>
     </main>
   );
 };

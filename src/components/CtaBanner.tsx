@@ -5,12 +5,13 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Container } from './ui/Container';
 import { Icon } from './ui/Icon';
 
 export const CtaBanner: React.FC = () => {
   return (
-    <section className="relative w-full bg-orange text-navy py-16 md:py-20 overflow-hidden">
-      <div className="section-container">
+    <section className="relative w-full bg-orange text-navy py-[72px] sm:py-[120px] overflow-hidden">
+      <Container>
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
           <div className="flex flex-col gap-2">
             <span className="text-xs font-mono font-bold tracking-widest uppercase text-navy/80">
@@ -34,7 +35,7 @@ export const CtaBanner: React.FC = () => {
             </Link>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

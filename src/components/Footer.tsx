@@ -1,6 +1,7 @@
 import React from 'react';
 import { Logo } from './Logo';
 import { TriColorLine } from './ThreeArcsMotif';
+import { Container } from './ui/Container';
 import { Icon } from './ui/Icon';
 import { KONTAK_AGENCY, PROFIL_AGENCY } from '../data/content';
 
@@ -30,7 +31,7 @@ export const Footer: React.FC = () => {
       {/* Garis aksen 1px tiga warna resmi di bagian atas footer */}
       <TriColorLine />
 
-      <div className="section-container py-14 md:py-16">
+      <Container className="py-14 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 items-start">
           {/* Col 1: Logo & Tagline */}
           <div className="md:col-span-5 flex flex-col gap-4">
@@ -140,7 +141,7 @@ export const Footer: React.FC = () => {
             Didesain dan direkayasa untuk brand &amp; website berkinerja tinggi.
           </p>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 };

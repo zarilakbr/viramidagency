@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container } from './ui/Container';
 
 export interface TechItem {
   name: string;
@@ -110,7 +111,7 @@ export const TechnologyStack: React.FC = () => {
   return (
     <section className="relative py-8 border-y border-border bg-surface/30 overflow-hidden">
       {/* Label Kicker */}
-      <div className="section-container mb-4 flex items-center justify-between">
+      <Container className="mb-4 flex items-center justify-between">
         <span className="text-xs font-mono tracking-wider uppercase text-muted flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-orange" />
           Perangkat &amp; Standar Teknologi Produksi
@@ -118,7 +119,7 @@ export const TechnologyStack: React.FC = () => {
         <span className="text-xs font-mono text-muted/60 hidden sm:inline">
           High Performance Engineering
         </span>
-      </div>
+      </Container>
 
       {/* Marquee Track Container: Responsif, hardware-accelerated, bergerak terus di HP */}
       <div className="relative w-full overflow-hidden marquee-container select-none touch-pan-y">
@@ -126,7 +127,7 @@ export const TechnologyStack: React.FC = () => {
         <div
           className="absolute left-0 top-0 bottom-0 w-12 sm:w-28 z-10 pointer-events-none"
           style={{
-            background: 'linear-gradient(to right, #0F0F0F 0%, transparent 100%)',
+            background: 'linear-gradient(to right, #0A0A2E 0%, transparent 100%)',
           }}
           aria-hidden="true"
         />
@@ -135,7 +136,7 @@ export const TechnologyStack: React.FC = () => {
         <div
           className="absolute right-0 top-0 bottom-0 w-12 sm:w-28 z-10 pointer-events-none"
           style={{
-            background: 'linear-gradient(to left, #0F0F0F 0%, transparent 100%)',
+            background: 'linear-gradient(to left, #0A0A2E 0%, transparent 100%)',
           }}
           aria-hidden="true"
         />

@@ -7,12 +7,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { PAKET_LAYANAN } from '../data/content';
 import { SectionHeading } from './SectionHeading';
+import { Container } from './ui/Container';
 import { Icon } from './ui/Icon';
 
 export const PricingSection: React.FC = () => {
   return (
-    <section id="paket" className="relative section-spacing">
-      <div className="section-container">
+    <section id="paket" className="relative my-[72px] sm:my-[120px] scroll-mt-20">
+      <Container>
         {/* Section Heading */}
         <SectionHeading
           number="04"
@@ -121,7 +122,7 @@ export const PricingSection: React.FC = () => {
             <Icon name="arrow-right" size={12} />
           </Link>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

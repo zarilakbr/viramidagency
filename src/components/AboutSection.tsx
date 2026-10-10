@@ -1,6 +1,8 @@
 import React from 'react';
 import { SectionHeading } from './SectionHeading';
 import { Reveal } from './ui/Reveal';
+import { Container } from './ui/Container';
+import { Icon } from './ui/Icon';
 import { PROFIL_AGENCY, NILAI_KERJA, DAFTAR_TIM, KONTAK_AGENCY } from '../data/content';
 import zarilPhoto from '../assets/images/zaril-akbar.jpg';
 
@@ -20,12 +22,13 @@ export const AboutSection: React.FC = () => {
   };
 
   return (
-    <section id="tentang" className="section-container section-spacing scroll-mt-20">
-      <SectionHeading
-        number="04"
-        title="Tentang Agency"
-        subtitle="Pendekatan dedikatif yang menggabungkan presisi desain arsitektural dan keandalan teknologi digital."
-      />
+    <section id="tentang" className="my-[72px] sm:my-[120px] scroll-mt-20">
+      <Container>
+        <SectionHeading
+          number="05"
+          title="Tentang Agency"
+          subtitle="Pendekatan dedikatif yang menggabungkan presisi desain arsitektural dan keandalan teknologi digital."
+        />
 
       {/* Dua Kolom: Cerita Filosofi & Nilai Kerja */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-16">
@@ -144,7 +147,7 @@ export const AboutSection: React.FC = () => {
                   <div className="mt-4 pt-3 border-t border-border/80 flex items-center justify-between text-[11px] font-mono text-muted">
                     <span>{anggota.nama === 'Zaril Akbar' ? KONTAK_AGENCY.lokasi : 'Studio Kolektif'}</span>
                     <span className="text-orange group-hover:translate-x-1 transition-transform duration-200">
-                      →
+                      <Icon name="arrow-right" size="sm" />
                     </span>
                   </div>
                 </div>
@@ -153,6 +156,7 @@ export const AboutSection: React.FC = () => {
           </div>
         </div>
       )}
+      </Container>
     </section>
   );
 };

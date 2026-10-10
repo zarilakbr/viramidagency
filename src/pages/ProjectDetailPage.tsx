@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { CategoryBadge } from '../components/CategoryBadge';
 import { Button } from '../components/Button';
+import { Container } from '../components/ui/Container';
 import { Icon } from '../components/ui/Icon';
 import { Reveal } from '../components/ui/Reveal';
 import { DAFTAR_PROYEK } from '../data/content';
@@ -58,7 +59,8 @@ export const ProjectDetailPage: React.FC = () => {
   const nextProyek = DAFTAR_PROYEK[nextIndex];
 
   return (
-    <main className="section-container pt-28 pb-28 md:pt-36 md:pb-36">
+    <main className="w-full min-h-screen pt-28 pb-28 md:pt-36 md:pb-36">
+      <Container>
       {/* Tombol Kembali ke Portofolio */}
       <div className="mb-8">
         <button
@@ -308,6 +310,7 @@ export const ProjectDetailPage: React.FC = () => {
           </Button>
         )}
       </footer>
+      </Container>
     </main>
   );
 };

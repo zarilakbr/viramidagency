@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { SectionHeading } from './SectionHeading';
 import { ProjectCard } from './ProjectCard';
 import { Reveal } from './ui/Reveal';
+import { Container } from './ui/Container';
 import { DAFTAR_PROYEK, KategoriProyek } from '../data/content';
 
 type FilterType = 'Semua' | KategoriProyek;
@@ -42,8 +43,9 @@ export const PortfolioSection: React.FC = () => {
   };
 
   return (
-    <section id="karya" className="section-container section-spacing scroll-mt-20">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+    <section id="karya" className="my-[72px] sm:my-[120px] scroll-mt-20">
+      <Container>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
         <SectionHeading
           number="02"
           title="Karya Pilihan"
@@ -101,6 +103,7 @@ export const PortfolioSection: React.FC = () => {
           </p>
         </div>
       )}
+      </Container>
     </section>
   );
 };

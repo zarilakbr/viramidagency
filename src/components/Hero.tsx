@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
+import { Container } from './ui/Container';
 import { Icon } from './ui/Icon';
 import { PROFIL_AGENCY } from '../data/content';
 import heroVideo from '../assets/videos/Logo_exit_animation.mp4';
@@ -69,7 +70,7 @@ export const Hero: React.FC = () => {
       </div>
 
       {/* Konten Teks Terpusat (Centered) di Layer z-10 */}
-      <div className="section-container relative z-10 w-full flex flex-col items-center text-center">
+      <Container className="relative z-10 flex flex-col items-center text-center">
         <div className="flex flex-col items-center text-center max-w-[960px] mx-auto w-full">
           
           {/* Tiga Lengkungan Logo Menyatu (Converging 3-Arcs Triangle Lock) */}
@@ -214,7 +215,7 @@ export const Hero: React.FC = () => {
             </span>
           </motion.div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

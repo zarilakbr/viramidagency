@@ -7,6 +7,7 @@
 
 import React, { useRef } from 'react';
 import { motion, useScroll, useSpring, useTransform } from 'motion/react';
+import { Container } from './ui/Container';
 import { LANGKAH_PROSES } from '../data/content';
 import { Icon } from './ui/Icon';
 
@@ -28,9 +29,9 @@ export const ProcessSection: React.FC = () => {
     <section
       id="proses"
       ref={containerRef}
-      className="relative py-20 md:py-28 bg-surface border-y border-border scroll-mt-16"
+      className="relative py-[72px] sm:py-[120px] bg-surface border-y border-border scroll-mt-16"
     >
-      <div className="section-container">
+      <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           
           {/* Kolom Kiri: Sticky Header & Progress Line (Desktop) */}
@@ -84,7 +85,7 @@ export const ProcessSection: React.FC = () => {
             })}
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

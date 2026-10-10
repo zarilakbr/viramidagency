@@ -6,6 +6,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Container } from './ui/Container';
 import { DAFTAR_LAYANAN } from '../data/content';
 import { Icon } from './ui/Icon';
 
@@ -17,9 +18,9 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
   return (
     <section
       id="layanan"
-      className="relative py-20 md:py-28 bg-[#F4F3FF] text-[#0A0A2E] border-y border-[#D9D8F0] scroll-mt-16"
+      className="relative py-[72px] sm:py-[120px] bg-[#F4F3FF] text-[#0A0A2E] border-y border-[#D9D8F0] scroll-mt-16"
     >
-      <div className="section-container">
+      <Container>
         {/* Header Seksi Terang */}
         <div className="text-left mb-12">
           <div className="flex items-baseline gap-4 mb-2">
@@ -66,7 +67,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
             </Link>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

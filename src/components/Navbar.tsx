@@ -5,6 +5,8 @@ import { Button } from './Button';
 import { Icon } from './ui/Icon';
 import { KONTAK_AGENCY } from '../data/content';
 
+import { Container } from './ui/Container';
+
 interface NavItem {
   label: string;
   href: string;
@@ -123,7 +125,7 @@ export const Navbar: React.FC = () => {
           : 'bg-transparent border-b border-transparent'
       }`}
     >
-      <div className="section-container h-full flex items-center justify-between">
+      <Container className="h-full flex items-center justify-between">
         {/* Brand Zone */}
         <a
           href="/"
@@ -193,7 +195,7 @@ export const Navbar: React.FC = () => {
             {mobileMenuOpen ? <Icon name="close" size="md" /> : <Icon name="menu" size="md" />}
           </button>
         </div>
-      </div>
+      </Container>
 
       {/* Mobile Menu Panel */}
       {mobileMenuOpen && (

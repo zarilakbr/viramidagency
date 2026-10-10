@@ -9,6 +9,7 @@ import { bookingService } from '../features/booking/services/bookingService';
 import { getWhatsAppBookingUrl } from '../features/booking/lib/whatsappMessage';
 import { downloadIcsFile, getGoogleCalendarUrl } from '../features/booking/lib/ics';
 import { BOOKING_CONFIG } from '../data/booking.config';
+import { Container } from '../components/ui/Container';
 import { Icon } from '../components/ui/Icon';
 import type { BookingRecord } from '../features/booking/types';
 
@@ -79,7 +80,7 @@ export const BookingSuccessPage: React.FC = () => {
 
   return (
     <main className="w-full min-h-screen pt-28 pb-20 md:pt-36 md:pb-28">
-      <div className="section-container max-w-3xl mx-auto">
+      <Container className="max-w-3xl">
         {/* Header Sukses */}
         <div className="text-center mb-8">
           <div className="w-14 h-14 rounded-full bg-cyan/15 border border-cyan/40 flex items-center justify-center mx-auto mb-4 text-cyan">
@@ -223,7 +224,7 @@ export const BookingSuccessPage: React.FC = () => {
             <Icon name="arrow-right" size={14} />
           </Link>
         </div>
-      </div>
+      </Container>
     </main>
   );
 };

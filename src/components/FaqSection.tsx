@@ -6,6 +6,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { Container } from './ui/Container';
 import { DAFTAR_FAQ } from '../data/content';
 import { Icon } from './ui/Icon';
 
@@ -17,8 +18,8 @@ export const FaqSection: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="relative py-20 md:py-28 bg-[#F4F3FF] text-[#0A0A2E] border-y border-[#D9D8F0]">
-      <div className="section-container max-w-4xl mx-auto">
+    <section id="faq" className="relative py-[72px] sm:py-[120px] bg-[#F4F3FF] text-[#0A0A2E] border-y border-[#D9D8F0]">
+      <Container className="max-w-4xl">
         {/* Header Seksi Terang */}
         <div className="text-left mb-10 md:mb-12">
           <div className="flex items-baseline gap-4 mb-2">
@@ -106,7 +107,7 @@ export const FaqSection: React.FC = () => {
             );
           })}
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

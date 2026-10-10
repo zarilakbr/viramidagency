@@ -10,6 +10,7 @@ import { bookingService } from '../features/booking/services/bookingService';
 import { BOOKING_CONFIG } from '../data/booking.config';
 import { getWhatsAppBookingUrl } from '../features/booking/lib/whatsappMessage';
 import { downloadIcsFile } from '../features/booking/lib/ics';
+import { Container } from '../components/ui/Container';
 import { Icon } from '../components/ui/Icon';
 import type { BookingRecord } from '../features/booking/types';
 
@@ -54,7 +55,7 @@ export const BookingHistoryPage: React.FC = () => {
 
   return (
     <main className="w-full min-h-screen pt-28 pb-20 md:pt-36 md:pb-28">
-      <div className="section-container max-w-4xl mx-auto">
+      <Container className="max-w-4xl">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-6 border-b border-border">
           <div>
@@ -225,7 +226,7 @@ export const BookingHistoryPage: React.FC = () => {
             })}
           </div>
         )}
-      </div>
+      </Container>
     </main>
   );
 };
