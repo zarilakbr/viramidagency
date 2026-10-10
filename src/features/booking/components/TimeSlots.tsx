@@ -1,7 +1,8 @@
 /**
  * @file src/features/booking/components/TimeSlots.tsx
  * Komponen pemilih slot jam pertemuan dalam format chip pill 2 kolom dengan penanda WITA.
- * Desain modern berkontras tinggi dengan elevasi visual yang tegas.
+ * Eksklusif 2 Warna: HEX #04344C & HEX #B0EDF9.
+ * Font Judul: Gastilo.
  */
 
 import React from 'react';
@@ -25,21 +26,21 @@ export const TimeSlots: React.FC<TimeSlotsProps> = ({
   const hasAvailableSlot = slots.some((s) => s.available);
 
   return (
-    <div className="w-full bg-[#121240] p-4 sm:p-5 rounded-2xl border border-[#2A2A6E] flex flex-col justify-between shadow-sm min-h-[380px]">
+    <div className="w-full bg-[#074563] p-4 sm:p-5 rounded-2xl border border-[#165A7E] flex flex-col justify-between shadow-sm min-h-[380px]">
       <div>
         {/* Header Zona Waktu & Informasi */}
-        <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#2A2A6E]">
+        <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#165A7E]">
           <div className="flex flex-col">
-            <span className="font-heading font-bold text-base text-cream">
+            <span className="font-heading font-bold text-base text-[#B0EDF9]">
               Pilih Jam Pertemuan
             </span>
-            <span className="text-[11px] font-mono text-muted">
-              Durasi slot telah disesuaikan
+            <span className="text-[11px] font-mono text-[#78B9CA]">
+              Durasi slot disesuaikan otomatis
             </span>
           </div>
 
           <div
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#181850] border border-[#2A2A6E] text-xs font-mono text-orange"
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#04344C] border border-[#165A7E] text-xs font-mono text-[#B0EDF9]"
             title={`Zona Waktu: ${BOOKING_CONFIG.timezone}`}
           >
             <Icon name="globe" size={13} />
@@ -49,22 +50,22 @@ export const TimeSlots: React.FC<TimeSlotsProps> = ({
 
         {/* Loading State */}
         {isLoading && (
-          <div className="py-14 flex flex-col items-center justify-center text-muted gap-2">
-            <span className="w-6 h-6 border-2 border-orange border-t-transparent rounded-full animate-spin" />
+          <div className="py-14 flex flex-col items-center justify-center text-[#78B9CA] gap-2">
+            <span className="w-6 h-6 border-2 border-[#B0EDF9] border-t-transparent rounded-full animate-spin" />
             <span className="text-xs font-mono">Memeriksa ketersediaan jadwal...</span>
           </div>
         )}
 
         {/* Empty State jika tidak ada slot */}
         {!isLoading && (!slots.length || !hasAvailableSlot) && (
-          <div className="py-12 px-4 text-center flex flex-col items-center justify-center border border-dashed border-[#2A2A6E] rounded-xl bg-[#0D0D30]/60">
-            <div className="w-10 h-10 rounded-full bg-[#181850] border border-[#2A2A6E] flex items-center justify-center text-orange mb-3">
+          <div className="py-12 px-4 text-center flex flex-col items-center justify-center border border-dashed border-[#165A7E] rounded-xl bg-[#04344C]/60">
+            <div className="w-10 h-10 rounded-xl bg-[#074563] border border-[#165A7E] flex items-center justify-center text-[#B0EDF9] mb-3">
               <Icon name="clock" size={20} />
             </div>
-            <p className="font-heading font-semibold text-sm text-cream mb-1">
+            <p className="font-heading font-semibold text-sm text-[#B0EDF9] mb-1">
               Tidak Ada Jam Tersedia
             </p>
-            <p className="text-xs text-muted max-w-[28ch] leading-relaxed">
+            <p className="text-xs text-[#78B9CA] max-w-[28ch] leading-relaxed">
               Tidak ada jam tersisa di tanggal ini. Silakan pilih tanggal lain pada kalender.
             </p>
           </div>
@@ -94,10 +95,10 @@ export const TimeSlots: React.FC<TimeSlotsProps> = ({
                   onClick={() => isAvailable && onSelectSlot(slot)}
                   className={`py-2.5 px-3 rounded-xl border text-xs font-mono transition-all duration-150 flex items-center justify-between ${
                     !isAvailable
-                      ? 'border-transparent bg-[#181850]/20 text-muted/30 line-through cursor-not-allowed'
+                      ? 'border-transparent bg-[#04344C]/30 text-[#78B9CA]/30 line-through cursor-not-allowed'
                       : isSelected
-                      ? 'border-orange bg-orange text-navy-900 font-bold shadow-md shadow-orange/30 ring-1 ring-orange scale-[1.02]'
-                      : 'border-[#2A2A6E] bg-[#181850] text-cream hover:border-orange hover:bg-orange/15 cursor-pointer'
+                      ? 'border-[#B0EDF9] bg-[#B0EDF9] text-[#04344C] font-bold shadow-md ring-1 ring-[#B0EDF9] scale-[1.02]'
+                      : 'border-[#165A7E] bg-[#04344C] text-[#B0EDF9] hover:border-[#B0EDF9] hover:bg-[#0B567C] cursor-pointer'
                   }`}
                   title={
                     !isAvailable
@@ -106,7 +107,7 @@ export const TimeSlots: React.FC<TimeSlotsProps> = ({
                   }
                 >
                   <span className="font-semibold">{slot.jamMulai}</span>
-                  <span className={isSelected ? 'text-navy-900/80 text-[10px] font-bold' : 'text-muted text-[10px]'}>
+                  <span className={isSelected ? 'text-[#04344C]/80 text-[10px] font-bold' : 'text-[#78B9CA] text-[10px]'}>
                     {slot.jamSelesai}
                   </span>
                 </button>
@@ -116,9 +117,9 @@ export const TimeSlots: React.FC<TimeSlotsProps> = ({
         )}
       </div>
 
-      {/* Catatan Jeda Buffer & Kebijakan */}
-      <div className="mt-4 pt-3 border-t border-[#2A2A6E]/80 flex items-center gap-2 text-[11px] font-mono text-muted">
-        <Icon name="clock" size={13} className="text-orange shrink-0" />
+      {/* Catatan Jeda Buffer */}
+      <div className="mt-4 pt-3 border-t border-[#165A7E] flex items-center gap-2 text-[11px] font-mono text-[#78B9CA]">
+        <Icon name="clock" size={13} className="text-[#B0EDF9] shrink-0" />
         <span>Jeda {BOOKING_CONFIG.bufferAntarSesi} menit antar sesi diterapkan otomatis.</span>
       </div>
     </div>

@@ -1,6 +1,8 @@
 /**
  * @file src/pages/BookingSuccessPage.tsx
  * Halaman status konfirmasi permintaan jadwal (/booking/sukses).
+ * Eksklusif 2 Warna: HEX #04344C & HEX #B0EDF9.
+ * Font Judul: Gastilo.
  */
 
 import React, { useEffect, useState } from 'react';
@@ -36,9 +38,9 @@ export const BookingSuccessPage: React.FC = () => {
 
   if (isLoading) {
     return (
-      <main className="w-full min-h-[70vh] flex items-center justify-center pt-24 pb-16">
-        <div className="flex flex-col items-center gap-3 text-muted">
-          <span className="w-8 h-8 border-2 border-orange border-t-transparent rounded-full animate-spin" />
+      <main className="w-full min-h-[70vh] flex items-center justify-center pt-24 pb-16 bg-[#04344C]">
+        <div className="flex flex-col items-center gap-3 text-[#78B9CA]">
+          <span className="w-8 h-8 border-2 border-[#B0EDF9] border-t-transparent rounded-full animate-spin" />
           <span className="text-sm font-mono">Memuat detail jadwal...</span>
         </div>
       </main>
@@ -47,20 +49,20 @@ export const BookingSuccessPage: React.FC = () => {
 
   if (!booking) {
     return (
-      <main className="w-full min-h-[70vh] flex items-center justify-center pt-24 pb-16">
-        <div className="section-container max-w-md text-center">
-          <div className="w-12 h-12 rounded-full bg-surface border border-border flex items-center justify-center mx-auto mb-4 text-orange">
+      <main className="w-full min-h-[70vh] flex items-center justify-center pt-24 pb-16 bg-[#04344C]">
+        <div className="max-w-md text-center p-8 rounded-2xl bg-[#074563] border border-[#165A7E]">
+          <div className="w-12 h-12 rounded-xl bg-[#04344C] border border-[#165A7E] flex items-center justify-center mx-auto mb-4 text-[#B0EDF9]">
             <Icon name="alert-circle" size={24} />
           </div>
-          <h1 className="font-heading font-bold text-2xl text-foreground mb-2">
+          <h1 className="font-heading font-bold text-2xl text-[#B0EDF9] mb-2">
             Data Jadwal Tidak Ditemukan
           </h1>
-          <p className="text-sm text-muted mb-6">
+          <p className="text-sm text-[#78B9CA] mb-6">
             Kode booking tidak valid atau belum tersimpan di sesi browser ini.
           </p>
           <Link
             to="/booking"
-            className="inline-flex items-center gap-2 py-3 px-6 rounded-lg bg-orange text-navy font-heading font-bold text-sm"
+            className="inline-flex items-center gap-2 py-3 px-6 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-sm"
           >
             <Icon name="calendar" size={16} />
             <span>Buat Jadwal Baru</span>
@@ -79,67 +81,67 @@ export const BookingSuccessPage: React.FC = () => {
   const googleCalendarUrl = getGoogleCalendarUrl(booking);
 
   return (
-    <main className="w-full min-h-screen pt-28 pb-20 md:pt-36 md:pb-28">
+    <main className="w-full min-h-screen pt-28 pb-20 md:pt-36 md:pb-28 bg-[#04344C]">
       <Container className="max-w-3xl">
         {/* Header Sukses */}
         <div className="text-center mb-8">
-          <div className="w-14 h-14 rounded-full bg-orange/15 border border-orange/40 flex items-center justify-center mx-auto mb-4 text-orange">
+          <div className="w-14 h-14 rounded-2xl bg-[#074563] border border-[#165A7E] flex items-center justify-center mx-auto mb-4 text-[#B0EDF9] shadow-md">
             <Icon name="check" size={28} strokeWidth={2.5} />
           </div>
 
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface border border-orange/40 text-xs font-mono text-orange mb-3">
-            <span className="w-2 h-2 rounded-full bg-orange animate-pulse" />
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#074563] border border-[#165A7E] text-xs font-mono text-[#B0EDF9] mb-3">
+            <Icon name="check-circle" size={14} className="text-[#B0EDF9]" />
             <span>Status: Menunggu Konfirmasi Tim</span>
           </span>
 
-          <h1 className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-cream mb-2">
+          <h1 className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-[#B0EDF9] mb-2">
             Permintaan Jadwal Terkirim
           </h1>
 
-          <p className="text-sm sm:text-base text-muted max-w-lg mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base text-[#78B9CA] max-w-lg mx-auto leading-relaxed">
             Terima kasih! Permintaanmu akan kami pelajari terlebih dahulu dan dikonfirmasi langsung oleh tim ViramidAgency lewat WhatsApp atau email resmi.
           </p>
         </div>
 
         {/* Kartu Kode Booking & Ringkasan */}
-        <div className="bg-surface rounded-2xl border border-border p-6 md:p-8 flex flex-col gap-6 shadow-sm mb-6">
+        <div className="bg-[#074563] rounded-2xl border border-[#165A7E] p-6 md:p-8 flex flex-col gap-6 shadow-sm mb-6">
           {/* Box Kode Booking */}
-          <div className="p-4 rounded-xl bg-navy-900 border border-border flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+          <div className="p-4 rounded-xl bg-[#04344C] border border-[#165A7E] flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
             <div>
-              <span className="text-xs font-mono text-muted block">Kode Booking Anda:</span>
-              <span className="font-mono font-bold text-lg sm:text-xl text-orange tracking-wider">
+              <span className="text-xs font-mono text-[#78B9CA] block">Kode Booking Anda:</span>
+              <span className="font-mono font-bold text-lg sm:text-xl text-[#B0EDF9] tracking-wider">
                 {booking.kodeBooking}
               </span>
             </div>
-            <span className="text-xs font-mono text-muted bg-surface px-3 py-1.5 rounded-lg border border-border">
+            <span className="text-xs font-mono text-[#78B9CA] bg-[#074563] px-3 py-1.5 rounded-lg border border-[#165A7E]">
               Simpan kode ini untuk referensi
             </span>
           </div>
 
           {/* Rincian Jadwal */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm pb-6 border-b border-border/80">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm pb-6 border-b border-[#165A7E]">
             <div>
-              <span className="text-xs font-mono text-muted block">Jenis Sesi:</span>
-              <span className="font-heading font-bold text-foreground">
+              <span className="text-xs font-mono text-[#78B9CA] block">Jenis Sesi:</span>
+              <span className="font-heading font-bold text-[#B0EDF9]">
                 {booking.jenisPertemuanNama} ({booking.durasiMenit} Menit)
               </span>
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted block">Format Pertemuan:</span>
-              <span className="font-medium text-foreground">{formatLabel}</span>
+              <span className="text-xs font-mono text-[#78B9CA] block">Format Pertemuan:</span>
+              <span className="font-medium text-[#B0EDF9]">{formatLabel}</span>
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted block">Tanggal:</span>
-              <span className="font-heading font-bold text-foreground">
+              <span className="text-xs font-mono text-[#78B9CA] block">Tanggal:</span>
+              <span className="font-heading font-bold text-[#B0EDF9]">
                 {booking.tanggal}
               </span>
             </div>
 
             <div>
-              <span className="text-xs font-mono text-muted block">Waktu:</span>
-              <span className="font-mono font-semibold text-orange">
+              <span className="text-xs font-mono text-[#78B9CA] block">Waktu:</span>
+              <span className="font-mono font-semibold text-[#B0EDF9]">
                 {booking.jamMulai} - {booking.jamSelesai} {BOOKING_CONFIG.timezoneLabel}
               </span>
             </div>
@@ -149,22 +151,22 @@ export const BookingSuccessPage: React.FC = () => {
           <div className="flex flex-col gap-2 text-sm">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
               <div>
-                <span className="text-xs font-mono text-muted block">Nama:</span>
-                <span className="font-medium text-foreground">{booking.nama}</span>
+                <span className="text-xs font-mono text-[#78B9CA] block">Nama:</span>
+                <span className="font-medium text-[#B0EDF9]">{booking.nama}</span>
               </div>
               <div>
-                <span className="text-xs font-mono text-muted block">WhatsApp:</span>
-                <span className="font-mono text-foreground">{booking.whatsapp}</span>
+                <span className="text-xs font-mono text-[#78B9CA] block">WhatsApp:</span>
+                <span className="font-mono text-[#B0EDF9]">{booking.whatsapp}</span>
               </div>
               <div>
-                <span className="text-xs font-mono text-muted block">Email:</span>
-                <span className="font-mono text-foreground break-all">{booking.email}</span>
+                <span className="text-xs font-mono text-[#78B9CA] block">Email:</span>
+                <span className="font-mono text-[#B0EDF9] break-all">{booking.email || '-'}</span>
               </div>
             </div>
 
-            <div className="mt-2 pt-3 border-t border-border/40">
-              <span className="text-xs font-mono text-muted block">Topik Pembahasan:</span>
-              <p className="text-xs sm:text-sm text-foreground/90 bg-navy/60 p-3 rounded-lg border border-border/60 mt-1 leading-relaxed">
+            <div className="mt-2 pt-3 border-t border-[#165A7E]/40">
+              <span className="text-xs font-mono text-[#78B9CA] block">Topik Pembahasan:</span>
+              <p className="text-xs sm:text-sm text-[#B0EDF9] bg-[#04344C] p-3 rounded-lg border border-[#165A7E] mt-1 leading-relaxed">
                 "{booking.topik}"
               </p>
             </div>
@@ -178,7 +180,7 @@ export const BookingSuccessPage: React.FC = () => {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 py-3.5 px-5 rounded-xl bg-orange hover:bg-orange-hover text-navy font-heading font-bold text-sm transition-colors flex items-center justify-center gap-2 text-center shadow-sm"
+            className="flex-1 py-3.5 px-5 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-sm transition-colors flex items-center justify-center gap-2 text-center shadow-sm"
           >
             <Icon name="message-square" size={18} />
             <span>Kirim Detail ke WhatsApp</span>
@@ -188,7 +190,7 @@ export const BookingSuccessPage: React.FC = () => {
           <button
             type="button"
             onClick={() => downloadIcsFile(booking)}
-            className="py-3.5 px-5 rounded-xl border border-border bg-surface hover:bg-surface-hover text-foreground font-heading font-medium text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer"
+            className="py-3.5 px-5 rounded-full border border-[#165A7E] bg-[#074563] hover:bg-[#0B567C] text-[#B0EDF9] font-heading font-medium text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer"
           >
             <Icon name="download" size={16} />
             <span>Unduh File Kalender (.ics)</span>
@@ -199,7 +201,7 @@ export const BookingSuccessPage: React.FC = () => {
             href={googleCalendarUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="py-3.5 px-5 rounded-xl border border-border bg-surface hover:bg-surface-hover text-orange font-heading font-medium text-sm transition-colors flex items-center justify-center gap-2"
+            className="py-3.5 px-5 rounded-full border border-[#165A7E] bg-[#074563] hover:bg-[#0B567C] text-[#B0EDF9] font-heading font-medium text-sm transition-colors flex items-center justify-center gap-2"
           >
             <Icon name="calendar-plus" size={16} />
             <span>Google Calendar</span>
@@ -207,10 +209,10 @@ export const BookingSuccessPage: React.FC = () => {
         </div>
 
         {/* Navigasi Tambahan */}
-        <div className="flex items-center justify-between pt-6 border-t border-border text-xs font-mono text-muted">
+        <div className="flex items-center justify-between pt-6 border-t border-[#165A7E] text-xs font-mono text-[#78B9CA]">
           <Link
             to="/booking/riwayat"
-            className="text-orange hover:underline inline-flex items-center gap-1"
+            className="text-[#B0EDF9] hover:underline inline-flex items-center gap-1"
           >
             <Icon name="clock" size={14} />
             <span>Lihat Semua Riwayat Booking</span>
@@ -218,7 +220,7 @@ export const BookingSuccessPage: React.FC = () => {
 
           <Link
             to="/"
-            className="hover:text-foreground inline-flex items-center gap-1"
+            className="hover:text-[#B0EDF9] inline-flex items-center gap-1"
           >
             <span>Kembali ke Beranda</span>
             <Icon name="arrow-right" size={14} />

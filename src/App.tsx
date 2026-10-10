@@ -42,7 +42,7 @@ export default function App() {
     <HashRouter>
       <ScrollManager />
 
-      <div className="min-h-screen bg-background text-foreground flex flex-col font-body selection:bg-orange/30 selection:text-foreground relative">
+      <div className="min-h-screen bg-background text-foreground flex flex-col font-body selection:bg-[#B0EDF9] selection:text-[#04344C] relative">
         {/* Latar Belakang Solid Arsitektural */}
         <BackgroundGradients />
 

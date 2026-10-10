@@ -107,7 +107,6 @@ export const TechnologyStack: React.FC = () => {
     <section className="relative py-8 border-y border-[#165A7E] bg-[#074563]/40 overflow-hidden">
       <Container className="mb-4 flex items-center justify-between">
         <span className="text-xs font-mono tracking-wider uppercase text-[#78B9CA] flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#B0EDF9]" />
           Perangkat &amp; Standar Teknologi Produksi
         </span>
         <span className="text-xs font-mono text-[#78B9CA]/60 hidden sm:inline">

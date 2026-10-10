@@ -1,7 +1,8 @@
 /**
  * @file src/features/booking/components/Calendar.tsx
  * Komponen kalender bulanan interaktif dan aksesibel (WCAG AA & Keyboard Navigation).
- * Desain modern berkontras tinggi dengan elevasi visual yang tegas.
+ * Eksklusif 2 Warna: HEX #04344C & HEX #B0EDF9.
+ * Font Judul: Gastilo. Tanpa titik-titik berwarna atau efek menyala.
  */
 
 import React, { useState } from 'react';
@@ -43,7 +44,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(monthStart);
-  const startDate = startOfWeek(monthStart, { weekStartsOn: 0 }); // Dimulai dari Minggu
+  const startDate = startOfWeek(monthStart, { weekStartsOn: 0 });
   const endDate = endOfWeek(monthEnd, { weekStartsOn: 0 });
 
   const allCalendarDays = eachDayOfInterval({ start: startDate, end: endDate });
@@ -66,12 +67,10 @@ export const Calendar: React.FC<CalendarProps> = ({
 
   const selectedDateObj = selectedDate ? parseDateInput(selectedDate) : null;
 
-  // Tanggal pertama yang tersedia di bulan aktif untuk fokus awal keyboard jika belum ada tanggal terpilih
   const firstAvailableDay = allCalendarDays.find(
     (day) => isSameMonth(day, currentMonth) && isDateAvailable(day, BOOKING_CONFIG, minDate)
   );
 
-  // Keyboard navigation handler untuk aksesibilitas penuh
   const handleKeyDown = (e: React.KeyboardEvent, day: Date, isAvailable: boolean) => {
     if (!isAvailable) return;
 
@@ -110,14 +109,14 @@ export const Calendar: React.FC<CalendarProps> = ({
   };
 
   return (
-    <div className="w-full bg-[#121240] p-4 sm:p-5 rounded-2xl border border-[#2A2A6E] shadow-sm">
+    <div className="w-full bg-[#074563] p-4 sm:p-5 rounded-2xl border border-[#165A7E] shadow-sm">
       {/* Header Navigasi Bulan */}
-      <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#2A2A6E]">
+      <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#165A7E]">
         <div className="flex flex-col">
-          <span className="font-heading font-bold text-base text-cream">
+          <span className="font-heading font-bold text-base text-[#B0EDF9]">
             {format(currentMonth, 'MMMM yyyy')}
           </span>
-          <span className="text-[11px] font-mono text-muted">
+          <span className="text-[11px] font-mono text-[#78B9CA]">
             Pilih hari kerja aktif
           </span>
         </div>
@@ -128,7 +127,7 @@ export const Calendar: React.FC<CalendarProps> = ({
             disabled={isPrevDisabled}
             onClick={handlePrevMonth}
             aria-label="Bulan Sebelumnya"
-            className="p-2 rounded-lg border border-[#2A2A6E] bg-[#181850] hover:bg-orange/20 hover:border-orange text-cream transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-[#2A2A6E] disabled:hover:bg-[#181850] cursor-pointer"
+            className="p-2 rounded-lg border border-[#165A7E] bg-[#04344C] hover:bg-[#0B567C] hover:border-[#B0EDF9] text-[#B0EDF9] transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-[#165A7E] disabled:hover:bg-[#04344C] cursor-pointer"
           >
             <Icon name="chevron-left" size={16} />
           </button>
@@ -137,7 +136,7 @@ export const Calendar: React.FC<CalendarProps> = ({
             disabled={isNextDisabled}
             onClick={handleNextMonth}
             aria-label="Bulan Berikutnya"
-            className="p-2 rounded-lg border border-[#2A2A6E] bg-[#181850] hover:bg-orange/20 hover:border-orange text-cream transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-[#2A2A6E] disabled:hover:bg-[#181850] cursor-pointer"
+            className="p-2 rounded-lg border border-[#165A7E] bg-[#04344C] hover:bg-[#0B567C] hover:border-[#B0EDF9] text-[#B0EDF9] transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-[#165A7E] disabled:hover:bg-[#04344C] cursor-pointer"
           >
             <Icon name="chevron-right" size={16} />
           </button>
@@ -150,7 +149,7 @@ export const Calendar: React.FC<CalendarProps> = ({
           <div
             key={namaHari}
             className={`text-[11px] font-mono font-semibold py-1 ${
-              idx === 0 || idx === 6 ? 'text-muted/40' : 'text-orange'
+              idx === 0 || idx === 6 ? 'text-[#78B9CA]/50' : 'text-[#B0EDF9]'
             }`}
             aria-label={namaHari}
           >
@@ -187,19 +186,19 @@ export const Calendar: React.FC<CalendarProps> = ({
                 !isCurrentMonth
                   ? 'opacity-15 cursor-not-allowed pointer-events-none'
                   : !isAvailable
-                  ? 'opacity-25 text-muted/50 cursor-not-allowed bg-transparent'
+                  ? 'opacity-25 text-[#78B9CA]/40 cursor-not-allowed bg-transparent'
                   : isSelected
-                  ? 'bg-orange text-navy-900 font-bold shadow-md shadow-orange/30 ring-2 ring-orange scale-[1.03] z-10'
-                  : 'bg-[#181850] text-cream hover:bg-orange/20 hover:text-orange hover:border-orange cursor-pointer border border-[#2A2A6E]'
+                  ? 'bg-[#B0EDF9] text-[#04344C] font-bold shadow-md ring-2 ring-[#B0EDF9] scale-[1.03] z-10'
+                  : 'bg-[#04344C] text-[#B0EDF9] hover:bg-[#0B567C] hover:text-[#B0EDF9] hover:border-[#B0EDF9] cursor-pointer border border-[#165A7E]'
               }`}
             >
               <span>{format(day, 'd')}</span>
 
-              {/* Titik Penanda Hari Ini */}
+              {/* Penanda Garis Hari Ini (Bukan Titik Berwarna) */}
               {isTodayDate && (
                 <span
-                  className={`absolute bottom-1 w-1.5 h-1.5 rounded-full ${
-                    isSelected ? 'bg-navy-900' : 'bg-orange animate-pulse'
+                  className={`absolute bottom-1 w-3 h-[2px] rounded-full ${
+                    isSelected ? 'bg-[#04344C]' : 'bg-[#B0EDF9]'
                   }`}
                   aria-hidden="true"
                 />
@@ -209,18 +208,18 @@ export const Calendar: React.FC<CalendarProps> = ({
         })}
       </div>
 
-      {/* Legenda Keterangan */}
-      <div className="mt-4 pt-3 border-t border-[#2A2A6E]/80 flex items-center justify-between text-[11px] font-mono text-muted">
+      {/* Legenda Keterangan Tanpa Titik Berwarna */}
+      <div className="mt-4 pt-3 border-t border-[#165A7E] flex items-center justify-between text-[11px] font-mono text-[#78B9CA]">
         <span className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-orange" />
+          <span className="w-3 h-[2px] rounded-full bg-[#B0EDF9]" />
           <span>Hari Ini</span>
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded bg-orange" />
+          <span className="w-2.5 h-2.5 rounded-sm bg-[#B0EDF9]" />
           <span>Terpilih</span>
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded bg-[#181850] border border-[#2A2A6E] opacity-40" />
+          <span className="w-2.5 h-2.5 rounded-sm bg-[#04344C] border border-[#165A7E] opacity-50" />
           <span>Libur / Tutup</span>
         </span>
       </div>

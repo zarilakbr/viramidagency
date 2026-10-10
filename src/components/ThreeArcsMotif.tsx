@@ -1,11 +1,10 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { ViramidLogoMark } from './Logo';
 import { KONTAK_AGENCY } from '../data/content';
 
 /**
  * TriLoopMotif (ThreeArcsMotif)
- * Kartu showcase identitas studio ViramidAgency dengan logo vektor presisi dan spesifikasi standar kualitas.
+ * Kartu showcase identitas studio ViramidAgency dengan logo resmi pengguna (/logo.jpg) dan spesifikasi standar kualitas.
  * Eksklusif 2 Warna: HEX #04344C & HEX #B0EDF9.
  * Font Judul: Gastilo.
  */
@@ -22,21 +21,22 @@ export const TriLoopMotif: React.FC<{ className?: string }> = ({ className = '' 
       >
         {/* Header Keterangan Studio */}
         <div className="flex items-center justify-between border-b border-[#165A7E] pb-4">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#B0EDF9]" />
-            <span className="text-xs font-mono text-[#B0EDF9] font-semibold">
-              Studio Portofolio
-            </span>
-          </div>
+          <span className="text-xs font-mono text-[#B0EDF9] font-semibold">
+            Studio Portofolio
+          </span>
           <span className="text-xs font-mono text-[#78B9CA]">
             {KONTAK_AGENCY.lokasi}
           </span>
         </div>
 
-        {/* Visual Logo Resmi Vektor Cyan */}
+        {/* Visual Logo Resmi Pengguna */}
         <div className="flex flex-col items-center justify-center py-4 gap-4">
-          <div className="w-20 h-20 rounded-2xl border border-[#165A7E] bg-[#04344C] p-2 flex items-center justify-center shadow-inner">
-            <ViramidLogoMark size={56} />
+          <div className="w-20 h-20 rounded-2xl border border-[#165A7E] bg-[#04344C] overflow-hidden p-1 flex items-center justify-center shadow-inner">
+            <img
+              src="/logo.jpg"
+              alt="ViramidAgency Logo"
+              className="w-full h-full object-cover rounded-xl"
+            />
           </div>
 
           <div className="text-center">

@@ -3,6 +3,8 @@
  * Container wizard konsultasi modern 2 langkah:
  * Langkah 1: Pilih Jenis Sesi, Format, Tanggal, dan Jam Waktu Sekaligus
  * Langkah 2: Data Kontak, Kebutuhan Proyek Cepat, dan Konfirmasi Langsung
+ * Eksklusif 2 Warna: HEX #04344C & HEX #B0EDF9.
+ * Font Judul: Gastilo.
  */
 
 import React, { useState, useRef, useEffect } from 'react';
@@ -38,7 +40,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
     nama: '',
     email: '',
     whatsapp: '',
-    topik: 'Website Bisnis / Company Profile',
+    topik: 'Platform LMS & Sistem Kursus Online',
     linkReferensi: '',
   });
 
@@ -117,7 +119,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
   const handleSubmitBooking = async () => {
     const isValid = validateContactForm();
     if (!isValid) {
-      setStepNotice('Mohon lengkapi data kontak yang bertanda merah di bawah.');
+      setStepNotice('Mohon lengkapi data kontak yang bertanda bintang di bawah.');
       return;
     }
 
@@ -125,7 +127,6 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
     setSubmitError(null);
     try {
       const created = await bookingService.createBooking(formData);
-      // Navigasi ke halaman sukses dengan kode booking
       navigate(`/booking/sukses?code=${created.kodeBooking}`, {
         state: { booking: created },
       });
@@ -202,25 +203,25 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
       {stepNotice && (
         <div
           role="alert"
-          className="mb-6 p-4 rounded-xl border border-error/40 bg-error/10 text-cream flex items-center gap-3 text-xs sm:text-sm animate-pulse"
+          className="mb-6 p-4 rounded-xl border border-[#B0EDF9] bg-[#04344C] text-[#B0EDF9] flex items-center gap-3 text-xs sm:text-sm"
         >
-          <Icon name="alert-circle" size={18} className="text-error shrink-0" />
-          <span className="text-error font-medium">{stepNotice}</span>
+          <Icon name="alert-circle" size={18} className="text-[#B0EDF9] shrink-0" />
+          <span className="text-[#B0EDF9] font-medium">{stepNotice}</span>
         </div>
       )}
 
       {/* Tombol Lanjut di Langkah 1 */}
       {currentStep === 1 && (
-        <div className="mt-4 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-xs text-muted font-mono flex items-center gap-2">
-            <Icon name="shield-check" size={16} className="text-orange" />
+        <div className="mt-4 pt-6 border-t border-[#165A7E] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="text-xs text-[#78B9CA] font-mono flex items-center gap-2">
+            <Icon name="shield-check" size={16} className="text-[#B0EDF9]" />
             <span>Pilih waktu di atas, lalu lanjutkan untuk mengisi data kontak.</span>
           </div>
 
           <button
             type="button"
             onClick={handleNextToContact}
-            className="w-full sm:w-auto h-12 px-7 rounded-full bg-orange hover:bg-orange-hover text-navy-900 font-heading font-bold text-sm sm:text-base transition-all duration-200 flex items-center justify-center gap-2.5 cursor-pointer shadow-md active:scale-[0.98]"
+            className="w-full sm:w-auto h-12 px-7 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-sm sm:text-base transition-all duration-200 flex items-center justify-center gap-2.5 cursor-pointer shadow-md active:scale-[0.98]"
           >
             <span>Lanjut ke Data Kontak</span>
             <Icon name="arrow-right" size={18} />

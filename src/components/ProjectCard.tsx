@@ -1,7 +1,7 @@
 /**
  * @file src/components/ProjectCard.tsx
  * Kartu Proyek ViramidAgency dengan efek gambar tersingkap (clip-path inset reveal),
- * badge live URL jika tersedia, dan follower label "Lihat" pada desktop.
+ * badge live URL bersih tanpa titik menyala, dan follower label "Lihat" pada desktop.
  * Eksklusif 2 Warna: HEX #04344C (Deep Teal) & HEX #B0EDF9 (Ice Cyan).
  * Font Judul: Gastilo.
  */
@@ -91,12 +91,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           </div>
         )}
 
-        {/* Live URL Pill (Top Left if available) */}
+        {/* Live URL Pill Tanpa Titik Warna */}
         {proyek.url && (
           <div className="absolute top-3 left-3 z-10">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#04344C]/95 border border-[#165A7E] text-[10px] font-mono text-[#B0EDF9] backdrop-blur-xs font-semibold">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#B0EDF9] animate-pulse" />
-              <span>Live Website</span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#04344C] border border-[#165A7E] text-[10px] font-mono text-[#B0EDF9] font-semibold shadow-sm">
+              <Icon name="globe" size={11} className="text-[#B0EDF9]" />
+              <span>Live Platform</span>
             </span>
           </div>
         )}

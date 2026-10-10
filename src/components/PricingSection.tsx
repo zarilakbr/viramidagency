@@ -117,7 +117,7 @@ export const PricingSection: React.FC = () => {
                           }`}
                         >
                           <div
-                            className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
+                            className={`w-4 h-4 rounded-md flex items-center justify-center shrink-0 mt-0.5 ${
                               isHighlighted
                                 ? 'bg-[#04344C] text-[#B0EDF9]'
                                 : 'bg-[#04344C] border border-[#165A7E] text-[#B0EDF9]'

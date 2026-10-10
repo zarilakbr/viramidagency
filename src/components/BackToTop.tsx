@@ -3,10 +3,7 @@ import { Icon } from './ui/Icon';
 
 /**
  * BackToTop
- * Standar:
- * - Menggunakan Icon.tsx (arrow-up)
- * - Border 1px, tanpa shadow
- * - Transisi 200ms
+ * Eksklusif 2 Warna: HEX #04344C & HEX #B0EDF9
  */
 export const BackToTop: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -33,13 +30,13 @@ export const BackToTop: React.FC = () => {
       type="button"
       onClick={scrollToTop}
       aria-label="Kembali ke atas halaman"
-      className={`fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-40 w-11 h-11 rounded-md bg-surface text-foreground border border-border hover:border-orange hover:text-orange flex items-center justify-center cursor-pointer transition-colors duration-200 ${
+      className={`fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-40 w-11 h-11 rounded-xl bg-[#074563] text-[#B0EDF9] border border-[#165A7E] hover:border-[#B0EDF9] hover:bg-[#0B567C] flex items-center justify-center cursor-pointer transition-colors duration-200 shadow-md ${
         isVisible
           ? 'opacity-100 translate-y-0 pointer-events-auto'
           : 'opacity-0 translate-y-2 pointer-events-none'
       }`}
     >
-      <Icon name="arrow-up" size="md" />
+      <Icon name="arrow-up" size={18} />
     </button>
   );
 };

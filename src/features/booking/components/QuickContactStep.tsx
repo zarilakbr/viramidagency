@@ -2,7 +2,8 @@
  * @file src/features/booking/components/QuickContactStep.tsx
  * Langkah 2 Terpadu: Pengisian Data Kontak Cepat, Pilihan Kebutuhan Proyek Instan,
  * dan Konfirmasi Jadwal dalam 1 Tampilan Tanpa Ribet.
- * Desain modern berkontras tinggi dengan nuansa studio agency.
+ * Eksklusif 2 Warna: HEX #04344C & HEX #B0EDF9.
+ * Font Judul: Gastilo.
  */
 
 import React, { useState } from 'react';
@@ -30,6 +31,7 @@ interface QuickContactStepProps {
 
 const QUICK_PROJECT_TAGS = [
   'Website Bisnis / Company Profile',
+  'Platform LMS & Sistem Kursus Online',
   'Web App / Toko Online (E-Commerce)',
   'Redesain UI/UX & Tampilan Web',
   'Branding, Logo & Identitas Visual',
@@ -67,22 +69,22 @@ export const QuickContactStep: React.FC<QuickContactStepProps> = ({
 
   return (
     <div className="flex flex-col gap-6 w-full max-w-4xl mx-auto">
-      {/* Kartu Ringkasan Jadwal Terpilih (Dapat Diedit dengan 1 Klik) */}
-      <div className="bg-[#121240] p-5 sm:p-6 rounded-2xl border border-[#2A2A6E] flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
+      {/* Kartu Ringkasan Jadwal Terpilih */}
+      <div className="bg-[#074563] p-5 sm:p-6 rounded-2xl border border-[#165A7E] flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
         <div className="flex items-start sm:items-center gap-3.5">
-          <div className="w-12 h-12 rounded-2xl bg-orange text-navy-900 flex items-center justify-center shrink-0 font-bold shadow-md shadow-orange/20">
+          <div className="w-12 h-12 rounded-2xl bg-[#B0EDF9] text-[#04344C] flex items-center justify-center shrink-0 font-bold shadow-md">
             <Icon name="calendar" size={24} />
           </div>
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-1">
-              <span className="font-heading font-bold text-base sm:text-lg text-cream">
+              <span className="font-heading font-bold text-base sm:text-lg text-[#B0EDF9]">
                 {jenisConfig.nama} ({jenisConfig.durasiMenit} Menit)
               </span>
-              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-orange/15 border border-orange/40 text-orange font-semibold">
+              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-[#04344C] border border-[#165A7E] text-[#B0EDF9] font-semibold">
                 {formatLabel}
               </span>
             </div>
-            <p className="text-xs sm:text-sm font-mono text-orange font-bold">
+            <p className="text-xs sm:text-sm font-mono text-[#B0EDF9] font-bold">
               {formData.tanggal} • {formData.jamMulai} - {formData.jamSelesai} {BOOKING_CONFIG.timezoneLabel}
             </p>
           </div>
@@ -91,7 +93,7 @@ export const QuickContactStep: React.FC<QuickContactStepProps> = ({
         <button
           type="button"
           onClick={onEditSchedule}
-          className="self-start md:self-center py-2 px-4 rounded-xl border border-[#2A2A6E] bg-[#181850] hover:border-orange text-cream hover:text-orange text-xs font-mono transition-colors flex items-center gap-1.5 cursor-pointer shrink-0"
+          className="self-start md:self-center py-2 px-4 rounded-xl border border-[#165A7E] bg-[#04344C] hover:border-[#B0EDF9] text-[#B0EDF9] text-xs font-mono transition-colors flex items-center gap-1.5 cursor-pointer shrink-0"
         >
           <Icon name="clock" size={13} />
           <span>Ubah Jadwal</span>
@@ -99,13 +101,13 @@ export const QuickContactStep: React.FC<QuickContactStepProps> = ({
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        {/* Kolom Kiri (7 Kolom): Form Kontak Singkat */}
-        <div className="lg:col-span-7 flex flex-col gap-5 bg-[#121240] p-5 sm:p-6 rounded-2xl border border-[#2A2A6E] shadow-sm">
+        {/* Kolom Kiri: Form Kontak */}
+        <div className="lg:col-span-7 flex flex-col gap-5 bg-[#074563] p-5 sm:p-6 rounded-2xl border border-[#165A7E] shadow-sm">
           <div>
-            <h2 className="font-heading font-bold text-lg text-cream">
+            <h2 className="font-heading font-bold text-lg text-[#B0EDF9]">
               Data Kontak &amp; Kebutuhan
             </h2>
-            <p className="text-xs text-muted font-normal mt-0.5">
+            <p className="text-xs text-[#78B9CA] font-normal mt-0.5">
               Cukup isi data dasar di bawah ini untuk mengonfirmasi jadwalmu.
             </p>
           </div>
@@ -113,8 +115,8 @@ export const QuickContactStep: React.FC<QuickContactStepProps> = ({
           {/* Nama Lengkap */}
           <Field
             id="quick-nama"
-            label="Nama Lengkap / Nama Bisnis"
-            placeholder="Contoh: Pratama (PT Maju Bersama)"
+            label="Nama Lengkap / Nama Lembaga / Bisnis"
+            placeholder="Contoh: Pratama (LPK Shorai / PT Maju)"
             value={formData.nama}
             onChange={(e) => onChange('nama', e.target.value)}
             error={errors.nama}
@@ -143,13 +145,13 @@ export const QuickContactStep: React.FC<QuickContactStepProps> = ({
               value={formData.email}
               onChange={(e) => onChange('email', e.target.value)}
               error={errors.email}
-              hint="Untuk pengiriman Google Calendar"
+              hint="Untuk Google Calendar"
             />
           </div>
 
           {/* Pilihan Tag Cepat Kebutuhan Proyek */}
           <div className="flex flex-col gap-2">
-            <label className="text-xs font-mono font-medium text-cream tracking-wide">
+            <label className="text-xs font-mono font-medium text-[#B0EDF9] tracking-wide">
               Kebutuhan Utama (Klik untuk memilih cepat)
             </label>
             <div className="flex flex-wrap gap-2">
@@ -162,8 +164,8 @@ export const QuickContactStep: React.FC<QuickContactStepProps> = ({
                     onClick={() => handleTagClick(tag)}
                     className={`py-1.5 px-3 rounded-lg text-xs font-mono transition-all duration-150 cursor-pointer text-left ${
                       isTagActive
-                        ? 'bg-orange text-navy-900 font-bold border border-orange shadow-md shadow-orange/20 scale-[1.02]'
-                        : 'bg-[#181850] text-muted hover:text-cream border border-[#2A2A6E] hover:border-orange/60'
+                        ? 'bg-[#B0EDF9] text-[#04344C] font-bold border border-[#B0EDF9] shadow-md scale-[1.02]'
+                        : 'bg-[#04344C] text-[#78B9CA] hover:text-[#B0EDF9] border border-[#165A7E] hover:border-[#B0EDF9]'
                     }`}
                   >
                     {tag}
@@ -179,7 +181,7 @@ export const QuickContactStep: React.FC<QuickContactStepProps> = ({
             as="textarea"
             rows={3}
             label="Catatan / Topik Tambahan"
-            placeholder="Tuliskan kendala saat ini, target yang ingin dicapai, atau biarkan ringkasan di atas..."
+            placeholder="Tuliskan kendala saat ini, platform yang ingin dibangun, atau target yang ingin dicapai..."
             value={formData.topik}
             onChange={(e) => onChange('topik', e.target.value)}
             error={errors.topik}
@@ -197,34 +199,34 @@ export const QuickContactStep: React.FC<QuickContactStepProps> = ({
           />
         </div>
 
-        {/* Kolom Kanan (5 Kolom): Metrik Terukur & Tombol Eksekusi Langsung */}
+        {/* Kolom Kanan: Jaminan & Tombol Konfirmasi */}
         <div className="lg:col-span-5 flex flex-col gap-4">
-          <div className="bg-[#121240] p-5 rounded-2xl border border-[#2A2A6E] flex flex-col gap-4 shadow-sm">
-            <span className="text-xs font-mono font-bold uppercase text-orange flex items-center gap-1.5">
+          <div className="bg-[#074563] p-5 rounded-2xl border border-[#165A7E] flex flex-col gap-4 shadow-sm">
+            <span className="text-xs font-mono font-bold uppercase text-[#B0EDF9] flex items-center gap-1.5">
               <Icon name="shield-check" size={15} />
               <span>Jaminan &amp; Standar Layanan</span>
             </span>
 
-            <ul className="flex flex-col gap-3.5 text-xs text-muted">
+            <ul className="flex flex-col gap-3.5 text-xs text-[#78B9CA]">
               <li className="flex items-start gap-2.5">
-                <Icon name="clock" size={17} className="text-orange shrink-0 mt-0.5" />
+                <Icon name="clock" size={17} className="text-[#B0EDF9] shrink-0 mt-0.5" />
                 <span>
-                  <strong className="text-cream block font-semibold text-xs sm:text-sm">Respon Kilat &lt; 2 Jam</strong>
+                  <strong className="text-[#B0EDF9] block font-semibold text-xs sm:text-sm">Respon Kilat &lt; 2 Jam</strong>
                   Tim kami akan membalas via WhatsApp untuk konfirmasi ketersediaan.
                 </span>
               </li>
               <li className="flex items-start gap-2.5">
-                <Icon name="check-circle" size={17} className="text-orange shrink-0 mt-0.5" />
+                <Icon name="check-circle" size={17} className="text-[#B0EDF9] shrink-0 mt-0.5" />
                 <span>
-                  <strong className="text-cream block font-semibold text-xs sm:text-sm">100% Gratis &amp; Transparan</strong>
+                  <strong className="text-[#B0EDF9] block font-semibold text-xs sm:text-sm">100% Gratis &amp; Transparan</strong>
                   Tidak ada biaya tersembunyi atau kewajiban memesan proyek.
                 </span>
               </li>
               <li className="flex items-start gap-2.5">
-                <Icon name="users" size={17} className="text-orange shrink-0 mt-0.5" />
+                <Icon name="users" size={17} className="text-[#B0EDF9] shrink-0 mt-0.5" />
                 <span>
-                  <strong className="text-cream block font-semibold text-xs sm:text-sm">Diskusi Langsung Tim Inti</strong>
-                  Bukan bot atau sales umum, langsung dengan desainer &amp; engineer.
+                  <strong className="text-[#B0EDF9] block font-semibold text-xs sm:text-sm">Diskusi Langsung Tim Inti</strong>
+                  Bukan bot atau sales umum, langsung dengan software engineer &amp; desainer.
                 </span>
               </li>
             </ul>
@@ -233,10 +235,10 @@ export const QuickContactStep: React.FC<QuickContactStepProps> = ({
             {errorMessage && (
               <div
                 role="alert"
-                className="p-3.5 rounded-xl border border-error/40 bg-error/10 text-cream flex items-start gap-2.5 text-xs animate-shake"
+                className="p-3.5 rounded-xl border border-[#B0EDF9] bg-[#04344C] text-[#B0EDF9] flex items-start gap-2.5 text-xs"
               >
-                <Icon name="alert-circle" size={16} className="text-error shrink-0 mt-0.5" />
-                <span className="text-error leading-relaxed">{errorMessage}</span>
+                <Icon name="alert-circle" size={16} className="text-[#B0EDF9] shrink-0 mt-0.5" />
+                <span className="text-[#B0EDF9] leading-relaxed">{errorMessage}</span>
               </div>
             )}
 
@@ -245,11 +247,11 @@ export const QuickContactStep: React.FC<QuickContactStepProps> = ({
               type="button"
               disabled={isSubmitting}
               onClick={onSubmit}
-              className="w-full h-12 px-6 rounded-full bg-orange hover:bg-orange-hover text-navy-900 font-heading font-bold text-sm sm:text-base transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow-md shadow-orange/20 active:scale-[0.98] mt-2"
+              className="w-full h-12 px-6 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-sm sm:text-base transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow-md active:scale-[0.98] mt-2"
             >
               {isSubmitting ? (
                 <>
-                  <span className="w-4 h-4 border-2 border-navy-900 border-t-transparent rounded-full animate-spin" />
+                  <span className="w-4 h-4 border-2 border-[#04344C] border-t-transparent rounded-full animate-spin" />
                   <span>Mengonfirmasi Jadwal...</span>
                 </>
               ) : (
@@ -260,7 +262,7 @@ export const QuickContactStep: React.FC<QuickContactStepProps> = ({
               )}
             </button>
 
-            <p className="text-[11px] font-mono text-center text-muted">
+            <p className="text-[11px] font-mono text-center text-[#78B9CA]">
               Data terlindungi &amp; tersimpan aman di perangkatmu.
             </p>
           </div>

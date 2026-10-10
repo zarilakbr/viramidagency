@@ -127,8 +127,7 @@ export const AboutSection: React.FC = () => {
 
                         {/* Badge Khusus Founder untuk Zaril Akbar */}
                         {anggota.nama === 'Zaril Akbar' && (
-                          <div className="absolute top-3 left-3 px-3 py-1 rounded-full border border-[#165A7E] bg-[#04344C]/95 text-xs font-mono text-[#B0EDF9] flex items-center gap-1.5 shadow backdrop-blur-sm">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#B0EDF9] animate-pulse" />
+                          <div className="absolute top-3 left-3 px-3 py-1 rounded-full border border-[#165A7E] bg-[#04344C] text-xs font-mono text-[#B0EDF9] flex items-center gap-1.5 shadow-sm font-semibold">
                             <span>Founder</span>
                           </div>
                         )}

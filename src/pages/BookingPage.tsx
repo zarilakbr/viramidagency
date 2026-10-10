@@ -46,15 +46,15 @@ export const BookingPage: React.FC = () => {
           {/* Quick Trust Badges */}
           <div className="mt-5 flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-[#B0EDF9]">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#074563] border border-[#165A7E]">
-              <span className="w-2 h-2 rounded-full bg-[#B0EDF9]" />
+              <Icon name="check" size={13} className="text-[#B0EDF9]" />
               <span>100% Gratis</span>
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#074563] border border-[#165A7E]">
-              <span className="w-2 h-2 rounded-full bg-[#B0EDF9]" />
+              <Icon name="users" size={13} className="text-[#B0EDF9]" />
               <span>Diskusi 1-on-1 Langsung</span>
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#074563] border border-[#165A7E]">
-              <span className="w-2 h-2 rounded-full bg-[#B0EDF9]" />
+              <Icon name="message-square" size={13} className="text-[#B0EDF9]" />
               <span>Konfirmasi Cepat via WhatsApp</span>
             </span>
           </div>

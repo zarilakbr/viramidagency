@@ -1,7 +1,8 @@
 /**
  * @file src/features/booking/components/ScheduleStep.tsx
  * Langkah 1 Terpadu: Pemilihan Jenis Sesi, Format, Tanggal Kalender, dan Slot Jam.
- * Didesain ringkas, responsif, dan berkontras tinggi dengan nuansa visual studio agency modern.
+ * Eksklusif 2 Warna: HEX #04344C & HEX #B0EDF9.
+ * Font Judul: Gastilo. Tanpa titik-titik berwarna.
  */
 
 import React, { useEffect, useState } from 'react';
@@ -96,13 +97,13 @@ export const ScheduleStep: React.FC<ScheduleStepProps> = ({
   return (
     <div className="flex flex-col gap-6 w-full">
       {/* 1. Pemilihan Jenis Sesi (Chip Cepat) */}
-      <div className="bg-[#121240] p-5 rounded-2xl border border-[#2A2A6E] shadow-sm">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 pb-2 border-b border-[#2A2A6E]/80">
-          <span className="text-xs font-mono font-bold uppercase text-orange flex items-center gap-1.5">
+      <div className="bg-[#074563] p-5 rounded-2xl border border-[#165A7E] shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 pb-2 border-b border-[#165A7E]">
+          <span className="text-xs font-mono font-bold uppercase text-[#B0EDF9] flex items-center gap-1.5">
             <Icon name="sparkles" size={15} />
             <span>1. Pilih Jenis Pertemuan</span>
           </span>
-          <span className="text-[11px] font-mono text-muted">
+          <span className="text-[11px] font-mono text-[#78B9CA]">
             100% Gratis • Tanpa Biaya Tersembunyi
           </span>
         </div>
@@ -117,19 +118,19 @@ export const ScheduleStep: React.FC<ScheduleStepProps> = ({
                 onClick={() => onSelectJenis(item.id)}
                 className={`p-4 rounded-xl border text-left transition-all duration-200 cursor-pointer flex flex-col justify-between ${
                   isSelected
-                    ? 'border-orange bg-orange/15 ring-2 ring-orange shadow-md shadow-orange/20 scale-[1.01]'
-                    : 'border-[#2A2A6E] bg-[#181850] hover:border-orange/60 hover:bg-[#1C1C5E]'
+                    ? 'border-[#B0EDF9] bg-[#04344C] ring-1 ring-[#B0EDF9] shadow-md scale-[1.01]'
+                    : 'border-[#165A7E] bg-[#04344C]/60 hover:border-[#B0EDF9] hover:bg-[#0B567C]'
                 }`}
               >
                 <div className="flex items-center justify-between gap-2 mb-1.5">
-                  <span className={`font-heading font-bold text-sm sm:text-base ${isSelected ? 'text-orange' : 'text-cream'}`}>
+                  <span className="font-heading font-bold text-sm sm:text-base text-[#B0EDF9]">
                     {item.nama}
                   </span>
-                  <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-[#101036] border border-[#2A2A6E] text-orange font-semibold">
+                  <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-[#04344C] border border-[#165A7E] text-[#B0EDF9] font-semibold">
                     {item.durasiMenit}m
                   </span>
                 </div>
-                <p className="text-xs text-muted leading-relaxed line-clamp-2">
+                <p className="text-xs text-[#78B9CA] leading-relaxed line-clamp-2">
                   {item.deskripsi}
                 </p>
               </button>
@@ -139,13 +140,13 @@ export const ScheduleStep: React.FC<ScheduleStepProps> = ({
       </div>
 
       {/* 2. Format Pertemuan (Online / Tatap Muka) */}
-      <div className="bg-[#121240] p-5 rounded-2xl border border-[#2A2A6E] shadow-sm">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 pb-2 border-b border-[#2A2A6E]/80">
-          <span className="text-xs font-mono font-bold uppercase text-orange flex items-center gap-1.5">
+      <div className="bg-[#074563] p-5 rounded-2xl border border-[#165A7E] shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 pb-2 border-b border-[#165A7E]">
+          <span className="text-xs font-mono font-bold uppercase text-[#B0EDF9] flex items-center gap-1.5">
             <Icon name="video" size={15} />
             <span>2. Format Sesi Diskusi</span>
           </span>
-          <span className="text-[11px] font-mono text-muted">
+          <span className="text-[11px] font-mono text-[#78B9CA]">
             Pilih cara kamu ingin berinteraksi
           </span>
         </div>
@@ -160,22 +161,22 @@ export const ScheduleStep: React.FC<ScheduleStepProps> = ({
                 onClick={() => onSelectFormat(item.id)}
                 className={`p-4 rounded-xl border text-left transition-all duration-200 cursor-pointer flex items-center gap-3.5 ${
                   isSelected
-                    ? 'border-orange bg-orange/15 ring-2 ring-orange shadow-md shadow-orange/20 scale-[1.01]'
-                    : 'border-[#2A2A6E] bg-[#181850] hover:border-orange/60 hover:bg-[#1C1C5E]'
+                    ? 'border-[#B0EDF9] bg-[#04344C] ring-1 ring-[#B0EDF9] shadow-md scale-[1.01]'
+                    : 'border-[#165A7E] bg-[#04344C]/60 hover:border-[#B0EDF9] hover:bg-[#0B567C]'
                 }`}
               >
                 <div
                   className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
-                    isSelected ? 'bg-orange text-navy-900 font-bold shadow-sm' : 'bg-[#101036] border border-[#2A2A6E] text-muted'
+                    isSelected ? 'bg-[#B0EDF9] text-[#04344C] font-bold shadow-sm' : 'bg-[#04344C] border border-[#165A7E] text-[#B0EDF9]'
                   }`}
                 >
                   <Icon name={item.id === 'online' ? 'video' : 'map-pin'} size={20} />
                 </div>
                 <div className="flex flex-col min-w-0">
-                  <span className={`font-heading font-bold text-sm sm:text-base ${isSelected ? 'text-orange' : 'text-cream'}`}>
+                  <span className="font-heading font-bold text-sm sm:text-base text-[#B0EDF9]">
                     {item.nama}
                   </span>
-                  <span className="text-xs text-muted truncate">
+                  <span className="text-xs text-[#78B9CA] truncate">
                     {item.deskripsi}
                   </span>
                 </div>
@@ -210,21 +211,21 @@ export const ScheduleStep: React.FC<ScheduleStepProps> = ({
 
       {/* Ringkasan Real-Time Pilihan Waktu */}
       {isScheduleSelected && (
-        <div className="p-4 rounded-2xl bg-[#181850] border border-orange text-cream flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs sm:text-sm shadow-md animate-fade-in">
+        <div className="p-4 rounded-2xl bg-[#074563] border border-[#B0EDF9] text-[#B0EDF9] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs sm:text-sm shadow-md">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-orange text-navy-900 flex items-center justify-center shrink-0 font-bold shadow-sm">
+            <div className="w-9 h-9 rounded-xl bg-[#B0EDF9] text-[#04344C] flex items-center justify-center shrink-0 font-bold shadow-sm">
               <Icon name="check" size={18} strokeWidth={2.5} />
             </div>
             <div>
-              <span className="font-heading font-bold text-cream block sm:inline mr-2 text-sm">
+              <span className="font-heading font-bold text-[#B0EDF9] block sm:inline mr-2 text-sm">
                 Jadwal Terpilih:
               </span>
-              <span className="text-orange font-mono font-bold text-sm">
+              <span className="text-[#B0EDF9] font-mono font-bold text-sm">
                 {selectedDate} • {selectedJamMulai} - {selectedJamSelesai} {BOOKING_CONFIG.timezoneLabel}
               </span>
             </div>
           </div>
-          <span className="text-xs font-mono text-cream bg-[#101036] px-3 py-1 rounded-full border border-[#2A2A6E] shrink-0">
+          <span className="text-xs font-mono text-[#B0EDF9] bg-[#04344C] px-3 py-1 rounded-full border border-[#165A7E] shrink-0">
             {selectedFormat === 'online' ? 'Online Google Meet' : 'Studio NTB'} • {jenisConfig.durasiMenit}m
           </span>
         </div>

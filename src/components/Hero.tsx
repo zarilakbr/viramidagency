@@ -7,17 +7,17 @@ import { DAFTAR_PROYEK } from '../data/content';
 
 /**
  * Hero Section ViramidAgency
- * Layout modern, elegan, eksklusif 2 warna: HEX #04344C (Deep Teal) dan HEX #B0EDF9 (Ice Cyan).
+ * Desain presisi, kredibel, dan berkonversi tinggi tanpa titik-titik berwarna atau efek menyala.
+ * Palet eksklusif 2 warna: HEX #04344C & HEX #B0EDF9.
  * Tipografi judul menggunakan font Gastilo.
- * Menampilkan live showcase platform LMS LPK Lombok Shorai Rinjani.
  */
 export const Hero: React.FC = () => {
   const lmsProject = DAFTAR_PROYEK[0];
 
   return (
-    <section id="hero" className="relative w-full min-h-[90svh] flex items-center pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden isolate">
+    <section id="hero" className="relative w-full min-h-[88svh] flex items-center pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden isolate">
       <Container className="w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
           
           {/* Kolom Kiri: Value Proposition & CTA */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
@@ -35,7 +35,7 @@ export const Hero: React.FC = () => {
               arsitektur platform LMS &amp; website performa tinggi, dan sistem konversi digital yang memikat pelanggan.
             </p>
 
-            {/* Tombol CTA Baku: Ice Cyan #B0EDF9 & Deep Teal #04344C */}
+            {/* Tombol CTA: Ice Cyan #B0EDF9 & Deep Teal #04344C */}
             <div className="flex flex-wrap items-center gap-4 w-full sm:w-auto mb-10">
               <Link
                 to="/booking"
@@ -87,14 +87,15 @@ export const Hero: React.FC = () => {
 
           {/* Kolom Kanan: Live Showcase Preview Card (LPK Lombok Shorai Rinjani LMS) */}
           <div className="lg:col-span-5 flex justify-center w-full">
-            <div className="w-full max-w-md rounded-2xl bg-[#074563] border border-[#165A7E] hover:border-[#B0EDF9] transition-all duration-300 p-5 shadow-2xl backdrop-blur-sm relative group">
+            <div className="w-full max-w-md rounded-2xl bg-[#074563] border border-[#165A7E] hover:border-[#B0EDF9] transition-all duration-300 p-5 shadow-2xl relative group">
               
-              {/* Browser Mockup Top Bar */}
+              {/* Card Header */}
               <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#165A7E]">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#B0EDF9]/40" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#B0EDF9]/60" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#B0EDF9]" />
+                <div className="flex items-center gap-2">
+                  <Icon name="globe" size={14} className="text-[#B0EDF9]" />
+                  <span className="text-xs font-mono font-semibold text-[#B0EDF9]">
+                    Platform LMS Produksi
+                  </span>
                 </div>
                 
                 {/* Clean URL Pill */}
@@ -102,17 +103,11 @@ export const Hero: React.FC = () => {
                   href={lmsProject.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-3 py-1 rounded-md bg-[#04344C] border border-[#165A7E] text-[11px] font-mono text-[#78B9CA] hover:text-[#B0EDF9] transition-colors flex items-center gap-1.5 truncate max-w-[200px]"
+                  className="px-2.5 py-1 rounded-md bg-[#04344C] border border-[#165A7E] text-[11px] font-mono text-[#78B9CA] hover:text-[#B0EDF9] transition-colors flex items-center gap-1.5"
                 >
-                  <Icon name="globe" size={12} className="text-[#B0EDF9] shrink-0" />
-                  <span className="truncate">lombokshorairinjani.com</span>
+                  <span className="truncate max-w-[130px]">lombokshorairinjani.com</span>
                   <Icon name="arrow-up-right" size={11} className="shrink-0" />
                 </a>
-
-                <div className="flex items-center gap-1 text-[#B0EDF9] text-[10px] font-mono font-semibold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#B0EDF9] animate-pulse" />
-                  <span>Live LMS</span>
-                </div>
               </div>
 
               {/* Showcase Image & Banner */}
@@ -128,7 +123,6 @@ export const Hero: React.FC = () => {
                     alt="LPK Lombok Shorai Rinjani Logo"
                     className="w-full h-full object-contain"
                     onError={(e) => {
-                      // Fallback text if external image fails
                       (e.target as HTMLElement).style.display = 'none';
                     }}
                   />
@@ -142,7 +136,7 @@ export const Hero: React.FC = () => {
                 </span>
                 
                 {/* Floating Category Pill */}
-                <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-[#04344C]/95 border border-[#165A7E] text-[10px] font-mono font-semibold text-[#B0EDF9]">
+                <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-[#04344C] border border-[#165A7E] text-[10px] font-mono font-semibold text-[#B0EDF9]">
                   Platform LMS
                 </div>
 
@@ -184,9 +178,10 @@ export const Hero: React.FC = () => {
                 <div className="pt-3 border-t border-[#165A7E] flex items-center justify-between text-xs font-mono">
                   <Link
                     to={`/karya/${lmsProject.slug}`}
-                    className="text-[#78B9CA] hover:text-[#B0EDF9] transition-colors"
+                    className="text-[#78B9CA] hover:text-[#B0EDF9] transition-colors flex items-center gap-1"
                   >
-                    Lihat Studi Kasus →
+                    <span>Lihat Studi Kasus</span>
+                    <Icon name="arrow-right" size={12} />
                   </Link>
 
                   <a

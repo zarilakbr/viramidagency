@@ -62,8 +62,8 @@ export const ProcessSection: React.FC = () => {
 
               <div className="flex flex-col gap-2 font-mono text-xs text-[#78B9CA]">
                 <span className="text-[#B0EDF9] font-semibold flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#B0EDF9] animate-pulse" />
-                  Alur 4 Fase Berkesinambungan
+                  <Icon name="layers" size={13} className="text-[#B0EDF9]" />
+                  <span>Alur 4 Fase Berkesinambungan</span>
                 </span>
                 <span className="text-[11px] text-[#78B9CA]/70">
                   Gulir ke bawah untuk menelusuri tiap tahapan eksekusi

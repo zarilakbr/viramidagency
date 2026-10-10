@@ -10,7 +10,7 @@ import { DAFTAR_PROYEK } from '../data/content';
 /**
  * ProjectDetailPage
  * Eksklusif 2 Warna: HEX #04344C & HEX #B0EDF9.
- * Font Judul: Gastilo.
+ * Font Judul: Gastilo. Tanpa titik-titik berwarna/menyala.
  */
 export const ProjectDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -125,9 +125,9 @@ export const ProjectDetailPage: React.FC = () => {
 
           {/* Live Project URL Action if present */}
           {proyek.url && (
-            <div className="mt-6 flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl bg-[#074563] border border-[#B0EDF9]/40">
-              <div className="flex items-center gap-3">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#B0EDF9] animate-pulse" />
+            <div className="mt-6 flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl bg-[#074563] border border-[#165A7E]">
+              <div className="flex items-center gap-2.5">
+                <Icon name="globe" size={16} className="text-[#B0EDF9]" />
                 <div>
                   <span className="block text-xs font-mono font-semibold text-[#B0EDF9]">Platform Aktif di Produksi</span>
                   <span className="text-xs font-mono text-[#78B9CA]">{proyek.url}</span>
