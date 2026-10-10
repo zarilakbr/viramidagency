@@ -8,15 +8,15 @@ interface SectionHeadingProps {
   subtitle?: string;
   eyebrowText?: string;
   className?: string;
-  variant?: 'navy' | 'orange' | 'cream';
+  variant?: 'navy' | 'orange' | 'cream' | 'cyan';
 }
 
 /**
  * SectionHeading
  * Standar:
  * - Eyebrow monospace uppercase 12px
- * - Space Grotesk 700 (48px / text-3xl sm:text-4xl md:text-5xl)
- * - Subtitle maks 64 karakter per baris
+ * - Font Judul: Gastilo (font-heading font-bold)
+ * - Eksklusif 2 Warna: HEX #04344C & HEX #B0EDF9
  */
 export const SectionHeading: React.FC<SectionHeadingProps> = ({
   number,
@@ -26,22 +26,17 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
   className = '',
   variant = 'navy',
 }) => {
-  const isOrangeBg = variant === 'orange';
-  const isCreamBg = variant === 'cream';
+  const isCyanBg = variant === 'cyan' || variant === 'orange';
 
-  const titleColor = isOrangeBg
-    ? 'text-navy-900'
-    : isCreamBg
-    ? 'text-navy-900'
-    : 'text-cream';
+  const titleColor = isCyanBg
+    ? 'text-[#04344C]'
+    : 'text-[#B0EDF9]';
 
-  const subtitleColor = isOrangeBg
-    ? 'text-navy-900/80'
-    : isCreamBg
-    ? 'text-navy-800'
-    : 'text-muted';
+  const subtitleColor = isCyanBg
+    ? 'text-[#04344C]/80'
+    : 'text-[#78B9CA]';
 
-  const eyebrowVariant = isOrangeBg ? 'navy' : isCreamBg ? 'orange' : 'orange';
+  const eyebrowVariant = isCyanBg ? 'navy' : 'cyan';
 
   return (
     <Reveal className={`mb-10 md:mb-12 text-left ${className}`}>
@@ -50,7 +45,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
           {eyebrowText || `SEKSI ${number}`}
         </Eyebrow>
 
-        <h2 className={`font-heading font-bold text-3xl sm:text-4xl md:text-5xl tracking-[-0.025em] leading-[1.15] text-balance ${titleColor}`}>
+        <h2 className={`font-heading font-bold text-3xl sm:text-4xl md:text-5xl tracking-[-0.02em] leading-[1.15] text-balance ${titleColor}`}>
           {title}
         </h2>
       </div>

@@ -11,10 +11,8 @@ const FILTER_OPTIONS: FilterType[] = ['Semua', 'Website', 'Branding', 'UI/UX', '
 
 /**
  * PortfolioSection
- * Standar:
- * - Grid asimetris 12 kolom terukur tanpa celah janggal
- * - Container 1200px, section-spacing 120px (mobile 72px)
- * - Filter chip dengan 1px border dan transisi warna tanpa shadow
+ * Eksklusif 2 Warna: HEX #04344C & HEX #B0EDF9.
+ * Tipografi Heading: Gastilo.
  */
 export const PortfolioSection: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<FilterType>('Semua');
@@ -46,63 +44,63 @@ export const PortfolioSection: React.FC = () => {
     <section id="karya" className="my-[72px] sm:my-[120px] scroll-mt-20">
       <Container>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-        <SectionHeading
-          number="02"
-          title="Karya Pilihan"
-          subtitle="Eksplorasi portofolio proyek digital, identitas visual, dan pengembangan sistem web."
-          className="!mb-0"
-        />
+          <SectionHeading
+            number="02"
+            title="Karya Pilihan"
+            subtitle="Eksplorasi portofolio proyek digital, platform LMS, identitas visual, dan pengembangan sistem web."
+            className="!mb-0"
+          />
 
-        {/* Filter Chip Baku */}
-        <div
-          className="flex flex-wrap items-center gap-1.5 p-1 bg-surface border border-border rounded-md self-start md:self-auto"
-          role="tablist"
-          aria-label="Filter kategori portofolio"
-        >
-          {FILTER_OPTIONS.map((filter) => {
-            const isSelected = activeFilter === filter;
-            return (
-              <button
-                key={filter}
-                role="tab"
-                aria-selected={isSelected}
-                onClick={() => setActiveFilter(filter)}
-                className={`px-3 py-1.5 text-xs font-mono font-medium rounded transition-colors duration-200 cursor-pointer ${
-                  isSelected
-                    ? 'bg-orange text-background font-semibold'
-                    : 'text-muted hover:text-foreground'
-                }`}
-              >
-                {filter}
-              </button>
-            );
-          })}
+          {/* Filter Chip Baku */}
+          <div
+            className="flex flex-wrap items-center gap-1.5 p-1 bg-[#074563] border border-[#165A7E] rounded-md self-start md:self-auto"
+            role="tablist"
+            aria-label="Filter kategori portofolio"
+          >
+            {FILTER_OPTIONS.map((filter) => {
+              const isSelected = activeFilter === filter;
+              return (
+                <button
+                  key={filter}
+                  role="tab"
+                  aria-selected={isSelected}
+                  onClick={() => setActiveFilter(filter)}
+                  className={`px-3 py-1.5 text-xs font-mono font-medium rounded transition-colors duration-200 cursor-pointer ${
+                    isSelected
+                      ? 'bg-[#B0EDF9] text-[#04344C] font-bold shadow-sm'
+                      : 'text-[#78B9CA] hover:text-[#B0EDF9]'
+                  }`}
+                >
+                  {filter}
+                </button>
+              );
+            })}
+          </div>
         </div>
-      </div>
 
-      {/* Grid Asimetris Portofolio */}
-      {filteredProyek.length > 0 ? (
-        <div className="grid grid-cols-12 gap-6 sm:gap-8">
-          {filteredProyek.map((proyek, index) => {
-            const spanClass = getColSpan(index);
-            return (
-              <Reveal
-                key={proyek.slug}
-                delayIndex={index % 5}
-                className={spanClass}
-              >
-                <ProjectCard proyek={proyek} />
-              </Reveal>
-            );
-          })}
-        </div>
-      ) : (
-        <div className="py-16 text-center border border-border rounded bg-surface">
-          <p className="text-sm text-muted">
-            Karya dalam kategori ini akan segera ditambahkan.
-          </p>
-        </div>
-      )}
+        {/* Grid Asimetris Portofolio */}
+        {filteredProyek.length > 0 ? (
+          <div className="grid grid-cols-12 gap-6 sm:gap-8">
+            {filteredProyek.map((proyek, index) => {
+              const spanClass = getColSpan(index);
+              return (
+                <Reveal
+                  key={proyek.slug}
+                  delayIndex={index % 5}
+                  className={spanClass}
+                >
+                  <ProjectCard proyek={proyek} />
+                </Reveal>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="py-16 text-center border border-[#165A7E] rounded bg-[#074563]">
+            <p className="text-sm text-[#78B9CA]">
+              Karya dalam kategori ini akan segera ditambahkan.
+            </p>
+          </div>
+        )}
       </Container>
     </section>
   );

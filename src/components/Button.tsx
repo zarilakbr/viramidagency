@@ -22,10 +22,8 @@ export type ButtonProps = ButtonAsButton | ButtonAsAnchor;
 
 /**
  * Komponen Tombol Baku ViramidAgency.
- * - Tinggi baku 44px (h-11)
- * - Transisi warna 200ms
- * - Border 1px
- * - Outline oranye 2px saat focus-visible
+ * - Font Judul/Tombol: Gastilo
+ * - Eksklusif 2 Warna: HEX #04344C & HEX #B0EDF9
  */
 export const Button: React.FC<ButtonProps> = (props) => {
   const {
@@ -39,11 +37,11 @@ export const Button: React.FC<ButtonProps> = (props) => {
 
   const variantClasses = {
     primary:
-      'bg-orange text-navy-900 hover:bg-orange-hover border border-orange active:bg-orange-hover',
+      'bg-[#B0EDF9] text-[#04344C] hover:bg-[#C8F4FC] border border-[#B0EDF9] active:bg-[#B0EDF9] shadow-sm',
     ghost:
-      'bg-transparent text-cream border border-border hover:border-orange hover:text-orange active:bg-surface',
+      'bg-transparent text-[#B0EDF9] border border-[#165A7E] hover:border-[#B0EDF9] hover:text-[#B0EDF9] active:bg-[#074563]',
     outline:
-      'bg-surface text-cream border border-border hover:border-orange hover:bg-surface-hover active:bg-surface',
+      'bg-[#074563] text-[#B0EDF9] border border-[#165A7E] hover:border-[#B0EDF9] hover:bg-[#0B567C] active:bg-[#074563]',
   };
 
   const combinedClasses = `${baseClasses} ${variantClasses[variant]} ${className}`;

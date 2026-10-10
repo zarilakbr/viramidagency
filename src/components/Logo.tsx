@@ -8,8 +8,8 @@ interface LogoProps {
 
 /**
  * ViramidAgency Vector Monogram Mark
- * Pyramid / "V" geometric mark in brand Orange (#F97316), Gold highlight (#FDBA4D), and Cream (#F4F3FF).
- * Clean, sharp, mathematical, no rainbow or multi-color gradients.
+ * Pyramid / "V" geometric mark in exclusive 2-Color brand identity:
+ * HEX #04344C (Deep Ocean Teal) & HEX #B0EDF9 (Ice Cyan).
  */
 export const ViramidLogoMark: React.FC<{ size?: number; className?: string }> = ({
   size = 32,
@@ -25,37 +25,38 @@ export const ViramidLogoMark: React.FC<{ size?: number; className?: string }> = 
       className={`shrink-0 ${className}`}
       aria-hidden="true"
     >
-      {/* Background soft dark foundation */}
-      <rect width="48" height="48" rx="10" fill="#12123F" stroke="#262660" strokeWidth="1.5" />
+      {/* Background #04344C with subtle #165A7E border */}
+      <rect width="48" height="48" rx="10" fill="#04344C" stroke="#165A7E" strokeWidth="1.5" />
       
-      {/* Left Pyramid Facet (Primary Brand Orange) */}
+      {/* Left Pyramid Facet (Primary Ice Cyan #B0EDF9) */}
       <path
         d="M24 8L10 38H21L24 19L24 8Z"
-        fill="#F97316"
+        fill="#B0EDF9"
       />
 
-      {/* Right Pyramid Facet (Warm Orange Glow / Deep Facet) */}
+      {/* Right Pyramid Facet (Ice Cyan with subtle opacity #B0EDF9 / 0.8) */}
       <path
         d="M24 8L24 19L27 38H38L24 8Z"
-        fill="#EA580C"
+        fill="#B0EDF9"
+        fillOpacity="0.75"
       />
 
-      {/* Center Triangle Apex / Prism Accent (Gold Orange) */}
+      {/* Center Triangle Apex / Prism Accent (Pure Solid Cyan #B0EDF9) */}
       <path
         d="M24 13L19 32H29L24 13Z"
-        fill="#FDBA4D"
+        fill="#B0EDF9"
       />
 
-      {/* Modern Center Core (Navy Cutout creating sharp geometric V) */}
+      {/* Modern Center Core (Deep #04344C Cutout creating geometric V) */}
       <path
         d="M24 20L21 29H27L24 20Z"
-        fill="#0A0A2E"
+        fill="#04344C"
       />
 
       {/* Base Light Bar Accent */}
       <path
         d="M16 39.5H32"
-        stroke="#F4F3FF"
+        stroke="#B0EDF9"
         strokeWidth="1.5"
         strokeLinecap="round"
       />
@@ -65,7 +66,7 @@ export const ViramidLogoMark: React.FC<{ size?: number; className?: string }> = 
 
 /**
  * Logo ViramidAgency
- * Menampilkan logo resmi agency bervektor presisi dengan tipografi brand.
+ * Menampilkan logo resmi agency bervektor presisi dengan tipografi brand Gastilo.
  */
 export const Logo: React.FC<LogoProps> = ({ className = '', size = 32, showText = false }) => {
   return (
@@ -73,9 +74,9 @@ export const Logo: React.FC<LogoProps> = ({ className = '', size = 32, showText 
       <ViramidLogoMark size={size} />
 
       {showText && (
-        <span className="font-heading font-bold text-lg tracking-tight text-cream flex items-center">
+        <span className="font-heading font-bold text-lg tracking-tight text-[#B0EDF9] flex items-center">
           <span>Viramid</span>
-          <span className="text-orange ml-1">Agency</span>
+          <span className="text-[#B0EDF9] opacity-80 ml-1">Agency</span>
         </span>
       )}
     </div>

@@ -24,6 +24,11 @@ interface ContactSectionProps {
   initialService?: string;
 }
 
+/**
+ * ContactSection
+ * Eksklusif 2 Warna: HEX #04344C & HEX #B0EDF9.
+ * Font Judul: Gastilo.
+ */
 export const ContactSection: React.FC<ContactSectionProps> = ({ initialService = '' }) => {
   const [formData, setFormData] = useState<FormState>({
     nama: '',
@@ -113,34 +118,34 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
           number="07"
           eyebrowText="KOMUNIKASI & INQUIRY"
           title="Ceritakan proyekmu."
-          subtitle="Sampaikan ide, tantangan, atau rencana peluncuran produk digital Anda. Kami siap berdiskusi."
+          subtitle="Sampaikan ide, tantangan LMS, atau rencana peluncuran produk digital Anda. Kami siap berdiskusi."
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Kolom Kiri: Detail Kontak */}
           <Reveal className="lg:col-span-5 flex flex-col gap-6">
             <div>
-              <h3 className="font-heading font-bold text-2xl text-cream mb-3">
+              <h3 className="font-heading font-bold text-2xl text-[#B0EDF9] mb-3">
                 Mari Berkolaborasi
               </h3>
-              <p className="text-sm text-muted leading-relaxed max-w-[65ch]">
-                Kami menyambut diskusi santai maupun konsultasi mendalam untuk kebutuhan brand &amp; website Anda.
+              <p className="text-sm text-[#78B9CA] leading-relaxed max-w-[65ch]">
+                Kami menyambut diskusi santai maupun konsultasi mendalam untuk kebutuhan brand, LMS, &amp; platform website Anda.
               </p>
             </div>
 
-            <div className="flex flex-col gap-4 border-t border-border pt-6">
+            <div className="flex flex-col gap-4 border-t border-[#165A7E] pt-6">
               {/* WhatsApp */}
               <div className="flex items-start gap-3">
-                <Icon name="message-square" size="md" className="text-orange mt-0.5" />
+                <Icon name="message-square" size="md" className="text-[#B0EDF9] mt-0.5" />
                 <div>
-                  <span className="block text-xs uppercase font-mono tracking-wider text-muted mb-0.5">
+                  <span className="block text-xs uppercase font-mono tracking-wider text-[#78B9CA] mb-0.5">
                     WhatsApp
                   </span>
                   <a
                     href={`https://wa.me/${KONTAK_AGENCY.whatsappNomor}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="font-mono text-sm sm:text-base text-cream hover:text-orange transition-colors"
+                    className="font-mono text-sm sm:text-base text-[#B0EDF9] hover:underline transition-all"
                   >
                     {KONTAK_AGENCY.whatsappDisplay}
                   </a>
@@ -149,14 +154,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
 
               {/* Email */}
               <div className="flex items-start gap-3">
-                <Icon name="mail" size="md" className="text-orange mt-0.5" />
+                <Icon name="mail" size="md" className="text-[#B0EDF9] mt-0.5" />
                 <div>
-                  <span className="block text-xs uppercase font-mono tracking-wider text-muted mb-0.5">
+                  <span className="block text-xs uppercase font-mono tracking-wider text-[#78B9CA] mb-0.5">
                     Email
                   </span>
                   <a
                     href={`mailto:${KONTAK_AGENCY.email}`}
-                    className="font-mono text-sm sm:text-base text-cream hover:text-orange transition-colors"
+                    className="font-mono text-sm sm:text-base text-[#B0EDF9] hover:underline transition-all"
                   >
                     {KONTAK_AGENCY.email}
                   </a>
@@ -165,16 +170,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
 
               {/* Instagram */}
               <div className="flex items-start gap-3">
-                <Icon name="instagram" size="md" className="text-orange mt-0.5" />
+                <Icon name="instagram" size="md" className="text-[#B0EDF9] mt-0.5" />
                 <div>
-                  <span className="block text-xs uppercase font-mono tracking-wider text-muted mb-0.5">
+                  <span className="block text-xs uppercase font-mono tracking-wider text-[#78B9CA] mb-0.5">
                     Instagram
                   </span>
                   <a
                     href={KONTAK_AGENCY.instagramUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="font-mono text-sm sm:text-base text-cream hover:text-orange transition-colors"
+                    className="font-mono text-sm sm:text-base text-[#B0EDF9] hover:underline transition-all"
                   >
                     {KONTAK_AGENCY.instagram}
                   </a>
@@ -183,12 +188,12 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
 
               {/* Lokasi */}
               <div className="flex items-start gap-3">
-                <Icon name="map-pin" size="md" className="text-muted mt-0.5" />
+                <Icon name="map-pin" size="md" className="text-[#78B9CA] mt-0.5" />
                 <div>
-                  <span className="block text-xs uppercase font-mono tracking-wider text-muted mb-0.5">
+                  <span className="block text-xs uppercase font-mono tracking-wider text-[#78B9CA] mb-0.5">
                     Lokasi
                   </span>
-                  <span className="font-mono text-sm text-cream">
+                  <span className="font-mono text-sm text-[#B0EDF9]">
                     {KONTAK_AGENCY.lokasi}
                   </span>
                 </div>
@@ -197,12 +202,12 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
           </Reveal>
 
           {/* Kolom Kanan: Formulir */}
-          <Reveal className="lg:col-span-7 bg-surface border border-border rounded-2xl p-6 sm:p-8">
+          <Reveal className="lg:col-span-7 bg-[#074563] border border-[#165A7E] rounded-2xl p-6 sm:p-8">
             <form onSubmit={handleWhatsAppSubmit} className="flex flex-col gap-5" noValidate>
               {/* Field: Nama */}
               <div>
-                <label htmlFor="nama" className="block text-xs font-semibold uppercase tracking-wider text-cream mb-1.5 font-mono">
-                  Nama Lengkap <span className="text-orange">*</span>
+                <label htmlFor="nama" className="block text-xs font-semibold uppercase tracking-wider text-[#B0EDF9] mb-1.5 font-mono">
+                  Nama Lengkap <span className="text-[#B0EDF9]">*</span>
                 </label>
                 <input
                   id="nama"
@@ -213,14 +218,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
                     setFormData({ ...formData, nama: e.target.value });
                     if (errors.nama) setErrors({ ...errors, nama: undefined });
                   }}
-                  className={`w-full px-4 py-3 bg-navy-900 border rounded-xl text-cream text-sm placeholder:text-muted/40 transition-colors focus:outline-none focus:ring-1 focus:ring-orange ${
-                    errors.nama ? 'border-error focus:border-error focus:ring-error' : 'border-border'
+                  className={`w-full px-4 py-3 bg-[#04344C] border rounded-xl text-[#B0EDF9] text-sm placeholder:text-[#78B9CA]/40 transition-colors focus:outline-none focus:ring-1 focus:ring-[#B0EDF9] ${
+                    errors.nama ? 'border-[#B0EDF9] ring-1 ring-[#B0EDF9]' : 'border-[#165A7E]'
                   }`}
                   aria-invalid={!!errors.nama}
                   aria-describedby={errors.nama ? 'nama-error' : undefined}
                 />
                 {errors.nama && (
-                  <p id="nama-error" className="text-xs text-error font-mono flex items-center gap-1.5 mt-1.5">
+                  <p id="nama-error" className="text-xs text-[#B0EDF9] font-mono flex items-center gap-1.5 mt-1.5">
                     <Icon name="alert-circle" size={14} />
                     <span>{errors.nama}</span>
                   </p>
@@ -229,8 +234,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
 
               {/* Field: Email atau WhatsApp */}
               <div>
-                <label htmlFor="kontak-input" className="block text-xs font-semibold uppercase tracking-wider text-cream mb-1.5 font-mono">
-                  Email atau WhatsApp <span className="text-orange">*</span>
+                <label htmlFor="kontak-input" className="block text-xs font-semibold uppercase tracking-wider text-[#B0EDF9] mb-1.5 font-mono">
+                  Email atau WhatsApp <span className="text-[#B0EDF9]">*</span>
                 </label>
                 <input
                   id="kontak-input"
@@ -241,14 +246,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
                     setFormData({ ...formData, kontak: e.target.value });
                     if (errors.kontak) setErrors({ ...errors, kontak: undefined });
                   }}
-                  className={`w-full px-4 py-3 bg-navy-900 border rounded-xl text-cream text-sm placeholder:text-muted/40 transition-colors focus:outline-none focus:ring-1 focus:ring-orange ${
-                    errors.kontak ? 'border-error focus:border-error focus:ring-error' : 'border-border'
+                  className={`w-full px-4 py-3 bg-[#04344C] border rounded-xl text-[#B0EDF9] text-sm placeholder:text-[#78B9CA]/40 transition-colors focus:outline-none focus:ring-1 focus:ring-[#B0EDF9] ${
+                    errors.kontak ? 'border-[#B0EDF9] ring-1 ring-[#B0EDF9]' : 'border-[#165A7E]'
                   }`}
                   aria-invalid={!!errors.kontak}
                   aria-describedby={errors.kontak ? 'kontak-error' : undefined}
                 />
                 {errors.kontak && (
-                  <p id="kontak-error" className="text-xs text-error font-mono flex items-center gap-1.5 mt-1.5">
+                  <p id="kontak-error" className="text-xs text-[#B0EDF9] font-mono flex items-center gap-1.5 mt-1.5">
                     <Icon name="alert-circle" size={14} />
                     <span>{errors.kontak}</span>
                   </p>
@@ -258,8 +263,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
               {/* Field: Kebutuhan & Anggaran */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="kebutuhan" className="block text-xs font-semibold uppercase tracking-wider text-cream mb-1.5 font-mono">
-                    Jenis Kebutuhan <span className="text-orange">*</span>
+                  <label htmlFor="kebutuhan" className="block text-xs font-semibold uppercase tracking-wider text-[#B0EDF9] mb-1.5 font-mono">
+                    Jenis Kebutuhan <span className="text-[#B0EDF9]">*</span>
                   </label>
                   <select
                     id="kebutuhan"
@@ -268,9 +273,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
                       setFormData({ ...formData, kebutuhan: e.target.value });
                       if (errors.kebutuhan) setErrors({ ...errors, kebutuhan: undefined });
                     }}
-                    className="w-full px-4 py-3 bg-navy-900 border border-border rounded-xl text-cream text-sm cursor-pointer focus:outline-none focus:ring-1 focus:ring-orange"
+                    className="w-full px-4 py-3 bg-[#04344C] border border-[#165A7E] rounded-xl text-[#B0EDF9] text-sm cursor-pointer focus:outline-none focus:ring-1 focus:ring-[#B0EDF9]"
                   >
-                    <option value="Website">Pengembangan Website</option>
+                    <option value="Website">Pengembangan Website &amp; LMS</option>
                     <option value="UI/UX">Desain UI/UX</option>
                     <option value="Branding">Branding &amp; Identitas</option>
                     <option value="Konten">Konten &amp; Media Sosial</option>
@@ -279,14 +284,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
                 </div>
 
                 <div>
-                  <label htmlFor="anggaran" className="block text-xs font-semibold uppercase tracking-wider text-cream mb-1.5 font-mono">
-                    Perkiraan Anggaran <span className="text-muted text-[10px] font-normal">(opsional)</span>
+                  <label htmlFor="anggaran" className="block text-xs font-semibold uppercase tracking-wider text-[#B0EDF9] mb-1.5 font-mono">
+                    Perkiraan Anggaran <span className="text-[#78B9CA] text-[10px] font-normal">(opsional)</span>
                   </label>
                   <select
                     id="anggaran"
                     value={formData.anggaran}
                     onChange={(e) => setFormData({ ...formData, anggaran: e.target.value })}
-                    className="w-full px-4 py-3 bg-navy-900 border border-border rounded-xl text-cream text-sm cursor-pointer focus:outline-none focus:ring-1 focus:ring-orange"
+                    className="w-full px-4 py-3 bg-[#04344C] border border-[#165A7E] rounded-xl text-[#B0EDF9] text-sm cursor-pointer focus:outline-none focus:ring-1 focus:ring-[#B0EDF9]"
                   >
                     <option value="">Pilih Rentang Anggaran</option>
                     <option value="< 15 Juta">&lt; 15 Juta IDR</option>
@@ -299,28 +304,28 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
 
               {/* Field: Pesan */}
               <div>
-                <label htmlFor="pesan" className="block text-xs font-semibold uppercase tracking-wider text-cream mb-1.5 font-mono">
-                  Pesan Proyek <span className="text-orange">*</span>
+                <label htmlFor="pesan" className="block text-xs font-semibold uppercase tracking-wider text-[#B0EDF9] mb-1.5 font-mono">
+                  Pesan Proyek <span className="text-[#B0EDF9]">*</span>
                 </label>
                 <textarea
                   id="pesan"
                   rows={4}
-                  placeholder="Ceritakan latar belakang bisnis, target audiens, atau linimasa peluncuran yang diinginkan (minimal 20 karakter)..."
+                  placeholder="Ceritakan latar belakang bisnis, platform LMS yang diinginkan, target audiens, atau linimasa peluncuran (minimal 20 karakter)..."
                   value={formData.pesan}
                   onChange={(e) => {
                     setFormData({ ...formData, pesan: e.target.value });
                     if (errors.pesan) setErrors({ ...errors, pesan: undefined });
                   }}
-                  className={`w-full px-4 py-3 bg-navy-900 border rounded-xl text-cream text-sm placeholder:text-muted/40 transition-colors resize-y focus:outline-none focus:ring-1 focus:ring-orange ${
-                    errors.pesan ? 'border-error focus:border-error focus:ring-error' : 'border-border'
+                  className={`w-full px-4 py-3 bg-[#04344C] border rounded-xl text-[#B0EDF9] text-sm placeholder:text-[#78B9CA]/40 transition-colors resize-y focus:outline-none focus:ring-1 focus:ring-[#B0EDF9] ${
+                    errors.pesan ? 'border-[#B0EDF9] ring-1 ring-[#B0EDF9]' : 'border-[#165A7E]'
                   }`}
                   aria-invalid={!!errors.pesan}
                   aria-describedby={errors.pesan ? 'pesan-error' : undefined}
                 />
-                <div className="flex items-center justify-between mt-1 text-[11px] font-mono text-muted">
+                <div className="flex items-center justify-between mt-1 text-[11px] font-mono text-[#78B9CA]">
                   <span>
                     {errors.pesan ? (
-                      <span className="text-error flex items-center gap-1">
+                      <span className="text-[#B0EDF9] flex items-center gap-1">
                         <Icon name="alert-circle" size={12} />
                         {errors.pesan}
                       </span>
@@ -332,11 +337,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
                 </div>
               </div>
 
-              {/* Tombol Aksi Pill 48px */}
+              {/* Tombol Aksi */}
               <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
                 <button
                   type="submit"
-                  className="w-full sm:w-auto h-12 px-7 rounded-full bg-orange hover:bg-orange-hover text-navy-900 font-heading font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 shadow-sm"
+                  className="w-full sm:w-auto h-12 px-7 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 shadow-sm"
                 >
                   <span>Kirim via WhatsApp</span>
                   <Icon name="arrow-right" size={16} />
@@ -345,7 +350,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
                 <button
                   type="button"
                   onClick={handleEmailClick}
-                  className="w-full sm:w-auto h-12 px-7 rounded-full border border-border bg-surface hover:bg-surface-hover text-cream font-heading font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 hover:border-orange"
+                  className="w-full sm:w-auto h-12 px-7 rounded-full border border-[#165A7E] bg-[#074563] hover:bg-[#0B567C] text-[#B0EDF9] font-heading font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 hover:border-[#B0EDF9]"
                 >
                   <span>Kirim via Email</span>
                   <Icon name="mail" size={16} />
@@ -353,7 +358,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
               </div>
 
               {isSubmitted && (
-                <p className="text-xs text-orange font-mono mt-1 flex items-center gap-1.5">
+                <p className="text-xs text-[#B0EDF9] font-mono mt-1 flex items-center gap-1.5">
                   <Icon name="check" size={14} />
                   <span>Formulir terkirim! Pesan telah disiapkan untuk WhatsApp Anda.</span>
                 </p>

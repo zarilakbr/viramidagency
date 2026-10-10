@@ -33,37 +33,37 @@ export const HomePage: React.FC = () => {
 
   return (
     <main>
-      {/* 1. Hero: Video Banner 1 dengan Overlay Navy-900 60% */}
+      {/* 1. Hero: Live Showcase LMS & Clean Layout */}
       <Hero />
 
       {/* 2. Tech Stack Marquee */}
       <TechnologyStack />
 
-      {/* 3. Layanan Keahlian: Latar ORANYE Solid #F97316 */}
+      {/* 3. Layanan Keahlian: Latar Ice Cyan #B0EDF9 */}
       <ServicesSection onSelectService={handleSelectService} />
 
-      {/* 4. Karya Pilihan: Navy-900 #0A0A2E */}
+      {/* 4. Karya Pilihan: Deep Teal #04344C */}
       <PortfolioSection />
 
-      {/* 5. Banner Video 2: Tengah (Di antara Karya & Proses) */}
+      {/* 5. Banner Tengah: Kolaborasi LMS & Web */}
       <VideoBanner banner={midBanner} variant="mid" />
 
-      {/* 6. Proses Kerja: Surface Navy-800 #12123F */}
+      {/* 6. Proses Kerja: Surface Deep Teal #074563 */}
       <ProcessSection />
 
-      {/* 7. Paket Layanan: Navy-900 dengan Paket Tengah Oranye Solid */}
+      {/* 7. Paket Layanan: Deep Teal #04344C & Ice Cyan #B0EDF9 */}
       <PricingSection />
 
-      {/* 8. Profil Studio & Tim: Surface Navy-800 #12123F */}
+      {/* 8. Profil Studio & Tim: Surface Deep Teal #074563 */}
       <AboutSection />
 
-      {/* 9. FAQ: Latar Krem #F4F3FF, Teks Navy-900 */}
+      {/* 9. FAQ: Deep Teal #04344C & Ice Cyan #B0EDF9 */}
       <FaqSection />
 
-      {/* 10. Kontak Langsung: Surface Navy-800 */}
+      {/* 10. Kontak Langsung: Surface Deep Teal #074563 */}
       <ContactSection initialService={selectedService} />
 
-      {/* 11. Pita CTA Penuh: Solid Oranye #F97316 */}
+      {/* 11. Pita CTA Penuh: Solid Ice Cyan #B0EDF9 */}
       <CtaBanner />
     </main>
   );

@@ -1,6 +1,7 @@
 /**
  * @file src/components/ui/Eyebrow.tsx
  * Label kecil monospace huruf kapital dengan tracking lebar (12px), standar seragam seluruh seksi.
+ * Eksklusif palet #04344C & #B0EDF9.
  */
 
 import React from 'react';
@@ -9,20 +10,22 @@ interface EyebrowProps {
   children: React.ReactNode;
   number?: string;
   className?: string;
-  variant?: 'orange' | 'navy' | 'cream' | 'muted';
+  variant?: 'cyan' | 'brand' | 'orange' | 'navy' | 'cream' | 'muted';
 }
 
 export const Eyebrow: React.FC<EyebrowProps> = ({
   children,
   number,
   className = '',
-  variant = 'orange',
+  variant = 'cyan',
 }) => {
   const variantStyles = {
-    orange: 'text-orange',
-    navy: 'text-navy-900',
-    cream: 'text-cream',
-    muted: 'text-muted',
+    cyan: 'text-[#B0EDF9]',
+    brand: 'text-[#B0EDF9]',
+    orange: 'text-[#B0EDF9]',
+    navy: 'text-[#04344C]',
+    cream: 'text-[#B0EDF9]',
+    muted: 'text-[#78B9CA]',
   }[variant];
 
   return (

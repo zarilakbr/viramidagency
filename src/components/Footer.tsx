@@ -7,10 +7,8 @@ import { KONTAK_AGENCY, PROFIL_AGENCY } from '../data/content';
 
 /**
  * Footer
- * Ritme Warna: navy-950 (#070722).
- * Standar:
- * - Garis tipis oranye tunggal
- * - Token Oranye + Navy baku tanpa cyan/ungu
+ * Eksklusif 2 Warna: HEX #04344C & HEX #B0EDF9.
+ * Font Judul: Gastilo.
  */
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -26,8 +24,8 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="relative bg-navy-950 border-t border-navy-700">
-      {/* Garis aksen 1px oranye tunggal di bagian atas footer */}
+    <footer className="relative bg-[#022131] border-t border-[#165A7E]">
+      {/* Garis aksen 1px cyan tunggal */}
       <TriColorLine />
 
       <Container className="py-14 md:py-16">
@@ -35,26 +33,26 @@ export const Footer: React.FC = () => {
           {/* Col 1: Logo & Tagline */}
           <div className="md:col-span-5 flex flex-col gap-4">
             <Logo size={36} showText={true} />
-            <p className="text-sm text-muted max-w-sm leading-relaxed">
+            <p className="text-sm text-[#78B9CA] max-w-sm leading-relaxed">
               {PROFIL_AGENCY.tagline}
             </p>
-            <span className="text-xs text-muted font-mono flex items-center gap-2">
-              <Icon name="map-pin" size="sm" className="text-orange" />
+            <span className="text-xs text-[#78B9CA] font-mono flex items-center gap-2">
+              <Icon name="map-pin" size="sm" className="text-[#B0EDF9]" />
               <span>{KONTAK_AGENCY.lokasi}</span>
             </span>
           </div>
 
           {/* Col 2: Navigasi Cepat */}
           <div className="md:col-span-4 flex flex-col gap-3">
-            <h4 className="text-xs font-bold uppercase font-mono tracking-wider text-cream">
+            <h4 className="text-xs font-bold uppercase font-mono tracking-wider text-[#B0EDF9]">
               Navigasi Halaman
             </h4>
-            <ul className="flex flex-col gap-2 text-sm text-muted">
+            <ul className="flex flex-col gap-2 text-sm text-[#78B9CA]">
               <li>
                 <a
                   href="#layanan"
                   onClick={(e) => scrollToSection(e, 'layanan')}
-                  className="hover:text-orange transition-colors rounded-sm"
+                  className="hover:text-[#B0EDF9] transition-colors rounded-sm"
                 >
                   Layanan Unggulan
                 </a>
@@ -63,7 +61,7 @@ export const Footer: React.FC = () => {
                 <a
                   href="#karya"
                   onClick={(e) => scrollToSection(e, 'karya')}
-                  className="hover:text-orange transition-colors rounded-sm"
+                  className="hover:text-[#B0EDF9] transition-colors rounded-sm"
                 >
                   Karya &amp; Portofolio
                 </a>
@@ -72,7 +70,7 @@ export const Footer: React.FC = () => {
                 <a
                   href="#proses"
                   onClick={(e) => scrollToSection(e, 'proses')}
-                  className="hover:text-orange transition-colors rounded-sm"
+                  className="hover:text-[#B0EDF9] transition-colors rounded-sm"
                 >
                   Alur Proses Kerja
                 </a>
@@ -81,7 +79,7 @@ export const Footer: React.FC = () => {
                 <a
                   href="#paket"
                   onClick={(e) => scrollToSection(e, 'paket')}
-                  className="hover:text-orange transition-colors rounded-sm"
+                  className="hover:text-[#B0EDF9] transition-colors rounded-sm"
                 >
                   Paket Layanan
                 </a>
@@ -90,7 +88,7 @@ export const Footer: React.FC = () => {
                 <a
                   href="#faq"
                   onClick={(e) => scrollToSection(e, 'faq')}
-                  className="hover:text-orange transition-colors rounded-sm"
+                  className="hover:text-[#B0EDF9] transition-colors rounded-sm"
                 >
                   Pertanyaan Umum (FAQ)
                 </a>
@@ -99,7 +97,7 @@ export const Footer: React.FC = () => {
                 <a
                   href="#kontak"
                   onClick={(e) => scrollToSection(e, 'kontak')}
-                  className="hover:text-orange transition-colors rounded-sm"
+                  className="hover:text-[#B0EDF9] transition-colors rounded-sm"
                 >
                   Mulai Diskusi Proyek
                 </a>
@@ -109,33 +107,33 @@ export const Footer: React.FC = () => {
 
           {/* Col 3: Kontak & Sosial */}
           <div className="md:col-span-3 flex flex-col gap-3">
-            <h4 className="text-xs font-bold uppercase font-mono tracking-wider text-cream">
+            <h4 className="text-xs font-bold uppercase font-mono tracking-wider text-[#B0EDF9]">
               Komunikasi &amp; Hubungan
             </h4>
-            <div className="flex flex-col gap-2.5 text-sm text-muted">
+            <div className="flex flex-col gap-2.5 text-sm text-[#78B9CA]">
               <a
                 href={`mailto:${KONTAK_AGENCY.email}`}
-                className="hover:text-orange transition-colors rounded-sm flex items-center gap-2 font-mono text-xs"
+                className="hover:text-[#B0EDF9] transition-colors rounded-sm flex items-center gap-2 font-mono text-xs"
               >
-                <Icon name="mail" size="sm" className="text-orange" />
+                <Icon name="mail" size="sm" className="text-[#B0EDF9]" />
                 <span>{KONTAK_AGENCY.email}</span>
               </a>
               <a
                 href={`https://wa.me/${KONTAK_AGENCY.whatsappNomor}`}
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-orange transition-colors rounded-sm flex items-center gap-2 font-mono text-xs"
+                className="hover:text-[#B0EDF9] transition-colors rounded-sm flex items-center gap-2 font-mono text-xs"
               >
-                <Icon name="message-square" size="sm" className="text-orange" />
+                <Icon name="message-square" size="sm" className="text-[#B0EDF9]" />
                 <span>WhatsApp ({KONTAK_AGENCY.whatsappDisplay})</span>
               </a>
               <a
                 href={KONTAK_AGENCY.instagramUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-orange transition-colors rounded-sm flex items-center gap-2 font-mono text-xs"
+                className="hover:text-[#B0EDF9] transition-colors rounded-sm flex items-center gap-2 font-mono text-xs"
               >
-                <Icon name="instagram" size="sm" className="text-orange" />
+                <Icon name="instagram" size="sm" className="text-[#B0EDF9]" />
                 <span>Instagram ({KONTAK_AGENCY.instagram})</span>
               </a>
             </div>
@@ -143,10 +141,10 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 pt-6 border-t border-navy-700 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-muted">
+        <div className="mt-12 pt-6 border-t border-[#165A7E] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#78B9CA]">
           <p>© {currentYear} ViramidAgency. Seluruh hak cipta dilindungi.</p>
-          <p className="text-muted/60">
-            Didesain dan direkayasa untuk brand &amp; website berkinerja tinggi.
+          <p className="text-[#78B9CA]/60">
+            Didesain dan direkayasa untuk platform LMS &amp; website berkinerja tinggi.
           </p>
         </div>
       </Container>

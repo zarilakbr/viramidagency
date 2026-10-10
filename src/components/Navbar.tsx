@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { Logo } from './Logo';
-import { Button } from './Button';
 import { Icon } from './ui/Icon';
 import { KONTAK_AGENCY } from '../data/content';
-
 import { Container } from './ui/Container';
 
 interface NavItem {
@@ -25,11 +23,8 @@ const NAV_ITEMS: NavItem[] = [
 
 /**
  * Navbar ViramidAgency
- * Standar:
- * - Tinggi 64px (h-16)
- * - Menempel di atas (fixed z-50)
- * - Border bawah & latar muncul setelah scroll (transisi 200ms)
- * - CTA Utama: "Jadwalkan Konsultasi" menuju /booking
+ * Eksklusif 2 Warna: HEX #04344C (Deep Teal) & HEX #B0EDF9 (Ice Cyan).
+ * Tipografi Gastilo pada elemen heading/tombol.
  */
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -121,7 +116,7 @@ export const Navbar: React.FC = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 h-16 transition-colors duration-200 ${
         isScrolled
-          ? 'bg-background/95 border-b border-border'
+          ? 'bg-[#04344C]/95 backdrop-blur-md border-b border-[#165A7E]'
           : 'bg-transparent border-b border-transparent'
       }`}
     >
@@ -138,7 +133,7 @@ export const Navbar: React.FC = () => {
 
         {/* Nav Links (Desktop) */}
         <nav
-          className="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-medium text-muted"
+          className="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-medium text-[#78B9CA]"
           aria-label="Navigasi Utama"
         >
           {NAV_ITEMS.map((item) => {
@@ -148,14 +143,14 @@ export const Navbar: React.FC = () => {
                 key={item.id}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
-                className={`relative py-1 transition-colors duration-200 hover:text-foreground rounded-sm ${
-                  isActive ? 'text-foreground font-semibold' : ''
+                className={`relative py-1 transition-colors duration-200 hover:text-[#B0EDF9] rounded-sm ${
+                  isActive ? 'text-[#B0EDF9] font-semibold' : ''
                 }`}
               >
                 {item.label}
                 {isActive && (
                   <span
-                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-orange"
+                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#B0EDF9]"
                     aria-hidden="true"
                   />
                 )}
@@ -168,7 +163,7 @@ export const Navbar: React.FC = () => {
         <div className="hidden md:flex items-center gap-3">
           <Link
             to="/booking"
-            className="h-9 px-4 rounded-lg bg-orange hover:bg-orange-hover text-navy text-xs font-heading font-bold transition-colors flex items-center gap-2 shadow-sm"
+            className="h-9 px-4 rounded-lg bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] text-xs font-heading font-bold transition-colors flex items-center gap-2 shadow-sm"
           >
             <Icon name="calendar" size={14} />
             <span>Jadwalkan Konsultasi</span>
@@ -179,7 +174,7 @@ export const Navbar: React.FC = () => {
         <div className="flex items-center gap-2.5 md:hidden">
           <Link
             to="/booking"
-            className="text-xs font-bold px-3 py-1.5 rounded-lg bg-orange text-navy hover:bg-orange-hover transition-colors flex items-center gap-1.5"
+            className="text-xs font-bold px-3 py-1.5 rounded-lg bg-[#B0EDF9] text-[#04344C] hover:bg-[#C8F4FC] transition-colors flex items-center gap-1.5"
           >
             <Icon name="calendar" size={13} />
             <span>Konsultasi</span>
@@ -188,7 +183,7 @@ export const Navbar: React.FC = () => {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-1.5 text-foreground hover:text-orange transition-colors rounded-md"
+            className="p-1.5 text-[#B0EDF9] hover:text-[#C8F4FC] transition-colors rounded-md"
             aria-label={mobileMenuOpen ? 'Tutup navigasi' : 'Buka navigasi'}
             aria-expanded={mobileMenuOpen}
           >
@@ -200,12 +195,12 @@ export const Navbar: React.FC = () => {
       {/* Mobile Menu Panel */}
       {mobileMenuOpen && (
         <div
-          className="md:hidden fixed inset-0 top-16 bg-background/98 z-40 flex flex-col justify-between px-6 py-8 border-t border-border overflow-y-auto"
+          className="md:hidden fixed inset-0 top-16 bg-[#04344C]/98 z-40 flex flex-col justify-between px-6 py-8 border-t border-[#165A7E] overflow-y-auto"
           role="dialog"
           aria-modal="true"
         >
           <div className="flex flex-col gap-4">
-            <span className="text-xs font-mono tracking-wider uppercase text-muted">
+            <span className="text-xs font-mono tracking-wider uppercase text-[#78B9CA]">
               Menu Navigasi
             </span>
             <nav className="flex flex-col gap-1" aria-label="Navigasi Mobile">
@@ -218,12 +213,12 @@ export const Navbar: React.FC = () => {
                     onClick={(e) => handleNavClick(e, item.href)}
                     className={`text-lg font-heading font-bold flex items-center justify-between py-2.5 px-3 rounded-md transition-colors ${
                       isActive
-                        ? 'text-orange bg-surface border border-border'
-                        : 'text-foreground hover:text-orange hover:bg-surface/50'
+                        ? 'text-[#B0EDF9] bg-[#074563] border border-[#165A7E]'
+                        : 'text-[#78B9CA] hover:text-[#B0EDF9] hover:bg-[#074563]/50'
                     }`}
                   >
                     <span>{item.label}</span>
-                    <span className="text-xs text-muted font-mono font-normal">
+                    <span className="text-xs text-[#78B9CA] font-mono font-normal">
                       0{index + 1}
                     </span>
                   </a>
@@ -232,16 +227,16 @@ export const Navbar: React.FC = () => {
             </nav>
           </div>
 
-          <div className="pt-6 border-t border-border mt-auto flex flex-col gap-4">
+          <div className="pt-6 border-t border-[#165A7E] mt-auto flex flex-col gap-4">
             <Link
               to="/booking"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-center py-3.5 rounded-xl bg-orange text-navy font-heading font-bold text-sm flex items-center justify-center gap-2"
+              className="w-full text-center py-3.5 rounded-xl bg-[#B0EDF9] text-[#04344C] font-heading font-bold text-sm flex items-center justify-center gap-2"
             >
               <Icon name="calendar" size={16} />
               <span>Jadwalkan Konsultasi</span>
             </Link>
-            <div className="flex items-center justify-between text-xs font-mono text-muted">
+            <div className="flex items-center justify-between text-xs font-mono text-[#78B9CA]">
               <span>{KONTAK_AGENCY.lokasi}</span>
               <span>© {new Date().getFullYear()} ViramidAgency</span>
             </div>

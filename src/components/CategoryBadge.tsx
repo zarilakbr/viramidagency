@@ -8,24 +8,20 @@ interface CategoryBadgeProps {
 
 /**
  * CategoryBadge
- * Tag kategori dibedakan lewat isian dan garis (bukan warna cyan/purple):
- * - Website = isi oranye teks navy (bg-orange text-navy-900 font-bold)
- * - Branding = outline oranye teks oranye (border border-orange text-orange)
- * - UI/UX = outline krem teks krem (border border-cream/60 text-cream)
- * - Konten = outline muted teks muted (border border-muted/50 text-muted)
+ * Eksklusif 2 Warna: HEX #04344C (Deep Teal) & HEX #B0EDF9 (Ice Cyan).
  */
 export const CategoryBadge: React.FC<CategoryBadgeProps> = ({ category, className = '' }) => {
   const getBadgeStyle = (cat: string) => {
     switch (cat) {
       case 'Website':
-        return 'bg-orange text-navy-900 font-bold border-transparent';
+        return 'bg-[#B0EDF9] text-[#04344C] font-bold border-transparent';
       case 'Branding':
-        return 'bg-transparent border border-orange text-orange font-semibold';
+        return 'bg-transparent border border-[#B0EDF9] text-[#B0EDF9] font-semibold';
       case 'UI/UX':
-        return 'bg-transparent border border-cream/60 text-cream font-medium';
+        return 'bg-[#074563] border border-[#165A7E] text-[#B0EDF9] font-medium';
       case 'Konten':
       default:
-        return 'bg-transparent border border-muted/50 text-muted font-normal';
+        return 'bg-transparent border border-[#165A7E] text-[#78B9CA] font-normal';
     }
   };
 

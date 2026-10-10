@@ -1,7 +1,8 @@
 /**
  * @file src/components/FaqSection.tsx
  * Seksi Pertanyaan Umum (FAQ) dengan akordeon interaktif, animasi halus, dan aksesibilitas keyboard.
- * Ritme Warna: Latar KREM (#F4F3FF), teks navy-900 (#0A0A2E), aksen oranye (#F97316).
+ * Eksklusif 2 Warna: HEX #04344C & HEX #B0EDF9.
+ * Font Judul: Gastilo.
  */
 
 import React, { useState } from 'react';
@@ -19,15 +20,13 @@ export const FaqSection: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="relative py-[72px] sm:py-[120px] bg-cream text-navy-900 border-y border-border scroll-mt-16">
+    <section id="faq" className="relative py-[72px] sm:py-[120px] bg-[#04344C] text-[#B0EDF9] border-y border-[#165A7E] scroll-mt-16">
       <Container className="max-w-4xl">
-        {/* Header Seksi Latar Krem */}
         <SectionHeading
           number="05"
           eyebrowText="TRANSPARANSI & TANYA JAWAB"
           title="Pertanyaan Umum"
-          subtitle="Jawaban transparan seputar proses kerja sama, kepemilikan kode sumber, dan alur pengerjaan di ViramidAgency."
-          variant="cream"
+          subtitle="Jawaban transparan seputar proses kerja sama, pengembangan platform LMS & Web, kepemilikan kode sumber, dan alur pengerjaan di ViramidAgency."
         />
 
         {/* Daftar Akordeon FAQ */}
@@ -42,8 +41,8 @@ export const FaqSection: React.FC = () => {
                 key={item.id}
                 className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
                   isOpen
-                    ? 'border-orange bg-white shadow-md ring-1 ring-orange/30'
-                    : 'border-border/40 bg-white hover:border-orange/50'
+                    ? 'border-[#B0EDF9] bg-[#074563] shadow-lg'
+                    : 'border-[#165A7E] bg-[#074563]/60 hover:border-[#B0EDF9]/70'
                 }`}
               >
                 <button
@@ -63,17 +62,17 @@ export const FaqSection: React.FC = () => {
                       prevBtn?.focus();
                     }
                   }}
-                  className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-orange"
+                  className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B0EDF9]"
                 >
-                  <span className="font-heading font-bold text-base sm:text-lg text-navy-900 pr-2">
+                  <span className="font-heading font-bold text-base sm:text-lg text-[#B0EDF9] pr-2">
                     {item.pertanyaan}
                   </span>
 
                   <div
                     className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 ${
                       isOpen
-                        ? 'bg-orange text-navy-900 rotate-180 shadow-sm'
-                        : 'bg-navy-900/10 text-navy-900'
+                        ? 'bg-[#B0EDF9] text-[#04344C] rotate-180 shadow-sm'
+                        : 'bg-[#04344C] border border-[#165A7E] text-[#B0EDF9]'
                     }`}
                   >
                     <Icon name="chevron-down" size={16} />
@@ -92,7 +91,7 @@ export const FaqSection: React.FC = () => {
                       transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="px-5 pb-6 sm:px-6 sm:pb-6 text-sm text-navy-900/80 leading-relaxed border-t border-navy-900/10 pt-4">
+                      <div className="px-5 pb-6 sm:px-6 sm:pb-6 text-sm text-[#78B9CA] leading-relaxed border-t border-[#165A7E] pt-4">
                         {item.jawaban}
                       </div>
                     </motion.div>

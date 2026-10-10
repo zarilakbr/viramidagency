@@ -162,20 +162,20 @@ export const DAFTAR_LAYANAN: LayananItem[] = [
 
 export const DAFTAR_PROYEK: ProyekItem[] = [
   {
-    slug: 'lombok-shorai-rinjani',
-    judul: 'Lombok Shorai Rinjani',
-    klien: 'Lombok Shorai Rinjani Trekking',
+    slug: 'lpk-lombok-shorai-rinjani',
+    judul: 'LPK Lombok Shorai Rinjani',
+    klien: 'LPK Lombok Shorai Rinjani',
     kategori: 'Website',
     tahun: '2026',
     url: 'https://lombokshorairinjani.com/',
-    ringkasan: 'Platform resmi pemesanan paket pendakian Gunung Rinjani dan pariwisata Lombok dengan performa tinggi, informasi rute komprehensif, dan integrasi pemesanan WhatsApp instan.',
-    tantangan: 'Kebutuhan platform digital wisata yang berkecepatan tinggi, informatif, dan terpercaya bagi wisatawan mancanegara maupun lokal dalam memesan ekspedisi Rinjani.',
-    solusi: 'Arsitektur web modern dengan load time di bawah 1.1 detik, presentasi visual lanskap Rinjani yang memukau, kalkulator paket terstruktur, dan integrasi WhatsApp booking instan.',
-    hasil: 'Skor Core Web Vitals 99, tingkat konversi booking melonjak 95%, dan kemudahan akses mobile 24/7 bagi para pendaki di seluruh dunia.',
-    layanan: ['Pengembangan Website', 'Desain UI/UX', 'Optimasi SEO & Performa'],
+    ringkasan: 'Platform Learning Management System (LMS) & portal kursus bahasa Jepang terpadu di Lombok: persiapan JLPT N5–N3, program Tokutei Ginou (SSW), modul materi interaktif, dan bimbingan karier resmi ke Jepang.',
+    tantangan: 'Kebutuhan platform LMS edukasi dan pelatihan kerja interaktif yang mampu menyajikan kurikulum bahasa Jepang, modul persiapan JLPT & SSW, sistem pendaftaran online, dan pendataan siswa secara terintegrasi.',
+    solusi: 'Pengembangan platform LMS modern dengan arsitektur web cepat, antarmuka bilingual (Indonesia & Jepang), modul materi terstruktur, sistem pendaftaran online, dan integrasi konsultasi karir Jepang langsung.',
+    hasil: 'Digitalisasi 100% materi pelatihan kerja, peningkatan efisiensi pendaftaran siswa baru hingga 90%, dan akses materi belajar fleksibel 24/7 bagi calon tenaga kerja ke Jepang.',
+    layanan: ['Platform LMS & Web App', 'Desain UI/UX Edukasi', 'Sistem Manajemen Siswa'],
     gambar: [
-      'https://images.unsplash.com/photo-1570789210967-2cac24afeb00?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
+      'https://lombokshorairinjani.com/assets/brand/logo.png',
+      'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80',
     ],
   },
   {

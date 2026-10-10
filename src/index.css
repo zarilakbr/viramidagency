@@ -1,47 +1,59 @@
 @import "tailwindcss";
 
 @theme {
-  --font-heading: "Space Grotesk", sans-serif;
+  --font-heading: "Gastilo", "Space Grotesk", sans-serif;
   --font-body: "Inter", sans-serif;
 
-  /* Identitas Visual Baku Oranye + Navy ViramidAgency */
-  --color-navy-950: #070722;
-  --color-navy-900: #0A0A2E;
-  --color-navy-800: #12123F;
-  --color-navy-700: #262660;
+  /* Identitas Visual Eksklusif 2 Warna: HEX #04344C (Deep Teal) & HEX #B0EDF9 (Ice Cyan) */
+  --color-navy-950: #022131;
+  --color-navy-900: #04344C;
+  --color-navy-800: #074563;
+  --color-navy-700: #165A7E;
+  --color-navy-600: #23739C;
 
-  --color-orange-500: #F97316;
-  --color-orange-400: #FDBA4D;
+  --color-brand: #B0EDF9;
+  --color-brand-hover: #C8F4FC;
+  --color-orange-500: #B0EDF9;
+  --color-orange-400: #B0EDF9;
+  --color-orange: #B0EDF9;
+  --color-orange-hover: #C8F4FC;
 
-  --color-cream: #F4F3FF;
-  --color-muted: #9A9BC7;
-  --color-error: #FF6B6B;
+  --color-cream: #B0EDF9;
+  --color-muted: #78B9CA;
+  --color-error: #B0EDF9;
 
   /* Semantic Map */
-  --color-background: #0A0A2E;
-  --color-surface: #12123F;
-  --color-surface-hover: #1A1A52;
-  --color-border: #262660;
-  --color-border-hover: #F97316;
-  --color-orange: #F97316;
-  --color-orange-hover: #FDBA4D;
-  --color-foreground: #F4F3FF;
-  --color-navy: #0A0A2E;
+  --color-background: #04344C;
+  --color-surface: #074563;
+  --color-surface-hover: #0B567C;
+  --color-border: #165A7E;
+  --color-border-hover: #B0EDF9;
+  --color-foreground: #B0EDF9;
+  --color-navy: #04344C;
 
   --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Deklarasi Font Gastilo */
+@font-face {
+  font-family: 'Gastilo';
+  src: local('Gastilo'), local('Gastilo Regular'), local('Gastilo Bold'), local('Gastilo-Bold');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
 }
 
 :root {
   color-scheme: dark;
   font-family: 'Inter', sans-serif;
-  background-color: #0A0A2E;
-  color: #F4F3FF;
+  background-color: #04344C;
+  color: #B0EDF9;
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: #0A0A2E;
-  color: #F4F3FF;
+  background-color: #04344C;
+  color: #B0EDF9;
   overflow-x: hidden;
   margin: 0;
   padding: 0;
@@ -51,9 +63,9 @@ body {
 }
 
 h1, h2, h3, h4, .font-heading {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Gastilo', 'Space Grotesk', sans-serif;
   font-weight: 700;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
   text-wrap: balance;
 }
 
@@ -92,10 +104,10 @@ p {
 
 /* Standar Garis 1px */
 .border-subtle {
-  border: 1px solid #262660;
+  border: 1px solid #165A7E;
 }
 
-/* Standar Fokus Aksesibilitas Oranye 2px di atas Navy */
+/* Standar Fokus Aksesibilitas Cyan #B0EDF9 di atas #04344C */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -103,7 +115,7 @@ textarea:focus-visible,
 select:focus-visible,
 [role="button"]:focus-visible,
 [tabindex="0"]:focus-visible {
-  outline: 2px solid #F97316 !important;
+  outline: 2px solid #B0EDF9 !important;
   outline-offset: 2px !important;
 }
 
@@ -129,22 +141,22 @@ select:focus-visible,
   }
 }
 
-/* Custom subtle scrollbar */
+/* Custom subtle scrollbar #04344C & #B0EDF9 */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0A0A2E;
+  background: #04344C;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #262660;
+  background: #165A7E;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #F97316;
+  background: #B0EDF9;
 }
 
 /* Infinite Running Marquee Animation */
