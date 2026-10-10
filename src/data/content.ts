@@ -43,6 +43,7 @@ export interface ProyekItem {
   layanan: string[];
   gambar: string[];
   url?: string;
+  mapsUrl?: string;
 }
 
 export interface LangkahProses {
@@ -168,14 +169,15 @@ export const DAFTAR_PROYEK: ProyekItem[] = [
     kategori: 'Website',
     tahun: '2026',
     url: 'https://lombokshorairinjani.com/',
+    mapsUrl: 'https://www.google.com/maps/place/LPK+LOMBOK+SHORAI+RINJANI/@-8.6593184,116.1427448,17z/data=!3m1!4b1!4m6!3m5!1s0x2dcdb982a24663d9:0x738be32603ea6752!8m2!3d-8.6593184!4d116.1427448!16s%2Fg%2F11mdmmty2s',
     ringkasan: 'Platform Learning Management System (LMS) & portal kursus bahasa Jepang terpadu di Lombok: persiapan JLPT N5–N3, program Tokutei Ginou (SSW), modul materi interaktif, dan bimbingan karier resmi ke Jepang.',
     tantangan: 'Kebutuhan platform LMS edukasi dan pelatihan kerja interaktif yang mampu menyajikan kurikulum bahasa Jepang, modul persiapan JLPT & SSW, sistem pendaftaran online, dan pendataan siswa secara terintegrasi.',
     solusi: 'Pengembangan platform LMS modern dengan arsitektur web cepat, antarmuka bilingual (Indonesia & Jepang), modul materi terstruktur, sistem pendaftaran online, dan integrasi konsultasi karir Jepang langsung.',
     hasil: 'Digitalisasi 100% materi pelatihan kerja, peningkatan efisiensi pendaftaran siswa baru hingga 90%, dan akses materi belajar fleksibel 24/7 bagi calon tenaga kerja ke Jepang.',
     layanan: ['Platform LMS & Web App', 'Desain UI/UX Edukasi', 'Sistem Manajemen Siswa'],
     gambar: [
+      'https://lh3.googleusercontent.com/gps-cs-s/ANWiy9TuznnmE1lfiFjXLKLVnJaE92q5ER1SqXw9f34pqfM2MolSSYoZsBdFxGxTim8bQj4Q-vYvz84tEmNBZ0Zv5NmnSdqV66cabAaaB8tUkAeRBsEqxxhavO1jwi8DM8xYiOjqKy4n-zRM3R_w=w1200-h800-k-no',
       'https://lombokshorairinjani.com/assets/brand/logo.png',
-      'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80',
     ],
   },
   {

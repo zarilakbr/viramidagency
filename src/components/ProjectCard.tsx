@@ -75,7 +75,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           <img
             src={proyek.gambar[0]}
             alt={proyek.judul}
-            className="w-full h-full object-contain p-6 bg-[#04344C] transition-transform duration-500 group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
           />
         ) : (

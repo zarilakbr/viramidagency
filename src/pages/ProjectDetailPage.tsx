@@ -123,25 +123,47 @@ export const ProjectDetailPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Live Project URL Action if present */}
-          {proyek.url && (
+          {/* Live Project URL & Maps Location Actions */}
+          {(proyek.url || proyek.mapsUrl) && (
             <div className="mt-6 flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl bg-[#074563] border border-[#165A7E]">
               <div className="flex items-center gap-2.5">
                 <Icon name="globe" size={16} className="text-[#B0EDF9]" />
                 <div>
-                  <span className="block text-xs font-mono font-semibold text-[#B0EDF9]">Platform Aktif di Produksi</span>
-                  <span className="text-xs font-mono text-[#78B9CA]">{proyek.url}</span>
+                  <span className="block text-xs font-mono font-semibold text-[#B0EDF9]">
+                    {proyek.url ? 'Platform Aktif di Produksi' : 'Lokasi Terverifikasi'}
+                  </span>
+                  <span className="text-xs font-mono text-[#78B9CA]">
+                    {proyek.url || 'Google Maps Profile'}
+                  </span>
                 </div>
               </div>
-              <a
-                href={proyek.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 h-10 px-5 rounded-lg bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-xs sm:text-sm transition-all shadow-sm active:scale-95"
-              >
-                <span>Kunjungi Website Live</span>
-                <Icon name="arrow-up-right" size={14} />
-              </a>
+
+              <div className="flex flex-wrap items-center gap-2.5">
+                {proyek.mapsUrl && (
+                  <a
+                    href={proyek.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 h-10 px-4 rounded-lg border border-[#165A7E] bg-[#04344C] hover:border-[#B0EDF9] text-[#B0EDF9] font-mono text-xs transition-colors shadow-sm"
+                  >
+                    <Icon name="map-pin" size={14} className="text-[#B0EDF9]" />
+                    <span>Google Maps</span>
+                    <Icon name="arrow-up-right" size={12} />
+                  </a>
+                )}
+
+                {proyek.url && (
+                  <a
+                    href={proyek.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 h-10 px-5 rounded-lg bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-xs sm:text-sm transition-all shadow-sm active:scale-95"
+                  >
+                    <span>Kunjungi Website Live</span>
+                    <Icon name="arrow-up-right" size={14} />
+                  </a>
+                )}
+              </div>
             </div>
           )}
         </header>
@@ -234,12 +256,12 @@ export const ProjectDetailPage: React.FC = () => {
               {proyek.gambar.map((imgUrl, i) => (
                 <div
                   key={i}
-                  className="w-full bg-[#074563] border border-[#165A7E] rounded-xl overflow-hidden aspect-[16/10] flex items-center justify-center p-4"
+                  className="w-full bg-[#074563] border border-[#165A7E] rounded-xl overflow-hidden aspect-[16/10] flex items-center justify-center"
                 >
                   <img
                     src={imgUrl}
                     alt={`${proyek.judul} - Dokumentasi ${i + 1}`}
-                    className="max-w-full max-h-full object-contain"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
                 </div>
