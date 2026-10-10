@@ -206,7 +206,7 @@ export const BookingHistoryPage: React.FC = () => {
                             type="button"
                             disabled={cancellingId === item.id}
                             onClick={() => handleCancel(item.id, item.kodeBooking)}
-                            className="py-1.5 px-3 rounded-lg bg-surface hover:bg-red-500/10 border border-border hover:border-red-400 text-muted hover:text-red-400 font-mono text-xs transition-colors inline-flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+                            className="py-1.5 px-3 rounded-lg bg-surface hover:bg-orange/10 border border-border hover:border-orange/60 text-muted hover:text-orange font-mono text-xs transition-colors inline-flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
                           >
                             <Icon name="trash" size={13} />
                             <span>Batalkan</span>

@@ -56,6 +56,11 @@ export const Calendar: React.FC<CalendarProps> = ({
 
   const selectedDateObj = selectedDate ? parseISO(selectedDate) : null;
 
+  // Tanggal pertama yang tersedia di bulan aktif untuk fokus awal keyboard jika belum ada tanggal terpilih
+  const firstAvailableDay = allCalendarDays.find(
+    (day) => isSameMonth(day, currentMonth) && isDateAvailable(day, BOOKING_CONFIG, minDate)
+  );
+
   // Keyboard navigation handler untuk aksesibilitas penuh
   const handleKeyDown = (e: React.KeyboardEvent, day: Date, isAvailable: boolean) => {
     if (!isAvailable) return;
@@ -151,12 +156,15 @@ export const Calendar: React.FC<CalendarProps> = ({
           const isTodayDate = isToday(day);
           const isAvailable = isCurrentMonth && isDateAvailable(day, BOOKING_CONFIG, minDate);
 
+          const isFocusable =
+            isSelected || (!selectedDateObj && firstAvailableDay && isSameDay(day, firstAvailableDay));
+
           return (
             <button
               key={dateStr}
               type="button"
               disabled={!isAvailable}
-              tabIndex={isSelected ? 0 : isAvailable ? -1 : -1}
+              tabIndex={isFocusable ? 0 : -1}
               onClick={() => isAvailable && onSelectDate(dateStr)}
               onKeyDown={(e) => handleKeyDown(e, day, isAvailable)}
               aria-label={`${format(day, 'EEEE, d MMMM yyyy')}${
