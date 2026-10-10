@@ -128,8 +128,8 @@ export const KONTAK_AGENCY: KontakInfo = {
   whatsappNomor: '6287864033058',
   whatsappDisplay: '+62 878-6403-3058',
   email: 'kerjadigitallll@gmail.com',
-  instagram: '@viramisagency',
-  instagramUrl: 'https://instagram.com/viramisagency',
+  instagram: '@viramidagency',
+  instagramUrl: 'https://www.instagram.com/viramidagency/',
   lokasi: 'Nusa Tenggara Barat - Indonesia',
 };
 
