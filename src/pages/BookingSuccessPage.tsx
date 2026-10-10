@@ -12,6 +12,7 @@ import { useSearchParams, useLocation, Link } from 'react-router-dom';
 import { bookingService } from '../features/booking/services/bookingService';
 import { getWhatsAppBookingUrl, getEmailBookingUrl } from '../features/booking/lib/whatsappMessage';
 import { downloadIcsFile, getGoogleCalendarUrl } from '../features/booking/lib/ics';
+import { copyToClipboard } from '../features/booking/lib/clipboard';
 import { BOOKING_CONFIG } from '../data/booking.config';
 import { Container } from '../components/ui/Container';
 import { Icon } from '../components/ui/Icon';
@@ -27,6 +28,7 @@ export const BookingSuccessPage: React.FC = () => {
   );
   const [isLoading, setIsLoading] = useState<boolean>(!booking && Boolean(codeParam));
   const [copiedLink, setCopiedLink] = useState<boolean>(false);
+  const [copiedCode, setCopiedCode] = useState<boolean>(false);
 
   useEffect(() => {
     if (!booking && codeParam) {
@@ -86,11 +88,23 @@ export const BookingSuccessPage: React.FC = () => {
   const emailUrl = getEmailBookingUrl({ ...booking, meetingUrl: meetingLink });
   const googleCalendarUrl = getGoogleCalendarUrl({ ...booking, meetingUrl: meetingLink });
 
-  const handleCopyLink = () => {
+  const handleCopyLink = async () => {
     if (meetingLink) {
-      navigator.clipboard.writeText(meetingLink);
-      setCopiedLink(true);
-      setTimeout(() => setCopiedLink(false), 2500);
+      const ok = await copyToClipboard(meetingLink);
+      if (ok) {
+        setCopiedLink(true);
+        setTimeout(() => setCopiedLink(false), 2500);
+      }
+    }
+  };
+
+  const handleCopyCode = async () => {
+    if (booking.kodeBooking) {
+      const ok = await copyToClipboard(booking.kodeBooking);
+      if (ok) {
+        setCopiedCode(true);
+        setTimeout(() => setCopiedCode(false), 2500);
+      }
     }
   };
 
@@ -127,7 +141,7 @@ export const BookingSuccessPage: React.FC = () => {
               </span>
             </div>
             <p className="text-xs text-[#78B9CA] mb-3 leading-relaxed">
-              Tautan video call telah dibuat otomatis untuk sesimu. Silakan bergabung melalui link berikut pada jam yang ditentukan:
+              Tautan video call telah dibuat otomatis sesuai jadwal konsultasi Anda. Silakan bergabung melalui link berikut:
             </p>
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 p-2 rounded-xl bg-[#04344C] border border-[#165A7E]">
@@ -141,7 +155,7 @@ export const BookingSuccessPage: React.FC = () => {
                   className="flex-1 sm:flex-initial h-9 px-3.5 rounded-lg border border-[#165A7E] bg-[#074563] hover:border-[#B0EDF9] text-[#B0EDF9] text-xs font-mono transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
                 >
                   <Icon name={copiedLink ? 'check' : 'link'} size={13} />
-                  <span>{copiedLink ? 'Tersalin!' : 'Salin Link'}</span>
+                  <span>{copiedLink ? 'Link Tersalin!' : 'Salin Link Meet'}</span>
                 </button>
                 <a
                   href={meetingLink}
@@ -159,17 +173,24 @@ export const BookingSuccessPage: React.FC = () => {
 
         {/* Kartu Kode Booking & Ringkasan */}
         <div className="bg-[#074563] rounded-2xl border border-[#165A7E] p-5 sm:p-7 md:p-8 flex flex-col gap-6 shadow-sm mb-6">
-          {/* Box Kode Booking */}
+          {/* Box Kode Booking dengan Tombol Salin */}
           <div className="p-4 rounded-xl bg-[#04344C] border border-[#165A7E] flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
             <div>
               <span className="text-xs font-mono text-[#78B9CA] block">Kode Booking Anda:</span>
-              <span className="font-mono font-bold text-lg sm:text-xl text-[#B0EDF9] tracking-wider">
+              <span className="font-mono font-bold text-lg sm:text-xl text-[#B0EDF9] tracking-wider select-all">
                 {booking.kodeBooking}
               </span>
             </div>
-            <span className="text-xs font-mono text-[#78B9CA] bg-[#074563] px-3 py-1.5 rounded-lg border border-[#165A7E]">
-              Simpan kode ini untuk referensi
-            </span>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={handleCopyCode}
+                className="h-9 px-3.5 rounded-lg border border-[#165A7E] bg-[#074563] hover:border-[#B0EDF9] text-[#B0EDF9] text-xs font-mono transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+              >
+                <Icon name={copiedCode ? 'check' : 'copy'} size={13} />
+                <span>{copiedCode ? 'Kode Tersalin!' : 'Salin Kode Booking'}</span>
+              </button>
+            </div>
           </div>
 
           {/* Rincian Jadwal */}

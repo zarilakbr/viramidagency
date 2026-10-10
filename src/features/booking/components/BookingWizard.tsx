@@ -2,7 +2,7 @@
  * @file src/features/booking/components/BookingWizard.tsx
  * Container wizard konsultasi modern 2 langkah:
  * Langkah 1: Pilih Jenis Sesi, Format, Tanggal, dan Jam Waktu Sekaligus
- * Langkah 2: Data Kontak, Kebutuhan Proyek Cepat, dan Konfirmasi Langsung
+ * Langkah 2: Data Kontak, Kebutuhan Proyek Cepat, dan Tombol Kirim Jadwal Konsultasi Langsung ke WhatsApp & Email
  * Eksklusif 2 Warna: HEX #04344C & HEX #B0EDF9.
  * Font Judul: Gastilo.
  */
@@ -11,6 +11,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BOOKING_CONFIG } from '../../../data/booking.config';
 import { bookingService } from '../services/bookingService';
+import { getWhatsAppBookingUrl } from '../lib/whatsappMessage';
 import { StepIndicator } from './StepIndicator';
 import { ScheduleStep } from './ScheduleStep';
 import { QuickContactStep, type ContactFormErrors } from './QuickContactStep';
@@ -95,6 +96,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
     return Object.keys(errors).length === 0;
   };
 
+  // Navigasi Langkah 1 ke Langkah 2 (Hanya berpindah langkah, TIDAK mengirim booking dulu)
   const handleNextToContact = () => {
     setStepNotice(null);
 
@@ -115,7 +117,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
     setCurrentStep(1);
   };
 
-  // Handler Submit Akhir
+  // Handler Submit Akhir di Langkah 2
   const handleSubmitBooking = async () => {
     const isValid = validateContactForm();
     if (!isValid) {
@@ -127,6 +129,16 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
     setSubmitError(null);
     try {
       const created = await bookingService.createBooking(formData);
+      
+      // Buka otomatis ke WhatsApp dengan pesan terformat lengkap
+      const whatsappUrl = getWhatsAppBookingUrl(created);
+      try {
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      } catch (e) {
+        console.warn('Popup blocker prevented direct WhatsApp opening:', e);
+      }
+
+      // Navigasi ke halaman sukses
       navigate(`/booking/sukses?code=${created.kodeBooking}`, {
         state: { booking: created },
       });

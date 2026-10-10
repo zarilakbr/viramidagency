@@ -36,6 +36,7 @@ import {
   HelpCircle,
   ShieldCheck,
   Briefcase,
+  Copy,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -62,6 +63,7 @@ export const ICON_MAP = {
   'check-circle': CheckCircle2,
   'alert-circle': AlertCircle,
   trash: Trash2,
+  copy: Copy,
 
   // Kontak & Media Sosial
   mail: Mail,

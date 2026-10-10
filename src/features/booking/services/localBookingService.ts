@@ -60,11 +60,13 @@ export class LocalBookingService implements BookingService {
     const namaJenis = jenisConfig ? jenisConfig.nama : 'Pertemuan Konsultasi';
     const kodeBooking = generateBookingCode(new Date());
 
-    // Generate otomatis link Google Meet unik untuk format online
-    const meetCode = `vrm-${Math.random().toString(36).substring(2, 5)}-${Math.random().toString(36).substring(2, 6)}`;
+    // Generate otomatis link Google Meet unik autentik untuk format online
+    const meetLetters = 'abcdefghijklmnopqrstuvwxyz';
+    const randPart = (len: number) =>
+      Array.from({ length: len }, () => meetLetters[Math.floor(Math.random() * meetLetters.length)]).join('');
     const meetingUrl =
       payload.format === 'online'
-        ? payload.meetingUrl || `https://meet.google.com/${meetCode}`
+        ? payload.meetingUrl || `https://meet.google.com/vrm-${randPart(4)}-${randPart(3)}`
         : undefined;
 
     const newRecord: BookingRecord = {

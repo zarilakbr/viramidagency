@@ -1,14 +1,14 @@
 /**
  * @file src/features/booking/lib/whatsappMessage.ts
  * Generator pesan WhatsApp dan email terformat otomatis untuk konfirmasi jadwal pemesanan
- * beserta tautan Google Meet / Zoom otomatis.
+ * beserta tautan Google Meet otomatis.
  */
 
 import { BOOKING_CONFIG } from '../../../data/booking.config';
 import type { BookingRecord } from '../types';
 
 /**
- * Membuat teks pesan WhatsApp yang terstruktur dan rapi untuk dikirimkan ke nomor ViramidAgency.
+ * Membuat teks pesan WhatsApp yang terstruktur, rapi, dan profesional untuk dikirimkan ke ViramidAgency.
  */
 export function generateWhatsAppMessage(booking: BookingRecord): string {
   const formatLabel =
@@ -16,15 +16,15 @@ export function generateWhatsAppMessage(booking: BookingRecord): string {
       ? 'Online (Google Meet)'
       : `Tatap Muka di Studio (${BOOKING_CONFIG.kontak.lokasiStudio})`;
 
-  let text = `*KONFIRMASI JADWAL KONSULTASI - VIRAMIDAGENCY*\n`;
+  let text = `*KONFIRMASI JADWAL KONSULTASI RESMI - VIRAMIDAGENCY*\n`;
   text += `────────────────────────────\n`;
   text += `*Kode Booking:* ${booking.kodeBooking}\n`;
-  text += `*Nama Klien:* ${booking.nama}\n`;
-  text += `*Email:* ${booking.email || '-'}\n`;
-  text += `*WhatsApp:* ${booking.whatsapp}\n\n`;
-  text += `*DETAIL SESI PERTEMUAN:*\n`;
+  text += `*Nama Klien / Bisnis:* ${booking.nama}\n`;
+  text += `*Nomor WhatsApp:* ${booking.whatsapp}\n`;
+  text += `*Alamat Email:* ${booking.email || '-'}\n\n`;
+  text += `*DETAIL SESI KONSULTASI:*\n`;
   text += `• *Jenis Sesi:* ${booking.jenisPertemuanNama} (${booking.durasiMenit} Menit)\n`;
-  text += `• *Format:* ${formatLabel}\n`;
+  text += `• *Format Pertemuan:* ${formatLabel}\n`;
   text += `• *Tanggal:* ${booking.tanggal}\n`;
   text += `• *Waktu Sesi:* ${booking.jamMulai} - ${booking.jamSelesai} WITA (UTC+8)\n`;
 
@@ -32,7 +32,7 @@ export function generateWhatsAppMessage(booking: BookingRecord): string {
     text += `• *Link Google Meet:* ${booking.meetingUrl}\n`;
   }
 
-  text += `\n*TOPIK / KEBUTUHAN PROYEK:*\n`;
+  text += `\n*KEBUTUHAN & TOPIK PROYEK:*\n`;
   text += `"${booking.topik}"\n`;
 
   if (booking.linkReferensi && booking.linkReferensi.trim().length > 0) {
@@ -40,7 +40,7 @@ export function generateWhatsAppMessage(booking: BookingRecord): string {
   }
 
   text += `────────────────────────────\n`;
-  text += `_Halo Tim ViramidAgency, saya telah mengajukan jadwal pertemuan di atas melalui website resmi. Mohon konfirmasinya. Terima kasih!_`;
+  text += `_Halo Tim ViramidAgency, saya telah mengajukan jadwal konsultasi melalui website resmi. Mohon konfirmasi ketersediaan jadwal ini. Terima kasih!_`;
 
   return text;
 }
@@ -55,12 +55,13 @@ export function getWhatsAppBookingUrl(booking: BookingRecord): string {
 }
 
 /**
- * Menghasilkan mailto URL untuk konfirmasi otomatis via email ke agensi
+ * Menghasilkan mailto URL untuk konfirmasi resmi via email ke agensi (kerjadigitallll@gmail.com)
  */
 export function getEmailBookingUrl(booking: BookingRecord): string {
-  const subject = `[JADWAL KONSULTASI] ${booking.jenisPertemuanNama} - ${booking.nama} (${booking.kodeBooking})`;
+  const subject = `[JADWAL KONSULTASI RESMI] ${booking.jenisPertemuanNama} - ${booking.nama} (${booking.kodeBooking})`;
   const body = generateWhatsAppMessage(booking);
   return `mailto:${BOOKING_CONFIG.kontak.email}?subject=${encodeURIComponent(
     subject
   )}&body=${encodeURIComponent(body)}`;
 }
+

@@ -242,7 +242,7 @@ export const QuickContactStep: React.FC<QuickContactStepProps> = ({
               </div>
             )}
 
-            {/* Tombol Utama Konfirmasi */}
+            {/* Tombol Utama Kirim Jadwal */}
             <button
               type="button"
               disabled={isSubmitting}
@@ -252,18 +252,18 @@ export const QuickContactStep: React.FC<QuickContactStepProps> = ({
               {isSubmitting ? (
                 <>
                   <span className="w-4 h-4 border-2 border-[#04344C] border-t-transparent rounded-full animate-spin" />
-                  <span>Mengonfirmasi Jadwal...</span>
+                  <span>Memproses Jadwal...</span>
                 </>
               ) : (
                 <>
-                  <span>Konfirmasi &amp; Jadwalkan Sesi</span>
+                  <span>Kirim Jadwal Konsultasi Anda</span>
                   <Icon name="arrow-right" size={18} />
                 </>
               )}
             </button>
 
             <p className="text-[11px] font-mono text-center text-[#78B9CA]">
-              Data terlindungi &amp; tersimpan aman di perangkatmu.
+              Jadwal akan diteruskan otomatis ke WhatsApp &amp; Email agensi.
             </p>
           </div>
         </div>

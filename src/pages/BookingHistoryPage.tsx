@@ -9,8 +9,9 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { bookingService } from '../features/booking/services/bookingService';
 import { BOOKING_CONFIG } from '../data/booking.config';
-import { getWhatsAppBookingUrl } from '../features/booking/lib/whatsappMessage';
+import { getWhatsAppBookingUrl, getEmailBookingUrl } from '../features/booking/lib/whatsappMessage';
 import { downloadIcsFile } from '../features/booking/lib/ics';
+import { copyToClipboard } from '../features/booking/lib/clipboard';
 import { Container } from '../components/ui/Container';
 import { Icon } from '../components/ui/Icon';
 import type { BookingRecord } from '../features/booking/types';
@@ -19,6 +20,8 @@ export const BookingHistoryPage: React.FC = () => {
   const [history, setHistory] = useState<BookingRecord[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [cancellingId, setCancellingId] = useState<string | null>(null);
+  const [copiedCodeId, setCopiedCodeId] = useState<string | null>(null);
+  const [copiedMeetId, setCopiedMeetId] = useState<string | null>(null);
 
   const loadHistory = async () => {
     setIsLoading(true);
@@ -133,9 +136,23 @@ export const BookingHistoryPage: React.FC = () => {
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#165A7E]/60">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="font-mono font-bold text-sm text-[#B0EDF9]">
+                      <span className="font-mono font-bold text-sm text-[#B0EDF9] select-all">
                         {item.kodeBooking}
                       </span>
+                      <button
+                        type="button"
+                        onClick={async () => {
+                          const ok = await copyToClipboard(item.kodeBooking);
+                          if (ok) {
+                            setCopiedCodeId(item.id);
+                            setTimeout(() => setCopiedCodeId(null), 2500);
+                          }
+                        }}
+                        className="px-2 py-0.5 rounded text-[11px] font-mono border border-[#165A7E] bg-[#04344C] hover:border-[#B0EDF9] text-[#B0EDF9] transition-colors inline-flex items-center gap-1 cursor-pointer"
+                      >
+                        <Icon name={copiedCodeId === item.id ? 'check' : 'copy'} size={11} />
+                        <span>{copiedCodeId === item.id ? 'Tersalin!' : 'Salin'}</span>
+                      </button>
                       <span
                         className={`px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold uppercase ${
                           isCancelled
@@ -183,18 +200,34 @@ export const BookingHistoryPage: React.FC = () => {
                     <div className="my-2 p-2.5 rounded-xl bg-[#04344C] border border-[#165A7E] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs font-mono">
                       <div className="flex items-center gap-2 truncate">
                         <Icon name="video" size={14} className="text-[#B0EDF9] shrink-0" />
-                        <span className="text-[#78B9CA]">Link Meet:</span>
+                        <span className="text-[#78B9CA]">Meet:</span>
                         <span className="text-[#B0EDF9] truncate select-all">{meetLink}</span>
                       </div>
-                      <a
-                        href={meetLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 rounded bg-[#B0EDF9] text-[#04344C] font-heading font-bold text-[11px] shrink-0 inline-flex items-center gap-1"
-                      >
-                        <span>Buka Meet</span>
-                        <Icon name="arrow-up-right" size={11} />
-                      </a>
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        <button
+                          type="button"
+                          onClick={async () => {
+                            const ok = await copyToClipboard(meetLink);
+                            if (ok) {
+                              setCopiedMeetId(item.id);
+                              setTimeout(() => setCopiedMeetId(null), 2500);
+                            }
+                          }}
+                          className="px-2.5 py-1 rounded border border-[#165A7E] bg-[#074563] hover:border-[#B0EDF9] text-[#B0EDF9] text-[11px] font-mono transition-colors inline-flex items-center gap-1 cursor-pointer"
+                        >
+                          <Icon name={copiedMeetId === item.id ? 'check' : 'link'} size={11} />
+                          <span>{copiedMeetId === item.id ? 'Tersalin!' : 'Salin Link'}</span>
+                        </button>
+                        <a
+                          href={meetLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-3 py-1 rounded bg-[#B0EDF9] text-[#04344C] font-heading font-bold text-[11px] shrink-0 inline-flex items-center gap-1"
+                        >
+                          <span>Buka Meet</span>
+                          <Icon name="arrow-up-right" size={11} />
+                        </a>
+                      </div>
                     </div>
                   )}
 
@@ -214,6 +247,14 @@ export const BookingHistoryPage: React.FC = () => {
                           >
                             <Icon name="message-square" size={13} />
                             <span>WhatsApp</span>
+                          </a>
+
+                          <a
+                            href={getEmailBookingUrl(item)}
+                            className="flex-1 sm:flex-initial py-2 px-3.5 rounded-lg bg-[#04344C] hover:bg-[#0B567C] border border-[#165A7E] text-[#B0EDF9] font-mono text-xs transition-colors inline-flex items-center justify-center gap-1.5"
+                          >
+                            <Icon name="mail" size={13} />
+                            <span>Email</span>
                           </a>
 
                           <button
