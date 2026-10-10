@@ -62,6 +62,24 @@ export interface AnggotaTim {
   foto?: string;
 }
 
+export interface PaketLayananItem {
+  id: string;
+  nama: string;
+  badge?: string;
+  deskripsi: string;
+  harga: string;
+  estimasiWaktu: string;
+  fitur: string[];
+  isPopular?: boolean;
+  bookingJenisId: string;
+}
+
+export interface FaqItem {
+  id: string;
+  pertanyaan: string;
+  jawaban: string;
+}
+
 // -----------------------------------------------------------------------------
 // DATA UTAMA VIRAMIDAGENCY
 // -----------------------------------------------------------------------------
@@ -245,5 +263,89 @@ export const DAFTAR_TIM: AnggotaTim[] = [
   {
     nama: 'Reza Firmansyah',
     peran: 'Head of Engineering & Tech Lead',
+  },
+];
+
+export const PAKET_LAYANAN: PaketLayananItem[] = [
+  {
+    id: 'starter-launchpad',
+    nama: 'Landing Page & Brand Identity',
+    deskripsi: 'Solusi tepat untuk bisnis atau peluncuran produk baru yang membutuhkan landing page konversi tinggi dan identitas visual profesional.',
+    harga: 'Mulai dari [Rp 7.500.000]',
+    estimasiWaktu: '10 - 14 Hari Kerja',
+    bookingJenisId: 'konsultasi-gratis',
+    isPopular: false,
+    fitur: [
+      '1 Halaman Landing Page Responsif & Performa Cepat',
+      'Panduan Identitas Visual Dasar & Tipografi',
+      'Optimasi SEO On-Page Dasar & Metadata',
+      'Integrasi Formulir Lead & WhatsApp Direct',
+      'Revisi Desain Hingga [2] Putaran',
+      'Garansi Teknis & Pemeliharaan [14] Hari',
+    ],
+  },
+  {
+    id: 'business-core',
+    nama: 'Website Perusahaan & Custom UI/UX',
+    badge: 'Paling Dipilih',
+    deskripsi: 'Arsitektur web multi-halaman berkinerja tinggi yang dirancang khusus dari nol untuk memperkuat reputasi merek dan meningkatkan konversi.',
+    harga: 'Mulai dari [Rp 15.000.000]',
+    estimasiWaktu: '3 - 4 Minggu Kerja',
+    bookingJenisId: 'diskusi-proyek',
+    isPopular: true,
+    fitur: [
+      'Hingga [5 - 7] Halaman Desain Kustom (Tanpa Template)',
+      'Sistem Desain UI/UX Eksklusif & Interaktif di Figma',
+      'Kode Bersih (React / Next.js / TypeScript)',
+      'Integrasi CMS Mudah Kelola Konten',
+      'Struktur SEO Lengkap & Skor Kecepatan 95+',
+      'Revisi Desain Hingga [3] Putaran',
+      'Garansi Teknis & Pendampingan [30] Hari',
+    ],
+  },
+  {
+    id: 'enterprise-custom',
+    nama: 'Aplikasi Web & Ekosistem Digital',
+    deskripsi: 'Pengembangan platform web kompleks, portal pengguna, atau arsitektur digital kustom dengan integrasi backend dan database terstruktur.',
+    harga: 'Mulai dari [Rp 28.000.000]',
+    estimasiWaktu: '6 - 8 Minggu Kerja',
+    bookingJenisId: 'diskusi-proyek',
+    isPopular: false,
+    fitur: [
+      'Arsitektur Web Khusus & Database Terstruktur',
+      'Dashboard Admin & Portal Pengguna Kustom',
+      'Integrasi API Pihak Ketiga & Payment Gateway',
+      'Audit Keamanan & Optimasi Beban Server',
+      'Dokumentasi Teknis & Serah Terima Source Code Penuh',
+      'Dukungan Teknis Prioritas [60] Hari',
+    ],
+  },
+];
+
+export const DAFTAR_FAQ: FaqItem[] = [
+  {
+    id: 'faq-1',
+    pertanyaan: 'Berapa lama estimasi proses pengerjaan sebuah website di ViramidAgency?',
+    jawaban: 'Waktu pengerjaan berkisar antara [10 - 14 hari kerja] untuk landing page terfokus hingga [3 - 6 minggu] untuk website perusahaan atau platform kustom. Jadwal pasti dan tahapan milestone kami susun secara transparan di awal proyek berdasarkan lingkup kerja yang disepakati.',
+  },
+  {
+    id: 'faq-2',
+    pertanyaan: 'Apakah desain website dibuat dari nol atau menggunakan template jadi?',
+    jawaban: 'Seluruh proyek di ViramidAgency dirancang 100% dari nol (custom design) sesuai karakter brand dan target pelanggan bisnismu. Kami tidak menggunakan template massal agar website bisnismu memiliki diferensiasi unik, kode yang bersih, dan performa akses super cepat.',
+  },
+  {
+    id: 'faq-3',
+    pertanyaan: 'Bagaimana skema pembayaran dan tahapan kerjasamanya?',
+    jawaban: 'Pembayaran umumnya dibagi menjadi [3 tahapan transparan]: Uang Muka [50%] di awal saat memulai konsep & riset, [30%] setelah tahap desain disetujui dan masuk penulisan kode, serta pelunasan [20%] setelah seluruh uji coba selesai dan siap diluncurkan secara resmi.',
+  },
+  {
+    id: 'faq-4',
+    pertanyaan: 'Apakah saya mendapatkan hak kepemilikan penuh atas desain dan kode sumber?',
+    jawaban: 'Ya. Setelah proyek selesai dan seluruh administrasi rampung, seluruh hak cipta berkas desain di Figma, aset visual, serta repositori kode sumber (source code) diserahkan 100% menjadi milik bisnismu tanpa biaya tersembunyi.',
+  },
+  {
+    id: 'faq-5',
+    pertanyaan: 'Apakah ViramidAgency menyediakan layanan pemeliharaan (maintenance) setelah peluncuran?',
+    jawaban: 'Setiap proyek kami lengkapi dengan garansi teknis gratis [14 hingga 60 hari] setelah peluncuran resmi. Setelah periode tersebut, kami juga menyediakan opsi paket pemeliharaan berkala untuk pembaruan keamanan, backup, dan penambahan fitur sesuai perkembangan bisnismu.',
   },
 ];

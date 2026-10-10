@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { Logo } from './Logo';
 import { Button } from './Button';
 import { Icon } from './ui/Icon';
@@ -15,6 +15,8 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'Layanan', href: '#layanan', id: 'layanan' },
   { label: 'Karya', href: '#karya', id: 'karya' },
   { label: 'Proses', href: '#proses', id: 'proses' },
+  { label: 'Paket', href: '#paket', id: 'paket' },
+  { label: 'FAQ', href: '#faq', id: 'faq' },
   { label: 'Tentang', href: '#tentang', id: 'tentang' },
   { label: 'Kontak', href: '#kontak', id: 'kontak' },
 ];
@@ -25,7 +27,7 @@ const NAV_ITEMS: NavItem[] = [
  * - Tinggi 64px (h-16)
  * - Menempel di atas (fixed z-50)
  * - Border bawah & latar muncul setelah scroll (transisi 200ms)
- * - Ikon melalui Icon.tsx
+ * - CTA Utama: "Jadwalkan Konsultasi" menuju /booking
  */
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -134,7 +136,7 @@ export const Navbar: React.FC = () => {
 
         {/* Nav Links (Desktop) */}
         <nav
-          className="hidden md:flex items-center gap-8 text-sm font-medium text-muted"
+          className="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-medium text-muted"
           aria-label="Navigasi Utama"
         >
           {NAV_ITEMS.map((item) => {
@@ -161,27 +163,25 @@ export const Navbar: React.FC = () => {
         </nav>
 
         {/* Action Zone (Desktop) */}
-        <div className="hidden md:flex items-center">
-          <Button
-            as="a"
-            href="#kontak"
-            onClick={(e) => handleNavClick(e, '#kontak')}
-            variant="primary"
-            className="!h-9 !px-4 text-xs font-semibold"
+        <div className="hidden md:flex items-center gap-3">
+          <Link
+            to="/booking"
+            className="h-9 px-4 rounded-lg bg-orange hover:bg-orange-hover text-navy text-xs font-heading font-bold transition-colors flex items-center gap-2 shadow-sm"
           >
-            Hubungi Kami
-          </Button>
+            <Icon name="calendar" size={14} />
+            <span>Jadwalkan Konsultasi</span>
+          </Link>
         </div>
 
         {/* Mobile Action & Menu Trigger */}
-        <div className="flex items-center gap-3 md:hidden">
-          <a
-            href="#kontak"
-            onClick={(e) => handleNavClick(e, '#kontak')}
-            className="text-xs font-semibold px-3 py-1.5 rounded-md bg-orange text-background hover:bg-orange-hover transition-colors"
+        <div className="flex items-center gap-2.5 md:hidden">
+          <Link
+            to="/booking"
+            className="text-xs font-bold px-3 py-1.5 rounded-lg bg-orange text-navy hover:bg-orange-hover transition-colors flex items-center gap-1.5"
           >
-            Hubungi
-          </a>
+            <Icon name="calendar" size={13} />
+            <span>Konsultasi</span>
+          </Link>
 
           <button
             type="button"
@@ -214,7 +214,7 @@ export const Navbar: React.FC = () => {
                     key={item.id}
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className={`text-xl font-heading font-bold flex items-center justify-between py-3 px-3 rounded-md transition-colors ${
+                    className={`text-lg font-heading font-bold flex items-center justify-between py-2.5 px-3 rounded-md transition-colors ${
                       isActive
                         ? 'text-orange bg-surface border border-border'
                         : 'text-foreground hover:text-orange hover:bg-surface/50'
@@ -231,15 +231,14 @@ export const Navbar: React.FC = () => {
           </div>
 
           <div className="pt-6 border-t border-border mt-auto flex flex-col gap-4">
-            <Button
-              as="a"
-              href="#kontak"
-              onClick={(e) => handleNavClick(e, '#kontak')}
-              variant="primary"
-              className="w-full text-center py-3"
+            <Link
+              to="/booking"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full text-center py-3.5 rounded-xl bg-orange text-navy font-heading font-bold text-sm flex items-center justify-center gap-2"
             >
-              Mulai Diskusi Proyek
-            </Button>
+              <Icon name="calendar" size={16} />
+              <span>Jadwalkan Konsultasi</span>
+            </Link>
             <div className="flex items-center justify-between text-xs font-mono text-muted">
               <span>{KONTAK_AGENCY.lokasi}</span>
               <span>© {new Date().getFullYear()} ViramidAgency</span>

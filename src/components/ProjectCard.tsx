@@ -1,28 +1,28 @@
-import React from 'react';
+/**
+ * @file src/components/ProjectCard.tsx
+ * Kartu Proyek ViramidAgency dengan efek gambar tersingkap (clip-path inset reveal)
+ * dan cursor follower label "Lihat" pada desktop.
+ */
+
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'motion/react';
 import { CategoryBadge } from './CategoryBadge';
 import { Icon } from './ui/Icon';
-import { ProyekItem } from '../data/content';
+import type { ProyekItem } from '../data/content';
 
 interface ProjectCardProps {
   proyek: ProyekItem;
   className?: string;
-  isLarge?: boolean;
 }
 
-/**
- * ProjectCard
- * Standar:
- * - Gambar dengan aspect-ratio tetap 16/10 dan object-cover
- * - Hover: border berubah ke oranye dan panah bergeser 4px (200ms)
- * - Border 1px, tanpa shadow
- * - Ikon panah arrow-up-right dari Icon.tsx
- */
 export const ProjectCard: React.FC<ProjectCardProps> = ({
   proyek,
   className = '',
 }) => {
   const navigate = useNavigate();
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
 
   const getInitials = (text: string) => {
     const clean = text.replace(/[\[\]]/g, '').trim();
@@ -37,6 +37,14 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     navigate(`/karya/${proyek.slug}`);
   };
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
   return (
     <article
       onClick={handleCardClick}
@@ -46,23 +54,31 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           handleCardClick();
         }
       }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onMouseMove={handleMouseMove}
       role="button"
       tabIndex={0}
-      className={`group flex flex-col bg-surface border border-border hover:border-orange rounded-lg overflow-hidden cursor-pointer transition-colors duration-200 h-full ${className}`}
+      className={`group relative flex flex-col bg-surface border border-border hover:border-orange rounded-xl overflow-hidden cursor-pointer transition-colors duration-200 h-full ${className}`}
     >
-      {/* Area Gambar Karya dengan Aspect Ratio Tetap 16/10 */}
-      <div className="w-full relative aspect-[16/10] overflow-hidden bg-background border-b border-border flex items-center justify-center">
+      {/* Area Gambar Karya dengan Aspect Ratio Tetap 16/10 & Clip-Path Reveal 700ms */}
+      <motion.div
+        initial={{ clipPath: 'inset(100% 0% 0% 0%)' }}
+        whileInView={{ clipPath: 'inset(0% 0% 0% 0%)' }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        className="w-full relative aspect-[16/10] overflow-hidden bg-background border-b border-border flex items-center justify-center"
+      >
         {proyek.gambar && proyek.gambar.length > 0 && proyek.gambar[0] ? (
           <img
             src={proyek.gambar[0]}
             alt={proyek.judul}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
           />
         ) : (
           <div className="w-full h-full flex flex-col items-center justify-center p-6 bg-background relative select-none">
-            {/* Visual Monogram Emblematis */}
-            <div className="w-16 h-16 rounded border border-border bg-surface flex items-center justify-center group-hover:border-orange transition-colors duration-200">
+            <div className="w-16 h-16 rounded-xl border border-border bg-surface flex items-center justify-center group-hover:border-orange transition-colors duration-200 shadow-sm">
               <span className="font-heading font-bold text-2xl text-foreground group-hover:text-orange transition-colors">
                 {getInitials(proyek.judul)}
               </span>
@@ -73,11 +89,29 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           </div>
         )}
 
-        {/* Panah Navigasi Detail (Bergeser 4px saat hover) */}
+        {/* Floating "Lihat" Pill Follower (Desktop Only) */}
+        {isHovered && (
+          <motion.div
+            className="hidden md:flex absolute pointer-events-none z-20 px-3 py-1.5 rounded-full bg-orange text-navy font-heading font-bold text-xs shadow-md items-center gap-1 -translate-x-1/2 -translate-y-1/2"
+            style={{
+              left: mousePos.x,
+              top: mousePos.y,
+            }}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            transition={{ duration: 0.15, ease: 'easeOut' }}
+          >
+            <span>Lihat</span>
+            <Icon name="arrow-up-right" size={13} strokeWidth={2.5} />
+          </motion.div>
+        )}
+
+        {/* Panah Navigasi Detail Pojok Kanan Atas */}
         <div className="absolute top-3 right-3 text-muted group-hover:text-orange transition-all duration-200 group-hover:translate-x-1 group-hover:-translate-y-1">
           <Icon name="arrow-up-right" size="md" />
         </div>
-      </div>
+      </motion.div>
 
       {/* Konten Metadata & Deskripsi */}
       <div className="p-6 flex flex-col flex-1 justify-between gap-4">

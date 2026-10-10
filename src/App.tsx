@@ -12,6 +12,9 @@ import { BackgroundGradients } from './components/BackgroundGradients';
 import { IntroScreen } from './components/IntroScreen';
 import { HomePage } from './pages/HomePage';
 import { ProjectDetailPage } from './pages/ProjectDetailPage';
+import { BookingPage } from './pages/BookingPage';
+import { BookingSuccessPage } from './pages/BookingSuccessPage';
+import { BookingHistoryPage } from './pages/BookingHistoryPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 // Scroll handling helper for HashRouter anchors
@@ -54,6 +57,9 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/karya/:slug" element={<ProjectDetailPage />} />
+            <Route path="/booking" element={<BookingPage />} />
+            <Route path="/booking/sukses" element={<BookingSuccessPage />} />
+            <Route path="/booking/riwayat" element={<BookingHistoryPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
