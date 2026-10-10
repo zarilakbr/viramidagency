@@ -1,6 +1,8 @@
 /**
  * @file src/features/booking/components/BookingWizard.tsx
- * Container wizard 4 langkah pemesanan jadwal dengan navigasi maju-mundur dan validasi data.
+ * Container wizard konsultasi modern 2 langkah:
+ * Langkah 1: Pilih Jenis Sesi, Format, Tanggal, dan Jam Waktu Sekaligus
+ * Langkah 2: Data Kontak, Kebutuhan Proyek Cepat, dan Konfirmasi Langsung
  */
 
 import React, { useState, useRef, useEffect } from 'react';
@@ -8,10 +10,8 @@ import { useNavigate } from 'react-router-dom';
 import { BOOKING_CONFIG } from '../../../data/booking.config';
 import { bookingService } from '../services/bookingService';
 import { StepIndicator } from './StepIndicator';
-import { MeetingTypeStep } from './MeetingTypeStep';
-import { DateTimeStep } from './DateTimeStep';
-import { DetailsStep, type DetailsFormErrors } from './DetailsStep';
-import { ReviewStep } from './ReviewStep';
+import { ScheduleStep } from './ScheduleStep';
+import { QuickContactStep, type ContactFormErrors } from './QuickContactStep';
 import { Icon } from '../../../components/ui/Icon';
 import type { BookingFormData, FormatPertemuan, TimeSlot } from '../types';
 
@@ -28,7 +28,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
-  // Form State
+  // Form State Baku
   const [formData, setFormData] = useState<BookingFormData>({
     jenisPertemuanId: initialJenisId || BOOKING_CONFIG.jenisPertemuan[0].id,
     format: 'online',
@@ -38,12 +38,11 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
     nama: '',
     email: '',
     whatsapp: '',
-    topik: '',
+    topik: 'Website Bisnis / Company Profile',
     linkReferensi: '',
   });
 
-  const [detailsErrors, setDetailsErrors] = useState<DetailsFormErrors>({});
-
+  const [contactErrors, setContactErrors] = useState<ContactFormErrors>({});
   const [stepNotice, setStepNotice] = useState<string | null>(null);
 
   // Sinkronkan jenisPertemuanId saat initialJenisId berubah dari URL query parameter
@@ -68,80 +67,60 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
     }
   }, [currentStep]);
 
-  // Validasi Step 3 (Data Diri)
-  const validateStep3 = (): boolean => {
-    const errors: DetailsFormErrors = {};
+  // Validasi Langkah 2 (Data Kontak)
+  const validateContactForm = (): boolean => {
+    const errors: ContactFormErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!formData.nama || formData.nama.trim().length < 2) {
       errors.nama = 'Mohon masukkan nama lengkap atau nama bisnismu (minimal 2 karakter)';
     }
 
-    if (!formData.email || !emailRegex.test(formData.email.trim())) {
+    const cleanWa = formData.whatsapp.replace(/[^0-9]/g, '');
+    if (!formData.whatsapp || cleanWa.length < 8) {
+      errors.whatsapp = 'Nomor WhatsApp aktif minimal 8 digit angka (contoh: 0812...)';
+    }
+
+    if (formData.email && formData.email.trim().length > 0 && !emailRegex.test(formData.email.trim())) {
       errors.email = 'Format alamat email tidak valid (contoh: nama@perusahaan.com)';
     }
 
-    const cleanWa = formData.whatsapp.replace(/[^0-9]/g, '');
-    if (!formData.whatsapp || cleanWa.length < 8) {
-      errors.whatsapp = 'Nomor WhatsApp aktif minimal 8 digit angka';
+    if (!formData.topik || formData.topik.trim().length < 4) {
+      errors.topik = 'Pilih salah satu tag kebutuhan atau tuliskan catatan singkat';
     }
 
-    if (!formData.topik || formData.topik.trim().length < 10) {
-      errors.topik = 'Mohon tuliskan topik diskusi singkat (minimal 10 karakter)';
-    }
-
-    setDetailsErrors(errors);
+    setContactErrors(errors);
     return Object.keys(errors).length === 0;
   };
 
-  const handleNext = () => {
+  const handleNextToContact = () => {
     setStepNotice(null);
 
-    if (currentStep === 1) {
-      if (!formData.jenisPertemuanId || !formData.format) {
-        setStepNotice('Silakan pilih jenis pertemuan dan format pertemuan terlebih dahulu.');
-        return;
-      }
+    if (!formData.tanggal) {
+      setStepNotice('Silakan pilih tanggal pertemuan pada kalender.');
+      return;
+    }
+    if (!formData.jamMulai || !formData.jamSelesai) {
+      setStepNotice('Silakan pilih salah satu jam pertemuan yang tersedia pada tanggal ini.');
+      return;
     }
 
-    if (currentStep === 2) {
-      if (!formData.tanggal) {
-        setStepNotice('Silakan pilih tanggal pertemuan pada kalender.');
-        return;
-      }
-      if (!formData.jamMulai || !formData.jamSelesai) {
-        setStepNotice('Silakan pilih salah satu slot jam pertemuan yang tersedia.');
-        return;
-      }
-    }
-
-    if (currentStep === 3) {
-      const isValid = validateStep3();
-      if (!isValid) {
-        setStepNotice('Mohon lengkapi data yang ditandai dengan benar sebelum melanjutkan.');
-        return;
-      }
-    }
-
-    const nextStep = currentStep + 1;
-    setCurrentStep(nextStep);
-    setMaxAccessibleStep((prev) => Math.max(prev, nextStep));
+    setCurrentStep(2);
+    setMaxAccessibleStep(2);
   };
 
-  const handleBack = () => {
-    if (currentStep > 1) {
-      setCurrentStep((prev) => prev - 1);
-    }
-  };
-
-  const handleStepJump = (targetStep: number) => {
-    if (targetStep <= maxAccessibleStep) {
-      setCurrentStep(targetStep);
-    }
+  const handleBackToSchedule = () => {
+    setCurrentStep(1);
   };
 
   // Handler Submit Akhir
   const handleSubmitBooking = async () => {
+    const isValid = validateContactForm();
+    if (!isValid) {
+      setStepNotice('Mohon lengkapi data kontak yang bertanda merah di bawah.');
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitError(null);
     try {
@@ -162,36 +141,31 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
 
   return (
     <div ref={stepContainerRef} className="w-full max-w-4xl mx-auto flex flex-col">
-      {/* 4-Step Visual Indicator */}
+      {/* 2-Step Modern Indicator */}
       <StepIndicator
         currentStep={currentStep}
-        onStepClick={handleStepJump}
+        onStepClick={(step) => {
+          if (step === 1) setCurrentStep(1);
+          if (step === 2 && maxAccessibleStep >= 2) setCurrentStep(2);
+        }}
         maxAccessibleStep={maxAccessibleStep}
       />
 
       {/* Konten Tahapan Aktif */}
-      <div className="w-full min-h-[420px] pb-24 md:pb-12">
+      <div className="w-full min-h-[420px] pb-12">
         {currentStep === 1 && (
-          <MeetingTypeStep
+          <ScheduleStep
             selectedJenisId={formData.jenisPertemuanId}
             selectedFormat={formData.format}
-            onSelectJenis={(id) => setFormData((prev) => ({ ...prev, jenisPertemuanId: id }))}
-            onSelectFormat={(format: FormatPertemuan) =>
-              setFormData((prev) => ({ ...prev, format }))
-            }
-          />
-        )}
-
-        {currentStep === 2 && (
-          <DateTimeStep
-            selectedJenisId={formData.jenisPertemuanId}
             selectedDate={formData.tanggal}
             selectedJamMulai={formData.jamMulai}
+            selectedJamSelesai={formData.jamSelesai}
+            onSelectJenis={(id) => setFormData((prev) => ({ ...prev, jenisPertemuanId: id }))}
+            onSelectFormat={(format: FormatPertemuan) => setFormData((prev) => ({ ...prev, format }))}
             onSelectDate={(date) =>
               setFormData((prev) => ({
                 ...prev,
                 tanggal: date,
-                // Reset jam jika tanggal berubah
                 jamMulai: '',
                 jamSelesai: '',
               }))
@@ -206,35 +180,25 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
           />
         )}
 
-        {currentStep === 3 && (
-          <DetailsStep
-            nama={formData.nama}
-            email={formData.email}
-            whatsapp={formData.whatsapp}
-            topik={formData.topik}
-            linkReferensi={formData.linkReferensi || ''}
-            errors={detailsErrors}
+        {currentStep === 2 && (
+          <QuickContactStep
+            formData={formData}
             onChange={(field, value) => {
               setFormData((prev) => ({ ...prev, [field]: value }));
-              if (detailsErrors[field as keyof DetailsFormErrors]) {
-                setDetailsErrors((prev) => ({ ...prev, [field]: undefined }));
+              if (contactErrors[field as keyof ContactFormErrors]) {
+                setContactErrors((prev) => ({ ...prev, [field]: undefined }));
               }
             }}
-          />
-        )}
-
-        {currentStep === 4 && (
-          <ReviewStep
-            formData={formData}
-            onEditSection={(step) => setCurrentStep(step)}
+            onEditSchedule={handleBackToSchedule}
             isSubmitting={isSubmitting}
             onSubmit={handleSubmitBooking}
+            errors={contactErrors}
             errorMessage={submitError}
           />
         )}
       </div>
 
-      {/* Notifikasi Kendala Langkah Aktif */}
+      {/* Notifikasi Kendala */}
       {stepNotice && (
         <div
           role="alert"
@@ -245,32 +209,22 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
         </div>
       )}
 
-      {/* Bar Navigasi Tombol Bawah (Sticky di Mobile) */}
-      {currentStep < 4 && (
-        <div className="fixed bottom-0 left-0 right-0 z-40 bg-background/95 border-t border-border p-4 md:static md:bg-transparent md:border-t-0 md:p-0 md:mt-4">
-          <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
-            {currentStep > 1 ? (
-              <button
-                type="button"
-                onClick={handleBack}
-                className="py-3 px-5 rounded-lg border border-border bg-surface hover:bg-surface-hover text-foreground font-heading font-medium text-sm transition-colors flex items-center gap-2 cursor-pointer"
-              >
-                <Icon name="arrow-left" size={16} />
-                <span>Kembali</span>
-              </button>
-            ) : (
-              <div />
-            )}
-
-            <button
-              type="button"
-              onClick={handleNext}
-              className="py-3 px-6 rounded-lg bg-orange hover:bg-orange-hover text-navy-900 font-heading font-bold text-sm transition-all duration-200 flex items-center gap-2 cursor-pointer shadow-sm ml-auto active:scale-[0.98]"
-            >
-              <span>Lanjut ke Langkah {currentStep + 1}</span>
-              <Icon name="arrow-right" size={16} />
-            </button>
+      {/* Tombol Lanjut di Langkah 1 */}
+      {currentStep === 1 && (
+        <div className="mt-4 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="text-xs text-muted font-mono flex items-center gap-2">
+            <Icon name="shield-check" size={16} className="text-orange" />
+            <span>Pilih waktu di atas, lalu lanjutkan untuk mengisi data kontak.</span>
           </div>
+
+          <button
+            type="button"
+            onClick={handleNextToContact}
+            className="w-full sm:w-auto h-12 px-7 rounded-full bg-orange hover:bg-orange-hover text-navy-900 font-heading font-bold text-sm sm:text-base transition-all duration-200 flex items-center justify-center gap-2.5 cursor-pointer shadow-md active:scale-[0.98]"
+          >
+            <span>Lanjut ke Data Kontak</span>
+            <Icon name="arrow-right" size={18} />
+          </button>
         </div>
       )}
     </div>

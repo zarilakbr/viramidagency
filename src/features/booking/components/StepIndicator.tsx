@@ -14,10 +14,8 @@ export interface StepItem {
 }
 
 const STEPS: StepItem[] = [
-  { number: 1, label: 'Jenis', sublabel: 'Layanan & Format' },
-  { number: 2, label: 'Waktu', sublabel: 'Tanggal & Jam' },
-  { number: 3, label: 'Data Diri', sublabel: 'Kontak & Topik' },
-  { number: 4, label: 'Konfirmasi', sublabel: 'Ringkasan Jadwal' },
+  { number: 1, label: 'Langkah 1: Pilih Jadwal', sublabel: 'Sesi Pertemuan & Waktu' },
+  { number: 2, label: 'Langkah 2: Data Kontak', sublabel: 'Kebutuhan & Konfirmasi' },
 ];
 
 interface StepIndicatorProps {
@@ -29,14 +27,14 @@ interface StepIndicatorProps {
 export const StepIndicator: React.FC<StepIndicatorProps> = ({
   currentStep,
   onStepClick,
-  maxAccessibleStep = 4,
+  maxAccessibleStep = 2,
 }) => {
   return (
     <nav
       aria-label="Progres Tahapan Booking"
       className="w-full pb-6 mb-8 border-b border-border"
     >
-      <ol className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+      <ol className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 max-w-2xl mx-auto">
         {STEPS.map((step) => {
           const isCurrent = step.number === currentStep;
           const isCompleted = step.number < currentStep;
