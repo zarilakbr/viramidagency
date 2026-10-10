@@ -7,13 +7,15 @@ interface Particle {
   vy: number;
   radius: number;
   baseAlpha: number;
+  pulseSpeed: number;
+  pulsePhase: number;
   color: string;
 }
 
 /**
- * BackgroundGradients / AnimatedMeshGrid
- * Menghadirkan latar belakang #0A0A2E (navy-900) dengan animasi jaring-jaring halus
- * bernuansa krem dan aksen oranye yang elegan.
+ * BackgroundGradients / FuturisticInteractiveCanvas
+ * Menghadirkan latar belakang #0A0A2E (navy-900) dengan animasi konstelasi digital interaktif,
+ * aura cahaya oranye-navy yang bergerak dinamis, dan efek interaksi kursor yang memukau.
  */
 export const BackgroundGradients: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -28,19 +30,18 @@ export const BackgroundGradients: React.FC = () => {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    // Deteksi reduced motion
+    // Deteksi preferensi reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Jumlah node jaring-jaring menyesuaikan ukuran layar
     const isMobile = width < 768;
-    const particleCount = isMobile ? 26 : 52;
-    const maxDistance = isMobile ? 90 : 120;
+    const particleCount = isMobile ? 32 : 64;
+    const maxDistance = isMobile ? 100 : 140;
 
     const particles: Particle[] = [];
-    const colors = [
-      'rgba(244, 243, 255, ', // Krem lembut utama
-      'rgba(244, 243, 255, ',
-      'rgba(249, 115, 22, ',  // Oranye identitas
+    const colorThemes = [
+      'rgba(244, 243, 255, ', // Krem murni
+      'rgba(249, 115, 22, ',  // Oranye terang
+      'rgba(253, 186, 77, ',  // Oranye gold
       'rgba(154, 155, 199, ', // Muted navy
     ];
 
@@ -48,17 +49,21 @@ export const BackgroundGradients: React.FC = () => {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * (isMobile ? 0.3 : 0.45),
-        vy: (Math.random() - 0.5) * (isMobile ? 0.3 : 0.45),
-        radius: Math.random() * 0.8 + 1.1,
-        baseAlpha: Math.random() * 0.3 + 0.35,
-        color: colors[Math.floor(Math.random() * colors.length)],
+        vx: (Math.random() - 0.5) * (isMobile ? 0.35 : 0.5),
+        vy: (Math.random() - 0.5) * (isMobile ? 0.35 : 0.5),
+        radius: Math.random() * 1.2 + 1.0,
+        baseAlpha: Math.random() * 0.35 + 0.3,
+        pulseSpeed: Math.random() * 0.02 + 0.01,
+        pulsePhase: Math.random() * Math.PI * 2,
+        color: colorThemes[Math.floor(Math.random() * colorThemes.length)],
       });
     }
 
-    // Interaktivitas posisi kursor mouse
+    // Posisi kursor halus
     let mouseX = -9999;
     let mouseY = -9999;
+    let currentMouseX = -9999;
+    let currentMouseY = -9999;
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX;
@@ -80,20 +85,49 @@ export const BackgroundGradients: React.FC = () => {
 
     window.addEventListener('resize', handleResize, { passive: true });
 
-    // Loop Animasi Jaring-Jaring
+    let tick = 0;
+
+    // Loop Animasi Utama
     const render = () => {
+      tick += 0.015;
       ctx.clearRect(0, 0, width, height);
 
-      // Gambar grid titik latar mikro sangat halus (pola 48px)
-      ctx.fillStyle = 'rgba(244, 243, 255, 0.02)';
-      const step = 48;
+      // Interpolasi kursor mouse yang mulus (lerp)
+      if (mouseX > 0 && mouseY > 0) {
+        if (currentMouseX < 0) {
+          currentMouseX = mouseX;
+          currentMouseY = mouseY;
+        } else {
+          currentMouseX += (mouseX - currentMouseX) * 0.1;
+          currentMouseY += (mouseY - currentMouseY) * 0.1;
+        }
+
+        // Spotlight kursor oranye halus di latar
+        const gradient = ctx.createRadialGradient(
+          currentMouseX,
+          currentMouseY,
+          10,
+          currentMouseX,
+          currentMouseY,
+          260
+        );
+        gradient.addColorStop(0, 'rgba(249, 115, 22, 0.06)');
+        gradient.addColorStop(0.6, 'rgba(18, 18, 63, 0.04)');
+        gradient.addColorStop(1, 'transparent');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, width, height);
+      }
+
+      // Titik grid matriks cybernetic halus (step 56px)
+      ctx.fillStyle = 'rgba(244, 243, 255, 0.022)';
+      const step = 56;
       for (let x = (step / 2); x < width; x += step) {
         for (let y = (step / 2); y < height; y += step) {
           ctx.fillRect(x, y, 1, 1);
         }
       }
 
-      // Update posisi dan gambar partikel
+      // Update partikel & gambar koneksi
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
 
@@ -101,20 +135,22 @@ export const BackgroundGradients: React.FC = () => {
           p.x += p.vx;
           p.y += p.vy;
 
-          // Wrap-around tepi layar
-          if (p.x < -10) p.x = width + 10;
-          if (p.x > width + 10) p.x = -10;
-          if (p.y < -10) p.y = height + 10;
-          if (p.y > height + 10) p.y = -10;
+          if (p.x < -20) p.x = width + 20;
+          if (p.x > width + 20) p.x = -20;
+          if (p.y < -20) p.y = height + 20;
+          if (p.y > height + 20) p.y = -20;
         }
 
-        // Gambar titik simpul jaring-jaring
+        p.pulsePhase += p.pulseSpeed;
+        const currentAlpha = p.baseAlpha + Math.sin(p.pulsePhase) * 0.15;
+
+        // Gambar titik node bercahaya
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `${p.color}${p.baseAlpha})`;
+        ctx.fillStyle = `${p.color}${Math.max(0.1, currentAlpha)})`;
         ctx.fill();
 
-        // Hubungkan dengan simpul lain
+        // Hubungkan antar partikel
         for (let j = i + 1; j < particles.length; j++) {
           const p2 = particles[j];
           const dx = p.x - p2.x;
@@ -122,30 +158,30 @@ export const BackgroundGradients: React.FC = () => {
           const dist = Math.hypot(dx, dy);
 
           if (dist < maxDistance) {
-            const alpha = (1 - dist / maxDistance) * 0.16;
+            const alpha = (1 - dist / maxDistance) * 0.18;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.strokeStyle = `rgba(244, 243, 255, ${alpha})`;
-            ctx.lineWidth = 0.85;
+            ctx.lineWidth = 0.75;
             ctx.stroke();
           }
         }
 
-        // Interaksi halus dengan kursor mouse
-        if (mouseX > 0 && mouseY > 0) {
-          const mdx = p.x - mouseX;
-          const mdy = p.y - mouseY;
+        // Hubungkan dengan mouse jika mendekat
+        if (currentMouseX > 0 && currentMouseY > 0) {
+          const mdx = p.x - currentMouseX;
+          const mdy = p.y - currentMouseY;
           const mdist = Math.hypot(mdx, mdy);
-          const mouseReach = 130;
+          const mouseReach = 150;
 
           if (mdist < mouseReach) {
-            const mAlpha = (1 - mdist / mouseReach) * 0.22;
+            const mAlpha = (1 - mdist / mouseReach) * 0.3;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
-            ctx.lineTo(mouseX, mouseY);
+            ctx.lineTo(currentMouseX, currentMouseY);
             ctx.strokeStyle = `rgba(249, 115, 22, ${mAlpha})`;
-            ctx.lineWidth = 0.9;
+            ctx.lineWidth = 1.0;
             ctx.stroke();
           }
         }
@@ -168,7 +204,7 @@ export const BackgroundGradients: React.FC = () => {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-navy-900" aria-hidden="true">
-      {/* Canvas Jaring-Jaring Bergerak */}
+      {/* Canvas Latar Interaktif */}
       <canvas ref={canvasRef} className="w-full h-full block" />
     </div>
   );

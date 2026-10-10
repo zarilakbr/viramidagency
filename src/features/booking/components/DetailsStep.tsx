@@ -35,7 +35,7 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
   onChange,
 }) => {
   const topikLength = topik.trim().length;
-  const isTopikValid = topikLength >= 20;
+  const isTopikValid = topikLength >= 10;
 
   return (
     <div className="flex flex-col gap-6 w-full max-w-2xl mx-auto">
@@ -70,7 +70,7 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
             value={email}
             onChange={(e) => onChange('email', e.target.value)}
             error={errors.email}
-            hint="Untuk pengiriman undangan kalender"
+            hint="Untuk undangan kalender"
             required
           />
 
@@ -82,7 +82,7 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
             value={whatsapp}
             onChange={(e) => onChange('whatsapp', e.target.value)}
             error={errors.whatsapp}
-            hint="Untuk konfirmasi cepat jadwal sesi"
+            hint="Untuk konfirmasi cepat"
             required
           />
         </div>
@@ -94,7 +94,7 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
             as="textarea"
             rows={4}
             label="Topik Singkat Diskusi"
-            placeholder="Ceritakan gambaran singkat kebutuhanmu, target bisnis, atau kendala yang ingin dipecahkan (minimal 20 karakter)..."
+            placeholder="Ceritakan gambaran singkat kebutuhanmu, target bisnis, atau kendala yang ingin dipecahkan (minimal 10 karakter)..."
             value={topik}
             onChange={(e) => onChange('topik', e.target.value)}
             error={errors.topik}
@@ -102,7 +102,7 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
           />
           <div className="flex items-center justify-between text-[11px] font-mono px-1">
             <span className={isTopikValid ? 'text-orange font-medium' : 'text-muted'}>
-              Minimal 20 karakter
+              Minimal 10 karakter
             </span>
             <span
               className={
@@ -113,7 +113,7 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
                   : 'text-muted'
               }
             >
-              {topikLength} / 20 karakter
+              {topikLength} / 10 karakter
             </span>
           </div>
         </div>

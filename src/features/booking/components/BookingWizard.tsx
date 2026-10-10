@@ -44,6 +44,8 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
 
   const [detailsErrors, setDetailsErrors] = useState<DetailsFormErrors>({});
 
+  const [stepNotice, setStepNotice] = useState<string | null>(null);
+
   // Sinkronkan jenisPertemuanId saat initialJenisId berubah dari URL query parameter
   useEffect(() => {
     if (initialJenisId) {
@@ -53,6 +55,11 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
       }));
     }
   }, [initialJenisId]);
+
+  // Bersihkan notifikasi saat berganti langkah
+  useEffect(() => {
+    setStepNotice(null);
+  }, [currentStep]);
 
   // Fokus ke judul tahapan saat berpindah langkah (Aksesibilitas WCAG)
   useEffect(() => {
@@ -66,59 +73,59 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
     const errors: DetailsFormErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!formData.nama || formData.nama.trim().length < 3) {
-      errors.nama = 'Nama lengkap minimal 3 karakter';
+    if (!formData.nama || formData.nama.trim().length < 2) {
+      errors.nama = 'Mohon masukkan nama lengkap atau nama bisnismu (minimal 2 karakter)';
     }
 
     if (!formData.email || !emailRegex.test(formData.email.trim())) {
-      errors.email = 'Format alamat email tidak valid';
+      errors.email = 'Format alamat email tidak valid (contoh: nama@perusahaan.com)';
     }
 
     const cleanWa = formData.whatsapp.replace(/[^0-9]/g, '');
-    if (!formData.whatsapp || cleanWa.length < 9) {
-      errors.whatsapp = 'Nomor WhatsApp minimal 9 digit';
+    if (!formData.whatsapp || cleanWa.length < 8) {
+      errors.whatsapp = 'Nomor WhatsApp aktif minimal 8 digit angka';
     }
 
-    if (!formData.topik || formData.topik.trim().length < 20) {
-      errors.topik = 'Topik diskusi minimal 20 karakter agar pembahasan terarah';
+    if (!formData.topik || formData.topik.trim().length < 10) {
+      errors.topik = 'Mohon tuliskan topik diskusi singkat (minimal 10 karakter)';
     }
 
     setDetailsErrors(errors);
     return Object.keys(errors).length === 0;
   };
 
-  // Cek apakah tombol "Lanjut" boleh aktif
-  const isStepValid = (): boolean => {
-    switch (currentStep) {
-      case 1:
-        return Boolean(formData.jenisPertemuanId && formData.format);
-      case 2:
-        return Boolean(formData.tanggal && formData.jamMulai && formData.jamSelesai);
-      case 3:
-        return (
-          formData.nama.trim().length >= 3 &&
-          /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim()) &&
-          formData.whatsapp.replace(/[^0-9]/g, '').length >= 9 &&
-          formData.topik.trim().length >= 20
-        );
-      case 4:
-        return true;
-      default:
-        return false;
-    }
-  };
-
   const handleNext = () => {
+    setStepNotice(null);
+
+    if (currentStep === 1) {
+      if (!formData.jenisPertemuanId || !formData.format) {
+        setStepNotice('Silakan pilih jenis pertemuan dan format pertemuan terlebih dahulu.');
+        return;
+      }
+    }
+
+    if (currentStep === 2) {
+      if (!formData.tanggal) {
+        setStepNotice('Silakan pilih tanggal pertemuan pada kalender.');
+        return;
+      }
+      if (!formData.jamMulai || !formData.jamSelesai) {
+        setStepNotice('Silakan pilih salah satu slot jam pertemuan yang tersedia.');
+        return;
+      }
+    }
+
     if (currentStep === 3) {
       const isValid = validateStep3();
-      if (!isValid) return;
+      if (!isValid) {
+        setStepNotice('Mohon lengkapi data yang ditandai dengan benar sebelum melanjutkan.');
+        return;
+      }
     }
 
-    if (isStepValid()) {
-      const nextStep = currentStep + 1;
-      setCurrentStep(nextStep);
-      setMaxAccessibleStep((prev) => Math.max(prev, nextStep));
-    }
+    const nextStep = currentStep + 1;
+    setCurrentStep(nextStep);
+    setMaxAccessibleStep((prev) => Math.max(prev, nextStep));
   };
 
   const handleBack = () => {
@@ -227,9 +234,20 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
         )}
       </div>
 
+      {/* Notifikasi Kendala Langkah Aktif */}
+      {stepNotice && (
+        <div
+          role="alert"
+          className="mb-6 p-4 rounded-xl border border-error/40 bg-error/10 text-cream flex items-center gap-3 text-xs sm:text-sm animate-pulse"
+        >
+          <Icon name="alert-circle" size={18} className="text-error shrink-0" />
+          <span className="text-error font-medium">{stepNotice}</span>
+        </div>
+      )}
+
       {/* Bar Navigasi Tombol Bawah (Sticky di Mobile) */}
       {currentStep < 4 && (
-        <div className="fixed bottom-0 left-0 right-0 z-40 bg-background/95 border-t border-border p-4 md:static md:bg-transparent md:border-t-0 md:p-0 md:mt-8">
+        <div className="fixed bottom-0 left-0 right-0 z-40 bg-background/95 border-t border-border p-4 md:static md:bg-transparent md:border-t-0 md:p-0 md:mt-4">
           <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
             {currentStep > 1 ? (
               <button
@@ -246,9 +264,8 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
 
             <button
               type="button"
-              disabled={!isStepValid()}
               onClick={handleNext}
-              className="py-3 px-6 rounded-lg bg-orange hover:bg-orange-hover text-navy font-heading font-bold text-sm transition-all duration-200 flex items-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed shadow-sm ml-auto"
+              className="py-3 px-6 rounded-lg bg-orange hover:bg-orange-hover text-navy-900 font-heading font-bold text-sm transition-all duration-200 flex items-center gap-2 cursor-pointer shadow-sm ml-auto active:scale-[0.98]"
             >
               <span>Lanjut ke Langkah {currentStep + 1}</span>
               <Icon name="arrow-right" size={16} />
