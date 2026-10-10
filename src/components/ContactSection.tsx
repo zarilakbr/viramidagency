@@ -294,10 +294,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
                     className="w-full px-4 py-3 bg-[#04344C] border border-[#165A7E] rounded-xl text-[#B0EDF9] text-sm cursor-pointer focus:outline-none focus:ring-1 focus:ring-[#B0EDF9]"
                   >
                     <option value="">Pilih Rentang Anggaran</option>
-                    <option value="< 15 Juta">&lt; 15 Juta IDR</option>
-                    <option value="15 - 35 Juta">15 - 35 Juta IDR</option>
-                    <option value="35 - 75 Juta">35 - 75 Juta IDR</option>
-                    <option value="> 75 Juta">&gt; 75 Juta IDR</option>
+                    <option value="500 Ribu - 1 Juta">Rp 500 Ribu – Rp 1 Juta IDR</option>
+                    <option value="1 - 5 Juta">Rp 1 Juta – Rp 5 Juta IDR</option>
+                    <option value="5 - 15 Juta">Rp 5 Juta – Rp 15 Juta IDR</option>
+                    <option value="> 15 Juta">&gt; Rp 15 Juta IDR</option>
                   </select>
                 </div>
               </div>
@@ -337,11 +337,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
                 </div>
               </div>
 
-              {/* Tombol Aksi */}
-              <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
+              {/* Tombol Aksi Simetris */}
+              <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <button
                   type="submit"
-                  className="w-full sm:w-auto h-12 px-7 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 shadow-sm"
+                  className="w-full h-12 px-6 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 shadow-sm"
                 >
                   <span>Kirim via WhatsApp</span>
                   <Icon name="arrow-right" size={16} />
@@ -350,7 +350,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
                 <button
                   type="button"
                   onClick={handleEmailClick}
-                  className="w-full sm:w-auto h-12 px-7 rounded-full border border-[#165A7E] bg-[#074563] hover:bg-[#0B567C] text-[#B0EDF9] font-heading font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 hover:border-[#B0EDF9]"
+                  className="w-full h-12 px-6 rounded-full border border-[#165A7E] bg-[#074563] hover:bg-[#0B567C] text-[#B0EDF9] font-heading font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 hover:border-[#B0EDF9]"
                 >
                   <span>Kirim via Email</span>
                   <Icon name="mail" size={16} />

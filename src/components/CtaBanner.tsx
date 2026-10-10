@@ -30,10 +30,10 @@ export const CtaBanner: React.FC = () => {
             </p>
           </div>
 
-          <div className="shrink-0">
+          <div className="w-full sm:w-auto shrink-0 flex justify-center">
             <Link
               to="/booking"
-              className="inline-flex items-center gap-2.5 h-12 px-8 rounded-full bg-[#04344C] hover:bg-[#022131] text-[#B0EDF9] font-heading font-bold text-sm sm:text-base transition-all duration-200 shadow-lg active:scale-[0.98] cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 h-12 px-8 rounded-full bg-[#04344C] hover:bg-[#022131] text-[#B0EDF9] font-heading font-bold text-sm sm:text-base transition-all duration-200 shadow-lg active:scale-[0.98] cursor-pointer"
             >
               <span>Jadwalkan Sekarang</span>
               <Icon name="arrow-right" size={18} />

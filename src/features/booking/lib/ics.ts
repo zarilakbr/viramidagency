@@ -1,6 +1,6 @@
 /**
  * @file src/features/booking/lib/ics.ts
- * Generator file iCalendar (.ics) dan tautan Google Calendar untuk jadwal pertemuan.
+ * Generator file iCalendar (.ics) dan tautan Google Calendar untuk jadwal pertemuan dengan Google Meet otomatis.
  */
 
 import { BOOKING_CONFIG } from '../../../data/booking.config';
@@ -29,19 +29,20 @@ export function generateIcsContent(booking: BookingRecord): string {
   const title = `[ViramidAgency] ${booking.jenisPertemuanNama} (${booking.kodeBooking})`;
   const location =
     booking.format === 'online'
-      ? 'Google Meet (Tautan akan dikonfirmasi)'
+      ? booking.meetingUrl || 'Google Meet Online'
       : BOOKING_CONFIG.kontak.lokasiStudio;
 
   const description = [
     `Pertemuan dengan ViramidAgency: ${booking.jenisPertemuanNama}`,
     `Kode Booking: ${booking.kodeBooking}`,
     `Format: ${booking.format === 'online' ? 'Online (Google Meet)' : 'Tatap Muka di Studio'}`,
+    booking.meetingUrl ? `Link Google Meet: ${booking.meetingUrl}` : '',
     `Waktu: ${booking.jamMulai} - ${booking.jamSelesai} WITA (UTC+8)`,
-    `Pemesan: ${booking.nama} (${booking.whatsapp} / ${booking.email})`,
+    `Pemesan: ${booking.nama} (${booking.whatsapp} / ${booking.email || '-'})`,
     `Topik: ${booking.topik}`,
     booking.linkReferensi ? `Referensi: ${booking.linkReferensi}` : '',
     '',
-    'Catatan: Status saat ini menunggu konfirmasi dari tim ViramidAgency.',
+    'Catatan: Sesi konsultasi digital bersama tim inti ViramidAgency.',
   ]
     .filter(Boolean)
     .join('\\n');
@@ -60,6 +61,7 @@ export function generateIcsContent(booking: BookingRecord): string {
     `SUMMARY:${title}`,
     `DESCRIPTION:${description}`,
     `LOCATION:${location}`,
+    ...(booking.meetingUrl ? [`URL:${booking.meetingUrl}`] : []),
     'STATUS:TENTATIVE',
     'BEGIN:VALARM',
     'TRIGGER:-PT30M',
@@ -97,11 +99,13 @@ export function getGoogleCalendarUrl(booking: BookingRecord): string {
   const title = `[ViramidAgency] ${booking.jenisPertemuanNama} - ${booking.nama}`;
   const location =
     booking.format === 'online'
-      ? 'Google Meet (Tautan akan dikonfirmasi)'
+      ? booking.meetingUrl || 'Google Meet'
       : BOOKING_CONFIG.kontak.lokasiStudio;
 
-  const details = `Kode Booking: ${booking.kodeBooking}\nTopik: ${booking.topik}\nFormat: ${
-    booking.format === 'online' ? 'Online' : 'Tatap Muka'
+  const details = `Kode Booking: ${booking.kodeBooking}\n${
+    booking.meetingUrl ? `Link Google Meet: ${booking.meetingUrl}\n` : ''
+  }Topik: ${booking.topik}\nFormat: ${
+    booking.format === 'online' ? 'Online (Google Meet)' : 'Tatap Muka'
   }\nPemesan: ${booking.nama} (${booking.whatsapp})`;
 
   const params = new URLSearchParams({

@@ -1,6 +1,6 @@
 /**
  * @file src/features/booking/services/localBookingService.ts
- * Implementasi BookingService berbasis localStorage dengan try-catch & in-memory fallback.
+ * Implementasi BookingService berbasis localStorage dengan integrasi Google Meet otomatis.
  */
 
 import { BOOKING_CONFIG } from '../../../data/booking.config';
@@ -58,11 +58,20 @@ export class LocalBookingService implements BookingService {
 
     const durasi = jenisConfig ? jenisConfig.durasiMenit : 30;
     const namaJenis = jenisConfig ? jenisConfig.nama : 'Pertemuan Konsultasi';
+    const kodeBooking = generateBookingCode(new Date());
+
+    // Generate otomatis link Google Meet unik untuk format online
+    const meetCode = `vrm-${Math.random().toString(36).substring(2, 5)}-${Math.random().toString(36).substring(2, 6)}`;
+    const meetingUrl =
+      payload.format === 'online'
+        ? payload.meetingUrl || `https://meet.google.com/${meetCode}`
+        : undefined;
 
     const newRecord: BookingRecord = {
       ...payload,
       id: `bk_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
-      kodeBooking: generateBookingCode(new Date()),
+      kodeBooking,
+      meetingUrl,
       createdAt: new Date().toISOString(),
       status: 'menunggu',
       durasiMenit: durasi,

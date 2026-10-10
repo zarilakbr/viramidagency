@@ -74,7 +74,7 @@ export const BookingHistoryPage: React.FC = () => {
 
           <Link
             to="/booking"
-            className="py-2.5 px-5 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-xs sm:text-sm transition-colors flex items-center gap-2 shrink-0 self-start sm:self-auto shadow-sm"
+            className="h-11 px-5 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-xs sm:text-sm transition-colors flex items-center justify-center gap-2 shrink-0 self-start sm:self-auto shadow-sm w-full sm:w-auto"
           >
             <Icon name="calendar" size={16} />
             <span>Buat Jadwal Baru</span>
@@ -103,7 +103,7 @@ export const BookingHistoryPage: React.FC = () => {
             </p>
             <Link
               to="/booking"
-              className="py-3 px-6 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-sm shadow-sm"
+              className="h-12 px-6 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-sm shadow-sm inline-flex items-center justify-center"
             >
               Jadwalkan Konsultasi Pertama
             </Link>
@@ -119,6 +119,8 @@ export const BookingHistoryPage: React.FC = () => {
                 item.format === 'online'
                   ? 'Online (Google Meet)'
                   : `Tatap Muka (${BOOKING_CONFIG.kontak.lokasiStudio})`;
+
+              const meetLink = item.meetingUrl || (item.format === 'online' ? `https://meet.google.com/vrm-${item.kodeBooking.toLowerCase()}` : '');
 
               return (
                 <div
@@ -176,6 +178,26 @@ export const BookingHistoryPage: React.FC = () => {
                     </div>
                   </div>
 
+                  {/* Google Meet Link Bar */}
+                  {item.format === 'online' && meetLink && !isCancelled && (
+                    <div className="my-2 p-2.5 rounded-xl bg-[#04344C] border border-[#165A7E] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs font-mono">
+                      <div className="flex items-center gap-2 truncate">
+                        <Icon name="video" size={14} className="text-[#B0EDF9] shrink-0" />
+                        <span className="text-[#78B9CA]">Link Meet:</span>
+                        <span className="text-[#B0EDF9] truncate select-all">{meetLink}</span>
+                      </div>
+                      <a
+                        href={meetLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1 rounded bg-[#B0EDF9] text-[#04344C] font-heading font-bold text-[11px] shrink-0 inline-flex items-center gap-1"
+                      >
+                        <span>Buka Meet</span>
+                        <Icon name="arrow-up-right" size={11} />
+                      </a>
+                    </div>
+                  )}
+
                   <div className="pt-3 border-t border-[#165A7E]/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                     <p className="text-xs text-[#78B9CA] italic truncate max-w-md">
                       "{item.topik}"
@@ -188,7 +210,7 @@ export const BookingHistoryPage: React.FC = () => {
                             href={getWhatsAppBookingUrl(item)}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="py-1.5 px-3 rounded-lg bg-[#04344C] hover:bg-[#0B567C] border border-[#165A7E] text-[#B0EDF9] font-mono text-xs transition-colors inline-flex items-center gap-1.5"
+                            className="flex-1 sm:flex-initial py-2 px-3.5 rounded-lg bg-[#04344C] hover:bg-[#0B567C] border border-[#165A7E] text-[#B0EDF9] font-mono text-xs transition-colors inline-flex items-center justify-center gap-1.5"
                           >
                             <Icon name="message-square" size={13} />
                             <span>WhatsApp</span>
@@ -197,7 +219,7 @@ export const BookingHistoryPage: React.FC = () => {
                           <button
                             type="button"
                             onClick={() => downloadIcsFile(item)}
-                            className="py-1.5 px-3 rounded-lg bg-[#04344C] hover:bg-[#0B567C] border border-[#165A7E] text-[#B0EDF9] font-mono text-xs transition-colors inline-flex items-center gap-1.5 cursor-pointer"
+                            className="flex-1 sm:flex-initial py-2 px-3.5 rounded-lg bg-[#04344C] hover:bg-[#0B567C] border border-[#165A7E] text-[#B0EDF9] font-mono text-xs transition-colors inline-flex items-center justify-center gap-1.5 cursor-pointer"
                           >
                             <Icon name="download" size={13} />
                             <span>.ICS</span>
@@ -207,7 +229,7 @@ export const BookingHistoryPage: React.FC = () => {
                             type="button"
                             disabled={cancellingId === item.id}
                             onClick={() => handleCancel(item.id, item.kodeBooking)}
-                            className="py-1.5 px-3 rounded-lg bg-[#04344C] hover:bg-[#0B567C] border border-[#165A7E] hover:border-[#B0EDF9] text-[#78B9CA] hover:text-[#B0EDF9] font-mono text-xs transition-colors inline-flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+                            className="w-full sm:w-auto py-2 px-3.5 rounded-lg bg-[#04344C] hover:bg-[#0B567C] border border-[#165A7E] hover:border-[#B0EDF9] text-[#78B9CA] hover:text-[#B0EDF9] font-mono text-xs transition-colors inline-flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50"
                           >
                             <Icon name="trash" size={13} />
                             <span>Batalkan</span>

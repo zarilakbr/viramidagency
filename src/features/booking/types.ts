@@ -17,6 +17,7 @@ export interface BookingFormData {
   whatsapp: string;
   topik: string;
   linkReferensi?: string;
+  meetingUrl?: string; // Tautan Google Meet / Zoom otomatis
 }
 
 export interface BookingRecord extends BookingFormData {
@@ -26,6 +27,7 @@ export interface BookingRecord extends BookingFormData {
   status: BookingStatus;
   durasiMenit: number;
   jenisPertemuanNama: string;
+  meetingUrl?: string;
 }
 
 export interface TimeSlot {
