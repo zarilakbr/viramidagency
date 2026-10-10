@@ -58,16 +58,6 @@ export const BookingPage: React.FC = () => {
               <span>Konfirmasi Cepat via WhatsApp</span>
             </span>
           </div>
-
-          <div className="mt-4 flex items-center justify-center gap-4 text-xs font-mono text-[#78B9CA]">
-            <Link
-              to="/booking/riwayat"
-              className="text-[#B0EDF9] hover:underline inline-flex items-center gap-1.5 font-semibold"
-            >
-              <Icon name="clock" size={13} />
-              <span>Lihat Riwayat Jadwal di Perangkat Ini</span>
-            </Link>
-          </div>
         </div>
 
         {/* Grand Master Card Container */}

@@ -295,11 +295,11 @@ export const BookingSuccessPage: React.FC = () => {
         {/* Navigasi Tambahan */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6 border-t border-[#165A7E] text-xs font-mono text-[#78B9CA]">
           <Link
-            to="/booking/riwayat"
+            to="/booking"
             className="text-[#B0EDF9] hover:underline inline-flex items-center gap-1"
           >
-            <Icon name="clock" size={14} />
-            <span>Lihat Riwayat Booking Perangkat Ini</span>
+            <Icon name="calendar" size={14} />
+            <span>Buat Jadwal Baru</span>
           </Link>
 
           <Link

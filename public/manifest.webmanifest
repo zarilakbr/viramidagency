@@ -51,19 +51,6 @@
           "type": "image/png"
         }
       ]
-    },
-    {
-      "name": "Riwayat Jadwal",
-      "short_name": "Riwayat",
-      "description": "Lihat status konfirmasi dan riwayat jadwal booking di perangkat ini",
-      "url": "/booking/riwayat",
-      "icons": [
-        {
-          "src": "/pwa-192x192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
     }
   ]
 }

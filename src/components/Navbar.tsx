@@ -179,15 +179,6 @@ export const Navbar: React.FC = () => {
           {/* Action Zone (Desktop & Tablet Lebar) */}
           <div className="hidden lg:flex items-center gap-3">
             <Link
-              to="/booking/riwayat"
-              className="h-9 px-3 rounded-lg border border-[#165A7E] bg-[#074563] hover:border-[#B0EDF9] text-[#B0EDF9] text-xs font-mono transition-colors flex items-center gap-1.5"
-              title="Lihat Riwayat Booking"
-            >
-              <Icon name="clock" size={13} />
-              <span>Riwayat</span>
-            </Link>
-
-            <Link
               to="/booking"
               className="h-9 px-4 rounded-lg bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] text-xs font-heading font-bold transition-colors flex items-center gap-2 shadow-sm"
             >
@@ -271,15 +262,6 @@ export const Navbar: React.FC = () => {
             >
               <Icon name="calendar" size={18} />
               <span>Jadwalkan Konsultasi Gratis</span>
-            </Link>
-
-            <Link
-              to="/booking/riwayat"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-center py-3 rounded-xl border border-[#165A7E] bg-[#074563] hover:border-[#B0EDF9] text-[#B0EDF9] font-heading font-medium text-xs flex items-center justify-center gap-2 transition-colors"
-            >
-              <Icon name="clock" size={15} />
-              <span>Lihat Riwayat Booking</span>
             </Link>
 
             <div className="flex items-center justify-between text-[11px] font-mono text-[#78B9CA] pt-2">

@@ -13,7 +13,6 @@ import { HomePage } from './pages/HomePage';
 import { ProjectDetailPage } from './pages/ProjectDetailPage';
 import { BookingPage } from './pages/BookingPage';
 import { BookingSuccessPage } from './pages/BookingSuccessPage';
-import { BookingHistoryPage } from './pages/BookingHistoryPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 // Scroll handling helper for HashRouter anchors
@@ -56,7 +55,6 @@ export default function App() {
             <Route path="/karya/:slug" element={<ProjectDetailPage />} />
             <Route path="/booking" element={<BookingPage />} />
             <Route path="/booking/sukses" element={<BookingSuccessPage />} />
-            <Route path="/booking/riwayat" element={<BookingHistoryPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
