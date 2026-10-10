@@ -1,7 +1,7 @@
 /**
  * @file src/components/ProjectCard.tsx
- * Kartu Proyek ViramidAgency dengan efek gambar tersingkap (clip-path inset reveal)
- * dan cursor follower label "Lihat" pada desktop.
+ * Kartu Proyek ViramidAgency dengan efek gambar tersingkap (clip-path inset reveal),
+ * badge live URL jika tersedia, dan follower label "Lihat" pada desktop.
  */
 
 import React, { useState } from 'react';
@@ -89,6 +89,16 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           </div>
         )}
 
+        {/* Live URL Pill (Top Left if available) */}
+        {proyek.url && (
+          <div className="absolute top-3 left-3 z-10">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-navy-950/90 border border-border text-[10px] font-mono text-green-400 backdrop-blur-xs font-semibold">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              <span>Live Website</span>
+            </span>
+          </div>
+        )}
+
         {/* Floating "Lihat" Pill Follower (Desktop Only) */}
         {isHovered && (
           <motion.div
@@ -135,6 +145,23 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         <p className="text-xs sm:text-sm text-muted line-clamp-2 leading-relaxed max-w-[65ch]">
           {proyek.ringkasan}
         </p>
+
+        {/* External Link Direct CTA if URL exists */}
+        {proyek.url && (
+          <div className="pt-2 border-t border-border/60 flex items-center justify-between text-xs font-mono">
+            <span className="text-muted">Domain: {new URL(proyek.url).hostname}</span>
+            <span
+              onClick={(e) => {
+                e.stopPropagation();
+                window.open(proyek.url, '_blank', 'noopener,noreferrer');
+              }}
+              className="text-orange hover:underline inline-flex items-center gap-1 font-semibold"
+            >
+              <span>Kunjungi Live</span>
+              <Icon name="arrow-up-right" size={12} />
+            </span>
+          </div>
+        )}
       </div>
     </article>
   );

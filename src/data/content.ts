@@ -42,6 +42,7 @@ export interface ProyekItem {
   hasil: string;
   layanan: string[];
   gambar: string[];
+  url?: string;
 }
 
 export interface LangkahProses {
@@ -82,8 +83,8 @@ export interface FaqItem {
 
 export interface BannerItem {
   id: string;
-  video: string;
-  poster: string;
+  video?: string;
+  poster?: string;
   judul: string;
   subjudul?: string;
   tombolLabel: string;
@@ -99,8 +100,6 @@ export interface BannerItem {
 export const DAFTAR_BANNER: BannerItem[] = [
   {
     id: 'banner-hero',
-    video: '/videos/banner-1.mp4',
-    poster: '/logo.jpg',
     judul: 'Kami membangun brand dan website yang bekerja untuk bisnismu.',
     subjudul: 'Membantu brand berkembang melalui transformasi identitas visual, arsitektur website performa tinggi, dan pengalaman digital yang memikat pelanggan.',
     tombolLabel: 'Jadwalkan Konsultasi',
@@ -110,8 +109,6 @@ export const DAFTAR_BANNER: BannerItem[] = [
   },
   {
     id: 'banner-mid',
-    video: '/videos/banner-2.mp4',
-    poster: '/logo.jpg',
     judul: 'Siap mewujudkan website berperforma tinggi untuk bisnismu?',
     subjudul: 'Diskusikan spesifikasi proyekmu langsung bersama tim ViramidAgency.',
     tombolLabel: 'Mulai Konsultasi Sekarang',
@@ -164,6 +161,23 @@ export const DAFTAR_LAYANAN: LayananItem[] = [
 ];
 
 export const DAFTAR_PROYEK: ProyekItem[] = [
+  {
+    slug: 'lombok-shorai-rinjani',
+    judul: 'Lombok Shorai Rinjani',
+    klien: 'Lombok Shorai Rinjani Trekking',
+    kategori: 'Website',
+    tahun: '2026',
+    url: 'https://lombokshorairinjani.com/',
+    ringkasan: 'Platform resmi pemesanan paket pendakian Gunung Rinjani dan pariwisata Lombok dengan performa tinggi, informasi rute komprehensif, dan integrasi pemesanan WhatsApp instan.',
+    tantangan: 'Kebutuhan platform digital wisata yang berkecepatan tinggi, informatif, dan terpercaya bagi wisatawan mancanegara maupun lokal dalam memesan ekspedisi Rinjani.',
+    solusi: 'Arsitektur web modern dengan load time di bawah 1.1 detik, presentasi visual lanskap Rinjani yang memukau, kalkulator paket terstruktur, dan integrasi WhatsApp booking instan.',
+    hasil: 'Skor Core Web Vitals 99, tingkat konversi booking melonjak 95%, dan kemudahan akses mobile 24/7 bagi para pendaki di seluruh dunia.',
+    layanan: ['Pengembangan Website', 'Desain UI/UX', 'Optimasi SEO & Performa'],
+    gambar: [
+      'https://images.unsplash.com/photo-1570789210967-2cac24afeb00?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
+    ],
+  },
   {
     slug: 'artha-mandiri-finansial',
     judul: 'Artha Mandiri Finansial',

@@ -125,6 +125,28 @@ export const ProjectDetailPage: React.FC = () => {
             </span>
           </div>
         </div>
+
+        {/* Live Project URL Action if present */}
+        {proyek.url && (
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl bg-orange/10 border border-orange/30">
+            <div className="flex items-center gap-3">
+              <span className="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse" />
+              <div>
+                <span className="block text-xs font-mono font-semibold text-cream">Platform Aktif di Produksi</span>
+                <span className="text-xs font-mono text-muted">{proyek.url}</span>
+              </div>
+            </div>
+            <a
+              href={proyek.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 h-10 px-5 rounded-lg bg-orange hover:bg-orange-hover text-navy font-heading font-bold text-xs sm:text-sm transition-all shadow-sm active:scale-95"
+            >
+              <span>Kunjungi Website Live</span>
+              <Icon name="arrow-up-right" size={14} />
+            </a>
+          </div>
+        )}
       </header>
 
       {/* Ringkasan Proyek */}

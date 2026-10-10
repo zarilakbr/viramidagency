@@ -1,11 +1,11 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import { ViramidLogoMark } from './Logo';
 import { KONTAK_AGENCY } from '../data/content';
 
 /**
  * TriLoopMotif (ThreeArcsMotif)
- * Motif tiga bentuk pill dengan warna oranye, krem, dan outline oranye.
- * Logo asli (file logo) tidak diubah sama sekali.
+ * Kartu showcase identitas studio ViramidAgency dengan logo vektor presisi dan spesifikasi standar kualitas.
  */
 export const TriLoopMotif: React.FC<{ className?: string }> = ({ className = '' }) => {
   return (
@@ -31,33 +31,19 @@ export const TriLoopMotif: React.FC<{ className?: string }> = ({ className = '' 
           </span>
         </div>
 
-        {/* Visual Logo Resmi dengan Vektor Tiga Pill Oranye/Krem */}
+        {/* Visual Logo Resmi Vektor Oranye */}
         <div className="flex flex-col items-center justify-center py-4 gap-4">
-          <div className="w-24 h-24 rounded-xl overflow-hidden border border-border bg-navy-900 p-1 flex items-center justify-center">
-            <video
-              src="/videos/banner-1.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover rounded-lg"
-            />
+          <div className="w-20 h-20 rounded-2xl border border-border bg-navy-900 p-2 flex items-center justify-center shadow-inner">
+            <ViramidLogoMark size={56} />
           </div>
 
           <div className="text-center">
             <h3 className="font-heading font-bold text-lg text-cream tracking-tight">
-              Viramid Agency
+              Viramid <span className="text-orange">Agency</span>
             </h3>
             <p className="text-xs text-muted mt-1 font-mono">
               Rekayasa Web &amp; Desain Antarmuka
             </p>
-          </div>
-
-          {/* 3 Bentuk Pill: Oranye Solid, Krem Solid, Outline Oranye */}
-          <div className="flex items-center justify-center gap-2 pt-2">
-            <div className="w-8 h-3 rounded-full bg-orange" title="Oranye" />
-            <div className="w-8 h-3 rounded-full bg-cream" title="Krem" />
-            <div className="w-8 h-3 rounded-full border-2 border-orange bg-transparent" title="Outline Oranye" />
           </div>
         </div>
 
