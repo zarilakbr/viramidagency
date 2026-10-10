@@ -1,6 +1,7 @@
 /**
  * @file src/features/booking/components/Calendar.tsx
  * Komponen kalender bulanan interaktif dan aksesibel (WCAG AA & Keyboard Navigation).
+ * Desain modern berkontras tinggi dengan elevasi visual yang tegas.
  */
 
 import React, { useState } from 'react';
@@ -109,11 +110,11 @@ export const Calendar: React.FC<CalendarProps> = ({
   };
 
   return (
-    <div className="w-full bg-surface p-4 sm:p-5 rounded-xl border border-border">
+    <div className="w-full bg-[#121240] p-4 sm:p-5 rounded-2xl border border-[#2A2A6E] shadow-sm">
       {/* Header Navigasi Bulan */}
-      <div className="flex items-center justify-between mb-4 pb-3 border-b border-border">
+      <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#2A2A6E]">
         <div className="flex flex-col">
-          <span className="font-heading font-bold text-base text-foreground">
+          <span className="font-heading font-bold text-base text-cream">
             {format(currentMonth, 'MMMM yyyy')}
           </span>
           <span className="text-[11px] font-mono text-muted">
@@ -121,13 +122,13 @@ export const Calendar: React.FC<CalendarProps> = ({
           </span>
         </div>
 
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1.5">
           <button
             type="button"
             disabled={isPrevDisabled}
             onClick={handlePrevMonth}
             aria-label="Bulan Sebelumnya"
-            className="p-1.5 rounded-lg border border-border bg-surface hover:bg-surface-hover hover:border-orange text-foreground transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-border disabled:hover:bg-surface"
+            className="p-2 rounded-lg border border-[#2A2A6E] bg-[#181850] hover:bg-orange/20 hover:border-orange text-cream transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-[#2A2A6E] disabled:hover:bg-[#181850] cursor-pointer"
           >
             <Icon name="chevron-left" size={16} />
           </button>
@@ -136,7 +137,7 @@ export const Calendar: React.FC<CalendarProps> = ({
             disabled={isNextDisabled}
             onClick={handleNextMonth}
             aria-label="Bulan Berikutnya"
-            className="p-1.5 rounded-lg border border-border bg-surface hover:bg-surface-hover hover:border-orange text-foreground transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-border disabled:hover:bg-surface"
+            className="p-2 rounded-lg border border-[#2A2A6E] bg-[#181850] hover:bg-orange/20 hover:border-orange text-cream transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-[#2A2A6E] disabled:hover:bg-[#181850] cursor-pointer"
           >
             <Icon name="chevron-right" size={16} />
           </button>
@@ -144,12 +145,12 @@ export const Calendar: React.FC<CalendarProps> = ({
       </div>
 
       {/* Baris Nama Hari */}
-      <div className="grid grid-cols-7 gap-1 text-center mb-2" role="row">
+      <div className="grid grid-cols-7 gap-1.5 text-center mb-2" role="row">
         {HARI_SINGKAT.map((namaHari, idx) => (
           <div
             key={namaHari}
             className={`text-[11px] font-mono font-semibold py-1 ${
-              idx === 0 || idx === 6 ? 'text-muted/50' : 'text-muted'
+              idx === 0 || idx === 6 ? 'text-muted/40' : 'text-orange'
             }`}
             aria-label={namaHari}
           >
@@ -159,7 +160,7 @@ export const Calendar: React.FC<CalendarProps> = ({
       </div>
 
       {/* Grid Tanggal Kalender */}
-      <div className="grid grid-cols-7 gap-1" role="grid" aria-label="Kalender Booking">
+      <div className="grid grid-cols-7 gap-1.5" role="grid" aria-label="Kalender Booking">
         {allCalendarDays.map((day) => {
           const dateStr = formatDateString(day);
           const isCurrentMonth = isSameMonth(day, currentMonth);
@@ -182,14 +183,14 @@ export const Calendar: React.FC<CalendarProps> = ({
                 !isAvailable ? ' (Tidak Tersedia)' : ''
               }${isSelected ? ' (Terpilih)' : ''}`}
               aria-selected={isSelected}
-              className={`relative h-10 w-full rounded-lg text-xs font-mono font-medium transition-all duration-150 flex flex-col items-center justify-center ${
+              className={`relative h-10 sm:h-11 w-full rounded-xl text-xs font-mono font-medium transition-all duration-150 flex flex-col items-center justify-center ${
                 !isCurrentMonth
-                  ? 'opacity-20 cursor-not-allowed pointer-events-none'
+                  ? 'opacity-15 cursor-not-allowed pointer-events-none'
                   : !isAvailable
-                  ? 'opacity-30 text-muted cursor-not-allowed hover:bg-transparent'
+                  ? 'opacity-25 text-muted/50 cursor-not-allowed bg-transparent'
                   : isSelected
-                  ? 'bg-orange text-navy font-bold shadow-sm ring-1 ring-orange scale-[1.02]'
-                  : 'text-foreground hover:bg-orange/15 hover:text-orange cursor-pointer border border-transparent hover:border-orange/30'
+                  ? 'bg-orange text-navy-900 font-bold shadow-md shadow-orange/30 ring-2 ring-orange scale-[1.03] z-10'
+                  : 'bg-[#181850] text-cream hover:bg-orange/20 hover:text-orange hover:border-orange cursor-pointer border border-[#2A2A6E]'
               }`}
             >
               <span>{format(day, 'd')}</span>
@@ -197,8 +198,8 @@ export const Calendar: React.FC<CalendarProps> = ({
               {/* Titik Penanda Hari Ini */}
               {isTodayDate && (
                 <span
-                  className={`absolute bottom-1 w-1 h-1 rounded-full ${
-                    isSelected ? 'bg-navy' : 'bg-orange'
+                  className={`absolute bottom-1 w-1.5 h-1.5 rounded-full ${
+                    isSelected ? 'bg-navy-900' : 'bg-orange animate-pulse'
                   }`}
                   aria-hidden="true"
                 />
@@ -209,17 +210,17 @@ export const Calendar: React.FC<CalendarProps> = ({
       </div>
 
       {/* Legenda Keterangan */}
-      <div className="mt-4 pt-3 border-t border-border/60 flex items-center justify-between text-[11px] font-mono text-muted">
+      <div className="mt-4 pt-3 border-t border-[#2A2A6E]/80 flex items-center justify-between text-[11px] font-mono text-muted">
         <span className="flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-orange" />
           <span>Hari Ini</span>
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded bg-orange" />
+          <span className="w-2.5 h-2.5 rounded bg-orange" />
           <span>Terpilih</span>
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded bg-surface border border-border opacity-40" />
+          <span className="w-2.5 h-2.5 rounded bg-[#181850] border border-[#2A2A6E] opacity-40" />
           <span>Libur / Tutup</span>
         </span>
       </div>

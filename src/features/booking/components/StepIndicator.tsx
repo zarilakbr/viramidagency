@@ -1,7 +1,7 @@
 /**
  * @file src/features/booking/components/StepIndicator.tsx
- * Indikator progres 4 langkah pada wizard booking ViramidAgency.
- * Standar: Indikator langkah, progres, dan tanda centang menggunakan oranye.
+ * Indikator progres 2 langkah ringkas pada wizard booking ViramidAgency.
+ * Desain modern berkontras tinggi dengan penanda visual oranye.
  */
 
 import React from 'react';
@@ -32,7 +32,7 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({
   return (
     <nav
       aria-label="Progres Tahapan Booking"
-      className="w-full pb-6 mb-8 border-b border-border"
+      className="w-full pb-6 mb-8 border-b border-[#2A2A6E]"
     >
       <ol className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 max-w-2xl mx-auto">
         {STEPS.map((step) => {
@@ -46,32 +46,30 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({
                 type="button"
                 disabled={!isClickable}
                 onClick={() => isClickable && onStepClick?.(step.number)}
-                className={`w-full text-left p-3 rounded-xl border transition-all duration-200 flex items-center gap-3 ${
+                className={`w-full text-left p-3.5 rounded-2xl border transition-all duration-200 flex items-center gap-3.5 ${
                   isCurrent
-                    ? 'border-orange bg-orange/10 ring-1 ring-orange shadow-sm'
+                    ? 'border-orange bg-orange/15 ring-2 ring-orange shadow-md shadow-orange/20 scale-[1.01]'
                     : isCompleted
-                    ? 'border-border bg-surface hover:border-orange/50 cursor-pointer'
-                    : 'border-border/60 bg-surface/40 opacity-60 cursor-not-allowed'
+                    ? 'border-[#2A2A6E] bg-[#181850] hover:border-orange/60 cursor-pointer'
+                    : 'border-[#2A2A6E]/40 bg-[#121240]/40 opacity-50 cursor-not-allowed'
                 }`}
                 aria-current={isCurrent ? 'step' : undefined}
               >
                 {/* Step Icon / Number Pill */}
                 <div
-                  className={`w-7 h-7 rounded-full flex items-center justify-center font-mono text-xs font-bold shrink-0 transition-colors ${
-                    isCurrent
-                      ? 'bg-orange text-navy-900'
-                      : isCompleted
-                      ? 'bg-orange text-navy-900'
-                      : 'bg-surface border border-border text-muted'
+                  className={`w-8 h-8 rounded-full flex items-center justify-center font-mono text-xs font-bold shrink-0 transition-colors ${
+                    isCurrent || isCompleted
+                      ? 'bg-orange text-navy-900 shadow-sm'
+                      : 'bg-[#121240] border border-[#2A2A6E] text-muted'
                   }`}
                 >
-                  {isCompleted ? <Icon name="check" size={14} strokeWidth={2.5} /> : step.number}
+                  {isCompleted ? <Icon name="check" size={15} strokeWidth={2.5} /> : step.number}
                 </div>
 
                 {/* Step Labels */}
                 <div className="flex flex-col min-w-0">
                   <span
-                    className={`font-heading font-semibold text-xs truncate ${
+                    className={`font-heading font-bold text-xs sm:text-sm truncate ${
                       isCurrent
                         ? 'text-orange'
                         : isCompleted
@@ -81,7 +79,7 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({
                   >
                     {step.label}
                   </span>
-                  <span className="text-[11px] font-mono text-muted/80 truncate hidden sm:inline">
+                  <span className="text-[11px] font-mono text-muted/80 truncate">
                     {step.sublabel}
                   </span>
                 </div>

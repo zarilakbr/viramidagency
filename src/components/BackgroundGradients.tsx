@@ -14,8 +14,8 @@ interface Particle {
 
 /**
  * BackgroundGradients / FuturisticInteractiveCanvas
- * Menghadirkan latar belakang #0A0A2E (navy-900) dengan animasi konstelasi digital interaktif,
- * aura cahaya oranye-navy yang bergerak dinamis, dan efek interaksi kursor yang memukau.
+ * Menghadirkan latar belakang #0A0A2E (navy-900) dengan ambient gradient halus,
+ * partikel konstelasi digital interaktif, dan efek pencahayaan kursor yang elegan.
  */
 export const BackgroundGradients: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -34,8 +34,8 @@ export const BackgroundGradients: React.FC = () => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const isMobile = width < 768;
-    const particleCount = isMobile ? 32 : 64;
-    const maxDistance = isMobile ? 100 : 140;
+    const particleCount = isMobile ? 24 : 45;
+    const maxDistance = isMobile ? 90 : 130;
 
     const particles: Particle[] = [];
     const colorThemes = [
@@ -49,10 +49,10 @@ export const BackgroundGradients: React.FC = () => {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * (isMobile ? 0.35 : 0.5),
-        vy: (Math.random() - 0.5) * (isMobile ? 0.35 : 0.5),
-        radius: Math.random() * 1.2 + 1.0,
-        baseAlpha: Math.random() * 0.35 + 0.3,
+        vx: (Math.random() - 0.5) * (isMobile ? 0.3 : 0.4),
+        vy: (Math.random() - 0.5) * (isMobile ? 0.3 : 0.4),
+        radius: Math.random() * 1.1 + 0.9,
+        baseAlpha: Math.random() * 0.25 + 0.25,
         pulseSpeed: Math.random() * 0.02 + 0.01,
         pulsePhase: Math.random() * Math.PI * 2,
         color: colorThemes[Math.floor(Math.random() * colorThemes.length)],
@@ -89,7 +89,7 @@ export const BackgroundGradients: React.FC = () => {
 
     // Loop Animasi Utama
     const render = () => {
-      tick += 0.015;
+      tick += 0.012;
       ctx.clearRect(0, 0, width, height);
 
       // Interpolasi kursor mouse yang mulus (lerp)
@@ -109,18 +109,18 @@ export const BackgroundGradients: React.FC = () => {
           10,
           currentMouseX,
           currentMouseY,
-          260
+          240
         );
-        gradient.addColorStop(0, 'rgba(249, 115, 22, 0.06)');
-        gradient.addColorStop(0.6, 'rgba(18, 18, 63, 0.04)');
+        gradient.addColorStop(0, 'rgba(249, 115, 22, 0.05)');
+        gradient.addColorStop(0.6, 'rgba(18, 18, 63, 0.03)');
         gradient.addColorStop(1, 'transparent');
         ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, width, height);
       }
 
-      // Titik grid matriks cybernetic halus (step 56px)
-      ctx.fillStyle = 'rgba(244, 243, 255, 0.022)';
-      const step = 56;
+      // Titik grid matriks cybernetic halus (step 60px)
+      ctx.fillStyle = 'rgba(244, 243, 255, 0.018)';
+      const step = 60;
       for (let x = (step / 2); x < width; x += step) {
         for (let y = (step / 2); y < height; y += step) {
           ctx.fillRect(x, y, 1, 1);
@@ -142,7 +142,7 @@ export const BackgroundGradients: React.FC = () => {
         }
 
         p.pulsePhase += p.pulseSpeed;
-        const currentAlpha = p.baseAlpha + Math.sin(p.pulsePhase) * 0.15;
+        const currentAlpha = p.baseAlpha + Math.sin(p.pulsePhase) * 0.12;
 
         // Gambar titik node bercahaya
         ctx.beginPath();
@@ -158,12 +158,12 @@ export const BackgroundGradients: React.FC = () => {
           const dist = Math.hypot(dx, dy);
 
           if (dist < maxDistance) {
-            const alpha = (1 - dist / maxDistance) * 0.18;
+            const alpha = (1 - dist / maxDistance) * 0.14;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.strokeStyle = `rgba(244, 243, 255, ${alpha})`;
-            ctx.lineWidth = 0.75;
+            ctx.lineWidth = 0.7;
             ctx.stroke();
           }
         }
@@ -173,15 +173,15 @@ export const BackgroundGradients: React.FC = () => {
           const mdx = p.x - currentMouseX;
           const mdy = p.y - currentMouseY;
           const mdist = Math.hypot(mdx, mdy);
-          const mouseReach = 150;
+          const mouseReach = 140;
 
           if (mdist < mouseReach) {
-            const mAlpha = (1 - mdist / mouseReach) * 0.3;
+            const mAlpha = (1 - mdist / mouseReach) * 0.22;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(currentMouseX, currentMouseY);
             ctx.strokeStyle = `rgba(249, 115, 22, ${mAlpha})`;
-            ctx.lineWidth = 1.0;
+            ctx.lineWidth = 0.9;
             ctx.stroke();
           }
         }
@@ -203,9 +203,13 @@ export const BackgroundGradients: React.FC = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-navy-900" aria-hidden="true">
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#0A0A2E]" aria-hidden="true">
+      {/* Ambient gradient auras behind content */}
+      <div className="absolute top-0 left-1/4 w-[600px] h-[400px] bg-[#141448]/40 blur-[150px] rounded-full" />
+      <div className="absolute bottom-0 right-1/4 w-[600px] h-[400px] bg-orange/5 blur-[160px] rounded-full" />
+
       {/* Canvas Latar Interaktif */}
-      <canvas ref={canvasRef} className="w-full h-full block" />
+      <canvas ref={canvasRef} className="relative z-0 w-full h-full block" />
     </div>
   );
 };

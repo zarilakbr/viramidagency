@@ -50,7 +50,7 @@ export default function App() {
         <Navbar />
 
         {/* Main Routed Content */}
-        <div className="flex-1">
+        <div className="relative z-10 flex-1 w-full">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/karya/:slug" element={<ProjectDetailPage />} />
