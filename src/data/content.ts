@@ -80,9 +80,44 @@ export interface FaqItem {
   jawaban: string;
 }
 
+export interface BannerItem {
+  id: string;
+  video: string;
+  poster: string;
+  judul: string;
+  subjudul?: string;
+  tombolLabel: string;
+  tombolHref: string;
+  tombolKeduaLabel?: string;
+  tombolKeduaHref?: string;
+}
+
 // -----------------------------------------------------------------------------
 // DATA UTAMA VIRAMIDAGENCY
 // -----------------------------------------------------------------------------
+
+export const DAFTAR_BANNER: BannerItem[] = [
+  {
+    id: 'banner-hero',
+    video: '/videos/banner-1.mp4',
+    poster: '/logo.jpg',
+    judul: 'Kami membangun brand dan website yang bekerja untuk bisnismu.',
+    subjudul: 'Membantu brand berkembang melalui transformasi identitas visual, arsitektur website performa tinggi, dan pengalaman digital yang memikat pelanggan.',
+    tombolLabel: 'Jadwalkan Konsultasi',
+    tombolHref: '/booking',
+    tombolKeduaLabel: 'Lihat Karya',
+    tombolKeduaHref: '#karya',
+  },
+  {
+    id: 'banner-mid',
+    video: '/videos/banner-2.mp4',
+    poster: '/logo.jpg',
+    judul: 'Siap mewujudkan website berperforma tinggi untuk bisnismu?',
+    subjudul: 'Diskusikan spesifikasi proyekmu langsung bersama tim ViramidAgency.',
+    tombolLabel: 'Mulai Konsultasi Sekarang',
+    tombolHref: '/booking',
+  },
+];
 
 export const PROFIL_AGENCY: AgencyProfile = {
   nama: 'ViramidAgency',

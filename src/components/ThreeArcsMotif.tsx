@@ -4,11 +4,8 @@ import { KONTAK_AGENCY } from '../data/content';
 
 /**
  * TriLoopMotif (ThreeArcsMotif)
- * Motif resmi tiga lengkungan ViramidAgency.
- * Standar:
- * - Gerak sangat halus (perpindahan maksimum 6px, siklus 12 detik)
- * - Border 1px, tanpa shadow, tanpa glow neon
- * - Hormati prefers-reduced-motion
+ * Motif tiga bentuk pill dengan warna oranye, krem, dan outline oranye.
+ * Logo asli (file logo) tidak diubah sama sekali.
  */
 export const TriLoopMotif: React.FC<{ className?: string }> = ({ className = '' }) => {
   return (
@@ -19,13 +16,13 @@ export const TriLoopMotif: React.FC<{ className?: string }> = ({ className = '' 
       <motion.div
         animate={{ y: [0, -6, 0] }}
         transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-        className="w-full rounded-lg bg-surface border border-border p-6 flex flex-col gap-6"
+        className="w-full rounded-2xl bg-surface border border-border p-6 flex flex-col gap-6 shadow-sm"
       >
         {/* Header Keterangan Studio */}
         <div className="flex items-center justify-between border-b border-border pb-4">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-cyan" />
-            <span className="text-xs font-mono text-foreground font-medium">
+            <span className="w-2 h-2 rounded-full bg-orange" />
+            <span className="text-xs font-mono text-cream font-semibold">
               Studio Portofolio
             </span>
           </div>
@@ -34,41 +31,48 @@ export const TriLoopMotif: React.FC<{ className?: string }> = ({ className = '' 
           </span>
         </div>
 
-        {/* Visual Logo Resmi dengan Vektor Tiga Lengkungan Arsitektural */}
+        {/* Visual Logo Resmi dengan Vektor Tiga Pill Oranye/Krem */}
         <div className="flex flex-col items-center justify-center py-4 gap-4">
-          <div className="w-24 h-24 rounded-lg overflow-hidden border border-border bg-background p-1 flex items-center justify-center">
+          <div className="w-24 h-24 rounded-xl overflow-hidden border border-border bg-navy-900 p-1 flex items-center justify-center">
             <video
-              src="/videos/Logo_animation_for_Viramid_Agency.mp4"
+              src="/videos/banner-1.mp4"
               autoPlay
               loop
               muted
               playsInline
-              className="w-full h-full object-cover rounded"
+              className="w-full h-full object-cover rounded-lg"
             />
           </div>
 
           <div className="text-center">
-            <h3 className="font-heading font-bold text-lg text-foreground tracking-tight">
+            <h3 className="font-heading font-bold text-lg text-cream tracking-tight">
               Viramid Agency
             </h3>
             <p className="text-xs text-muted mt-1 font-mono">
               Rekayasa Web &amp; Desain Antarmuka
             </p>
           </div>
+
+          {/* 3 Bentuk Pill: Oranye Solid, Krem Solid, Outline Oranye */}
+          <div className="flex items-center justify-center gap-2 pt-2">
+            <div className="w-8 h-3 rounded-full bg-orange" title="Oranye" />
+            <div className="w-8 h-3 rounded-full bg-cream" title="Krem" />
+            <div className="w-8 h-3 rounded-full border-2 border-orange bg-transparent" title="Outline Oranye" />
+          </div>
         </div>
 
-        {/* Garis Aksen Tiga Warna Tipis 1px */}
+        {/* Garis Aksen Oranye Tunggal */}
         <TriColorLine />
 
         {/* Spesifikasi Teknis Studio */}
         <div className="grid grid-cols-2 gap-3 pt-1 text-left font-mono">
-          <div className="p-3 rounded border border-border bg-background/50">
+          <div className="p-3 rounded-lg border border-border bg-navy-900/60">
             <span className="block text-[11px] text-muted">Performa</span>
-            <span className="text-xs font-bold text-foreground">Core Web Vitals 99</span>
+            <span className="text-xs font-bold text-cream">Core Web Vitals 99</span>
           </div>
-          <div className="p-3 rounded border border-border bg-background/50">
+          <div className="p-3 rounded-lg border border-border bg-navy-900/60">
             <span className="block text-[11px] text-muted">Pendekatan</span>
-            <span className="text-xs font-bold text-foreground">Bespoke Design</span>
+            <span className="text-xs font-bold text-cream">Bespoke Design</span>
           </div>
         </div>
       </motion.div>
@@ -80,14 +84,10 @@ export const TriLoopMotif: React.FC<{ className?: string }> = ({ className = '' 
 export const ThreeArcsMotif = TriLoopMotif;
 
 /**
- * Garis tipis 1px tiga warna identitas logo (Oranye, Cyan, Ungu)
+ * Garis tipis 1px oranye tunggal
  */
 export const TriColorLine: React.FC<{ className?: string }> = ({ className = '' }) => {
   return (
-    <div className={`w-full flex h-[1px] overflow-hidden ${className}`} aria-hidden="true">
-      <div className="w-1/3 bg-orange" />
-      <div className="w-1/3 bg-cyan" />
-      <div className="w-1/3 bg-purple" />
-    </div>
+    <div className={`w-full h-[1px] bg-orange/60 overflow-hidden ${className}`} aria-hidden="true" />
   );
 };

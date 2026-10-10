@@ -8,27 +8,30 @@ interface CategoryBadgeProps {
 
 /**
  * CategoryBadge
- * Badge kategori proyek dengan border 1px dan warna aksen resmi.
+ * Tag kategori dibedakan lewat isian dan garis (bukan warna cyan/purple):
+ * - Website = isi oranye teks navy (bg-orange text-navy-900 font-bold)
+ * - Branding = outline oranye teks oranye (border border-orange text-orange)
+ * - UI/UX = outline krem teks krem (border border-cream/60 text-cream)
+ * - Konten = outline muted teks muted (border border-muted/50 text-muted)
  */
 export const CategoryBadge: React.FC<CategoryBadgeProps> = ({ category, className = '' }) => {
-  const getCategoryColor = (cat: string) => {
+  const getBadgeStyle = (cat: string) => {
     switch (cat) {
       case 'Website':
-        return 'text-cyan';
+        return 'bg-orange text-navy-900 font-bold border-transparent';
       case 'Branding':
-        return 'text-purple';
+        return 'bg-transparent border border-orange text-orange font-semibold';
       case 'UI/UX':
-        return 'text-orange';
+        return 'bg-transparent border border-cream/60 text-cream font-medium';
       case 'Konten':
-        return 'text-muted';
       default:
-        return 'text-foreground';
+        return 'bg-transparent border border-muted/50 text-muted font-normal';
     }
   };
 
   return (
     <span
-      className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-mono font-medium tracking-wide uppercase border border-border bg-surface ${getCategoryColor(
+      className={`inline-flex items-center px-2.5 py-0.5 rounded text-xs font-mono tracking-wide uppercase transition-colors ${getBadgeStyle(
         category
       )} ${className}`}
     >

@@ -1,12 +1,13 @@
 /**
  * @file src/components/FaqSection.tsx
  * Seksi Pertanyaan Umum (FAQ) dengan akordeon interaktif, animasi halus, dan aksesibilitas keyboard.
- * Berperan sebagai seksi pemecah ritme warna (Seksi Terang #F4F3FF) sesuai standar Part C.
+ * Ritme Warna: Latar KREM (#F4F3FF), teks navy-900 (#0A0A2E), aksen oranye (#F97316).
  */
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Container } from './ui/Container';
+import { SectionHeading } from './SectionHeading';
 import { DAFTAR_FAQ } from '../data/content';
 import { Icon } from './ui/Icon';
 
@@ -18,22 +19,16 @@ export const FaqSection: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="relative py-[72px] sm:py-[120px] bg-[#F4F3FF] text-[#0A0A2E] border-y border-[#D9D8F0]">
+    <section id="faq" className="relative py-[72px] sm:py-[120px] bg-cream text-navy-900 border-y border-border scroll-mt-16">
       <Container className="max-w-4xl">
-        {/* Header Seksi Terang */}
-        <div className="text-left mb-10 md:mb-12">
-          <div className="flex items-baseline gap-4 mb-2">
-            <span className="font-mono text-xs sm:text-sm font-semibold text-orange select-none">
-              06 /
-            </span>
-            <h2 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl text-[#0A0A2E] tracking-[-0.025em] leading-[1.15]">
-              Pertanyaan Umum
-            </h2>
-          </div>
-          <p className="text-sm sm:text-base text-[#47486B] max-w-2xl font-normal leading-relaxed mt-3">
-            Jawaban transparan seputar proses kerja sama, kepemilikan kode sumber, dan alur pengerjaan di ViramidAgency.
-          </p>
-        </div>
+        {/* Header Seksi Latar Krem */}
+        <SectionHeading
+          number="05"
+          eyebrowText="TRANSPARANSI & TANYA JAWAB"
+          title="Pertanyaan Umum"
+          subtitle="Jawaban transparan seputar proses kerja sama, kepemilikan kode sumber, dan alur pengerjaan di ViramidAgency."
+          variant="cream"
+        />
 
         {/* Daftar Akordeon FAQ */}
         <div className="flex flex-col gap-3.5" role="region" aria-label="Accordion Pertanyaan Umum">
@@ -45,10 +40,10 @@ export const FaqSection: React.FC = () => {
             return (
               <div
                 key={item.id}
-                className={`rounded-xl border transition-all duration-200 overflow-hidden ${
+                className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
                   isOpen
-                    ? 'border-orange bg-white shadow-sm ring-1 ring-orange/30'
-                    : 'border-[#D9D8F0] bg-white hover:border-[#B5B4DC]'
+                    ? 'border-orange bg-white shadow-md ring-1 ring-orange/30'
+                    : 'border-border/40 bg-white hover:border-orange/50'
                 }`}
               >
                 <button
@@ -70,15 +65,15 @@ export const FaqSection: React.FC = () => {
                   }}
                   className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-orange"
                 >
-                  <span className="font-heading font-bold text-base sm:text-lg text-[#0A0A2E] pr-2">
+                  <span className="font-heading font-bold text-base sm:text-lg text-navy-900 pr-2">
                     {item.pertanyaan}
                   </span>
 
                   <div
-                    className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 ${
+                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 ${
                       isOpen
-                        ? 'bg-orange text-navy rotate-180'
-                        : 'bg-[#EDEBF8] text-[#0A0A2E]'
+                        ? 'bg-orange text-navy-900 rotate-180 shadow-sm'
+                        : 'bg-navy-900/10 text-navy-900'
                     }`}
                   >
                     <Icon name="chevron-down" size={16} />
@@ -97,7 +92,7 @@ export const FaqSection: React.FC = () => {
                       transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="px-5 pb-6 sm:px-6 sm:pb-6 text-sm text-[#3E3F66] leading-relaxed border-t border-[#F0EFF8] pt-4">
+                      <div className="px-5 pb-6 sm:px-6 sm:pb-6 text-sm text-navy-900/80 leading-relaxed border-t border-navy-900/10 pt-4">
                         {item.jawaban}
                       </div>
                     </motion.div>

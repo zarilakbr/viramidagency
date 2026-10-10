@@ -161,13 +161,13 @@ export const ProjectDetailPage: React.FC = () => {
 
           {/* Blok 02: Solusi */}
           <Reveal delayIndex={1}>
-            <div className="bg-surface border border-border rounded-lg p-6 flex flex-col justify-between h-full hover:border-cyan transition-colors">
+            <div className="bg-surface border border-border rounded-xl p-6 flex flex-col justify-between h-full hover:border-orange transition-colors">
               <div>
                 <div className="flex items-center justify-between mb-3 border-b border-border pb-2">
-                  <span className="font-mono text-xs font-bold text-cyan">02</span>
+                  <span className="font-mono text-xs font-bold text-orange">02</span>
                   <span className="text-xs font-mono uppercase text-muted">Solusi</span>
                 </div>
-                <h3 className="font-heading font-bold text-lg text-foreground mb-2">
+                <h3 className="font-heading font-bold text-lg text-cream mb-2">
                   Pendekatan Viramid
                 </h3>
                 <p className="text-sm text-muted leading-relaxed max-w-[65ch]">
@@ -179,13 +179,13 @@ export const ProjectDetailPage: React.FC = () => {
 
           {/* Blok 03: Hasil */}
           <Reveal delayIndex={2}>
-            <div className="bg-surface border border-border rounded-lg p-6 flex flex-col justify-between h-full hover:border-purple transition-colors">
+            <div className="bg-surface border border-border rounded-xl p-6 flex flex-col justify-between h-full hover:border-orange transition-colors">
               <div>
                 <div className="flex items-center justify-between mb-3 border-b border-border pb-2">
-                  <span className="font-mono text-xs font-bold text-purple">03</span>
+                  <span className="font-mono text-xs font-bold text-orange">03</span>
                   <span className="text-xs font-mono uppercase text-muted">Hasil</span>
                 </div>
-                <h3 className="font-heading font-bold text-lg text-foreground mb-2">
+                <h3 className="font-heading font-bold text-lg text-cream mb-2">
                   Dampak Nyata
                 </h3>
                 <p className="text-sm text-muted leading-relaxed max-w-[65ch]">
@@ -200,7 +200,7 @@ export const ProjectDetailPage: React.FC = () => {
       {/* Dokumentasi & Rancangan Visual */}
       <section className="mb-16">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="font-heading font-bold text-xl sm:text-2xl text-foreground">
+          <h2 className="font-heading font-bold text-xl sm:text-2xl text-cream">
             Dokumentasi &amp; Rancangan Visual
           </h2>
           <span className="text-xs font-mono text-muted">
@@ -215,7 +215,7 @@ export const ProjectDetailPage: React.FC = () => {
             {proyek.gambar.map((imgUrl, i) => (
               <div
                 key={i}
-                className="w-full bg-surface border border-border rounded-lg overflow-hidden aspect-[16/10]"
+                className="w-full bg-surface border border-border rounded-xl overflow-hidden aspect-[16/10]"
               >
                 <img
                   src={imgUrl}
@@ -228,11 +228,11 @@ export const ProjectDetailPage: React.FC = () => {
           </div>
         ) : (
           <div className="flex flex-col gap-6">
-            <div className="w-full aspect-[16/9] max-h-96 bg-surface border border-border rounded-lg flex flex-col items-center justify-center p-8 text-center">
+            <div className="w-full aspect-[16/9] max-h-96 bg-surface border border-border rounded-xl flex flex-col items-center justify-center p-8 text-center">
               <span className="text-xs font-mono uppercase tracking-wider text-orange mb-2">
                 Studi Kasus Desain
               </span>
-              <p className="font-heading font-bold text-2xl text-foreground mb-2">
+              <p className="font-heading font-bold text-2xl text-cream mb-2">
                 {proyek.judul}
               </p>
               <p className="text-xs sm:text-sm text-muted max-w-[65ch] leading-relaxed">
@@ -241,22 +241,22 @@ export const ProjectDetailPage: React.FC = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="p-6 bg-surface border border-border rounded-lg flex flex-col items-start gap-2">
-                <Icon name="layers" size="md" className="text-cyan" />
-                <span className="font-mono text-xs text-cyan uppercase tracking-wider font-semibold">
+              <div className="p-6 bg-surface border border-border rounded-xl flex flex-col items-start gap-2">
+                <Icon name="layers" size="md" className="text-orange" />
+                <span className="font-mono text-xs text-orange uppercase tracking-wider font-semibold">
                   Komposisi Desain
                 </span>
-                <p className="font-heading font-bold text-base text-foreground">
+                <p className="font-heading font-bold text-base text-cream">
                   Tata Letak Responsif &amp; Arsitektur Antarmuka
                 </p>
               </div>
 
-              <div className="p-6 bg-surface border border-border rounded-lg flex flex-col items-start gap-2">
-                <Icon name="palette" size="md" className="text-purple" />
-                <span className="font-mono text-xs text-purple uppercase tracking-wider font-semibold">
+              <div className="p-6 bg-surface border border-border rounded-xl flex flex-col items-start gap-2">
+                <Icon name="palette" size="md" className="text-orange" />
+                <span className="font-mono text-xs text-orange uppercase tracking-wider font-semibold">
                   Sistem Desain
                 </span>
-                <p className="font-heading font-bold text-base text-foreground">
+                <p className="font-heading font-bold text-base text-cream">
                   Tipografi Berkarakter &amp; Aset Identitas Merek
                 </p>
               </div>

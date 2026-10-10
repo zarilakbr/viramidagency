@@ -89,7 +89,7 @@ export const DateTimeStep: React.FC<DateTimeStepProps> = ({
           Pilih Tanggal &amp; Jam
         </h2>
         <p className="text-xs sm:text-sm text-muted font-normal mt-1">
-          Durasi sesi untuk <strong className="text-cyan font-medium">{jenisConfig.nama}</strong> adalah{' '}
+          Durasi sesi untuk <strong className="text-orange font-medium">{jenisConfig.nama}</strong> adalah{' '}
           <span className="font-mono text-foreground font-semibold">{jenisConfig.durasiMenit} menit</span>.
         </p>
       </div>

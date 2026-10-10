@@ -59,11 +59,11 @@ export const BookingHistoryPage: React.FC = () => {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-6 border-b border-border">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-surface text-xs font-mono font-medium text-cyan mb-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-surface text-xs font-mono font-medium text-orange mb-2">
               <Icon name="clock" size={14} />
               <span>Penyimpanan Lokal Perangkat</span>
             </div>
-            <h1 className="font-heading font-bold text-2xl sm:text-3xl text-foreground">
+            <h1 className="font-heading font-bold text-2xl sm:text-3xl text-cream">
               Riwayat Jadwal Pertemuan
             </h1>
             <p className="text-xs sm:text-sm text-muted mt-1">
@@ -73,7 +73,7 @@ export const BookingHistoryPage: React.FC = () => {
 
           <Link
             to="/booking"
-            className="py-2.5 px-4 rounded-lg bg-orange hover:bg-orange-hover text-navy font-heading font-bold text-xs sm:text-sm transition-colors flex items-center gap-2 shrink-0 self-start sm:self-auto"
+            className="py-2.5 px-4 rounded-full bg-orange hover:bg-orange-hover text-navy-900 font-heading font-bold text-xs sm:text-sm transition-colors flex items-center gap-2 shrink-0 self-start sm:self-auto shadow-sm"
           >
             <Icon name="calendar" size={16} />
             <span>Buat Jadwal Baru</span>
@@ -91,10 +91,10 @@ export const BookingHistoryPage: React.FC = () => {
         {/* Empty State */}
         {!isLoading && history.length === 0 && (
           <div className="py-16 px-6 text-center border border-dashed border-border rounded-2xl bg-surface/40 flex flex-col items-center justify-center">
-            <div className="w-14 h-14 rounded-full bg-navy border border-border flex items-center justify-center text-muted mb-4">
+            <div className="w-14 h-14 rounded-full bg-navy-900 border border-border flex items-center justify-center text-muted mb-4">
               <Icon name="calendar" size={24} />
             </div>
-            <h2 className="font-heading font-bold text-lg text-foreground mb-1">
+            <h2 className="font-heading font-bold text-lg text-cream mb-1">
               Belum Ada Jadwal Pertemuan
             </h2>
             <p className="text-xs sm:text-sm text-muted max-w-md mb-6 leading-relaxed">
@@ -102,7 +102,7 @@ export const BookingHistoryPage: React.FC = () => {
             </p>
             <Link
               to="/booking"
-              className="py-3 px-6 rounded-xl bg-orange text-navy font-heading font-bold text-sm"
+              className="py-3 px-6 rounded-full bg-orange text-navy-900 font-heading font-bold text-sm shadow-sm"
             >
               Jadwalkan Konsultasi Pertama
             </Link>
@@ -130,7 +130,7 @@ export const BookingHistoryPage: React.FC = () => {
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-border/60">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="font-mono font-bold text-sm text-cyan">
+                      <span className="font-mono font-bold text-sm text-orange">
                         {item.kodeBooking}
                       </span>
                       <span

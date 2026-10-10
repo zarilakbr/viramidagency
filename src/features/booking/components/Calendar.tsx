@@ -117,7 +117,7 @@ export const Calendar: React.FC<CalendarProps> = ({
             type="button"
             onClick={handlePrevMonth}
             aria-label="Bulan Sebelumnya"
-            className="p-1.5 rounded-lg border border-border bg-surface hover:bg-surface-hover hover:border-cyan text-foreground transition-colors"
+            className="p-1.5 rounded-lg border border-border bg-surface hover:bg-surface-hover hover:border-orange text-foreground transition-colors"
           >
             <Icon name="chevron-left" size={16} />
           </button>
@@ -125,7 +125,7 @@ export const Calendar: React.FC<CalendarProps> = ({
             type="button"
             onClick={handleNextMonth}
             aria-label="Bulan Berikutnya"
-            className="p-1.5 rounded-lg border border-border bg-surface hover:bg-surface-hover hover:border-cyan text-foreground transition-colors"
+            className="p-1.5 rounded-lg border border-border bg-surface hover:bg-surface-hover hover:border-orange text-foreground transition-colors"
           >
             <Icon name="chevron-right" size={16} />
           </button>
@@ -187,7 +187,7 @@ export const Calendar: React.FC<CalendarProps> = ({
               {isTodayDate && (
                 <span
                   className={`absolute bottom-1 w-1 h-1 rounded-full ${
-                    isSelected ? 'bg-navy' : 'bg-cyan'
+                    isSelected ? 'bg-navy' : 'bg-orange'
                   }`}
                   aria-hidden="true"
                 />
@@ -200,7 +200,7 @@ export const Calendar: React.FC<CalendarProps> = ({
       {/* Legenda Keterangan */}
       <div className="mt-4 pt-3 border-t border-border/60 flex items-center justify-between text-[11px] font-mono text-muted">
         <span className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-cyan" />
+          <span className="w-2 h-2 rounded-full bg-orange" />
           <span>Hari Ini</span>
         </span>
         <span className="flex items-center gap-1.5">

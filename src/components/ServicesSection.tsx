@@ -1,12 +1,14 @@
 /**
  * @file src/components/ServicesSection.tsx
  * Seksi Layanan ViramidAgency.
- * Berperan sebagai seksi pemecah ritme warna (Seksi Terang #F4F3FF) sesuai standar Part C.
+ * Ritme Warna: Latar ORANYE solid (#F97316), teks navy-900 (#0A0A2E).
+ * Baris layanan saat hover berubah menjadi isi navy-900 dengan teks krem (#F4F3FF).
  */
 
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from './ui/Container';
+import { SectionHeading } from './SectionHeading';
 import { DAFTAR_LAYANAN } from '../data/content';
 import { Icon } from './ui/Icon';
 
@@ -18,51 +20,45 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
   return (
     <section
       id="layanan"
-      className="relative py-[72px] sm:py-[120px] bg-[#F4F3FF] text-[#0A0A2E] border-y border-[#D9D8F0] scroll-mt-16"
+      className="relative py-[72px] sm:py-[120px] bg-orange text-navy-900 scroll-mt-16"
     >
       <Container>
-        {/* Header Seksi Terang */}
-        <div className="text-left mb-12">
-          <div className="flex items-baseline gap-4 mb-2">
-            <span className="font-mono text-xs sm:text-sm font-semibold text-orange select-none">
-              01 /
-            </span>
-            <h2 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl text-[#0A0A2E] tracking-[-0.025em] leading-[1.15]">
-              Layanan Keahlian
-            </h2>
-          </div>
-          <p className="text-sm sm:text-base text-[#47486B] max-w-2xl font-normal leading-relaxed mt-3">
-            Solusi rekayasa digital terintegrasi untuk memperkuat identitas visual, antarmuka interaktif, dan performa konversi bisnismu.
-          </p>
-        </div>
+        {/* Header Seksi Latar Oranye Solid */}
+        <SectionHeading
+          number="01"
+          eyebrowText="KAPABILITAS & SOLUSI"
+          title="Layanan Keahlian"
+          subtitle="Solusi rekayasa digital terintegrasi untuk memperkuat identitas visual, antarmuka interaktif, dan performa konversi bisnismu."
+          variant="orange"
+        />
 
-        {/* Daftar Layanan Terang */}
-        <div className="flex flex-col border-t border-[#D9D8F0]">
+        {/* Daftar Layanan */}
+        <div className="flex flex-col border-t border-navy-900/20 mt-8">
           {DAFTAR_LAYANAN.map((item) => (
             <Link
               key={item.id}
               to="/booking"
               onClick={() => onSelectService?.(item.nama)}
-              className="group py-8 md:py-10 border-b border-[#D9D8F0] hover:border-orange transition-all duration-200 cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-white/60 px-3 sm:px-4 rounded-lg"
+              className="group py-8 md:py-10 border-b border-navy-900/20 transition-all duration-200 cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-6 px-4 sm:px-6 rounded-2xl hover:bg-navy-900 hover:text-cream"
             >
               {/* Nomor & Nama Layanan */}
               <div className="flex items-start md:items-center gap-6 md:gap-8 md:w-5/12">
-                <span className="font-mono text-xs sm:text-sm text-[#73749B] group-hover:text-orange font-semibold transition-colors">
-                  {item.nomor}
+                <span className="font-mono text-xs sm:text-sm text-navy-900/70 group-hover:text-orange font-bold transition-colors">
+                  [{item.nomor}]
                 </span>
-                <h3 className="font-heading font-bold text-2xl sm:text-3xl text-[#0A0A2E] group-hover:text-orange transition-colors tracking-tight">
+                <h3 className="font-heading font-bold text-2xl sm:text-3xl text-navy-900 group-hover:text-cream transition-colors tracking-tight">
                   {item.nama}
                 </h3>
               </div>
 
               {/* Deskripsi */}
-              <p className="text-sm md:text-base text-[#47486B] md:w-6/12 leading-relaxed max-w-[65ch]">
+              <p className="text-sm md:text-base text-navy-900/80 group-hover:text-muted md:w-6/12 leading-relaxed max-w-[64ch] transition-colors">
                 {item.deskripsi}
               </p>
 
               {/* Panah Navigasi */}
-              <div className="flex justify-end md:w-1/12 text-[#73749B] group-hover:text-orange transition-all duration-200 group-hover:translate-x-1 group-hover:-translate-y-1">
-                <Icon name="arrow-up-right" size="lg" strokeWidth={1.5} />
+              <div className="flex justify-end md:w-1/12 text-navy-900 group-hover:text-orange transition-all duration-200 group-hover:translate-x-1 group-hover:-translate-y-1">
+                <Icon name="arrow-up-right" size="lg" strokeWidth={2} />
               </div>
             </Link>
           ))}

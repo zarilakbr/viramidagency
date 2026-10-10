@@ -9,12 +9,13 @@ import { AboutSection } from '../components/AboutSection';
 import { FaqSection } from '../components/FaqSection';
 import { ContactSection } from '../components/ContactSection';
 import { CtaBanner } from '../components/CtaBanner';
+import { VideoBanner } from '../components/ui/VideoBanner';
+import { DAFTAR_BANNER } from '../data/content';
 
 export const HomePage: React.FC = () => {
   const [selectedService, setSelectedService] = useState<string>('');
 
   const handleSelectService = (serviceName: string) => {
-    // Map service name to form select value
     if (serviceName.includes('Website')) {
       setSelectedService('Website');
     } else if (serviceName.includes('UI/UX')) {
@@ -28,36 +29,41 @@ export const HomePage: React.FC = () => {
     }
   };
 
+  const midBanner = DAFTAR_BANNER[1];
+
   return (
     <main>
-      {/* 1. Hero: Navy Gelap #0A0A2E */}
+      {/* 1. Hero: Video Banner 1 dengan Overlay Navy-900 60% */}
       <Hero />
 
       {/* 2. Tech Stack Marquee */}
       <TechnologyStack />
 
-      {/* 3. Layanan Keahlian: Seksi Terang #F4F3FF (Pemecah Ritme) */}
+      {/* 3. Layanan Keahlian: Latar ORANYE Solid #F97316 */}
       <ServicesSection onSelectService={handleSelectService} />
 
-      {/* 4. Karya Unggulan: Navy Gelap #0A0A2E */}
+      {/* 4. Karya Pilihan: Navy-900 #0A0A2E */}
       <PortfolioSection />
 
-      {/* 5. Proses Kerja: Surface #12123F (Sticky Sidebar & Progress) */}
+      {/* 5. Banner Video 2: Tengah (Di antara Karya & Proses) */}
+      <VideoBanner banner={midBanner} variant="mid" />
+
+      {/* 6. Proses Kerja: Surface Navy-800 #12123F */}
       <ProcessSection />
 
-      {/* 6. Paket Layanan: Navy Gelap #0A0A2E */}
+      {/* 7. Paket Layanan: Navy-900 dengan Paket Tengah Oranye Solid */}
       <PricingSection />
 
-      {/* 7. Profil Founder & Tim (Zaril Akbar): Surface #12123F */}
+      {/* 8. Profil Studio & Tim: Surface Navy-800 #12123F */}
       <AboutSection />
 
-      {/* 8. FAQ: Seksi Terang #F4F3FF (Pemecah Ritme) */}
+      {/* 9. FAQ: Latar Krem #F4F3FF, Teks Navy-900 */}
       <FaqSection />
 
-      {/* 9. Kontak Langsung: Surface #12123F */}
+      {/* 10. Kontak Langsung: Surface Navy-800 */}
       <ContactSection initialService={selectedService} />
 
-      {/* 10. Pita CTA Penuh: Solid Oranye #F97316 */}
+      {/* 11. Pita CTA Penuh: Solid Oranye #F97316 */}
       <CtaBanner />
     </main>
   );

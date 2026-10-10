@@ -4,28 +4,29 @@
   --font-heading: "Space Grotesk", sans-serif;
   --font-body: "Inter", sans-serif;
 
-  /* Identitas Visual Baku ViramidAgency */
+  /* Identitas Visual Baku Oranye + Navy ViramidAgency */
+  --color-navy-950: #070722;
+  --color-navy-900: #0A0A2E;
+  --color-navy-800: #12123F;
+  --color-navy-700: #262660;
+
+  --color-orange-500: #F97316;
+  --color-orange-400: #FDBA4D;
+
+  --color-cream: #F4F3FF;
+  --color-muted: #9A9BC7;
+  --color-error: #FF6B6B;
+
+  /* Semantic Map */
   --color-background: #0A0A2E;
   --color-surface: #12123F;
   --color-surface-hover: #1A1A52;
   --color-border: #262660;
   --color-border-hover: #F97316;
   --color-orange: #F97316;
-  --color-orange-hover: #EA580C;
-  --color-cyan: #22D3C5;
-  --color-purple: #C26FE0;
+  --color-orange-hover: #FDBA4D;
   --color-foreground: #F4F3FF;
-  --color-muted: #9A9BC7;
-
-  /* Aliases untuk kompatibilitas */
   --color-navy: #0A0A2E;
-  --color-border-line: #262660;
-  --color-text-main: #F4F3FF;
-  --color-text-muted: #9A9BC7;
-  --color-brand-orange: #F97316;
-  --color-brand-orange-hover: #EA580C;
-  --color-brand-cyan: #22D3C5;
-  --color-brand-purple: #C26FE0;
 
   --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -89,12 +90,12 @@ p {
   }
 }
 
-/* Standar Garis 1px & Tanpa Shadow Tebal */
+/* Standar Garis 1px */
 .border-subtle {
   border: 1px solid #262660;
 }
 
-/* Standar Fokus Aksesibilitas Cyan 2px */
+/* Standar Fokus Aksesibilitas Oranye 2px di atas Navy */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -102,13 +103,13 @@ textarea:focus-visible,
 select:focus-visible,
 [role="button"]:focus-visible,
 [tabindex="0"]:focus-visible {
-  outline: 2px solid #22D3C5 !important;
+  outline: 2px solid #F97316 !important;
   outline-offset: 2px !important;
 }
 
-/* Panjang baris bacaan maksimum 65-72 karakter */
+/* Panjang baris bacaan maksimum 64 karakter */
 .prose-max {
-  max-width: 68ch;
+  max-width: 64ch;
 }
 
 /* Reduced motion preference */
@@ -120,7 +121,6 @@ select:focus-visible,
     scroll-behavior: auto !important;
   }
 
-  /* Tetap jalankan marquee dekoratif teknologi secara halus dan teratur */
   .animate-marquee-smooth {
     animation: marquee-track 60s linear infinite !important;
     -webkit-animation: marquee-track 60s linear infinite !important;
@@ -141,14 +141,13 @@ select:focus-visible,
 
 ::-webkit-scrollbar-thumb {
   background: #262660;
-  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #F97316;
 }
 
-/* Infinite Running Marquee Animation (Dual-Track Hardware-Accelerated 60fps) */
+/* Infinite Running Marquee Animation */
 @-webkit-keyframes marquee-track {
   0% {
     -webkit-transform: translate3d(0, 0, 0);
@@ -188,7 +187,6 @@ select:focus-visible,
   touch-action: pan-y;
 }
 
-/* Hanya pause saat mouse asli (desktop/laptop) mengarah ke kartu, JANGAN pause di HP/layar sentuh */
 @media (hover: hover) and (pointer: fine) {
   .marquee-container:hover .animate-marquee-smooth {
     animation-play-state: paused;

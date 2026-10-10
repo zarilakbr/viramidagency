@@ -83,7 +83,7 @@ export const BookingSuccessPage: React.FC = () => {
       <Container className="max-w-3xl">
         {/* Header Sukses */}
         <div className="text-center mb-8">
-          <div className="w-14 h-14 rounded-full bg-cyan/15 border border-cyan/40 flex items-center justify-center mx-auto mb-4 text-cyan">
+          <div className="w-14 h-14 rounded-full bg-orange/15 border border-orange/40 flex items-center justify-center mx-auto mb-4 text-orange">
             <Icon name="check" size={28} strokeWidth={2.5} />
           </div>
 
@@ -92,7 +92,7 @@ export const BookingSuccessPage: React.FC = () => {
             <span>Status: Menunggu Konfirmasi Tim</span>
           </span>
 
-          <h1 className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-foreground mb-2">
+          <h1 className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-cream mb-2">
             Permintaan Jadwal Terkirim
           </h1>
 
@@ -104,10 +104,10 @@ export const BookingSuccessPage: React.FC = () => {
         {/* Kartu Kode Booking & Ringkasan */}
         <div className="bg-surface rounded-2xl border border-border p-6 md:p-8 flex flex-col gap-6 shadow-sm mb-6">
           {/* Box Kode Booking */}
-          <div className="p-4 rounded-xl bg-navy border border-border flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+          <div className="p-4 rounded-xl bg-navy-900 border border-border flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
             <div>
               <span className="text-xs font-mono text-muted block">Kode Booking Anda:</span>
-              <span className="font-mono font-bold text-lg sm:text-xl text-cyan tracking-wider">
+              <span className="font-mono font-bold text-lg sm:text-xl text-orange tracking-wider">
                 {booking.kodeBooking}
               </span>
             </div>
@@ -199,7 +199,7 @@ export const BookingSuccessPage: React.FC = () => {
             href={googleCalendarUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="py-3.5 px-5 rounded-xl border border-border bg-surface hover:bg-surface-hover text-cyan font-heading font-medium text-sm transition-colors flex items-center justify-center gap-2"
+            className="py-3.5 px-5 rounded-xl border border-border bg-surface hover:bg-surface-hover text-orange font-heading font-medium text-sm transition-colors flex items-center justify-center gap-2"
           >
             <Icon name="calendar-plus" size={16} />
             <span>Google Calendar</span>
@@ -210,7 +210,7 @@ export const BookingSuccessPage: React.FC = () => {
         <div className="flex items-center justify-between pt-6 border-t border-border text-xs font-mono text-muted">
           <Link
             to="/booking/riwayat"
-            className="text-cyan hover:underline inline-flex items-center gap-1"
+            className="text-orange hover:underline inline-flex items-center gap-1"
           >
             <Icon name="clock" size={14} />
             <span>Lihat Semua Riwayat Booking</span>

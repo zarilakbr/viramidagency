@@ -1,6 +1,7 @@
 /**
  * @file src/features/booking/components/StepIndicator.tsx
  * Indikator progres 4 langkah pada wizard booking ViramidAgency.
+ * Standar: Indikator langkah, progres, dan tanda centang menggunakan oranye.
  */
 
 import React from 'react';
@@ -47,11 +48,11 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({
                 type="button"
                 disabled={!isClickable}
                 onClick={() => isClickable && onStepClick?.(step.number)}
-                className={`w-full text-left p-3 rounded-lg border transition-all duration-200 flex items-center gap-3 ${
+                className={`w-full text-left p-3 rounded-xl border transition-all duration-200 flex items-center gap-3 ${
                   isCurrent
-                    ? 'border-orange bg-orange/10 ring-1 ring-orange'
+                    ? 'border-orange bg-orange/10 ring-1 ring-orange shadow-sm'
                     : isCompleted
-                    ? 'border-border bg-surface hover:border-cyan/50 cursor-pointer'
+                    ? 'border-border bg-surface hover:border-orange/50 cursor-pointer'
                     : 'border-border/60 bg-surface/40 opacity-60 cursor-not-allowed'
                 }`}
                 aria-current={isCurrent ? 'step' : undefined}
@@ -60,13 +61,13 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({
                 <div
                   className={`w-7 h-7 rounded-full flex items-center justify-center font-mono text-xs font-bold shrink-0 transition-colors ${
                     isCurrent
-                      ? 'bg-orange text-navy'
+                      ? 'bg-orange text-navy-900'
                       : isCompleted
-                      ? 'bg-cyan text-navy'
+                      ? 'bg-orange text-navy-900'
                       : 'bg-surface border border-border text-muted'
                   }`}
                 >
-                  {isCompleted ? <Icon name="check" size={14} /> : step.number}
+                  {isCompleted ? <Icon name="check" size={14} strokeWidth={2.5} /> : step.number}
                 </div>
 
                 {/* Step Labels */}
@@ -76,7 +77,7 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({
                       isCurrent
                         ? 'text-orange'
                         : isCompleted
-                        ? 'text-foreground'
+                        ? 'text-cream'
                         : 'text-muted'
                     }`}
                   >

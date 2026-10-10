@@ -1,13 +1,15 @@
 /**
  * @file src/components/ProcessSection.tsx
  * Seksi Proses Kerja ViramidAgency.
+ * Ritme Warna: navy-800 (bg-surface).
  * Layout sticky: Judul seksi menempel di kiri, langkah bergulir di kanan,
- * disertai garis progres tipis terisi mengikuti scroll (useScroll motion).
+ * disertai garis progres tipis terisi oranye mengikuti scroll.
  */
 
 import React, { useRef } from 'react';
 import { motion, useScroll, useSpring, useTransform } from 'motion/react';
 import { Container } from './ui/Container';
+import { Eyebrow } from './ui/Eyebrow';
 import { LANGKAH_PROSES } from '../data/content';
 import { Icon } from './ui/Icon';
 
@@ -37,15 +39,15 @@ export const ProcessSection: React.FC = () => {
           {/* Kolom Kiri: Sticky Header & Progress Line (Desktop) */}
           <div className="lg:col-span-5 lg:sticky lg:top-28 flex flex-col gap-6">
             <div>
-              <div className="flex items-baseline gap-4 mb-2">
-                <span className="font-mono text-xs sm:text-sm font-semibold text-orange select-none">
-                  03 /
-                </span>
-                <h2 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl text-foreground tracking-[-0.025em] leading-[1.15]">
-                  Proses Kerja
-                </h2>
-              </div>
-              <p className="text-sm sm:text-base text-muted font-normal leading-relaxed mt-3 max-w-[50ch]">
+              <Eyebrow number="03" variant="orange" className="mb-3">
+                METODOLOGI &amp; EKSEKUSI
+              </Eyebrow>
+
+              <h2 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl text-cream tracking-[-0.025em] leading-[1.15]">
+                Proses Kerja
+              </h2>
+
+              <p className="text-sm sm:text-base text-muted font-normal leading-relaxed mt-4 max-w-[50ch]">
                 Alur rekayasa terstruktur dari pemetaan awal hingga peluncuran untuk memastikan kualitas kode, kecepatan, dan konversi bisnis terjamin.
               </p>
             </div>
@@ -104,7 +106,7 @@ const ProcessStepCard: React.FC<ProcessStepCardProps> = ({ langkah, index, total
     offset: ['start end', 'center center'],
   });
 
-  // Angka outline bergeser halus saat scroll (maksimum 20px)
+  // Angka outline bergeser halus saat scroll
   const numberOffset = useTransform(scrollYProgress, [0, 1], [18, 0]);
 
   return (
@@ -114,7 +116,7 @@ const ProcessStepCard: React.FC<ProcessStepCardProps> = ({ langkah, index, total
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative p-6 sm:p-8 rounded-2xl border border-border bg-background/80 hover:border-orange transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-sm"
+      className="group relative p-6 sm:p-8 rounded-2xl border border-border bg-navy-900/80 hover:border-orange transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-sm"
     >
       {/* Angka Outline Tipis di Pojok Kartu */}
       <motion.span
@@ -128,7 +130,7 @@ const ProcessStepCard: React.FC<ProcessStepCardProps> = ({ langkah, index, total
       <div>
         {/* Header Kartu: Fase Tag */}
         <div className="flex items-center gap-3 mb-4">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-surface border border-border text-cyan">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-surface border border-border text-orange">
             <Icon name="layers" size={13} />
             <span>FASE {langkah.nomor}</span>
           </span>
@@ -138,7 +140,7 @@ const ProcessStepCard: React.FC<ProcessStepCardProps> = ({ langkah, index, total
         </div>
 
         {/* Judul Langkah */}
-        <h3 className="font-heading font-bold text-xl sm:text-2xl text-foreground mb-3 tracking-tight group-hover:text-orange transition-colors">
+        <h3 className="font-heading font-bold text-xl sm:text-2xl text-cream mb-3 tracking-tight group-hover:text-orange transition-colors">
           {langkah.judul}
         </h3>
 
@@ -151,7 +153,7 @@ const ProcessStepCard: React.FC<ProcessStepCardProps> = ({ langkah, index, total
       {/* Garis Aksen Bawah Halus */}
       <div className="mt-6 pt-4 border-t border-border/60 flex items-center justify-between text-xs font-mono text-muted">
         <span>Standar Eksekusi Presisi</span>
-        <span className="text-cyan font-semibold">ViramidAgency Standard</span>
+        <span className="text-orange font-semibold">ViramidAgency Standard</span>
       </div>
     </motion.div>
   );

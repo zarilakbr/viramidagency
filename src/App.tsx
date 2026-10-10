@@ -9,7 +9,6 @@ import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { BackToTop } from './components/BackToTop';
 import { BackgroundGradients } from './components/BackgroundGradients';
-import { IntroScreen } from './components/IntroScreen';
 import { HomePage } from './pages/HomePage';
 import { ProjectDetailPage } from './pages/ProjectDetailPage';
 import { BookingPage } from './pages/BookingPage';
@@ -42,8 +41,6 @@ export default function App() {
   return (
     <HashRouter>
       <ScrollManager />
-      {/* Intro Logo Screen sebelum masuk ke website utama */}
-      <IntroScreen />
 
       <div className="min-h-screen bg-background text-foreground flex flex-col font-body selection:bg-orange/30 selection:text-foreground relative">
         {/* Latar Belakang Solid Arsitektural */}

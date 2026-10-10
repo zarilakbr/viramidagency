@@ -1,6 +1,7 @@
 /**
  * @file src/features/booking/components/DetailsStep.tsx
  * Langkah 3: Pengisian data diri kontak dan topik pembahasan diskusi.
+ * Standar: Palet Oranye + Navy baku tanpa warna cyan.
  */
 
 import React from 'react';
@@ -39,7 +40,7 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
   return (
     <div className="flex flex-col gap-6 w-full max-w-2xl mx-auto">
       <div>
-        <h2 className="font-heading font-bold text-xl md:text-2xl text-foreground">
+        <h2 className="font-heading font-bold text-xl md:text-2xl text-cream">
           Informasi Kontak &amp; Proyek
         </h2>
         <p className="text-xs sm:text-sm text-muted font-normal mt-1">
@@ -47,7 +48,7 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
         </p>
       </div>
 
-      <div className="flex flex-col gap-4 bg-surface p-5 sm:p-6 rounded-xl border border-border">
+      <div className="flex flex-col gap-4 bg-surface p-5 sm:p-6 rounded-2xl border border-border">
         {/* Nama Lengkap */}
         <Field
           id="booking-nama"
@@ -100,15 +101,15 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
             required
           />
           <div className="flex items-center justify-between text-[11px] font-mono px-1">
-            <span className={isTopikValid ? 'text-cyan' : 'text-muted'}>
+            <span className={isTopikValid ? 'text-orange font-medium' : 'text-muted'}>
               Minimal 20 karakter
             </span>
             <span
               className={
                 isTopikValid
-                  ? 'text-cyan font-semibold'
-                  : topikLength > 0
                   ? 'text-orange font-semibold'
+                  : topikLength > 0
+                  ? 'text-orange-400 font-semibold'
                   : 'text-muted'
               }
             >

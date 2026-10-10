@@ -12,9 +12,8 @@ interface Particle {
 
 /**
  * BackgroundGradients / AnimatedMeshGrid
- * Menghadirkan latar belakang #0F0F0F dengan animasi jaring-jaring kecil (mesh net)
- * yang bergerak halus di latar belakang sehingga website terlihat hidup, dinamis,
- * dan berteknologi tinggi tanpa mengganggu keterbacaan teks.
+ * Menghadirkan latar belakang #0A0A2E (navy-900) dengan animasi jaring-jaring halus
+ * bernuansa krem dan aksen oranye yang elegan.
  */
 export const BackgroundGradients: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -32,17 +31,17 @@ export const BackgroundGradients: React.FC = () => {
     // Deteksi reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Jumlah node jaring-jaring menyesuaikan ukuran layar (28 di mobile, 52 di desktop)
+    // Jumlah node jaring-jaring menyesuaikan ukuran layar
     const isMobile = width < 768;
     const particleCount = isMobile ? 26 : 52;
     const maxDistance = isMobile ? 90 : 120;
 
     const particles: Particle[] = [];
     const colors = [
-      'rgba(244, 243, 255, ', // Putih lembut utama
+      'rgba(244, 243, 255, ', // Krem lembut utama
       'rgba(244, 243, 255, ',
-      'rgba(34, 211, 197, ',  // Cyan identitas logo
-      'rgba(249, 115, 22, ',  // Oranye identitas logo
+      'rgba(249, 115, 22, ',  // Oranye identitas
+      'rgba(154, 155, 199, ', // Muted navy
     ];
 
     for (let i = 0; i < particleCount; i++) {
@@ -51,7 +50,7 @@ export const BackgroundGradients: React.FC = () => {
         y: Math.random() * height,
         vx: (Math.random() - 0.5) * (isMobile ? 0.3 : 0.45),
         vy: (Math.random() - 0.5) * (isMobile ? 0.3 : 0.45),
-        radius: Math.random() * 0.8 + 1.1, // Ukuran titik 1.1px - 1.9px (jaring-jaring kecil)
+        radius: Math.random() * 0.8 + 1.1,
         baseAlpha: Math.random() * 0.3 + 0.35,
         color: colors[Math.floor(Math.random() * colors.length)],
       });
@@ -86,7 +85,7 @@ export const BackgroundGradients: React.FC = () => {
       ctx.clearRect(0, 0, width, height);
 
       // Gambar grid titik latar mikro sangat halus (pola 48px)
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.02)';
+      ctx.fillStyle = 'rgba(244, 243, 255, 0.02)';
       const step = 48;
       for (let x = (step / 2); x < width; x += step) {
         for (let y = (step / 2); y < height; y += step) {
@@ -102,7 +101,7 @@ export const BackgroundGradients: React.FC = () => {
           p.x += p.vx;
           p.y += p.vy;
 
-          // Wrap-around tepi layar agar pergerakan tidak pernah putus
+          // Wrap-around tepi layar
           if (p.x < -10) p.x = width + 10;
           if (p.x > width + 10) p.x = -10;
           if (p.y < -10) p.y = height + 10;
@@ -115,7 +114,7 @@ export const BackgroundGradients: React.FC = () => {
         ctx.fillStyle = `${p.color}${p.baseAlpha})`;
         ctx.fill();
 
-        // Hubungkan dengan simpul lain untuk membentuk jaring-jaring (mesh net)
+        // Hubungkan dengan simpul lain
         for (let j = i + 1; j < particles.length; j++) {
           const p2 = particles[j];
           const dx = p.x - p2.x;
@@ -123,7 +122,6 @@ export const BackgroundGradients: React.FC = () => {
           const dist = Math.hypot(dx, dy);
 
           if (dist < maxDistance) {
-            // Semakin dekat, semakin terlihat jaring penghubungnya
             const alpha = (1 - dist / maxDistance) * 0.16;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
@@ -146,7 +144,7 @@ export const BackgroundGradients: React.FC = () => {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(mouseX, mouseY);
-            ctx.strokeStyle = `rgba(34, 211, 197, ${mAlpha})`;
+            ctx.strokeStyle = `rgba(249, 115, 22, ${mAlpha})`;
             ctx.lineWidth = 0.9;
             ctx.stroke();
           }
@@ -169,17 +167,9 @@ export const BackgroundGradients: React.FC = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#0F0F0F]" aria-hidden="true">
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-navy-900" aria-hidden="true">
       {/* Canvas Jaring-Jaring Bergerak */}
       <canvas ref={canvasRef} className="w-full h-full block" />
-
-      {/* Gradien Vignette Lembut agar tepian layar menyatu sempurna */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle at 50% 40%, transparent 20%, rgba(15, 15, 15, 0.4) 60%, #0F0F0F 95%)',
-        }}
-      />
     </div>
   );
 };
