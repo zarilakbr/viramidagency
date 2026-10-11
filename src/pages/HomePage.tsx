@@ -18,6 +18,8 @@ export const HomePage: React.FC = () => {
   const handleSelectService = (serviceName: string) => {
     if (serviceName.includes('Website')) {
       setSelectedService('Website');
+    } else if (serviceName.includes('Aplikasi')) {
+      setSelectedService('Aplikasi');
     } else if (serviceName.includes('UI/UX')) {
       setSelectedService('UI/UX');
     } else if (serviceName.includes('Branding')) {
@@ -33,7 +35,7 @@ export const HomePage: React.FC = () => {
 
   return (
     <main>
-      {/* 1. Hero: Live Showcase LMS & Clean Layout */}
+      {/* 1. Hero: Live Showcase Website & Clean Layout */}
       <Hero />
 
       {/* 2. Tech Stack Marquee */}
@@ -45,7 +47,7 @@ export const HomePage: React.FC = () => {
       {/* 4. Karya Pilihan: Deep Teal #04344C */}
       <PortfolioSection />
 
-      {/* 5. Banner Tengah: Kolaborasi LMS & Web */}
+      {/* 5. Banner Tengah: Kolaborasi Website & Aplikasi */}
       <VideoBanner banner={midBanner} variant="mid" />
 
       {/* 6. Proses Kerja: Surface Deep Teal #074563 */}

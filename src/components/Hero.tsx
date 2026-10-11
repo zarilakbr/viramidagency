@@ -32,7 +32,7 @@ export const Hero: React.FC = () => {
 
             <p className="text-sm sm:text-base md:text-lg text-[#B0EDF9]/85 max-w-[58ch] font-normal leading-relaxed mb-8 text-balance">
               Membantu brand dan lembaga berkembang melalui transformasi identitas visual terstruktur,
-              arsitektur platform LMS &amp; website performa tinggi, dan sistem konversi digital yang memikat pelanggan.
+              arsitektur website &amp; aplikasi performa tinggi, dan sistem konversi digital yang memikat pelanggan.
             </p>
 
             {/* Tombol CTA Simetris (Sama Panjang & Proporsional di Mobile) */}
@@ -76,7 +76,7 @@ export const Hero: React.FC = () => {
 
               <div className="flex flex-col border-l border-[#165A7E] pl-3 sm:pl-4">
                 <span className="font-heading font-bold text-xl sm:text-2xl text-[#B0EDF9] tracking-tight">
-                  LMS &amp; Web
+                  Website &amp; App
                 </span>
                 <span className="text-[11px] sm:text-xs font-mono text-[#78B9CA] mt-0.5">
                   Solusi Digital Agency
@@ -97,7 +97,7 @@ export const Hero: React.FC = () => {
               {/* Ilustrasi Polosan Vector */}
               <img
                 src="/images/technology-storyset.svg"
-                alt="Rekayasa Web & Platform LMS ViramidAgency"
+                alt="Rekayasa Website & Aplikasi ViramidAgency"
                 className="w-full h-auto max-h-[300px] sm:max-h-[380px] lg:max-h-[480px] xl:max-h-[520px] object-contain drop-shadow-[0_15px_35px_rgba(2,34,50,0.85)] transition-transform duration-500 hover:scale-[1.02]"
                 loading="eager"
               />

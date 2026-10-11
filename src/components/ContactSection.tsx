@@ -118,7 +118,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
           number="07"
           eyebrowText="KOMUNIKASI & INQUIRY"
           title="Ceritakan proyekmu."
-          subtitle="Sampaikan ide, tantangan LMS, atau rencana peluncuran produk digital Anda. Kami siap berdiskusi."
+          subtitle="Sampaikan ide, kebutuhan website, atau rencana peluncuran aplikasi produk digital Anda. Kami siap berdiskusi."
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
@@ -129,7 +129,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
                 Mari Berkolaborasi
               </h3>
               <p className="text-sm text-[#78B9CA] leading-relaxed max-w-[65ch]">
-                Kami menyambut diskusi santai maupun konsultasi mendalam untuk kebutuhan brand, LMS, &amp; platform website Anda.
+                Kami menyambut diskusi santai maupun konsultasi mendalam untuk kebutuhan brand, website, &amp; aplikasi digital Anda.
               </p>
             </div>
 
@@ -275,7 +275,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
                     }}
                     className="w-full px-4 py-3 bg-[#04344C] border border-[#165A7E] rounded-xl text-[#B0EDF9] text-sm cursor-pointer focus:outline-none focus:ring-1 focus:ring-[#B0EDF9]"
                   >
-                    <option value="Website">Pengembangan Website &amp; LMS</option>
+                    <option value="Website">Pengembangan Website</option>
+                    <option value="Aplikasi">Pengembangan Aplikasi (Web &amp; Mobile)</option>
                     <option value="UI/UX">Desain UI/UX</option>
                     <option value="Branding">Branding &amp; Identitas</option>
                     <option value="Konten">Konten &amp; Media Sosial</option>
@@ -310,7 +311,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
                 <textarea
                   id="pesan"
                   rows={4}
-                  placeholder="Ceritakan latar belakang bisnis, platform LMS yang diinginkan, target audiens, atau linimasa peluncuran (minimal 20 karakter)..."
+                  placeholder="Ceritakan latar belakang bisnis, website atau aplikasi yang diinginkan, target audiens, atau linimasa peluncuran (minimal 20 karakter)..."
                   value={formData.pesan}
                   onChange={(e) => {
                     setFormData({ ...formData, pesan: e.target.value });

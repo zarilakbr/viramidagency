@@ -37,11 +37,11 @@ export const BookingPage: React.FC = () => {
             </Eyebrow>
 
             <h1 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl text-[#B0EDF9] tracking-[-0.02em] mb-4 text-balance">
-              Jadwalkan Sesi Konsultasi Bisnis &amp; LMS
+              Jadwalkan Sesi Konsultasi Website &amp; Aplikasi
             </h1>
 
             <p className="text-sm sm:text-base text-[#78B9CA] max-w-xl mx-auto lg:mx-0 leading-relaxed text-balance mb-6">
-              Pilih waktu yang pas untuk membedah arah brand, kebutuhan fitur platform LMS, dan estimasi proyek digitalmu langsung bersama tim inti ViramidAgency.
+              Pilih waktu yang pas untuk membedah arah brand, kebutuhan fitur website dan aplikasi, serta estimasi proyek digitalmu langsung bersama tim inti ViramidAgency.
             </p>
 
             {/* Quick Trust Badges */}

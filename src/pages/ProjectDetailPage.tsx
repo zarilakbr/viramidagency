@@ -271,7 +271,7 @@ export const ProjectDetailPage: React.FC = () => {
             <div className="flex flex-col gap-6">
               <div className="w-full aspect-[16/9] max-h-96 bg-[#074563] border border-[#165A7E] rounded-xl flex flex-col items-center justify-center p-8 text-center">
                 <span className="text-xs font-mono uppercase tracking-wider text-[#B0EDF9] mb-2">
-                  Studi Kasus Desain &amp; LMS
+                  Studi Kasus Desain &amp; Website
                 </span>
                 <p className="font-heading font-bold text-2xl text-[#B0EDF9] mb-2">
                   {proyek.judul}

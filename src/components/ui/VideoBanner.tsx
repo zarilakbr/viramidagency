@@ -40,7 +40,7 @@ export const VideoBanner: React.FC<VideoBannerProps> = ({
 
       <div className="relative z-10 w-full max-w-4xl mx-auto px-6 text-center flex flex-col items-center">
         <Eyebrow variant="cyan" className="mb-4">
-          KOLABORASI DIGITAL &amp; LMS
+          KOLABORASI WEBSITE &amp; APLIKASI
         </Eyebrow>
 
         <h2 className="font-heading font-bold text-2xl sm:text-4xl md:text-5xl text-[#B0EDF9] tracking-tight mb-4 text-balance">

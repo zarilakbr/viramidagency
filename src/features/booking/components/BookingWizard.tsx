@@ -41,7 +41,7 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
     nama: '',
     email: '',
     whatsapp: '',
-    topik: 'Platform LMS & Sistem Kursus Online',
+    topik: 'Website Bisnis / Company Profile',
     linkReferensi: '',
   });
 

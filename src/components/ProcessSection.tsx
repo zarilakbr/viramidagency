@@ -6,6 +6,7 @@
  */
 
 import React, { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useScroll, useSpring, useTransform } from 'motion/react';
 import { Container } from './ui/Container';
 import { Eyebrow } from './ui/Eyebrow';
@@ -49,6 +50,14 @@ export const ProcessSection: React.FC = () => {
               <p className="text-sm sm:text-base text-[#78B9CA] font-normal leading-relaxed mt-4 max-w-[50ch]">
                 Alur rekayasa terstruktur dari pemetaan awal hingga peluncuran untuk memastikan kualitas kode, kecepatan, dan konversi bisnis terjamin.
               </p>
+
+              <Link
+                to="/proses"
+                className="inline-flex items-center gap-1.5 text-xs font-mono text-[#B0EDF9] hover:underline mt-2"
+              >
+                <span>Lihat Halaman Alur Terukur (/proses)</span>
+                <Icon name="arrow-right" size={13} />
+              </Link>
             </div>
 
             {/* Indikator Progres Scroll Tipis 2px */}

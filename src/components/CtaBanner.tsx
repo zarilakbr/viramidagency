@@ -26,7 +26,7 @@ export const CtaBanner: React.FC = () => {
             </h2>
 
             <p className="text-sm sm:text-base font-medium text-[#04344C]/85 max-w-[64ch] mt-1">
-              Konsultasi gratis tanpa komitmen awal. Mari bedah kebutuhan website, LMS, dan digitalisasi bisnismu untuk solusi yang paling berdampak.
+              Konsultasi gratis tanpa komitmen awal. Mari bedah kebutuhan website, aplikasi, dan digitalisasi bisnismu untuk solusi yang paling berdampak.
             </p>
           </div>
 

@@ -29,7 +29,7 @@ export const FaqSection: React.FC = () => {
               number="05"
               eyebrowText="TRANSPARANSI & TANYA JAWAB"
               title="Pertanyaan Umum"
-              subtitle="Jawaban transparan seputar proses kerja sama, pengembangan platform LMS & Web, kepemilikan kode sumber, dan alur pengerjaan di ViramidAgency."
+              subtitle="Jawaban transparan seputar proses kerja sama, pengembangan website & aplikasi, kepemilikan kode sumber, dan alur pengerjaan di ViramidAgency."
               className="mb-0"
             />
           </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Logo } from './Logo';
 import { TriColorLine } from './ThreeArcsMotif';
 import { Container } from './ui/Container';
@@ -67,13 +68,12 @@ export const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a
-                  href="#proses"
-                  onClick={(e) => scrollToSection(e, 'proses')}
+                <Link
+                  to="/proses"
                   className="hover:text-[#B0EDF9] transition-colors rounded-sm"
                 >
                   Alur Proses Kerja
-                </a>
+                </Link>
               </li>
               <li>
                 <a
@@ -144,7 +144,7 @@ export const Footer: React.FC = () => {
         <div className="mt-12 pt-6 border-t border-[#165A7E] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#78B9CA]">
           <p>© {currentYear} ViramidAgency. Seluruh hak cipta dilindungi.</p>
           <p className="text-[#78B9CA]/60">
-            Didesain dan direkayasa untuk platform LMS &amp; website berkinerja tinggi.
+            Didesain dan direkayasa untuk website &amp; aplikasi berkinerja tinggi.
           </p>
         </div>
       </Container>

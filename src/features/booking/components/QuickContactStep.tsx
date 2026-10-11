@@ -31,7 +31,7 @@ interface QuickContactStepProps {
 
 const QUICK_PROJECT_TAGS = [
   'Website Bisnis / Company Profile',
-  'Platform LMS & Sistem Kursus Online',
+  'Pengembangan Aplikasi (Web & Mobile)',
   'Web App / Toko Online (E-Commerce)',
   'Redesain UI/UX & Tampilan Web',
   'Branding, Logo & Identitas Visual',

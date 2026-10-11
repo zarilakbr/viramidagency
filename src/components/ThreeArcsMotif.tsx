@@ -44,7 +44,7 @@ export const TriLoopMotif: React.FC<{ className?: string }> = ({ className = '' 
               Viramid <span className="text-[#B0EDF9] opacity-80">Agency</span>
             </h3>
             <p className="text-xs text-[#78B9CA] mt-1 font-mono">
-              Rekayasa LMS &amp; Desain Antarmuka
+              Rekayasa Website &amp; Desain Antarmuka
             </p>
           </div>
         </div>
@@ -60,7 +60,7 @@ export const TriLoopMotif: React.FC<{ className?: string }> = ({ className = '' 
           </div>
           <div className="p-3 rounded-lg border border-[#165A7E] bg-[#04344C]/60">
             <span className="block text-[11px] text-[#78B9CA]">Pendekatan</span>
-            <span className="text-xs font-bold text-[#B0EDF9]">Bespoke LMS &amp; Web</span>
+            <span className="text-xs font-bold text-[#B0EDF9]">Bespoke Website &amp; App</span>
           </div>
         </div>
       </motion.div>

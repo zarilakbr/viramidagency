@@ -23,7 +23,7 @@ export const PricingSection: React.FC = () => {
               number="04"
               eyebrowText="INVESTASI & CAKUPAN"
               title="Paket Layanan & Investasi"
-              subtitle="Pilihan paket pengerjaan transparan yang dirancang fleksibel untuk kebutuhan skala bisnis, LMS, dan peluncuran produkmu."
+              subtitle="Pilihan paket pengerjaan transparan yang dirancang fleksibel untuk kebutuhan skala bisnis, website, dan aplikasi produkmu."
               className="mb-0"
             />
           </div>
@@ -178,7 +178,7 @@ export const PricingSection: React.FC = () => {
         <div className="mt-8 p-4 rounded-xl border border-[#165A7E] bg-[#074563]/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#78B9CA]">
           <span className="flex items-center gap-2 text-center sm:text-left">
             <Icon name="briefcase" size={14} className="text-[#B0EDF9] shrink-0" />
-            <span>Membutuhkan platform LMS khusus atau arsitektur sistem enterprise yang berbeda?</span>
+            <span>Membutuhkan aplikasi kustom atau arsitektur sistem enterprise yang berbeda?</span>
           </span>
           <Link
             to="/booking?jenis=diskusi-proyek"

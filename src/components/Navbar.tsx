@@ -22,7 +22,7 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { label: 'Layanan', href: '#layanan', id: 'layanan' },
   { label: 'Karya', href: '#karya', id: 'karya' },
-  { label: 'Proses', href: '#proses', id: 'proses' },
+  { label: 'Proses', href: '/proses', id: 'proses' },
   { label: 'Paket', href: '#paket', id: 'paket' },
   { label: 'FAQ', href: '#faq', id: 'faq' },
   { label: 'Tentang', href: '#tentang', id: 'tentang' },
@@ -63,6 +63,11 @@ export const Navbar: React.FC = () => {
 
   // Pantau seksi aktif untuk highlight navbar
   useEffect(() => {
+    if (location.pathname === '/proses') {
+      setActiveSection('proses');
+      return;
+    }
+
     if (location.pathname !== '/') {
       setActiveSection('');
       return;
@@ -82,8 +87,10 @@ export const Navbar: React.FC = () => {
     });
 
     NAV_ITEMS.forEach((item) => {
-      const el = document.getElementById(item.id);
-      if (el) observer.observe(el);
+      if (item.href.startsWith('#')) {
+        const el = document.getElementById(item.id);
+        if (el) observer.observe(el);
+      }
     });
 
     return () => observer.disconnect();
@@ -104,6 +111,12 @@ export const Navbar: React.FC = () => {
   const handleNavClick = (e: React.MouseEvent<HTMLElement>, href: string) => {
     e.preventDefault();
     setMobileMenuOpen(false);
+
+    if (href.startsWith('/')) {
+      navigate(href);
+      return;
+    }
+
     const id = href.replace('#', '');
 
     if (location.pathname !== '/') {

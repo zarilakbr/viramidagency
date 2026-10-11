@@ -47,7 +47,7 @@ export const PortfolioSection: React.FC = () => {
           <SectionHeading
             number="02"
             title="Karya Pilihan"
-            subtitle="Eksplorasi portofolio proyek digital, platform LMS, identitas visual, dan pengembangan sistem web."
+            subtitle="Eksplorasi portofolio proyek digital, website modern, aplikasi kustom, dan identitas visual."
             className="!mb-0"
           />
 

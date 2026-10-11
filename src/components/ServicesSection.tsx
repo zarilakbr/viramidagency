@@ -29,7 +29,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
           number="01"
           eyebrowText="KAPABILITAS & SOLUSI"
           title="Layanan Keahlian"
-          subtitle="Solusi rekayasa digital terintegrasi untuk memperkuat identitas visual, antarmuka interaktif LMS & Web, serta performa konversi bisnismu."
+          subtitle="Solusi rekayasa digital terintegrasi untuk memperkuat identitas visual, antarmuka interaktif website & aplikasi, serta performa konversi bisnismu."
           variant="cyan"
         />
 
