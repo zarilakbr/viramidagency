@@ -375,7 +375,7 @@ export const DAFTAR_FAQ: FaqItem[] = [
   {
     id: 'faq-1',
     pertanyaan: 'Berapa lama estimasi proses pengerjaan sebuah website di ViramidAgency?',
-    jawaban: 'Waktu pengerjaan berkisar antara [10 - 14 hari kerja] untuk landing page terfokus hingga [3 - 6 minggu] untuk website perusahaan atau platform kustom. Jadwal pasti dan tahapan milestone kami susun secara transparan di awal proyek berdasarkan lingkup kerja yang disepakati.',
+    jawaban: 'Waktu pengerjaan berkisar antara 10 - 14 hari kerja untuk landing page terfokus hingga 3 - 6 minggu untuk website perusahaan atau platform kustom. Jadwal pasti dan tahapan milestone kami susun secara transparan di awal proyek berdasarkan lingkup kerja yang disepakati.',
   },
   {
     id: 'faq-2',
@@ -385,7 +385,7 @@ export const DAFTAR_FAQ: FaqItem[] = [
   {
     id: 'faq-3',
     pertanyaan: 'Bagaimana skema pembayaran dan tahapan kerjasamanya?',
-    jawaban: 'Pembayaran umumnya dibagi menjadi [3 tahapan transparan]: Uang Muka [50%] di awal saat memulai konsep & riset, [30%] setelah tahap desain disetujui dan masuk penulisan kode, serta pelunasan [20%] setelah seluruh uji coba selesai dan siap diluncurkan secara resmi.',
+    jawaban: 'Pembayaran umumnya dibagi menjadi 3 tahapan transparan: Uang Muka 50% di awal saat memulai konsep & riset, 30% setelah tahap desain disetujui dan masuk penulisan kode, serta pelunasan 20% setelah seluruh uji coba selesai dan siap diluncurkan secara resmi.',
   },
   {
     id: 'faq-4',
@@ -395,6 +395,6 @@ export const DAFTAR_FAQ: FaqItem[] = [
   {
     id: 'faq-5',
     pertanyaan: 'Apakah ViramidAgency menyediakan layanan pemeliharaan (maintenance) setelah peluncuran?',
-    jawaban: 'Setiap proyek kami lengkapi dengan garansi teknis gratis [14 hingga 60 hari] setelah peluncuran resmi. Setelah periode tersebut, kami juga menyediakan opsi paket pemeliharaan berkala untuk pembaruan keamanan, backup, dan penambahan fitur sesuai perkembangan bisnismu.',
+    jawaban: 'Setiap proyek kami lengkapi dengan garansi teknis gratis 14 hingga 60 hari setelah peluncuran resmi. Setelah periode tersebut, kami juga menyediakan opsi paket pemeliharaan berkala untuk pembaruan keamanan, backup, dan penambahan fitur sesuai perkembangan bisnismu.',
   },
 ];

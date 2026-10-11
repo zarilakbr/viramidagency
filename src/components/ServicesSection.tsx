@@ -42,11 +42,9 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
               onClick={() => onSelectService?.(item.nama)}
               className="group py-8 md:py-10 border-b border-[#04344C]/20 transition-all duration-200 cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-6 px-4 sm:px-6 rounded-2xl hover:bg-[#04344C] hover:text-[#B0EDF9]"
             >
-              {/* Nomor & Nama Layanan */}
-              <div className="flex items-start md:items-center gap-6 md:gap-8 md:w-5/12">
-                <span className="font-mono text-xs sm:text-sm text-[#04344C]/70 group-hover:text-[#B0EDF9] font-bold transition-colors">
-                  [{item.nomor}]
-                </span>
+              {/* Nama Layanan */}
+              <div className="flex items-start md:items-center gap-4 md:gap-5 md:w-5/12">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#04344C] group-hover:bg-[#B0EDF9] mt-2 md:mt-0 transition-colors shrink-0" />
                 <h3 className="font-heading font-bold text-2xl sm:text-3xl text-[#04344C] group-hover:text-[#B0EDF9] transition-colors tracking-tight">
                   {item.nama}
                 </h3>

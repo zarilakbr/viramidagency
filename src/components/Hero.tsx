@@ -79,13 +79,13 @@ export const Hero: React.FC = () => {
                   LMS &amp; Web
                 </span>
                 <span className="text-[11px] sm:text-xs font-mono text-[#78B9CA] mt-0.5">
-                  Sistem Khusus
+                  Solusi Digital Agency
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Kolom Kanan: Ilustrasi Storyset Technology Polosan (Frameless) */}
+          {/* Kolom Kanan: Ilustrasi Polosan Rekayasa Web ViramidAgency */}
           <div className="lg:col-span-5 flex flex-col items-center justify-center w-full">
             <div className="relative w-full max-w-lg flex flex-col items-center">
               {/* Ambient backlight glow halus */}
@@ -94,31 +94,13 @@ export const Hero: React.FC = () => {
                 aria-hidden="true"
               />
 
-              {/* Ilustrasi Polosan Vector Storyset */}
+              {/* Ilustrasi Polosan Vector */}
               <img
                 src="/images/technology-storyset.svg"
-                alt="Technology illustrations by Storyset - Rekayasa Web ViramidAgency"
+                alt="Rekayasa Web & Platform LMS ViramidAgency"
                 className="w-full h-auto max-h-[460px] object-contain drop-shadow-[0_20px_40px_rgba(2,34,50,0.85)] transition-transform duration-500 hover:scale-[1.02]"
                 loading="eager"
               />
-
-              {/* Atribusi Resmi Storyset Polosan */}
-              <div className="mt-3 flex items-center justify-between w-full px-2 text-xs font-mono text-[#78B9CA]">
-                <a
-                  href="https://storyset.com/technology"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-[#B0EDF9] text-[11px] underline decoration-[#165A7E] hover:decoration-[#B0EDF9] transition-colors"
-                  title="Technology illustrations by Storyset"
-                >
-                  Technology illustrations by Storyset
-                </a>
-
-                <span className="text-[#B0EDF9] font-medium flex items-center gap-1.5 text-[11px]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#B0EDF9] animate-pulse" />
-                  <span>High Standards Architecture</span>
-                </span>
-              </div>
             </div>
           </div>
 

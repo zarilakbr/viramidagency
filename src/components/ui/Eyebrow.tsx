@@ -32,11 +32,6 @@ export const Eyebrow: React.FC<EyebrowProps> = ({
     <div
       className={`inline-flex items-center gap-2 text-xs font-mono font-bold tracking-[0.2em] uppercase ${variantStyles} ${className}`}
     >
-      {number && (
-        <span className="opacity-80">
-          [{number}]
-        </span>
-      )}
       <span>{children}</span>
     </div>
   );

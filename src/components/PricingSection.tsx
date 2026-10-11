@@ -16,13 +16,32 @@ export const PricingSection: React.FC = () => {
   return (
     <section id="paket" className="relative my-[72px] sm:my-[120px] scroll-mt-20">
       <Container>
-        {/* Section Heading */}
-        <SectionHeading
-          number="04"
-          eyebrowText="INVESTASI & CAKUPAN"
-          title="Paket Layanan & Investasi"
-          subtitle="Pilihan paket pengerjaan transparan yang dirancang fleksibel untuk kebutuhan skala bisnis, LMS, dan peluncuran produkmu."
-        />
+        {/* Header Seksi dengan Ilustrasi Polosan */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-10 md:mb-14">
+          <div className="lg:col-span-8">
+            <SectionHeading
+              number="04"
+              eyebrowText="INVESTASI & CAKUPAN"
+              title="Paket Layanan & Investasi"
+              subtitle="Pilihan paket pengerjaan transparan yang dirancang fleksibel untuk kebutuhan skala bisnis, LMS, dan peluncuran produkmu."
+              className="mb-0 md:mb-0"
+            />
+          </div>
+          <div className="lg:col-span-4 flex justify-center lg:justify-end">
+            <div className="relative w-44 sm:w-52 lg:w-60">
+              <div
+                className="absolute inset-0 bg-[#B0EDF9]/15 blur-2xl rounded-full pointer-events-none -z-10"
+                aria-hidden="true"
+              />
+              <img
+                src="/images/pricing-storyset.svg"
+                alt="Paket Layanan ViramidAgency"
+                className="w-full h-auto object-contain drop-shadow-[0_15px_30px_rgba(2,34,50,0.85)] hover:scale-[1.02] transition-transform duration-300"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
 
         {/* Grid 3 Kartu Paket */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">

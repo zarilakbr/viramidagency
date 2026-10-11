@@ -25,12 +25,32 @@ export const AboutSection: React.FC = () => {
   return (
     <section id="tentang" className="my-[72px] sm:my-[120px] scroll-mt-20">
       <Container>
-        <SectionHeading
-          number="06"
-          eyebrowText="FILOSOFI & PROFIL"
-          title="Tentang Agency"
-          subtitle="Pendekatan dedikatif yang menggabungkan presisi desain arsitektural dan keandalan teknologi digital."
-        />
+        {/* Header Seksi dengan Ilustrasi Polosan */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-10 md:mb-14">
+          <div className="lg:col-span-8">
+            <SectionHeading
+              number="06"
+              eyebrowText="FILOSOFI & PROFIL"
+              title="Tentang Agency"
+              subtitle="Pendekatan dedikatif yang menggabungkan presisi desain arsitektural dan keandalan teknologi digital."
+              className="mb-0 md:mb-0"
+            />
+          </div>
+          <div className="lg:col-span-4 flex justify-center lg:justify-end">
+            <div className="relative w-44 sm:w-52 lg:w-60">
+              <div
+                className="absolute inset-0 bg-[#B0EDF9]/15 blur-2xl rounded-full pointer-events-none -z-10"
+                aria-hidden="true"
+              />
+              <img
+                src="/images/about-storyset.svg"
+                alt="Tentang ViramidAgency"
+                className="w-full h-auto object-contain drop-shadow-[0_15px_30px_rgba(2,34,50,0.85)] hover:scale-[1.02] transition-transform duration-300"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
 
         {/* Dua Kolom: Cerita Filosofi & Nilai Kerja */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-16">
@@ -60,14 +80,12 @@ export const AboutSection: React.FC = () => {
                 >
                   <div className="p-5 bg-[#074563] border border-[#165A7E] rounded-xl hover:border-[#B0EDF9] transition-colors duration-200">
                     <div className="flex items-center gap-3 mb-2">
-                      <span className="font-mono text-xs text-[#B0EDF9] font-bold">
-                        [{nilai.nomor}]
-                      </span>
+                      <span className="w-2 h-2 rounded-full bg-[#B0EDF9] shrink-0" />
                       <h4 className="font-heading font-bold text-base sm:text-lg text-[#B0EDF9]">
                         {nilai.judul}
                       </h4>
                     </div>
-                    <p className="text-sm text-[#78B9CA] leading-relaxed pl-6 max-w-[62ch]">
+                    <p className="text-sm text-[#78B9CA] leading-relaxed pl-5 max-w-[62ch]">
                       {nilai.deskripsi}
                     </p>
                   </div>

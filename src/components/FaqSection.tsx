@@ -22,12 +22,32 @@ export const FaqSection: React.FC = () => {
   return (
     <section id="faq" className="relative py-[72px] sm:py-[120px] bg-[#04344C] text-[#B0EDF9] border-y border-[#165A7E] scroll-mt-16">
       <Container className="max-w-4xl">
-        <SectionHeading
-          number="05"
-          eyebrowText="TRANSPARANSI & TANYA JAWAB"
-          title="Pertanyaan Umum"
-          subtitle="Jawaban transparan seputar proses kerja sama, pengembangan platform LMS & Web, kepemilikan kode sumber, dan alur pengerjaan di ViramidAgency."
-        />
+        {/* Header Seksi dengan Ilustrasi Polosan */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center mb-10 md:mb-14">
+          <div className="md:col-span-8">
+            <SectionHeading
+              number="05"
+              eyebrowText="TRANSPARANSI & TANYA JAWAB"
+              title="Pertanyaan Umum"
+              subtitle="Jawaban transparan seputar proses kerja sama, pengembangan platform LMS & Web, kepemilikan kode sumber, dan alur pengerjaan di ViramidAgency."
+              className="mb-0 md:mb-0"
+            />
+          </div>
+          <div className="md:col-span-4 flex justify-center md:justify-end">
+            <div className="relative w-40 sm:w-48 md:w-52">
+              <div
+                className="absolute inset-0 bg-[#B0EDF9]/15 blur-2xl rounded-full pointer-events-none -z-10"
+                aria-hidden="true"
+              />
+              <img
+                src="/images/faq-storyset.svg"
+                alt="Pertanyaan Umum ViramidAgency"
+                className="w-full h-auto object-contain drop-shadow-[0_15px_30px_rgba(2,34,50,0.85)] hover:scale-[1.02] transition-transform duration-300"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
 
         {/* Daftar Akordeon FAQ */}
         <div className="flex flex-col gap-3.5" role="region" aria-label="Accordion Pertanyaan Umum">

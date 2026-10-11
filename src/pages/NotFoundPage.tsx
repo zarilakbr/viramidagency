@@ -19,7 +19,7 @@ export const NotFoundPage: React.FC = () => {
         aria-hidden="true"
       />
 
-      {/* Ilustrasi Polosan Storyset Serverdown (Frameless) */}
+      {/* Ilustrasi Polosan Serverdown (Frameless) */}
       <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md flex flex-col items-center mb-6">
         <div
           className="absolute inset-0 bg-[#B0EDF9]/15 blur-3xl rounded-full pointer-events-none -z-10"
@@ -27,19 +27,10 @@ export const NotFoundPage: React.FC = () => {
         />
         <img
           src="/images/serverdown-storyset.svg"
-          alt="Server status illustrations by Storyset - ViramidAgency"
+          alt="Server Status & Halaman Tidak Ditemukan - ViramidAgency"
           className="w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(2,34,50,0.85)] hover:scale-[1.02] transition-transform duration-300"
           loading="eager"
         />
-        <a
-          href="https://storyset.com/web"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-2 text-[10px] font-mono text-[#78B9CA]/75 hover:text-[#B0EDF9] transition-colors"
-          title="Server illustrations by Storyset"
-        >
-          Server illustrations by Storyset
-        </a>
       </div>
 
       <span className="font-mono text-xs uppercase tracking-widest text-[#B0EDF9] mb-3">

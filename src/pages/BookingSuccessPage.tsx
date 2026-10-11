@@ -55,22 +55,14 @@ export const BookingSuccessPage: React.FC = () => {
   if (!booking) {
     return (
       <main className="w-full min-h-[75vh] flex flex-col items-center justify-center pt-28 pb-16 px-4 bg-[#04344C] text-center">
-        {/* Ilustrasi Polosan Storyset Serverdown / Not Found */}
+        {/* Ilustrasi Polosan Serverdown / Not Found */}
         <div className="relative w-48 sm:w-60 mb-4 flex flex-col items-center">
           <div className="absolute inset-0 bg-[#B0EDF9]/15 blur-2xl rounded-full pointer-events-none -z-10" />
           <img
             src="/images/serverdown-storyset.svg"
-            alt="Data tidak ditemukan illustrations by Storyset"
+            alt="Data tidak ditemukan - ViramidAgency"
             className="w-full h-auto object-contain drop-shadow-[0_15px_30px_rgba(2,34,50,0.85)]"
           />
-          <a
-            href="https://storyset.com/web"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-1 text-[10px] font-mono text-[#78B9CA]/75 hover:text-[#B0EDF9] transition-colors"
-          >
-            Server illustrations by Storyset
-          </a>
         </div>
 
         <h1 className="font-heading font-bold text-2xl sm:text-3xl text-[#B0EDF9] mb-2">
@@ -124,27 +116,17 @@ export const BookingSuccessPage: React.FC = () => {
   return (
     <main className="w-full min-h-screen pt-28 pb-20 md:pt-36 md:pb-28 bg-[#04344C]">
       <Container className="max-w-3xl">
-        {/* Header Sukses dengan Ilustrasi Storyset Polosan (Frameless) */}
+        {/* Header Sukses dengan Ilustrasi Polosan */}
         <div className="text-center mb-8 flex flex-col items-center">
-          <div className="relative w-40 sm:w-48 mb-2">
+          <div className="relative w-40 sm:w-48 mb-4">
             <div className="absolute inset-0 bg-[#B0EDF9]/15 blur-2xl rounded-full pointer-events-none -z-10" />
             <img
               src="/images/success-storyset.svg"
-              alt="Success confirmation illustrations by Storyset"
+              alt="Konfirmasi Jadwal Berhasil - ViramidAgency"
               className="w-full h-auto object-contain drop-shadow-[0_15px_30px_rgba(2,34,50,0.85)]"
               loading="eager"
             />
           </div>
-
-          <a
-            href="https://storyset.com/success"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[10px] font-mono text-[#78B9CA]/75 hover:text-[#B0EDF9] transition-colors mb-3"
-            title="Success illustrations by Storyset"
-          >
-            Success illustrations by Storyset
-          </a>
 
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#074563] border border-[#165A7E] text-xs font-mono text-[#B0EDF9] mb-3">
             <Icon name="check-circle" size={14} className="text-[#B0EDF9]" />

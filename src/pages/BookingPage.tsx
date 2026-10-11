@@ -70,19 +70,10 @@ export const BookingPage: React.FC = () => {
               />
               <img
                 src="/images/booking-storyset.svg"
-                alt="Schedule illustrations by Storyset - ViramidAgency Konsultasi"
+                alt="Jadwal Konsultasi ViramidAgency"
                 className="w-full h-auto object-contain drop-shadow-[0_15px_30px_rgba(2,34,50,0.85)] hover:scale-[1.02] transition-transform duration-300"
                 loading="eager"
               />
-              <a
-                href="https://storyset.com/schedule"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 text-[10px] font-mono text-[#78B9CA]/75 hover:text-[#B0EDF9] transition-colors"
-                title="Schedule illustrations by Storyset"
-              >
-                Schedule illustrations by Storyset
-              </a>
             </div>
           </div>
         </div>
