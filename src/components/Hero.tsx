@@ -1,32 +1,19 @@
-import React, { useRef, useState } from 'react';
+/**
+ * @file src/components/Hero.tsx
+ * Hero Section ViramidAgency
+ * Menampilkan value proposition di sisi kiri dengan tombol CTA simetris,
+ * dan showcase ilustrasi Storyset Technology di sisi kanan dengan atribusi resmi.
+ * Eksklusif 2 Warna: HEX #04344C & HEX #B0EDF9.
+ * Tipografi judul menggunakan font Gastilo.
+ */
+
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from './ui/Container';
 import { Eyebrow } from './ui/Eyebrow';
 import { Icon } from './ui/Icon';
 
-/**
- * Hero Section ViramidAgency
- * Menampilkan value proposition di sisi kiri dengan tombol simetris,
- * dan showcase video pembuatan website dalam format lanskap proporsional di sisi kanan.
- * Eksklusif 2 Warna: HEX #04344C & HEX #B0EDF9.
- * Tipografi judul menggunakan font Gastilo.
- */
 export const Hero: React.FC = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-        setIsPlaying(false);
-      } else {
-        videoRef.current.play();
-        setIsPlaying(true);
-      }
-    }
-  };
-
   return (
     <section id="hero" className="relative w-full min-h-[88svh] flex items-center pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden isolate">
       <Container className="w-full">
@@ -98,59 +85,58 @@ export const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Kolom Kanan: Frame Showcase Video Pembuatan Website Lanskap */}
+          {/* Kolom Kanan: Showcase Ilustrasi Storyset Technology */}
           <div className="lg:col-span-5 flex justify-center w-full">
             <div className="w-full max-w-lg rounded-2xl bg-[#074563] border border-[#165A7E] hover:border-[#B0EDF9] transition-all duration-300 p-4 sm:p-5 shadow-2xl relative group flex flex-col justify-between">
               
-              {/* Header Video Frame */}
+              {/* Header Showcase Frame */}
               <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#165A7E]">
                 <div className="flex items-center gap-2">
-                  <Icon name="video" size={15} className="text-[#B0EDF9]" />
+                  <Icon name="zap" size={15} className="text-[#B0EDF9]" />
                   <span className="text-xs font-mono font-semibold text-[#B0EDF9]">
-                    Workflow Rekayasa Website
+                    Rekayasa Website &amp; LMS
                   </span>
                 </div>
 
                 <span className="px-2.5 py-1 rounded-md bg-[#04344C] border border-[#165A7E] text-[10px] font-mono text-[#B0EDF9]">
-                  1080p · 60 FPS
+                  Interactive Tech Vector
                 </span>
               </div>
 
-              {/* Video Player Lanskap 16:9 / 16:10 */}
-              <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-[#04344C] border border-[#165A7E] flex items-center justify-center">
-                <video
-                  ref={videoRef}
-                  src="/videos/banner-1.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover"
+              {/* Showcase Ilustrasi Vector Storyset */}
+              <div className="relative w-full aspect-[16/11] rounded-xl overflow-hidden bg-[#04344C] border border-[#165A7E] flex items-center justify-center p-3 group-hover:border-[#B0EDF9] transition-colors">
+                <img
+                  src="/images/technology-storyset.svg"
+                  alt="Technology illustrations by Storyset - Rekayasa Web ViramidAgency"
+                  className="w-full h-full object-contain filter drop-shadow-[0_10px_20px_rgba(4,52,76,0.8)] transition-transform duration-500 group-hover:scale-105"
+                  loading="eager"
                 />
 
-                {/* Overlay Play / Pause Control Button */}
-                <button
-                  type="button"
-                  onClick={togglePlay}
-                  aria-label={isPlaying ? 'Jeda Video' : 'Putar Video'}
-                  className="absolute bottom-3 right-3 p-2 rounded-lg bg-[#04344C]/80 hover:bg-[#04344C] text-[#B0EDF9] border border-[#165A7E] backdrop-blur-md transition-all shadow-md cursor-pointer"
-                >
-                  <Icon name={isPlaying ? 'zap' : 'sparkles'} size={14} />
-                </button>
+                {/* Floating Tech Badges */}
+                <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-[#04344C]/90 border border-[#165A7E] backdrop-blur-sm text-[10px] font-mono text-[#B0EDF9] flex items-center gap-1.5 shadow-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#B0EDF9] animate-pulse" />
+                  <span>Frontend &amp; Architecture</span>
+                </div>
 
-                {/* Watermark Studio Badge */}
-                <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-[#04344C]/80 border border-[#165A7E] backdrop-blur-sm text-[10px] font-mono text-[#B0EDF9]">
-                  Viramid Production
+                <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-md bg-[#04344C]/90 border border-[#165A7E] backdrop-blur-sm text-[10px] font-mono text-[#B0EDF9] shadow-sm">
+                  Fullstack Engine
                 </div>
               </div>
 
-              {/* Video Footer Caption */}
+              {/* Footer Frame dengan Atribusi Resmi Storyset */}
               <div className="mt-3.5 pt-3 border-t border-[#165A7E] flex items-center justify-between text-xs font-mono text-[#78B9CA]">
-                <span className="truncate max-w-[220px]">
-                  Bespoke Code &amp; Visual Design
-                </span>
-                <span className="text-[#B0EDF9] font-semibold flex items-center gap-1">
-                  <span>Standard Quality</span>
+                <a
+                  href="https://storyset.com/technology"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#B0EDF9] underline decoration-[#165A7E] hover:decoration-[#B0EDF9] transition-colors text-[11px]"
+                  title="Technology illustrations by Storyset"
+                >
+                  Technology illustrations by Storyset
+                </a>
+
+                <span className="text-[#B0EDF9] font-semibold flex items-center gap-1 text-[11px]">
+                  <span>High Standards</span>
                   <Icon name="shield-check" size={13} />
                 </span>
               </div>
