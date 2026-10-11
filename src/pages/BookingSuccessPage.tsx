@@ -56,7 +56,7 @@ export const BookingSuccessPage: React.FC = () => {
     return (
       <main className="w-full min-h-[75vh] flex flex-col items-center justify-center pt-28 pb-16 px-4 bg-[#04344C] text-center">
         {/* Ilustrasi Polosan Serverdown / Not Found */}
-        <div className="relative w-48 sm:w-60 mb-4 flex flex-col items-center">
+        <div className="relative w-32 sm:w-40 md:w-48 mb-3 flex flex-col items-center">
           <div className="absolute inset-0 bg-[#B0EDF9]/15 blur-2xl rounded-full pointer-events-none -z-10" />
           <img
             src="/images/serverdown-storyset.svg"
@@ -117,8 +117,8 @@ export const BookingSuccessPage: React.FC = () => {
     <main className="w-full min-h-screen pt-28 pb-20 md:pt-36 md:pb-28 bg-[#04344C]">
       <Container className="max-w-3xl">
         {/* Header Sukses dengan Ilustrasi Polosan */}
-        <div className="text-center mb-8 flex flex-col items-center">
-          <div className="relative w-40 sm:w-48 mb-4">
+        <div className="text-center mb-6 flex flex-col items-center">
+          <div className="relative w-32 sm:w-40 md:w-48 mb-3">
             <div className="absolute inset-0 bg-[#B0EDF9]/15 blur-2xl rounded-full pointer-events-none -z-10" />
             <img
               src="/images/success-storyset.svg"

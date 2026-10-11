@@ -6,7 +6,7 @@
  */
 
 import React from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { BookingWizard } from '../features/booking/components/BookingWizard';
 import { Container } from '../components/ui/Container';
 import { Eyebrow } from '../components/ui/Eyebrow';
@@ -29,8 +29,8 @@ export const BookingPage: React.FC = () => {
       />
 
       <Container className="max-w-5xl">
-        {/* Header Halaman dengan Ilustrasi Storyset Polosan (Frameless) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-10 md:mb-14">
+        {/* Header Halaman dengan Ilustrasi Polosan */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center mb-8 md:mb-12">
           <div className="lg:col-span-7 text-center lg:text-left">
             <Eyebrow variant="cyan" className="mb-3 inline-block">
               KONSULTASI &amp; DISKUSI PROYEK
@@ -61,9 +61,9 @@ export const BookingPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Kolom Ilustrasi Storyset Jadwal Polosan (Frameless) */}
+          {/* Kolom Ilustrasi Jadwal Polosan */}
           <div className="lg:col-span-5 flex flex-col items-center justify-center">
-            <div className="relative w-48 sm:w-60 lg:w-72 flex flex-col items-center">
+            <div className="relative w-36 sm:w-48 md:w-56 lg:w-64 xl:w-72 mt-4 lg:mt-0 flex flex-col items-center">
               <div
                 className="absolute inset-0 bg-[#B0EDF9]/15 blur-2xl rounded-full pointer-events-none -z-10"
                 aria-hidden="true"

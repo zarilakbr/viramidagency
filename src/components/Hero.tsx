@@ -17,11 +17,11 @@ export const Hero: React.FC = () => {
   return (
     <section id="hero" className="relative w-full min-h-[88svh] flex items-center pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden isolate">
       <Container className="w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
           {/* Kolom Kiri: Value Proposition & CTA Simetris */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
-            <Eyebrow number="00" variant="cyan" className="mb-4 sm:mb-6">
+            <Eyebrow variant="cyan" className="mb-3 sm:mb-5">
               DIGITAL &amp; CREATIVE AGENCY
             </Eyebrow>
 
@@ -86,8 +86,8 @@ export const Hero: React.FC = () => {
           </div>
 
           {/* Kolom Kanan: Ilustrasi Polosan Rekayasa Web ViramidAgency */}
-          <div className="lg:col-span-5 flex flex-col items-center justify-center w-full">
-            <div className="relative w-full max-w-lg flex flex-col items-center">
+          <div className="lg:col-span-5 flex flex-col items-center justify-center w-full mt-6 lg:mt-0">
+            <div className="relative w-full max-w-[260px] sm:max-w-sm lg:max-w-lg xl:max-w-xl flex flex-col items-center">
               {/* Ambient backlight glow halus */}
               <div
                 className="absolute inset-0 bg-[#B0EDF9]/15 blur-3xl rounded-full pointer-events-none -z-10"
@@ -98,7 +98,7 @@ export const Hero: React.FC = () => {
               <img
                 src="/images/technology-storyset.svg"
                 alt="Rekayasa Web & Platform LMS ViramidAgency"
-                className="w-full h-auto max-h-[460px] object-contain drop-shadow-[0_20px_40px_rgba(2,34,50,0.85)] transition-transform duration-500 hover:scale-[1.02]"
+                className="w-full h-auto max-h-[300px] sm:max-h-[380px] lg:max-h-[480px] xl:max-h-[520px] object-contain drop-shadow-[0_15px_35px_rgba(2,34,50,0.85)] transition-transform duration-500 hover:scale-[1.02]"
                 loading="eager"
               />
             </div>

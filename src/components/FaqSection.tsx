@@ -23,18 +23,18 @@ export const FaqSection: React.FC = () => {
     <section id="faq" className="relative py-[72px] sm:py-[120px] bg-[#04344C] text-[#B0EDF9] border-y border-[#165A7E] scroll-mt-16">
       <Container className="max-w-4xl">
         {/* Header Seksi dengan Ilustrasi Polosan */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center mb-10 md:mb-14">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center mb-8 md:mb-12">
           <div className="md:col-span-8">
             <SectionHeading
               number="05"
               eyebrowText="TRANSPARANSI & TANYA JAWAB"
               title="Pertanyaan Umum"
               subtitle="Jawaban transparan seputar proses kerja sama, pengembangan platform LMS & Web, kepemilikan kode sumber, dan alur pengerjaan di ViramidAgency."
-              className="mb-0 md:mb-0"
+              className="mb-0"
             />
           </div>
           <div className="md:col-span-4 flex justify-center md:justify-end">
-            <div className="relative w-40 sm:w-48 md:w-52">
+            <div className="relative w-32 sm:w-40 md:w-48 lg:w-56">
               <div
                 className="absolute inset-0 bg-[#B0EDF9]/15 blur-2xl rounded-full pointer-events-none -z-10"
                 aria-hidden="true"

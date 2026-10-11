@@ -26,18 +26,18 @@ export const AboutSection: React.FC = () => {
     <section id="tentang" className="my-[72px] sm:my-[120px] scroll-mt-20">
       <Container>
         {/* Header Seksi dengan Ilustrasi Polosan */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-10 md:mb-14">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center mb-8 md:mb-12">
           <div className="lg:col-span-8">
             <SectionHeading
               number="06"
               eyebrowText="FILOSOFI & PROFIL"
               title="Tentang Agency"
               subtitle="Pendekatan dedikatif yang menggabungkan presisi desain arsitektural dan keandalan teknologi digital."
-              className="mb-0 md:mb-0"
+              className="mb-0"
             />
           </div>
           <div className="lg:col-span-4 flex justify-center lg:justify-end">
-            <div className="relative w-44 sm:w-52 lg:w-60">
+            <div className="relative w-32 sm:w-44 md:w-52 lg:w-60 xl:w-68">
               <div
                 className="absolute inset-0 bg-[#B0EDF9]/15 blur-2xl rounded-full pointer-events-none -z-10"
                 aria-hidden="true"

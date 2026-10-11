@@ -20,7 +20,7 @@ export const NotFoundPage: React.FC = () => {
       />
 
       {/* Ilustrasi Polosan Serverdown (Frameless) */}
-      <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md flex flex-col items-center mb-6">
+      <div className="relative w-full max-w-[220px] sm:max-w-[280px] md:max-w-[340px] flex flex-col items-center mb-4">
         <div
           className="absolute inset-0 bg-[#B0EDF9]/15 blur-3xl rounded-full pointer-events-none -z-10"
           aria-hidden="true"
@@ -28,7 +28,7 @@ export const NotFoundPage: React.FC = () => {
         <img
           src="/images/serverdown-storyset.svg"
           alt="Server Status & Halaman Tidak Ditemukan - ViramidAgency"
-          className="w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(2,34,50,0.85)] hover:scale-[1.02] transition-transform duration-300"
+          className="w-full h-auto object-contain drop-shadow-[0_15px_30px_rgba(2,34,50,0.85)] hover:scale-[1.02] transition-transform duration-300"
           loading="eager"
         />
       </div>

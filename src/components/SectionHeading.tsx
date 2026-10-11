@@ -37,9 +37,10 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
     : 'text-[#78B9CA]';
 
   const eyebrowVariant = isCyanBg ? 'navy' : 'cyan';
+  const containerMargin = className ? className : 'mb-10 md:mb-12';
 
   return (
-    <Reveal className={`mb-10 md:mb-12 text-left ${className}`}>
+    <Reveal className={`text-left ${containerMargin}`}>
       <div className="flex flex-col gap-2">
         <Eyebrow number={number} variant={eyebrowVariant}>
           {eyebrowText || `SEKSI ${number}`}

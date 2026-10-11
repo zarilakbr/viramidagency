@@ -15,7 +15,6 @@ interface EyebrowProps {
 
 export const Eyebrow: React.FC<EyebrowProps> = ({
   children,
-  number,
   className = '',
   variant = 'cyan',
 }) => {
