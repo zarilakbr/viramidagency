@@ -4,42 +4,38 @@
  */
 
 import React, { useEffect } from 'react';
-import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { BackToTop } from './components/BackToTop';
 import { BackgroundGradients } from './components/BackgroundGradients';
 import { HomePage } from './pages/HomePage';
+import { ServicesPage } from './pages/ServicesPage';
+import { PortfolioPage } from './pages/PortfolioPage';
 import { ProjectDetailPage } from './pages/ProjectDetailPage';
+import { ProcessPage } from './pages/ProcessPage';
+import { PricingPage } from './pages/PricingPage';
+import { FaqPage } from './pages/FaqPage';
+import { AboutPage } from './pages/AboutPage';
+import { ContactPage } from './pages/ContactPage';
 import { BookingPage } from './pages/BookingPage';
 import { BookingSuccessPage } from './pages/BookingSuccessPage';
-import { ProcessPage } from './pages/ProcessPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
-// Scroll handling helper for HashRouter anchors
+// Scroll handling helper: scroll to top on clean route change
 const ScrollManager: React.FC = () => {
-  const { pathname, hash } = useLocation();
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    if (hash) {
-      const id = hash.replace('#', '');
-      const el = document.getElementById(id);
-      if (el) {
-        setTimeout(() => {
-          el.scrollIntoView({ behavior: 'smooth' });
-        }, 50);
-      }
-    } else {
-      window.scrollTo({ top: 0, behavior: 'instant' });
-    }
-  }, [pathname, hash]);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [pathname]);
 
   return null;
 };
 
 export default function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <ScrollManager />
 
       <div className="min-h-screen bg-background text-foreground flex flex-col font-body selection:bg-[#B0EDF9] selection:text-[#04344C] relative">
@@ -53,8 +49,14 @@ export default function App() {
         <div className="relative z-10 flex-1 w-full">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/proses" element={<ProcessPage />} />
+            <Route path="/layanan" element={<ServicesPage />} />
+            <Route path="/karya" element={<PortfolioPage />} />
             <Route path="/karya/:slug" element={<ProjectDetailPage />} />
+            <Route path="/proses" element={<ProcessPage />} />
+            <Route path="/paket" element={<PricingPage />} />
+            <Route path="/faq" element={<FaqPage />} />
+            <Route path="/tentang" element={<AboutPage />} />
+            <Route path="/kontak" element={<ContactPage />} />
             <Route path="/booking" element={<BookingPage />} />
             <Route path="/booking/sukses" element={<BookingSuccessPage />} />
             <Route path="*" element={<NotFoundPage />} />
@@ -67,6 +69,6 @@ export default function App() {
         {/* Back to Top Navigation */}
         <BackToTop />
       </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 }

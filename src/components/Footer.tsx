@@ -14,16 +14,6 @@ import { KONTAK_AGENCY, PROFIL_AGENCY } from '../data/content';
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      window.location.hash = id;
-    }
-  };
-
   return (
     <footer className="relative bg-[#022131] border-t border-[#165A7E]">
       {/* Garis aksen 1px cyan tunggal */}
@@ -50,22 +40,20 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="flex flex-col gap-2 text-sm text-[#78B9CA]">
               <li>
-                <a
-                  href="#layanan"
-                  onClick={(e) => scrollToSection(e, 'layanan')}
+                <Link
+                  to="/layanan"
                   className="hover:text-[#B0EDF9] transition-colors rounded-sm"
                 >
                   Layanan Unggulan
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#karya"
-                  onClick={(e) => scrollToSection(e, 'karya')}
+                <Link
+                  to="/karya"
                   className="hover:text-[#B0EDF9] transition-colors rounded-sm"
                 >
                   Karya &amp; Portofolio
-                </a>
+                </Link>
               </li>
               <li>
                 <Link
@@ -76,31 +64,36 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <a
-                  href="#paket"
-                  onClick={(e) => scrollToSection(e, 'paket')}
+                <Link
+                  to="/paket"
                   className="hover:text-[#B0EDF9] transition-colors rounded-sm"
                 >
                   Paket Layanan
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#faq"
-                  onClick={(e) => scrollToSection(e, 'faq')}
+                <Link
+                  to="/faq"
                   className="hover:text-[#B0EDF9] transition-colors rounded-sm"
                 >
                   Pertanyaan Umum (FAQ)
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#kontak"
-                  onClick={(e) => scrollToSection(e, 'kontak')}
+                <Link
+                  to="/tentang"
+                  className="hover:text-[#B0EDF9] transition-colors rounded-sm"
+                >
+                  Tentang Agency
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/kontak"
                   className="hover:text-[#B0EDF9] transition-colors rounded-sm"
                 >
                   Mulai Diskusi Proyek
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

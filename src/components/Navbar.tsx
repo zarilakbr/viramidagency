@@ -20,13 +20,13 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { label: 'Layanan', href: '#layanan', id: 'layanan' },
-  { label: 'Karya', href: '#karya', id: 'karya' },
+  { label: 'Layanan', href: '/layanan', id: 'layanan' },
+  { label: 'Karya', href: '/karya', id: 'karya' },
   { label: 'Proses', href: '/proses', id: 'proses' },
-  { label: 'Paket', href: '#paket', id: 'paket' },
-  { label: 'FAQ', href: '#faq', id: 'faq' },
-  { label: 'Tentang', href: '#tentang', id: 'tentang' },
-  { label: 'Kontak', href: '#kontak', id: 'kontak' },
+  { label: 'Paket', href: '/paket', id: 'paket' },
+  { label: 'FAQ', href: '/faq', id: 'faq' },
+  { label: 'Tentang', href: '/tentang', id: 'tentang' },
+  { label: 'Kontak', href: '/kontak', id: 'kontak' },
 ];
 
 export const Navbar: React.FC = () => {
@@ -61,39 +61,14 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [mobileMenuOpen]);
 
-  // Pantau seksi aktif untuk highlight navbar
+  // Pantau rute aktif untuk highlight navbar
   useEffect(() => {
-    if (location.pathname === '/proses') {
-      setActiveSection('proses');
-      return;
-    }
-
-    if (location.pathname !== '/') {
+    const matched = NAV_ITEMS.find((item) => location.pathname === item.href);
+    if (matched) {
+      setActiveSection(matched.id);
+    } else {
       setActiveSection('');
-      return;
     }
-
-    const observerCallback: IntersectionObserverCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, {
-      rootMargin: '-15% 0px -65% 0px',
-      threshold: 0.1,
-    });
-
-    NAV_ITEMS.forEach((item) => {
-      if (item.href.startsWith('#')) {
-        const el = document.getElementById(item.id);
-        if (el) observer.observe(el);
-      }
-    });
-
-    return () => observer.disconnect();
   }, [location.pathname]);
 
   // Cegah body scrolling saat menu mobile terbuka
@@ -111,38 +86,13 @@ export const Navbar: React.FC = () => {
   const handleNavClick = (e: React.MouseEvent<HTMLElement>, href: string) => {
     e.preventDefault();
     setMobileMenuOpen(false);
-
-    if (href.startsWith('/')) {
-      navigate(href);
-      return;
-    }
-
-    const id = href.replace('#', '');
-
-    if (location.pathname !== '/') {
-      navigate('/');
-      setTimeout(() => {
-        const target = document.getElementById(id);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 150);
-    } else {
-      const target = document.getElementById(id);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
+    navigate(href);
   };
 
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setMobileMenuOpen(false);
-    if (location.pathname !== '/') {
-      navigate('/');
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    navigate('/');
   };
 
   return (

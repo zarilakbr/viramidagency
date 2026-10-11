@@ -106,7 +106,7 @@ export const DAFTAR_BANNER: BannerItem[] = [
     tombolLabel: 'Jadwalkan Konsultasi',
     tombolHref: '/booking',
     tombolKeduaLabel: 'Lihat Karya',
-    tombolKeduaHref: '#karya',
+    tombolKeduaHref: '/karya',
   },
   {
     id: 'banner-mid',

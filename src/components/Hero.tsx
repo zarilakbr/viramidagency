@@ -45,13 +45,13 @@ export const Hero: React.FC = () => {
                 <Icon name="arrow-right" size={18} />
               </Link>
 
-              <a
-                href="#karya"
+              <Link
+                to="/karya"
                 className="w-full sm:w-auto h-12 px-7 rounded-full border border-[#165A7E] bg-[#074563] hover:bg-[#0B567C] hover:border-[#B0EDF9] text-[#B0EDF9] font-heading font-bold text-sm sm:text-base transition-all duration-200 flex items-center justify-center gap-2"
               >
                 <span>Lihat Karya</span>
-                <Icon name="chevron-down" size={16} />
-              </a>
+                <Icon name="arrow-right" size={16} />
+              </Link>
             </div>
 
             {/* Metrik Standar Keunggulan Agency */}
