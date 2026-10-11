@@ -85,62 +85,40 @@ export const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Kolom Kanan: Showcase Ilustrasi Storyset Technology */}
-          <div className="lg:col-span-5 flex justify-center w-full">
-            <div className="w-full max-w-lg rounded-2xl bg-[#074563] border border-[#165A7E] hover:border-[#B0EDF9] transition-all duration-300 p-4 sm:p-5 shadow-2xl relative group flex flex-col justify-between">
-              
-              {/* Header Showcase Frame */}
-              <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#165A7E]">
-                <div className="flex items-center gap-2">
-                  <Icon name="zap" size={15} className="text-[#B0EDF9]" />
-                  <span className="text-xs font-mono font-semibold text-[#B0EDF9]">
-                    Rekayasa Website &amp; LMS
-                  </span>
-                </div>
+          {/* Kolom Kanan: Ilustrasi Storyset Technology Polosan (Frameless) */}
+          <div className="lg:col-span-5 flex flex-col items-center justify-center w-full">
+            <div className="relative w-full max-w-lg flex flex-col items-center">
+              {/* Ambient backlight glow halus */}
+              <div
+                className="absolute inset-0 bg-[#B0EDF9]/15 blur-3xl rounded-full pointer-events-none -z-10"
+                aria-hidden="true"
+              />
 
-                <span className="px-2.5 py-1 rounded-md bg-[#04344C] border border-[#165A7E] text-[10px] font-mono text-[#B0EDF9]">
-                  Interactive Tech Vector
-                </span>
-              </div>
+              {/* Ilustrasi Polosan Vector Storyset */}
+              <img
+                src="/images/technology-storyset.svg"
+                alt="Technology illustrations by Storyset - Rekayasa Web ViramidAgency"
+                className="w-full h-auto max-h-[460px] object-contain drop-shadow-[0_20px_40px_rgba(2,34,50,0.85)] transition-transform duration-500 hover:scale-[1.02]"
+                loading="eager"
+              />
 
-              {/* Showcase Ilustrasi Vector Storyset */}
-              <div className="relative w-full aspect-[16/11] rounded-xl overflow-hidden bg-[#04344C] border border-[#165A7E] flex items-center justify-center p-3 group-hover:border-[#B0EDF9] transition-colors">
-                <img
-                  src="/images/technology-storyset.svg"
-                  alt="Technology illustrations by Storyset - Rekayasa Web ViramidAgency"
-                  className="w-full h-full object-contain filter drop-shadow-[0_10px_20px_rgba(4,52,76,0.8)] transition-transform duration-500 group-hover:scale-105"
-                  loading="eager"
-                />
-
-                {/* Floating Tech Badges */}
-                <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-[#04344C]/90 border border-[#165A7E] backdrop-blur-sm text-[10px] font-mono text-[#B0EDF9] flex items-center gap-1.5 shadow-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#B0EDF9] animate-pulse" />
-                  <span>Frontend &amp; Architecture</span>
-                </div>
-
-                <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-md bg-[#04344C]/90 border border-[#165A7E] backdrop-blur-sm text-[10px] font-mono text-[#B0EDF9] shadow-sm">
-                  Fullstack Engine
-                </div>
-              </div>
-
-              {/* Footer Frame dengan Atribusi Resmi Storyset */}
-              <div className="mt-3.5 pt-3 border-t border-[#165A7E] flex items-center justify-between text-xs font-mono text-[#78B9CA]">
+              {/* Atribusi Resmi Storyset Polosan */}
+              <div className="mt-3 flex items-center justify-between w-full px-2 text-xs font-mono text-[#78B9CA]">
                 <a
                   href="https://storyset.com/technology"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#B0EDF9] underline decoration-[#165A7E] hover:decoration-[#B0EDF9] transition-colors text-[11px]"
+                  className="hover:text-[#B0EDF9] text-[11px] underline decoration-[#165A7E] hover:decoration-[#B0EDF9] transition-colors"
                   title="Technology illustrations by Storyset"
                 >
                   Technology illustrations by Storyset
                 </a>
 
-                <span className="text-[#B0EDF9] font-semibold flex items-center gap-1 text-[11px]">
-                  <span>High Standards</span>
-                  <Icon name="shield-check" size={13} />
+                <span className="text-[#B0EDF9] font-medium flex items-center gap-1.5 text-[11px]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#B0EDF9] animate-pulse" />
+                  <span>High Standards Architecture</span>
                 </span>
               </div>
-
             </div>
           </div>
 

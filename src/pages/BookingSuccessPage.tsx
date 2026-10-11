@@ -54,25 +54,38 @@ export const BookingSuccessPage: React.FC = () => {
 
   if (!booking) {
     return (
-      <main className="w-full min-h-[70vh] flex items-center justify-center pt-24 pb-16 bg-[#04344C]">
-        <div className="max-w-md text-center p-8 rounded-2xl bg-[#074563] border border-[#165A7E]">
-          <div className="w-12 h-12 rounded-xl bg-[#04344C] border border-[#165A7E] flex items-center justify-center mx-auto mb-4 text-[#B0EDF9]">
-            <Icon name="alert-circle" size={24} />
-          </div>
-          <h1 className="font-heading font-bold text-2xl text-[#B0EDF9] mb-2">
-            Data Jadwal Tidak Ditemukan
-          </h1>
-          <p className="text-sm text-[#78B9CA] mb-6">
-            Kode booking tidak valid atau belum tersimpan di sesi browser ini.
-          </p>
-          <Link
-            to="/booking"
-            className="inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-sm w-full sm:w-auto"
+      <main className="w-full min-h-[75vh] flex flex-col items-center justify-center pt-28 pb-16 px-4 bg-[#04344C] text-center">
+        {/* Ilustrasi Polosan Storyset Serverdown / Not Found */}
+        <div className="relative w-48 sm:w-60 mb-4 flex flex-col items-center">
+          <div className="absolute inset-0 bg-[#B0EDF9]/15 blur-2xl rounded-full pointer-events-none -z-10" />
+          <img
+            src="/images/serverdown-storyset.svg"
+            alt="Data tidak ditemukan illustrations by Storyset"
+            className="w-full h-auto object-contain drop-shadow-[0_15px_30px_rgba(2,34,50,0.85)]"
+          />
+          <a
+            href="https://storyset.com/web"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-1 text-[10px] font-mono text-[#78B9CA]/75 hover:text-[#B0EDF9] transition-colors"
           >
-            <Icon name="calendar" size={16} />
-            <span>Buat Jadwal Baru</span>
-          </Link>
+            Server illustrations by Storyset
+          </a>
         </div>
+
+        <h1 className="font-heading font-bold text-2xl sm:text-3xl text-[#B0EDF9] mb-2">
+          Data Jadwal Tidak Ditemukan
+        </h1>
+        <p className="text-sm text-[#78B9CA] mb-6 max-w-md mx-auto leading-relaxed">
+          Kode booking tidak valid atau belum tersimpan di sesi browser ini.
+        </p>
+        <Link
+          to="/booking"
+          className="inline-flex items-center justify-center gap-2 h-12 px-7 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-sm shadow-md transition-all duration-200"
+        >
+          <Icon name="calendar" size={16} />
+          <span>Buat Jadwal Baru</span>
+        </Link>
       </main>
     );
   }
@@ -111,11 +124,27 @@ export const BookingSuccessPage: React.FC = () => {
   return (
     <main className="w-full min-h-screen pt-28 pb-20 md:pt-36 md:pb-28 bg-[#04344C]">
       <Container className="max-w-3xl">
-        {/* Header Sukses */}
-        <div className="text-center mb-8">
-          <div className="w-14 h-14 rounded-2xl bg-[#074563] border border-[#165A7E] flex items-center justify-center mx-auto mb-4 text-[#B0EDF9] shadow-md">
-            <Icon name="check" size={28} strokeWidth={2.5} />
+        {/* Header Sukses dengan Ilustrasi Storyset Polosan (Frameless) */}
+        <div className="text-center mb-8 flex flex-col items-center">
+          <div className="relative w-40 sm:w-48 mb-2">
+            <div className="absolute inset-0 bg-[#B0EDF9]/15 blur-2xl rounded-full pointer-events-none -z-10" />
+            <img
+              src="/images/success-storyset.svg"
+              alt="Success confirmation illustrations by Storyset"
+              className="w-full h-auto object-contain drop-shadow-[0_15px_30px_rgba(2,34,50,0.85)]"
+              loading="eager"
+            />
           </div>
+
+          <a
+            href="https://storyset.com/success"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[10px] font-mono text-[#78B9CA]/75 hover:text-[#B0EDF9] transition-colors mb-3"
+            title="Success illustrations by Storyset"
+          >
+            Success illustrations by Storyset
+          </a>
 
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#074563] border border-[#165A7E] text-xs font-mono text-[#B0EDF9] mb-3">
             <Icon name="check-circle" size={14} className="text-[#B0EDF9]" />
