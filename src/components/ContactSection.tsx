@@ -3,7 +3,10 @@ import { SectionHeading } from './SectionHeading';
 import { Container } from './ui/Container';
 import { Icon } from './ui/Icon';
 import { Reveal } from './ui/Reveal';
+import { CaptchaVerification } from './ui/CaptchaVerification';
 import { KONTAK_AGENCY } from '../data/content';
+import { openWhatsAppDirectly, getDirectWhatsAppUrl } from '../lib/whatsapp';
+import { openConsultationModal } from './ConsultationModal';
 
 interface FormState {
   nama: string;
@@ -18,6 +21,7 @@ interface FormErrors {
   kontak?: string;
   kebutuhan?: string;
   pesan?: string;
+  captcha?: string;
 }
 
 interface ContactSectionProps {
@@ -40,6 +44,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   React.useEffect(() => {
     if (initialService) {
@@ -70,6 +75,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
       newErrors.pesan = `Pesan minimal 20 karakter (saat ini ${formData.pesan.trim().length} karakter).`;
     }
 
+    if (!captchaToken) {
+      newErrors.captcha = 'Mohon selesaikan verifikasi Cloudflare & reCAPTCHA terlebih dahulu.';
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -91,16 +100,30 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
 
   const handleWhatsAppSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!captchaToken) {
+      setErrors((prev) => ({
+        ...prev,
+        captcha: 'Mohon selesaikan verifikasi Cloudflare & reCAPTCHA terlebih dahulu.',
+      }));
+      return;
+    }
     if (!validate()) return;
 
     setIsSubmitted(true);
     const text = formatMessageText();
-    const url = `https://wa.me/${KONTAK_AGENCY.whatsappNomor}?text=${encodeURIComponent(text)}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
+    openWhatsAppDirectly(text);
+    setCaptchaToken(null);
   };
 
   const handleEmailClick = (e: React.MouseEvent) => {
     e.preventDefault();
+    if (!captchaToken) {
+      setErrors((prev) => ({
+        ...prev,
+        captcha: 'Mohon selesaikan verifikasi Cloudflare & reCAPTCHA terlebih dahulu.',
+      }));
+      return;
+    }
     if (!validate()) return;
 
     const text = formatMessageText();
@@ -108,6 +131,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
     const url = `mailto:${KONTAK_AGENCY.email}?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(text)}`;
+    setCaptchaToken(null);
     window.location.href = url;
   };
 
@@ -139,13 +163,15 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
                 <Icon name="message-square" size="md" className="text-[#B0EDF9] mt-0.5" />
                 <div>
                   <span className="block text-xs uppercase font-mono tracking-wider text-[#78B9CA] mb-0.5">
-                    WhatsApp
+                    WhatsApp (Aplikasi Langsung)
                   </span>
                   <a
-                    href={`https://wa.me/${KONTAK_AGENCY.whatsappNomor}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-mono text-sm sm:text-base text-[#B0EDF9] hover:underline transition-all"
+                    href={getDirectWhatsAppUrl()}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      openConsultationModal('Konsultasi via WhatsApp');
+                    }}
+                    className="font-mono text-sm sm:text-base text-[#B0EDF9] hover:underline transition-all cursor-pointer"
                   >
                     {KONTAK_AGENCY.whatsappDisplay}
                   </a>
@@ -338,11 +364,46 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
                 </div>
               </div>
 
+              {/* Verifikasi Keamanan Cloudflare Turnstile & reCAPTCHA */}
+              <div className="pt-1">
+                <CaptchaVerification
+                  onVerify={(token) => {
+                    setCaptchaToken(token);
+                    if (errors.captcha) {
+                      setErrors((prev) => ({ ...prev, captcha: undefined }));
+                    }
+                  }}
+                  onReset={() => setCaptchaToken(null)}
+                  hasError={!!errors.captcha}
+                  errorMessage={errors.captcha}
+                />
+              </div>
+
+              {/* Status Kunci Verifikasi */}
+              <div className="mt-1">
+                {!captchaToken ? (
+                  <div className="p-2.5 rounded-xl bg-[#04344C] border border-[#165A7E] flex items-center gap-2 text-[11px] font-mono text-[#78B9CA]">
+                    <span className="w-2 h-2 rounded-full bg-[#165A7E] animate-pulse" />
+                    <span>Tombol pengiriman terkunci — Harap centang kotak verifikasi di atas.</span>
+                  </div>
+                ) : (
+                  <div className="p-2.5 rounded-xl bg-[#04344C] border border-[#B0EDF9] flex items-center gap-2 text-[11px] font-mono text-[#B0EDF9]">
+                    <Icon name="check-circle" size={14} className="text-[#B0EDF9]" />
+                    <span>Verifikasi Berhasil! Tombol pengiriman aktif.</span>
+                  </div>
+                )}
+              </div>
+
               {/* Tombol Aksi Simetris */}
               <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <button
                   type="submit"
-                  className="w-full h-12 px-6 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 shadow-sm"
+                  disabled={!captchaToken}
+                  className={`w-full h-12 px-6 rounded-full font-heading font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 ${
+                    !captchaToken
+                      ? 'bg-[#074563] border border-[#165A7E]/50 text-[#78B9CA] opacity-50 cursor-not-allowed pointer-events-none select-none'
+                      : 'bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] shadow-sm cursor-pointer active:scale-[0.98]'
+                  }`}
                 >
                   <span>Kirim via WhatsApp</span>
                   <Icon name="arrow-right" size={16} />
@@ -350,8 +411,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
 
                 <button
                   type="button"
+                  disabled={!captchaToken}
                   onClick={handleEmailClick}
-                  className="w-full h-12 px-6 rounded-full border border-[#165A7E] bg-[#074563] hover:bg-[#0B567C] text-[#B0EDF9] font-heading font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 hover:border-[#B0EDF9]"
+                  className={`w-full h-12 px-6 rounded-full font-heading font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 ${
+                    !captchaToken
+                      ? 'bg-[#04344C] border border-[#165A7E]/40 text-[#78B9CA] opacity-50 cursor-not-allowed pointer-events-none select-none'
+                      : 'border border-[#165A7E] bg-[#074563] hover:bg-[#0B567C] text-[#B0EDF9] hover:border-[#B0EDF9] cursor-pointer active:scale-[0.98]'
+                  }`}
                 >
                   <span>Kirim via Email</span>
                   <Icon name="mail" size={16} />

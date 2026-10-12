@@ -6,10 +6,10 @@
  */
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Container } from './ui/Container';
 import { Eyebrow } from './ui/Eyebrow';
 import { Icon } from './ui/Icon';
+import { openConsultationModal } from './ConsultationModal';
 
 export const CtaBanner: React.FC = () => {
   return (
@@ -31,13 +31,14 @@ export const CtaBanner: React.FC = () => {
           </div>
 
           <div className="w-full sm:w-auto shrink-0 flex justify-center">
-            <Link
-              to="/booking"
+            <button
+              type="button"
+              onClick={() => openConsultationModal('Diskusi Obrolan Proyek')}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 h-12 px-8 rounded-full bg-[#04344C] hover:bg-[#022131] text-[#B0EDF9] font-heading font-bold text-sm sm:text-base transition-all duration-200 shadow-lg active:scale-[0.98] cursor-pointer"
             >
-              <span>Jadwalkan Sekarang</span>
+              <span>Mulai Konsultasi</span>
               <Icon name="arrow-right" size={18} />
-            </Link>
+            </button>
           </div>
         </div>
       </Container>

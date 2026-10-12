@@ -10,7 +10,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams, useLocation, Link } from 'react-router-dom';
 import { bookingService } from '../features/booking/services/bookingService';
-import { getWhatsAppBookingUrl, getEmailBookingUrl } from '../features/booking/lib/whatsappMessage';
+import { getWhatsAppBookingUrl, getEmailBookingUrl, generateWhatsAppMessage } from '../features/booking/lib/whatsappMessage';
+import { openWhatsAppDirectly } from '../lib/whatsapp';
 import { downloadIcsFile, getGoogleCalendarUrl } from '../features/booking/lib/ics';
 import { copyToClipboard } from '../features/booking/lib/clipboard';
 import { BOOKING_CONFIG } from '../data/booking.config';
@@ -261,15 +262,20 @@ export const BookingSuccessPage: React.FC = () => {
 
         {/* Tombol Aksi Simetris (Grid 2 Kolom di Mobile & Desktop) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-          {/* 1. Kirim ke WhatsApp */}
+          {/* 1. Kirim ke WhatsApp (Aplikasi Langsung) */}
           <a
             href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full h-12 px-5 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-xs sm:text-sm transition-colors flex items-center justify-center gap-2 shadow-sm"
+            onClick={(e) => {
+              e.preventDefault();
+              openWhatsAppDirectly(
+                generateWhatsAppMessage(booking),
+                BOOKING_CONFIG.kontak.whatsappNomor
+              );
+            }}
+            className="w-full h-12 px-5 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-xs sm:text-sm transition-colors flex items-center justify-center gap-2 shadow-sm cursor-pointer"
           >
             <Icon name="message-square" size={16} />
-            <span>Kirim ke WhatsApp</span>
+            <span>Kirim ke WhatsApp (Aplikasi)</span>
           </a>
 
           {/* 2. Kirim via Email */}

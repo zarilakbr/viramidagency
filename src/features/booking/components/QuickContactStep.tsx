@@ -10,6 +10,7 @@ import React, { useState } from 'react';
 import { BOOKING_CONFIG } from '../../../data/booking.config';
 import { Field } from './Field';
 import { Icon } from '../../../components/ui/Icon';
+import { CaptchaVerification } from '../../../components/ui/CaptchaVerification';
 import type { BookingFormData } from '../types';
 
 export interface ContactFormErrors {
@@ -24,7 +25,7 @@ interface QuickContactStepProps {
   onChange: (field: keyof BookingFormData, value: string) => void;
   onEditSchedule: () => void;
   isSubmitting: boolean;
-  onSubmit: () => void;
+  onSubmit: (token: string) => void;
   errors: ContactFormErrors;
   errorMessage?: string | null;
 }
@@ -48,6 +49,8 @@ export const QuickContactStep: React.FC<QuickContactStepProps> = ({
   errorMessage,
 }) => {
   const [selectedTag, setSelectedTag] = useState<string>('');
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [captchaError, setCaptchaError] = useState<string | null>(null);
 
   const jenisConfig =
     BOOKING_CONFIG.jenisPertemuan.find((j) => j.id === formData.jenisPertemuanId) ||
@@ -242,12 +245,48 @@ export const QuickContactStep: React.FC<QuickContactStepProps> = ({
               </div>
             )}
 
+            {/* Verifikasi Keamanan Cloudflare Turnstile & reCAPTCHA */}
+            <div className="pt-1">
+              <CaptchaVerification
+                onVerify={(token) => {
+                  setCaptchaToken(token);
+                  setCaptchaError(null);
+                }}
+                onReset={() => setCaptchaToken(null)}
+                hasError={!!captchaError}
+                errorMessage={captchaError || undefined}
+              />
+            </div>
+
+            {/* Status Kunci Verifikasi */}
+            {!captchaToken ? (
+              <div className="p-2.5 rounded-xl bg-[#04344C] border border-[#165A7E] flex items-center gap-2 text-[11px] font-mono text-[#78B9CA]">
+                <span className="w-2 h-2 rounded-full bg-[#165A7E] animate-pulse" />
+                <span>Tombol jadwal terkunci — Harap centang kotak verifikasi di atas.</span>
+              </div>
+            ) : (
+              <div className="p-2.5 rounded-xl bg-[#04344C] border border-[#B0EDF9] flex items-center gap-2 text-[11px] font-mono text-[#B0EDF9]">
+                <Icon name="check-circle" size={14} className="text-[#B0EDF9]" />
+                <span>Verifikasi Berhasil! Tombol kirim jadwal aktif.</span>
+              </div>
+            )}
+
             {/* Tombol Utama Kirim Jadwal */}
             <button
               type="button"
-              disabled={isSubmitting}
-              onClick={onSubmit}
-              className="w-full h-12 px-6 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-sm sm:text-base transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow-md active:scale-[0.98] mt-2"
+              disabled={isSubmitting || !captchaToken}
+              onClick={() => {
+                if (!captchaToken) {
+                  setCaptchaError('Mohon selesaikan verifikasi Cloudflare & reCAPTCHA terlebih dahulu.');
+                  return;
+                }
+                onSubmit(captchaToken);
+              }}
+              className={`w-full h-12 px-6 rounded-full font-heading font-bold text-sm sm:text-base transition-all duration-200 flex items-center justify-center gap-2 mt-1 shadow-md ${
+                !captchaToken || isSubmitting
+                  ? 'bg-[#04344C] border border-[#165A7E]/50 text-[#78B9CA] opacity-50 cursor-not-allowed pointer-events-none select-none'
+                  : 'bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] cursor-pointer active:scale-[0.98]'
+              }`}
             >
               {isSubmitting ? (
                 <>

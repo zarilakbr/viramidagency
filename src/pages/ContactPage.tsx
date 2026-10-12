@@ -11,7 +11,10 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { Container } from '../components/ui/Container';
 import { Eyebrow } from '../components/ui/Eyebrow';
 import { Icon } from '../components/ui/Icon';
+import { CaptchaVerification } from '../components/ui/CaptchaVerification';
 import { KONTAK_AGENCY } from '../data/content';
+import { openWhatsAppDirectly, openEmailDirectly, getDirectWhatsAppUrl } from '../lib/whatsapp';
+import { openConsultationModal } from '../components/ConsultationModal';
 
 export const ContactPage: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -28,6 +31,8 @@ export const ContactPage: React.FC = () => {
 
   const [errors, setErrors] = useState<Record<string, string | undefined>>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [lastChannel, setLastChannel] = useState<'whatsapp' | 'email'>('whatsapp');
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   useEffect(() => {
     document.title = 'Hubungi Kami - Konsultasi & Kolaborasi ViramidAgency';
@@ -50,27 +55,60 @@ export const ContactPage: React.FC = () => {
     if (!formData.pesan.trim() || formData.pesan.trim().length < 15) {
       errs.pesan = 'Mohon ceritakan sedikit tentang proyek Anda (minimal 15 karakter).';
     }
+    if (!captchaToken) {
+      errs.captcha = 'Mohon selesaikan verifikasi Cloudflare & reCAPTCHA terlebih dahulu.';
+    }
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validate()) return;
-
-    // Siapkan pesan otomatis WhatsApp
-    const waText = encodeURIComponent(
+  const buildInquiryText = () => {
+    return (
       `*Halo ViramidAgency, saya ingin mengajukan inquiry proyek:*\n\n` +
-      `• *Nama:* ${formData.nama}\n` +
-      `• *Email:* ${formData.email}\n` +
-      `• *WhatsApp:* ${formData.whatsapp}\n` +
+      `• *Nama:* ${formData.nama.trim()}\n` +
+      `• *Email:* ${formData.email.trim()}\n` +
+      `• *WhatsApp:* ${formData.whatsapp.trim()}\n` +
       `• *Kebutuhan:* ${formData.kebutuhan}\n` +
       `• *Anggaran:* ${formData.anggaran || '-'}\n` +
-      `• *Pesan:* ${formData.pesan}\n\n` +
+      `• *Pesan:* ${formData.pesan.trim()}\n\n` +
       `Mohon info ketersediaan dan diskusi lanjutnya. Terima kasih!`
     );
+  };
 
-    window.open(`https://wa.me/${KONTAK_AGENCY.whatsappNomor}?text=${waText}`, '_blank');
+  const handleWhatsAppSubmit = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    if (!captchaToken) {
+      setErrors((prev) => ({
+        ...prev,
+        captcha: 'Mohon selesaikan verifikasi Cloudflare & reCAPTCHA terlebih dahulu.',
+      }));
+      return;
+    }
+    if (!validate()) return;
+
+    const text = buildInquiryText();
+    openWhatsAppDirectly(text);
+    setLastChannel('whatsapp');
+    setCaptchaToken(null);
+    setIsSubmitted(true);
+  };
+
+  const handleEmailSubmit = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    if (!captchaToken) {
+      setErrors((prev) => ({
+        ...prev,
+        captcha: 'Mohon selesaikan verifikasi Cloudflare & reCAPTCHA terlebih dahulu.',
+      }));
+      return;
+    }
+    if (!validate()) return;
+
+    const subject = `[INQUIRY PROYEK] ${formData.kebutuhan} - ${formData.nama.trim()}`;
+    const text = buildInquiryText();
+    openEmailDirectly(subject, text);
+    setLastChannel('email');
+    setCaptchaToken(null);
     setIsSubmitted(true);
   };
 
@@ -132,13 +170,15 @@ export const ContactPage: React.FC = () => {
                 </div>
                 <div>
                   <span className="text-xs font-mono uppercase text-[#78B9CA] block">
-                    Respon Cepat WhatsApp
+                    Respon Cepat WhatsApp (Aplikasi Langsung)
                   </span>
                   <a
-                    href={`https://wa.me/${KONTAK_AGENCY.whatsappNomor}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm font-semibold text-[#B0EDF9] hover:underline"
+                    href={getDirectWhatsAppUrl()}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      openConsultationModal('Inquiry via WhatsApp');
+                    }}
+                    className="text-sm font-semibold text-[#B0EDF9] hover:underline cursor-pointer"
                   >
                     {KONTAK_AGENCY.whatsappDisplay}
                   </a>
@@ -229,18 +269,23 @@ export const ContactPage: React.FC = () => {
                     Inquiry Telah Diteruskan
                   </h3>
                   <p className="text-sm text-[#78B9CA] max-w-md leading-relaxed mb-6">
-                    Pesan Anda telah dibuka di WhatsApp tim kami. Kami akan merespon secepatnya dalam jam kerja.
+                    {lastChannel === 'whatsapp'
+                      ? 'Pesan inquiry telah diteruskan langsung ke aplikasi WhatsApp tim ViramidAgency. Kami akan segera merespon dalam jam kerja.'
+                      : `Draf email telah disiapkan dan dibuka di aplikasi email Anda menuju ${KONTAK_AGENCY.email}.`}
                   </p>
                   <button
                     type="button"
-                    onClick={() => setIsSubmitted(false)}
-                    className="h-10 px-6 rounded-full border border-[#165A7E] text-[#B0EDF9] font-heading text-xs hover:border-[#B0EDF9] transition-colors"
+                    onClick={() => {
+                      setCaptchaToken(null);
+                      setIsSubmitted(false);
+                    }}
+                    className="h-10 px-6 rounded-full border border-[#165A7E] text-[#B0EDF9] font-heading text-xs hover:border-[#B0EDF9] transition-colors cursor-pointer"
                   >
-                    Kirim Pesan Lainnya
+                    Kirim Inquiry Lainnya
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                <form onSubmit={handleWhatsAppSubmit} className="flex flex-col gap-5">
                   <h3 className="font-heading font-bold text-xl text-[#B0EDF9] mb-1">
                     Formulir Spesifikasi Proyek
                   </h3>
@@ -378,13 +423,65 @@ export const ContactPage: React.FC = () => {
                     )}
                   </div>
 
-                  <button
-                    type="submit"
-                    className="w-full h-12 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all shadow-md active:scale-[0.98] cursor-pointer mt-2"
-                  >
-                    <span>Kirim &amp; Diskusikan via WhatsApp</span>
-                    <Icon name="arrow-right" size={16} />
-                  </button>
+                  {/* Verifikasi Keamanan Cloudflare Turnstile & reCAPTCHA */}
+                  <div className="pt-1">
+                    <CaptchaVerification
+                      onVerify={(token) => {
+                        setCaptchaToken(token);
+                        if (errors.captcha) {
+                          setErrors((prev) => ({ ...prev, captcha: undefined }));
+                        }
+                      }}
+                      onReset={() => setCaptchaToken(null)}
+                      hasError={!!errors.captcha}
+                      errorMessage={errors.captcha}
+                    />
+                  </div>
+
+                  {/* Status Kunci Verifikasi */}
+                  <div className="mt-1">
+                    {!captchaToken ? (
+                      <div className="p-2.5 rounded-xl bg-[#04344C] border border-[#165A7E] flex items-center gap-2 text-[11px] font-mono text-[#78B9CA]">
+                        <span className="w-2 h-2 rounded-full bg-[#165A7E] animate-pulse" />
+                        <span>Tombol pengiriman terkunci — Harap centang kotak verifikasi di atas.</span>
+                      </div>
+                    ) : (
+                      <div className="p-2.5 rounded-xl bg-[#04344C] border border-[#B0EDF9] flex items-center gap-2 text-[11px] font-mono text-[#B0EDF9]">
+                        <Icon name="check-circle" size={14} className="text-[#B0EDF9]" />
+                        <span>Verifikasi Berhasil! Tombol pengiriman aktif.</span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
+                    <button
+                      type="button"
+                      disabled={!captchaToken}
+                      onClick={() => handleWhatsAppSubmit()}
+                      className={`w-full h-12 rounded-full font-heading font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all ${
+                        !captchaToken
+                          ? 'bg-[#074563] border border-[#165A7E]/50 text-[#78B9CA] opacity-50 cursor-not-allowed pointer-events-none select-none'
+                          : 'bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] shadow-md active:scale-[0.98] cursor-pointer'
+                      }`}
+                    >
+                      <Icon name="message-square" size={16} />
+                      <span>Kirim via WhatsApp (Aplikasi)</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      disabled={!captchaToken}
+                      onClick={() => handleEmailSubmit()}
+                      className={`w-full h-12 rounded-full font-heading font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all ${
+                        !captchaToken
+                          ? 'bg-[#04344C] border border-[#165A7E]/40 text-[#78B9CA] opacity-50 cursor-not-allowed pointer-events-none select-none'
+                          : 'border border-[#165A7E] bg-[#074563] hover:bg-[#0B567C] hover:border-[#B0EDF9] text-[#B0EDF9] active:scale-[0.98] cursor-pointer'
+                      }`}
+                    >
+                      <Icon name="mail" size={16} />
+                      <span>Kirim via Email Resmi</span>
+                    </button>
+                  </div>
                 </form>
               )}
             </div>

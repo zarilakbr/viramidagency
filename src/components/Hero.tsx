@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import { Container } from './ui/Container';
 import { Eyebrow } from './ui/Eyebrow';
 import { Icon } from './ui/Icon';
+import { openConsultationModal } from './ConsultationModal';
 
 export const Hero: React.FC = () => {
   return (
@@ -37,13 +38,14 @@ export const Hero: React.FC = () => {
 
             {/* Tombol CTA Simetris (Sama Panjang & Proporsional di Mobile) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 w-full sm:w-auto mb-10">
-              <Link
-                to="/booking"
-                className="w-full sm:w-auto h-12 px-7 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-sm sm:text-base transition-all duration-200 flex items-center justify-center gap-2.5 shadow-md active:scale-[0.98]"
+              <button
+                type="button"
+                onClick={() => openConsultationModal('Konsultasi Brand & Website')}
+                className="w-full sm:w-auto h-12 px-7 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-sm sm:text-base transition-all duration-200 flex items-center justify-center gap-2.5 shadow-md active:scale-[0.98] cursor-pointer"
               >
-                <span>Jadwalkan Konsultasi</span>
+                <span>Mulai Konsultasi</span>
                 <Icon name="arrow-right" size={18} />
-              </Link>
+              </button>
 
               <Link
                 to="/karya"

@@ -12,7 +12,8 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Container } from '../components/ui/Container';
 import { Eyebrow } from '../components/ui/Eyebrow';
 import { Icon } from '../components/ui/Icon';
-import { DAFTAR_FAQ, KONTAK_AGENCY } from '../data/content';
+import { DAFTAR_FAQ } from '../data/content';
+import { openConsultationModal } from '../components/ConsultationModal';
 
 export const FaqPage: React.FC = () => {
   const [openId, setOpenId] = useState<string | null>(DAFTAR_FAQ[0]?.id || null);
@@ -148,17 +149,14 @@ export const FaqPage: React.FC = () => {
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-3 shrink-0">
-            <a
-              href={`https://wa.me/${KONTAK_AGENCY.whatsappNomor}?text=${encodeURIComponent(
-                'Halo ViramidAgency, saya ingin menanyakan perihal kerja sama proyek digital.'
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="h-11 px-6 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-xs sm:text-sm inline-flex items-center gap-2 transition-all shadow-md"
+            <button
+              type="button"
+              onClick={() => openConsultationModal('Pertanyaan Layanan & Biaya')}
+              className="h-11 px-6 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-xs sm:text-sm inline-flex items-center gap-2 transition-all shadow-md cursor-pointer active:scale-95"
             >
               <Icon name="message-square" size={15} />
-              <span>Tanya via WhatsApp</span>
-            </a>
+              <span>Konsultasi Cepat (WA / Email)</span>
+            </button>
             <Link
               to="/booking"
               className="h-11 px-5 rounded-full border border-[#165A7E] hover:border-[#B0EDF9] text-[#B0EDF9] font-heading font-bold text-xs sm:text-sm inline-flex items-center gap-2 transition-all"

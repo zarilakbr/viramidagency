@@ -118,7 +118,12 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
   };
 
   // Handler Submit Akhir di Langkah 2
-  const handleSubmitBooking = async () => {
+  const handleSubmitBooking = async (captchaToken?: string) => {
+    if (!captchaToken) {
+      setStepNotice('Mohon selesaikan verifikasi Cloudflare & reCAPTCHA terlebih dahulu.');
+      return;
+    }
+
     const isValid = validateContactForm();
     if (!isValid) {
       setStepNotice('Mohon lengkapi data kontak yang bertanda bintang di bawah.');

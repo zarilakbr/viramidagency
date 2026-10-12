@@ -46,12 +46,12 @@ export function generateWhatsAppMessage(booking: BookingRecord): string {
 }
 
 /**
- * Menghasilkan link tautan langsung ke WhatsApp Web / WhatsApp Mobile (wa.me)
+ * Menghasilkan link tautan langsung ke aplikasi WhatsApp native (whatsapp://send)
  */
 export function getWhatsAppBookingUrl(booking: BookingRecord): string {
   const message = generateWhatsAppMessage(booking);
   const targetNumber = BOOKING_CONFIG.kontak.whatsappNomor;
-  return `https://wa.me/${targetNumber}?text=${encodeURIComponent(message)}`;
+  return `whatsapp://send?phone=${targetNumber}&text=${encodeURIComponent(message)}`;
 }
 
 /**

@@ -9,6 +9,7 @@ import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { BackToTop } from './components/BackToTop';
 import { BackgroundGradients } from './components/BackgroundGradients';
+import { ConsultationModal } from './components/ConsultationModal';
 import { HomePage } from './pages/HomePage';
 import { ServicesPage } from './pages/ServicesPage';
 import { PortfolioPage } from './pages/PortfolioPage';
@@ -68,6 +69,9 @@ export default function App() {
 
         {/* Back to Top Navigation */}
         <BackToTop />
+
+        {/* Modal Pilihan Konsultasi Cepat (WhatsApp vs Email vs Kalender) */}
+        <ConsultationModal />
       </div>
     </BrowserRouter>
   );

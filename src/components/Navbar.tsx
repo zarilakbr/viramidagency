@@ -7,11 +7,12 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Logo } from './Logo';
 import { Icon } from './ui/Icon';
 import { KONTAK_AGENCY } from '../data/content';
 import { Container } from './ui/Container';
+import { openConsultationModal } from './ConsultationModal';
 
 interface NavItem {
   label: string;
@@ -98,10 +99,10 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 h-16 transition-all duration-200 ${
+        className={`fixed top-0 left-0 right-0 z-50 h-16 transition-all duration-300 ${
           isScrolled || mobileMenuOpen
-            ? 'bg-[#04344C]/98 backdrop-blur-md border-b border-[#165A7E] shadow-lg'
-            : 'bg-[#04344C]/90 backdrop-blur-md border-b border-[#165A7E]/60'
+            ? 'bg-[#04344C]/40 backdrop-blur-xl border-b border-[#165A7E]/40 shadow-sm'
+            : 'bg-transparent backdrop-blur-sm border-b border-[#165A7E]/20'
         }`}
       >
         <Container className="h-full flex items-center justify-between">
@@ -129,8 +130,8 @@ export const Navbar: React.FC = () => {
                   onClick={(e) => handleNavClick(e, item.href)}
                   className={`px-3 py-1.5 rounded-lg transition-all duration-150 ${
                     isActive
-                      ? 'text-[#B0EDF9] font-bold bg-[#074563] border border-[#165A7E]'
-                      : 'hover:text-[#B0EDF9] hover:bg-[#074563]/50'
+                      ? 'text-[#B0EDF9] font-bold bg-[#074563]/80 border border-[#165A7E]'
+                      : 'hover:text-[#B0EDF9] hover:bg-[#074563]/40'
                   }`}
                 >
                   {item.label}
@@ -139,31 +140,33 @@ export const Navbar: React.FC = () => {
             })}
           </nav>
 
-          {/* Action Zone (Desktop & Tablet Lebar) */}
+          {/* Action Zone (Desktop & Tablet Lebar) - Buka Pilihan Konsultasi Cepat */}
           <div className="hidden lg:flex items-center gap-3">
-            <Link
-              to="/booking"
-              className="h-9 px-4 rounded-lg bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] text-xs font-heading font-bold transition-colors flex items-center gap-2 shadow-sm"
+            <button
+              type="button"
+              onClick={() => openConsultationModal()}
+              className="h-9 px-4 rounded-lg bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] text-xs font-heading font-bold transition-all flex items-center gap-2 shadow-sm cursor-pointer active:scale-95"
             >
-              <Icon name="calendar" size={14} />
-              <span>Jadwalkan Konsultasi</span>
-            </Link>
+              <Icon name="message-square" size={14} />
+              <span>Konsultasi Proyek</span>
+            </button>
           </div>
 
           {/* Mobile & Tablet Trigger Bar (< 1024px) */}
           <div className="flex items-center gap-2.5 lg:hidden">
-            <Link
-              to="/booking"
-              className="text-xs font-heading font-bold px-3 py-1.5 rounded-lg bg-[#B0EDF9] text-[#04344C] hover:bg-[#C8F4FC] transition-colors flex items-center gap-1.5 shadow-sm"
+            <button
+              type="button"
+              onClick={() => openConsultationModal()}
+              className="text-xs font-heading font-bold px-3 py-1.5 rounded-lg bg-[#B0EDF9] text-[#04344C] hover:bg-[#C8F4FC] transition-all flex items-center gap-1.5 shadow-sm cursor-pointer active:scale-95"
             >
-              <Icon name="calendar" size={13} />
+              <Icon name="message-square" size={13} />
               <span>Konsultasi</span>
-            </Link>
+            </button>
 
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="w-10 h-10 flex items-center justify-center text-[#B0EDF9] hover:text-[#C8F4FC] bg-[#074563] border border-[#165A7E] rounded-xl transition-all cursor-pointer active:scale-95"
+              className="w-10 h-10 flex items-center justify-center text-[#B0EDF9] hover:text-[#C8F4FC] bg-[#074563]/80 backdrop-blur-md border border-[#165A7E] rounded-xl transition-all cursor-pointer active:scale-95"
               aria-label={mobileMenuOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi'}
               aria-expanded={mobileMenuOpen}
             >
@@ -218,14 +221,17 @@ export const Navbar: React.FC = () => {
           </div>
 
           <div className="pt-6 border-t border-[#165A7E] mt-6 flex flex-col gap-3">
-            <Link
-              to="/booking"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-center py-3.5 rounded-xl bg-[#B0EDF9] text-[#04344C] font-heading font-bold text-sm flex items-center justify-center gap-2 shadow-md hover:bg-[#C8F4FC] transition-colors"
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                openConsultationModal();
+              }}
+              className="w-full text-center py-3.5 rounded-xl bg-[#B0EDF9] text-[#04344C] font-heading font-bold text-sm flex items-center justify-center gap-2 shadow-md hover:bg-[#C8F4FC] transition-colors cursor-pointer"
             >
-              <Icon name="calendar" size={18} />
-              <span>Jadwalkan Konsultasi Gratis</span>
-            </Link>
+              <Icon name="message-square" size={18} />
+              <span>Mulai Konsultasi (WhatsApp / Email)</span>
+            </button>
 
             <div className="flex items-center justify-between text-[11px] font-mono text-[#78B9CA] pt-2">
               <span>{KONTAK_AGENCY.lokasi}</span>

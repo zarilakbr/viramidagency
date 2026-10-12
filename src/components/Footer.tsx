@@ -5,6 +5,8 @@ import { TriColorLine } from './ThreeArcsMotif';
 import { Container } from './ui/Container';
 import { Icon } from './ui/Icon';
 import { KONTAK_AGENCY, PROFIL_AGENCY } from '../data/content';
+import { getDirectWhatsAppUrl } from '../lib/whatsapp';
+import { openConsultationModal } from './ConsultationModal';
 
 /**
  * Footer
@@ -112,10 +114,12 @@ export const Footer: React.FC = () => {
                 <span>{KONTAK_AGENCY.email}</span>
               </a>
               <a
-                href={`https://wa.me/${KONTAK_AGENCY.whatsappNomor}`}
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-[#B0EDF9] transition-colors rounded-sm flex items-center gap-2 font-mono text-xs"
+                href={getDirectWhatsAppUrl()}
+                onClick={(e) => {
+                  e.preventDefault();
+                  openConsultationModal('Konsultasi via WhatsApp');
+                }}
+                className="hover:text-[#B0EDF9] transition-colors rounded-sm flex items-center gap-2 font-mono text-xs cursor-pointer"
               >
                 <Icon name="message-square" size="sm" className="text-[#B0EDF9]" />
                 <span>WhatsApp ({KONTAK_AGENCY.whatsappDisplay})</span>
