@@ -65,7 +65,7 @@ export const PortfolioSection: React.FC = () => {
                   role="tab"
                   aria-selected={isSelected}
                   onClick={() => setActiveFilter(filter)}
-                  className={`px-3 py-1.5 text-xs font-mono font-medium rounded transition-colors duration-200 cursor-pointer ${
+                  className={`px-2.5 sm:px-3 py-1 sm:py-1.5 text-[11px] sm:text-xs font-mono font-medium rounded transition-colors duration-200 cursor-pointer ${
                     isSelected
                       ? 'bg-[#B0EDF9] text-[#04344C] font-bold shadow-sm'
                       : 'text-[#78B9CA] hover:text-[#B0EDF9]'

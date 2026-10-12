@@ -43,11 +43,11 @@ export const ProcessSection: React.FC = () => {
                 METODOLOGI &amp; EKSEKUSI
               </Eyebrow>
 
-              <h2 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl text-[#B0EDF9] tracking-[-0.02em] leading-[1.15]">
+              <h2 className="font-heading font-bold text-2xl sm:text-4xl md:text-5xl text-[#B0EDF9] tracking-[-0.02em] leading-[1.15]">
                 Proses Kerja
               </h2>
 
-              <p className="text-sm sm:text-base text-[#78B9CA] font-normal leading-relaxed mt-4 max-w-[50ch]">
+              <p className="text-xs sm:text-sm md:text-base text-[#78B9CA] font-normal leading-relaxed mt-3 sm:mt-4 max-w-[50ch]">
                 Alur rekayasa terstruktur dari pemetaan awal hingga peluncuran untuk memastikan kualitas kode, kecepatan, dan konversi bisnis terjamin.
               </p>
 
@@ -123,12 +123,12 @@ const ProcessStepCard: React.FC<ProcessStepCardProps> = ({ langkah, index, total
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative p-6 sm:p-8 rounded-2xl border border-[#165A7E] bg-[#04344C] hover:border-[#B0EDF9] transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-sm"
+      className="group relative p-5 sm:p-8 rounded-xl sm:rounded-2xl border border-[#165A7E] bg-[#04344C] hover:border-[#B0EDF9] transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-sm"
     >
       {/* Angka Outline Tipis di Pojok Kartu */}
       <motion.span
         style={{ y: numberOffset }}
-        className="absolute top-4 right-6 font-heading font-extrabold text-5xl sm:text-6xl text-[#165A7E]/40 group-hover:text-[#B0EDF9]/20 select-none pointer-events-none transition-colors duration-300"
+        className="absolute top-4 right-5 sm:right-6 font-heading font-extrabold text-4xl sm:text-6xl text-[#165A7E]/40 group-hover:text-[#B0EDF9]/20 select-none pointer-events-none transition-colors duration-300"
         aria-hidden="true"
       >
         {langkah.nomor}
@@ -136,9 +136,9 @@ const ProcessStepCard: React.FC<ProcessStepCardProps> = ({ langkah, index, total
 
       <div>
         {/* Header Kartu: Fase Tag */}
-        <div className="flex items-center gap-3 mb-4">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-[#074563] border border-[#165A7E] text-[#B0EDF9]">
-            <Icon name="layers" size={13} />
+        <div className="flex items-center gap-3 mb-3.5 sm:mb-4">
+          <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full text-xs font-mono font-semibold bg-[#074563] border border-[#165A7E] text-[#B0EDF9]">
+            <Icon name="layers" size={12} />
             <span>FASE {langkah.nomor}</span>
           </span>
           <span className="text-xs font-mono text-[#78B9CA]">
@@ -147,18 +147,18 @@ const ProcessStepCard: React.FC<ProcessStepCardProps> = ({ langkah, index, total
         </div>
 
         {/* Judul Langkah */}
-        <h3 className="font-heading font-bold text-xl sm:text-2xl text-[#B0EDF9] mb-3 tracking-tight group-hover:underline transition-all">
+        <h3 className="font-heading font-bold text-lg sm:text-xl md:text-2xl text-[#B0EDF9] mb-2 sm:mb-3 tracking-tight group-hover:underline transition-all">
           {langkah.judul}
         </h3>
 
         {/* Deskripsi */}
-        <p className="text-sm sm:text-base text-[#78B9CA] leading-relaxed font-normal max-w-[58ch]">
+        <p className="text-xs sm:text-sm md:text-base text-[#78B9CA] leading-relaxed font-normal max-w-[58ch]">
           {langkah.deskripsi}
         </p>
       </div>
 
       {/* Garis Aksen Bawah Halus */}
-      <div className="mt-6 pt-4 border-t border-[#165A7E] flex items-center justify-between text-xs font-mono text-[#78B9CA]">
+      <div className="mt-5 sm:mt-6 pt-3.5 sm:pt-4 border-t border-[#165A7E] flex items-center justify-between text-xs font-mono text-[#78B9CA]">
         <span>Standar Eksekusi Presisi</span>
         <span className="text-[#B0EDF9] font-semibold">ViramidAgency Standard</span>
       </div>

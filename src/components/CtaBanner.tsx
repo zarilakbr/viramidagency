@@ -21,11 +21,11 @@ export const CtaBanner: React.FC = () => {
               MULAI LANGKAH PERTAMA
             </Eyebrow>
 
-            <h2 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl text-[#04344C] tracking-[-0.02em] leading-[1.15]">
+            <h2 className="font-heading font-bold text-2xl sm:text-4xl md:text-5xl text-[#04344C] tracking-[-0.02em] leading-[1.15]">
               Punya proyek? Jadwalkan obrolan 30 menit.
             </h2>
 
-            <p className="text-sm sm:text-base font-medium text-[#04344C]/85 max-w-[64ch] mt-1">
+            <p className="text-xs sm:text-base font-medium text-[#04344C]/85 max-w-[64ch] mt-1 leading-relaxed">
               Konsultasi gratis tanpa komitmen awal. Mari bedah kebutuhan website, aplikasi, dan digitalisasi bisnismu untuk solusi yang paling berdampak.
             </p>
           </div>
@@ -34,10 +34,10 @@ export const CtaBanner: React.FC = () => {
             <button
               type="button"
               onClick={() => openConsultationModal('Diskusi Obrolan Proyek')}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 h-12 px-8 rounded-full bg-[#04344C] hover:bg-[#022131] text-[#B0EDF9] font-heading font-bold text-sm sm:text-base transition-all duration-200 shadow-lg active:scale-[0.98] cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-2.5 h-11 sm:h-12 px-6 sm:px-8 rounded-full bg-[#04344C] hover:bg-[#022131] text-[#B0EDF9] font-heading font-bold text-xs sm:text-sm md:text-base transition-all duration-200 shadow-lg active:scale-[0.98] cursor-pointer"
             >
               <span>Mulai Konsultasi</span>
-              <Icon name="arrow-right" size={18} />
+              <Icon name="arrow-right" size={16} />
             </button>
           </div>
         </div>

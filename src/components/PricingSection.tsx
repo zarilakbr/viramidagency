@@ -159,14 +159,14 @@ export const PricingSection: React.FC = () => {
                 >
                   <Link
                     to={`/booking?jenis=${paket.bookingJenisId}&paket=${paket.id}`}
-                    className={`w-full h-12 px-6 rounded-full font-heading font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 ${
+                    className={`w-full h-11 sm:h-12 px-4 sm:px-6 rounded-full font-heading font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center gap-2 ${
                       isHighlighted
                         ? 'bg-[#04344C] hover:bg-[#022131] text-[#B0EDF9] shadow-md'
                         : 'bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] shadow-sm'
                     }`}
                   >
                     <span>Diskusikan Paket Ini</span>
-                    <Icon name="arrow-right" size={16} />
+                    <Icon name="arrow-right" size={15} />
                   </Link>
                 </div>
               </div>

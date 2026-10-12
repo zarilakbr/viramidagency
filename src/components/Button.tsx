@@ -33,7 +33,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
   } = props;
 
   const baseClasses =
-    'h-11 px-6 rounded-full font-heading font-bold text-sm inline-flex items-center justify-center gap-2 transition-colors duration-200 cursor-pointer select-none whitespace-nowrap shrink-0 disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed';
+    'h-10 sm:h-11 px-4 sm:px-6 rounded-full font-heading font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors duration-200 cursor-pointer select-none whitespace-nowrap shrink-0 disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed';
 
   const variantClasses = {
     primary:

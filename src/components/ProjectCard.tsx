@@ -126,16 +126,16 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       </motion.div>
 
       {/* Konten Metadata & Deskripsi */}
-      <div className="p-6 flex flex-col flex-1 justify-between gap-4">
+      <div className="p-4 sm:p-6 flex flex-col flex-1 justify-between gap-3 sm:gap-4">
         <div>
-          <div className="flex items-center justify-between gap-2 mb-3">
+          <div className="flex items-center justify-between gap-2 mb-2.5 sm:mb-3">
             <CategoryBadge category={proyek.kategori} />
             <span className="font-mono text-xs text-[#78B9CA] tabular-nums">
               {proyek.tahun}
             </span>
           </div>
 
-          <h3 className="font-heading font-bold text-xl sm:text-2xl text-[#B0EDF9] group-hover:underline transition-colors tracking-tight">
+          <h3 className="font-heading font-bold text-lg sm:text-xl md:text-2xl text-[#B0EDF9] group-hover:underline transition-colors tracking-tight">
             {proyek.judul}
           </h3>
 
@@ -150,14 +150,16 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
         {/* External Link Direct CTA if URL exists */}
         {proyek.url && (
-          <div className="pt-2 border-t border-[#165A7E] flex items-center justify-between text-xs font-mono">
-            <span className="text-[#78B9CA]">Domain: {new URL(proyek.url).hostname}</span>
+          <div className="pt-2 border-t border-[#165A7E] flex items-center justify-between gap-2 text-xs font-mono">
+            <span className="text-[#78B9CA] truncate max-w-[140px] sm:max-w-none">
+              Domain: {new URL(proyek.url).hostname}
+            </span>
             <span
               onClick={(e) => {
                 e.stopPropagation();
                 window.open(proyek.url, '_blank', 'noopener,noreferrer');
               }}
-              className="text-[#B0EDF9] hover:underline inline-flex items-center gap-1 font-semibold"
+              className="text-[#B0EDF9] hover:underline inline-flex items-center gap-1 font-semibold shrink-0"
             >
               <span>Kunjungi Live</span>
               <Icon name="arrow-up-right" size={12} />

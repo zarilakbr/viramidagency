@@ -46,13 +46,13 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
           {eyebrowText || `SEKSI ${number}`}
         </Eyebrow>
 
-        <h2 className={`font-heading font-bold text-3xl sm:text-4xl md:text-5xl tracking-[-0.02em] leading-[1.15] text-balance ${titleColor}`}>
+        <h2 className={`font-heading font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[-0.02em] leading-[1.15] text-balance ${titleColor}`}>
           {title}
         </h2>
       </div>
 
       {subtitle && (
-        <p className={`mt-3 text-sm sm:text-base max-w-[64ch] font-normal leading-[1.7] text-balance ${subtitleColor}`}>
+        <p className={`mt-2.5 sm:mt-3 text-xs sm:text-sm md:text-base max-w-[64ch] font-normal leading-[1.6] sm:leading-[1.7] text-balance ${subtitleColor}`}>
           {subtitle}
         </p>
       )}

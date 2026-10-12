@@ -227,9 +227,9 @@ export const Navbar: React.FC = () => {
                 setMobileMenuOpen(false);
                 openConsultationModal();
               }}
-              className="w-full text-center py-3.5 rounded-xl bg-[#B0EDF9] text-[#04344C] font-heading font-bold text-sm flex items-center justify-center gap-2 shadow-md hover:bg-[#C8F4FC] transition-colors cursor-pointer"
+              className="w-full text-center py-3 px-3 rounded-xl bg-[#B0EDF9] text-[#04344C] font-heading font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md hover:bg-[#C8F4FC] transition-colors cursor-pointer active:scale-[0.98]"
             >
-              <Icon name="message-square" size={18} />
+              <Icon name="message-square" size={16} />
               <span>Mulai Konsultasi (WhatsApp / Email)</span>
             </button>
 

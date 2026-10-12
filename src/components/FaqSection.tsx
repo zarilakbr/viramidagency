@@ -82,20 +82,20 @@ export const FaqSection: React.FC = () => {
                       prevBtn?.focus();
                     }
                   }}
-                  className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B0EDF9]"
+                  className="w-full text-left p-4 sm:p-6 flex items-center justify-between gap-3 sm:gap-4 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B0EDF9]"
                 >
-                  <span className="font-heading font-bold text-base sm:text-lg text-[#B0EDF9] pr-2">
+                  <span className="font-heading font-bold text-sm sm:text-base md:text-lg text-[#B0EDF9] pr-2">
                     {item.pertanyaan}
                   </span>
 
                   <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 ${
+                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 ${
                       isOpen
                         ? 'bg-[#B0EDF9] text-[#04344C] rotate-180 shadow-sm'
                         : 'bg-[#04344C] border border-[#165A7E] text-[#B0EDF9]'
                     }`}
                   >
-                    <Icon name="chevron-down" size={16} />
+                    <Icon name="chevron-down" size={15} />
                   </div>
                 </button>
 
@@ -111,7 +111,7 @@ export const FaqSection: React.FC = () => {
                       transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="px-5 pb-6 sm:px-6 sm:pb-6 text-sm text-[#78B9CA] leading-relaxed border-t border-[#165A7E] pt-4">
+                      <div className="px-4 pb-5 sm:px-6 sm:pb-6 text-xs sm:text-sm text-[#78B9CA] leading-relaxed border-t border-[#165A7E] pt-3.5 sm:pt-4">
                         {item.jawaban}
                       </div>
                     </motion.div>

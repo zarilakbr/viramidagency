@@ -95,7 +95,7 @@ export const CaptchaVerification: React.FC<CaptchaVerificationProps> = ({
   return (
     <div className={`flex flex-col gap-1.5 ${className}`}>
       <div
-        className={`relative w-full rounded-2xl p-3.5 sm:p-4 bg-[#074563] border transition-all duration-300 ${
+        className={`relative w-full rounded-2xl p-3 sm:p-4 bg-[#074563] border transition-all duration-300 ${
           status === 'verified'
             ? 'border-[#B0EDF9] shadow-[0_0_20px_rgba(176,237,249,0.15)]'
             : hasError || status === 'error'
@@ -103,9 +103,9 @@ export const CaptchaVerification: React.FC<CaptchaVerificationProps> = ({
             : 'border-[#165A7E] hover:border-[#78B9CA]'
         }`}
       >
-        <div className="flex items-center justify-between gap-3 flex-wrap sm:flex-nowrap">
+        <div className="flex items-center justify-between gap-2.5 sm:gap-3 flex-wrap sm:flex-nowrap">
           {/* Sisi Kiri: Kotak Centang & Label Verifikasi */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1">
             <button
               type="button"
               onClick={handleInteractiveVerify}
@@ -126,10 +126,10 @@ export const CaptchaVerification: React.FC<CaptchaVerificationProps> = ({
               ) : null}
             </button>
 
-            <div className="flex flex-col">
+            <div className="flex flex-col min-w-0">
               <span
                 onClick={handleInteractiveVerify}
-                className={`text-xs font-heading font-bold select-none cursor-pointer transition-colors ${
+                className={`text-[11px] sm:text-xs font-heading font-bold select-none cursor-pointer transition-colors leading-tight ${
                   status === 'verified'
                     ? 'text-[#B0EDF9]'
                     : status === 'verifying'
@@ -143,7 +143,7 @@ export const CaptchaVerification: React.FC<CaptchaVerificationProps> = ({
                   ? 'Memeriksa keamanan...'
                   : 'Saya manusia (Verifikasi Keamanan)'}
               </span>
-              <span className="text-[10px] font-mono text-[#78B9CA] select-none">
+              <span className="text-[9px] sm:text-[10px] font-mono text-[#78B9CA] select-none mt-0.5 leading-tight">
                 {status === 'verified'
                   ? 'Terproteksi Cloudflare & reCAPTCHA'
                   : 'Klik kotak centang untuk memverifikasi'}
@@ -152,12 +152,12 @@ export const CaptchaVerification: React.FC<CaptchaVerificationProps> = ({
           </div>
 
           {/* Sisi Kanan: Lencana Branding Cloudflare & reCAPTCHA */}
-          <div className="flex items-center gap-2.5 shrink-0 pl-2 sm:pl-0 border-t sm:border-t-0 pt-2 sm:pt-0 border-[#165A7E]/40 w-full sm:w-auto justify-end">
+          <div className="flex items-center gap-2 shrink-0 border-t sm:border-t-0 pt-2 sm:pt-0 border-[#165A7E]/40 w-full sm:w-auto justify-end">
             <div className="flex flex-col items-end text-right">
               <div className="flex items-center gap-1.5">
                 {/* Ikon Cloudflare Cloud */}
                 <svg
-                  className="w-4 h-4 text-[#B0EDF9]"
+                  className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#B0EDF9]"
                   viewBox="0 0 24 24"
                   fill="currentColor"
                   aria-hidden="true"
@@ -165,12 +165,12 @@ export const CaptchaVerification: React.FC<CaptchaVerificationProps> = ({
                   <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.6.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z" />
                 </svg>
 
-                <span className="text-[10px] font-mono font-bold text-[#B0EDF9] tracking-wider uppercase">
+                <span className="text-[9px] sm:text-[10px] font-mono font-bold text-[#B0EDF9] tracking-wider uppercase">
                   Cloudflare
                 </span>
               </div>
 
-              <div className="flex items-center gap-1 text-[9px] font-mono text-[#78B9CA]/75">
+              <div className="flex items-center gap-1 text-[8.5px] sm:text-[9px] font-mono text-[#78B9CA]/75">
                 <span>Turnstile</span>
                 <span>•</span>
                 <span>reCAPTCHA</span>

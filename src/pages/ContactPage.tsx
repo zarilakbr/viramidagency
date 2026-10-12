@@ -453,18 +453,18 @@ export const ContactPage: React.FC = () => {
                     )}
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 mt-2">
                     <button
                       type="button"
                       disabled={!captchaToken}
                       onClick={() => handleWhatsAppSubmit()}
-                      className={`w-full h-12 rounded-full font-heading font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all ${
+                      className={`w-full h-11 sm:h-12 px-4 sm:px-6 rounded-full font-heading font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all ${
                         !captchaToken
                           ? 'bg-[#074563] border border-[#165A7E]/50 text-[#78B9CA] opacity-50 cursor-not-allowed pointer-events-none select-none'
                           : 'bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] shadow-md active:scale-[0.98] cursor-pointer'
                       }`}
                     >
-                      <Icon name="message-square" size={16} />
+                      <Icon name="message-square" size={15} />
                       <span>Kirim via WhatsApp (Aplikasi)</span>
                     </button>
 
@@ -472,13 +472,13 @@ export const ContactPage: React.FC = () => {
                       type="button"
                       disabled={!captchaToken}
                       onClick={() => handleEmailSubmit()}
-                      className={`w-full h-12 rounded-full font-heading font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all ${
+                      className={`w-full h-11 sm:h-12 px-4 sm:px-6 rounded-full font-heading font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all ${
                         !captchaToken
                           ? 'bg-[#04344C] border border-[#165A7E]/40 text-[#78B9CA] opacity-50 cursor-not-allowed pointer-events-none select-none'
                           : 'border border-[#165A7E] bg-[#074563] hover:bg-[#0B567C] hover:border-[#B0EDF9] text-[#B0EDF9] active:scale-[0.98] cursor-pointer'
                       }`}
                     >
-                      <Icon name="mail" size={16} />
+                      <Icon name="mail" size={15} />
                       <span>Kirim via Email Resmi</span>
                     </button>
                   </div>

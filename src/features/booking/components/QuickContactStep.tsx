@@ -282,7 +282,7 @@ export const QuickContactStep: React.FC<QuickContactStepProps> = ({
                 }
                 onSubmit(captchaToken);
               }}
-              className={`w-full h-12 px-6 rounded-full font-heading font-bold text-sm sm:text-base transition-all duration-200 flex items-center justify-center gap-2 mt-1 shadow-md ${
+              className={`w-full h-11 sm:h-12 px-4 sm:px-6 rounded-full font-heading font-bold text-xs sm:text-sm md:text-base transition-all duration-200 flex items-center justify-center gap-2 mt-1 shadow-md ${
                 !captchaToken || isSubmitting
                   ? 'bg-[#04344C] border border-[#165A7E]/50 text-[#78B9CA] opacity-50 cursor-not-allowed pointer-events-none select-none'
                   : 'bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] cursor-pointer active:scale-[0.98]'
@@ -296,7 +296,7 @@ export const QuickContactStep: React.FC<QuickContactStepProps> = ({
               ) : (
                 <>
                   <span>Kirim Jadwal Konsultasi Anda</span>
-                  <Icon name="arrow-right" size={18} />
+                  <Icon name="arrow-right" size={16} />
                 </>
               )}
             </button>

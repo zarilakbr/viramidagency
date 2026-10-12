@@ -317,7 +317,7 @@ export const ProjectDetailPage: React.FC = () => {
               as="button"
               variant="outline"
               onClick={() => navigate(`/karya/${nextProyek.slug}`)}
-              className="group"
+              className="group w-full sm:w-auto justify-between sm:justify-center"
             >
               <span className="text-xs text-[#78B9CA] mr-1">Berikutnya:</span>
               <span>{nextProyek.judul}</span>

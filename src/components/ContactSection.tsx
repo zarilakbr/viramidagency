@@ -395,32 +395,32 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService =
               </div>
 
               {/* Tombol Aksi Simetris */}
-              <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
                 <button
                   type="submit"
                   disabled={!captchaToken}
-                  className={`w-full h-12 px-6 rounded-full font-heading font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 ${
+                  className={`w-full h-11 sm:h-12 px-4 sm:px-6 rounded-full font-heading font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center gap-2 ${
                     !captchaToken
                       ? 'bg-[#074563] border border-[#165A7E]/50 text-[#78B9CA] opacity-50 cursor-not-allowed pointer-events-none select-none'
                       : 'bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] shadow-sm cursor-pointer active:scale-[0.98]'
                   }`}
                 >
                   <span>Kirim via WhatsApp</span>
-                  <Icon name="arrow-right" size={16} />
+                  <Icon name="arrow-right" size={15} />
                 </button>
 
                 <button
                   type="button"
                   disabled={!captchaToken}
                   onClick={handleEmailClick}
-                  className={`w-full h-12 px-6 rounded-full font-heading font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 ${
+                  className={`w-full h-11 sm:h-12 px-4 sm:px-6 rounded-full font-heading font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center gap-2 ${
                     !captchaToken
                       ? 'bg-[#04344C] border border-[#165A7E]/40 text-[#78B9CA] opacity-50 cursor-not-allowed pointer-events-none select-none'
                       : 'border border-[#165A7E] bg-[#074563] hover:bg-[#0B567C] text-[#B0EDF9] hover:border-[#B0EDF9] cursor-pointer active:scale-[0.98]'
                   }`}
                 >
                   <span>Kirim via Email</span>
-                  <Icon name="mail" size={16} />
+                  <Icon name="mail" size={15} />
                 </button>
               </div>
 

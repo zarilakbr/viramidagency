@@ -26,33 +26,33 @@ export const Hero: React.FC = () => {
               DIGITAL &amp; CREATIVE AGENCY
             </Eyebrow>
 
-            <h1 className="font-heading font-bold text-3xl sm:text-5xl md:text-6xl lg:text-[66px] text-[#B0EDF9] tracking-[-0.02em] leading-[1.08] mb-6 text-balance">
+            <h1 className="font-heading font-bold text-[28px] sm:text-5xl md:text-6xl lg:text-[66px] text-[#B0EDF9] tracking-[-0.02em] leading-[1.12] sm:leading-[1.08] mb-4 sm:mb-6 text-balance">
               Kami membangun brand dan website yang{' '}
               <span className="text-[#B0EDF9] underline decoration-[#B0EDF9]/40 underline-offset-8">bekerja</span> untuk bisnismu.
             </h1>
 
-            <p className="text-sm sm:text-base md:text-lg text-[#B0EDF9]/85 max-w-[58ch] font-normal leading-relaxed mb-8 text-balance">
+            <p className="text-xs sm:text-base md:text-lg text-[#B0EDF9]/85 max-w-[58ch] font-normal leading-relaxed mb-6 sm:mb-8 text-balance">
               Membantu brand dan lembaga berkembang melalui transformasi identitas visual terstruktur,
               arsitektur website &amp; aplikasi performa tinggi, dan sistem konversi digital yang memikat pelanggan.
             </p>
 
             {/* Tombol CTA Simetris (Sama Panjang & Proporsional di Mobile) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 w-full sm:w-auto mb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5 w-full sm:w-auto mb-8 sm:mb-10">
               <button
                 type="button"
                 onClick={() => openConsultationModal('Konsultasi Brand & Website')}
-                className="w-full sm:w-auto h-12 px-7 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-sm sm:text-base transition-all duration-200 flex items-center justify-center gap-2.5 shadow-md active:scale-[0.98] cursor-pointer"
+                className="w-full sm:w-auto h-11 sm:h-12 px-6 sm:px-7 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-xs sm:text-sm md:text-base transition-all duration-200 flex items-center justify-center gap-2 sm:gap-2.5 shadow-md active:scale-[0.98] cursor-pointer"
               >
                 <span>Mulai Konsultasi</span>
-                <Icon name="arrow-right" size={18} />
+                <Icon name="arrow-right" size={16} />
               </button>
 
               <Link
                 to="/karya"
-                className="w-full sm:w-auto h-12 px-7 rounded-full border border-[#165A7E] bg-[#074563] hover:bg-[#0B567C] hover:border-[#B0EDF9] text-[#B0EDF9] font-heading font-bold text-sm sm:text-base transition-all duration-200 flex items-center justify-center gap-2"
+                className="w-full sm:w-auto h-11 sm:h-12 px-6 sm:px-7 rounded-full border border-[#165A7E] bg-[#074563] hover:bg-[#0B567C] hover:border-[#B0EDF9] text-[#B0EDF9] font-heading font-bold text-xs sm:text-sm md:text-base transition-all duration-200 flex items-center justify-center gap-2"
               >
                 <span>Lihat Karya</span>
-                <Icon name="arrow-right" size={16} />
+                <Icon name="arrow-right" size={15} />
               </Link>
             </div>
 

@@ -238,10 +238,10 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({ initialJenisId }) 
           <button
             type="button"
             onClick={handleNextToContact}
-            className="w-full sm:w-auto h-12 px-7 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-sm sm:text-base transition-all duration-200 flex items-center justify-center gap-2.5 cursor-pointer shadow-md active:scale-[0.98]"
+            className="w-full sm:w-auto h-11 sm:h-12 px-6 sm:px-7 rounded-full bg-[#B0EDF9] hover:bg-[#C8F4FC] text-[#04344C] font-heading font-bold text-xs sm:text-sm md:text-base transition-all duration-200 flex items-center justify-center gap-2 sm:gap-2.5 cursor-pointer shadow-md active:scale-[0.98]"
           >
             <span>Lanjut ke Data Kontak</span>
-            <Icon name="arrow-right" size={18} />
+            <Icon name="arrow-right" size={16} />
           </button>
         </div>
       )}

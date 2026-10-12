@@ -62,7 +62,7 @@ export const AboutSection: React.FC = () => {
             <h3 className="font-heading font-bold text-2xl sm:text-3xl text-[#B0EDF9] tracking-[-0.02em] leading-[1.3] text-balance">
               Menciptakan karya yang tidak hanya memikat visual, namun terukur dampaknya.
             </h3>
-            <p className="text-base text-[#78B9CA] leading-[1.75] max-w-[62ch]">
+            <p className="text-sm sm:text-base text-[#78B9CA] leading-[1.65] sm:leading-[1.75] max-w-[62ch]">
               {PROFIL_AGENCY.cerita}
             </p>
           </Reveal>
@@ -78,14 +78,14 @@ export const AboutSection: React.FC = () => {
                   key={nilai.nomor}
                   delayIndex={index}
                 >
-                  <div className="p-5 bg-[#074563] border border-[#165A7E] rounded-xl hover:border-[#B0EDF9] transition-colors duration-200">
+                  <div className="p-4 sm:p-5 bg-[#074563] border border-[#165A7E] rounded-xl hover:border-[#B0EDF9] transition-colors duration-200">
                     <div className="flex items-center gap-3 mb-2">
                       <span className="w-2 h-2 rounded-full bg-[#B0EDF9] shrink-0" />
                       <h4 className="font-heading font-bold text-base sm:text-lg text-[#B0EDF9]">
                         {nilai.judul}
                       </h4>
                     </div>
-                    <p className="text-sm text-[#78B9CA] leading-relaxed pl-5 max-w-[62ch]">
+                    <p className="text-xs sm:text-sm text-[#78B9CA] leading-relaxed pl-5 max-w-[62ch]">
                       {nilai.deskripsi}
                     </p>
                   </div>
