@@ -352,8 +352,7 @@ export const ConsultationModal: React.FC = () => {
             <div className={`w-9 h-9 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl flex items-center justify-center shrink-0 mt-0.5 shadow-sm transition-colors ${
               !captchaToken ? 'bg-[#04344C] text-[#78B9CA]' : 'bg-[#B0EDF9] text-[#04344C]'
             }`}>
-              <Icon name="message-square" size={18} className="sm:hidden" />
-              <Icon name="message-square" size={22} className="hidden sm:block" />
+              <Icon name="message-square" size={20} className="w-[18px] h-[18px] sm:w-[22px] sm:h-[22px]" />
             </div>
 
             <div className="flex-1 min-w-0">
@@ -391,8 +390,7 @@ export const ConsultationModal: React.FC = () => {
                 ? 'bg-[#04344C] border-[#165A7E]/40 text-[#78B9CA]'
                 : 'bg-[#04344C] border-[#165A7E] text-[#B0EDF9] group-hover:border-[#B0EDF9]'
             }`}>
-              <Icon name="mail" size={17} className="sm:hidden" />
-              <Icon name="mail" size={20} className="hidden sm:block" />
+              <Icon name="mail" size={20} className="w-[17px] h-[17px] sm:w-[20px] sm:h-[20px]" />
             </div>
 
             <div className="flex-1 min-w-0">
